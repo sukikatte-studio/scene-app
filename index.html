@@ -15,87 +15,167 @@
 
     <main class="container">
       <section class="card form-card">
-        <h2>シーンを追加 / 編集</h2>
-        <form id="sceneForm">
-          <input type="hidden" id="sceneId" />
-
-          <div class="grid">
-            <div class="field">
-              <label for="projectName">プロジェクト名</label>
-              <input type="text" id="projectName" placeholder="例：Sukikatte Studio ショートドラマ" required />
-            </div>
-
-            <div class="field">
-              <label for="sceneNumber">シーン番号</label>
-              <input type="text" id="sceneNumber" placeholder="例：1" required />
-            </div>
-
-            <div class="field">
-              <label for="shootOrder">撮影順</label>
-              <input type="number" id="shootOrder" placeholder="例：3" required min="1" />
-            </div>
-
-            <div class="field">
-              <label for="sceneTitle">シーン名</label>
-              <input type="text" id="sceneTitle" placeholder="例：居酒屋 カウンター席 会話シーン" required />
-            </div>
-
-            <div class="field">
-              <label for="location">場所</label>
-              <input type="text" id="location" placeholder="例：居酒屋" />
-            </div>
-
-            <div class="field">
-              <label for="inOut">内 / 外</label>
-              <select id="inOut">
-                <option value="">選択してください</option>
-                <option value="内">内</option>
-                <option value="外">外</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="dayNight">昼 / 夜</label>
-              <select id="dayNight">
-                <option value="">選択してください</option>
-                <option value="昼">昼</option>
-                <option value="夜">夜</option>
-              </select>
-            </div>
-
-            <div class="field full">
-              <label for="cast">出演者</label>
-              <input type="text" id="cast" placeholder="例：長嶋琢磨 宮下和" />
-            </div>
-
-            <div class="field full">
-              <label for="props">小道具</label>
-              <input type="text" id="props" placeholder="例：グラス メニュー表 スマホ 財布" />
-            </div>
-
-            <div class="field full">
-              <label for="gear">機材</label>
-              <input type="text" id="gear" placeholder="例：FX3 24-70GM2 70-200GM2 300c" />
-            </div>
-
-            <div class="field full">
-              <label for="memo">メモ</label>
-              <textarea id="memo" rows="4" placeholder="例：縦動画 CU多め 会話テンポ重視"></textarea>
-            </div>
-
-            <div class="field checkbox-field">
-              <label>
-                <input type="checkbox" id="isShot" />
-                撮影済み
-              </label>
-            </div>
+        <div class="form-header">
+          <div>
+            <h2 id="formTitle">シーン入力</h2>
+            <p class="form-subtitle" id="formSubtitle">追加や編集が必要な時だけ開いて使います</p>
           </div>
+          <button type="button" id="toggleFormBtn" class="primary-btn form-toggle-btn">
+            ＋ シーンを追加
+          </button>
+        </div>
 
-          <div class="button-row">
-            <button type="submit" class="primary-btn">保存する</button>
-            <button type="button" id="cancelEditBtn" class="secondary-btn">編集をキャンセル</button>
-          </div>
-        </form>
+        <div id="formContainer" class="form-container hidden">
+          <form id="sceneForm">
+            <input type="hidden" id="sceneId" />
+
+            <div class="grid">
+              <div class="field">
+                <label for="projectName">プロジェクト名</label>
+                <input type="text" id="projectName" placeholder="例：Sukikatte Studio ショートドラマ" required />
+              </div>
+
+              <div class="field">
+                <label for="sceneNumber">シーン番号</label>
+                <input type="text" id="sceneNumber" placeholder="例：1" required />
+              </div>
+
+              <div class="field">
+                <label for="shootOrder">撮影順</label>
+                <input type="number" id="shootOrder" placeholder="例：3" required min="1" />
+              </div>
+
+              <div class="field">
+                <label for="sceneTitle">シーン名</label>
+                <input type="text" id="sceneTitle" placeholder="例：居酒屋 カウンター席 会話シーン" required />
+              </div>
+
+              <div class="field">
+                <label for="location">場所</label>
+                <input type="text" id="location" placeholder="例：居酒屋" />
+              </div>
+
+              <div class="field">
+                <label for="inOut">内 / 外</label>
+                <select id="inOut">
+                  <option value="">選択してください</option>
+                  <option value="内">内</option>
+                  <option value="外">外</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="dayNight">昼 / 夜</label>
+                <select id="dayNight">
+                  <option value="">選択してください</option>
+                  <option value="昼">昼</option>
+                  <option value="夜">夜</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="priority">優先度</label>
+                <select id="priority">
+                  <option value="中">中</option>
+                  <option value="高">高</option>
+                  <option value="低">低</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="status">ステータス</label>
+                <select id="status">
+                  <option value="未着手">未着手</option>
+                  <option value="準備中">準備中</option>
+                  <option value="撮影済み">撮影済み</option>
+                </select>
+              </div>
+
+              <div class="field full">
+                <label for="cast">出演者</label>
+                <input type="text" id="cast" placeholder="例：長嶋琢磨 宮下和" />
+              </div>
+
+              <div class="field full">
+                <label for="props">小道具</label>
+                <input type="text" id="props" placeholder="例：グラス メニュー表 スマホ 財布" />
+              </div>
+
+              <div class="field full">
+                <label for="gear">機材</label>
+                <input type="text" id="gear" placeholder="例：FX3 24-70GM2 70-200GM2 300c" />
+              </div>
+
+              <div class="field full">
+                <label for="costume">衣装</label>
+                <input type="text" id="costume" placeholder="例：黒スーツ エプロン 制服" />
+              </div>
+
+              <div class="field full">
+                <label for="makeup">メイク</label>
+                <input type="text" id="makeup" placeholder="例：ナチュラル 疲れメイク 傷メイク" />
+              </div>
+
+              <div class="field">
+                <label for="emotion">感情</label>
+                <input type="text" id="emotion" placeholder="例：緊張 怒り 不安 安心" />
+              </div>
+
+              <div class="field">
+                <label for="cameraSize">カメラサイズ</label>
+                <input type="text" id="cameraSize" placeholder="例：CU MS WS" />
+              </div>
+
+              <div class="field">
+                <label for="tempo">テンポ</label>
+                <input type="text" id="tempo" placeholder="例：早め ゆっくり 間重視" />
+              </div>
+
+              <div class="field">
+                <label for="durationMemo">尺メモ</label>
+                <input type="text" id="durationMemo" placeholder="例：30秒 1分半 2ページ分" />
+              </div>
+
+              <div class="field full">
+                <label for="referenceWorks">参考作品</label>
+                <input type="text" id="referenceWorks" placeholder="例：○○っぽい空気感 △△の会話テンポ" />
+              </div>
+
+              <div class="field full">
+                <label for="directionMemo">演出メモ</label>
+                <textarea id="directionMemo" rows="3" placeholder="例：距離感を大事に 視線を外してから話す"></textarea>
+              </div>
+
+              <div class="field full">
+                <label for="lightingMemo">照明メモ</label>
+                <textarea id="lightingMemo" rows="3" placeholder="例：窓側キー 背景は少し落とす 実景を活かす"></textarea>
+              </div>
+
+              <div class="field full">
+                <label for="cautionMemo">注意点</label>
+                <textarea id="cautionMemo" rows="3" placeholder="例：店内音に注意 通行人映り込み NG小道具あり"></textarea>
+              </div>
+
+              <div class="field full">
+                <label for="memo">メモ</label>
+                <textarea id="memo" rows="4" placeholder="例：縦動画 CU多め 会話テンポ重視"></textarea>
+              </div>
+
+              <div class="field checkbox-field">
+                <label>
+                  <input type="checkbox" id="isShot" />
+                  撮影済み
+                </label>
+              </div>
+            </div>
+
+            <div class="button-row">
+              <button type="submit" id="submitBtn" class="primary-btn">保存する</button>
+              <button type="button" id="cancelEditBtn" class="secondary-btn">編集をキャンセル</button>
+              <button type="button" id="closeFormBtn" class="secondary-btn">フォームを閉じる</button>
+            </div>
+          </form>
+        </div>
       </section>
 
       <section class="card list-card">
@@ -110,15 +190,38 @@
           </div>
         </div>
 
-        <div class="project-filter">
-          <label for="projectFilter">プロジェクト</label>
-          <select id="projectFilter">
-            <option value="all">すべてのプロジェクト</option>
-          </select>
-        </div>
+        <div class="filter-grid">
+          <div class="project-filter">
+            <label for="projectFilter">プロジェクト</label>
+            <select id="projectFilter">
+              <option value="all">すべてのプロジェクト</option>
+            </select>
+          </div>
 
-        <div class="search-area">
-          <input type="text" id="searchInput" placeholder="検索（シーン名・出演者・場所・メモなど）" />
+          <div class="field">
+            <label for="searchInput">検索</label>
+            <input type="text" id="searchInput" placeholder="シーン名・出演者・場所・メモなど" />
+          </div>
+
+          <div class="field">
+            <label for="priorityFilter">優先度</label>
+            <select id="priorityFilter">
+              <option value="all">すべて</option>
+              <option value="高">高</option>
+              <option value="中">中</option>
+              <option value="低">低</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="statusFilter">ステータス</label>
+            <select id="statusFilter">
+              <option value="all">すべて</option>
+              <option value="未着手">未着手</option>
+              <option value="準備中">準備中</option>
+              <option value="撮影済み">撮影済み</option>
+            </select>
+          </div>
         </div>
 
         <div class="filter-area">
