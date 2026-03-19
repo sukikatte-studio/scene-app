@@ -1,0 +1,93 @@
+{\rtf1\ansi\ansicpg932\cocoartf2868
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 /* \uc0\u12473 \u12510 \u12507 \u26368 \u36969 \u21270  */\
+\
+body \{\
+  font-size: 16px;\
+  background: #0f172a;\
+  color: #fff;\
+\}\
+\
+.app \{\
+  max-width: 600px;\
+  margin: 0 auto;\
+  padding: 10px;\
+\}\
+\
+.card \{\
+  background: #1e293b;\
+  border-radius: 12px;\
+  padding: 15px;\
+  margin-bottom: 15px;\
+\}\
+\
+input, select, textarea \{\
+  width: 100%;\
+  padding: 12px;\
+  font-size: 16px;\
+  border-radius: 8px;\
+  border: none;\
+  margin-top: 5px;\
+\}\
+\
+button \{\
+  padding: 12px;\
+  border-radius: 8px;\
+  border: none;\
+  font-size: 16px;\
+  cursor: pointer;\
+\}\
+\
+.primary-btn \{\
+  background: #22c55e;\
+  color: white;\
+\}\
+\
+.secondary-btn \{\
+  background: #475569;\
+  color: white;\
+\}\
+\
+.scene-item \{\
+  background: #334155;\
+  padding: 12px;\
+  border-radius: 10px;\
+  margin-bottom: 10px;\
+\}\
+\
+.scene-actions \{\
+  display: flex;\
+  gap: 8px;\
+  flex-wrap: wrap;\
+  margin-top: 10px;\
+\}\
+\
+.action-btn \{\
+  flex: 1;\
+  min-width: 80px;\
+\}\
+\
+.move-up-btn \{\
+  background: #0ea5e9;\
+  color: white;\
+\}\
+\
+.move-down-btn \{\
+  background: #6366f1;\
+  color: white;\
+\}\
+\
+.edit-btn \{\
+  background: #f59e0b;\
+  color: white;\
+\}\
+\
+.delete-btn \{\
+  background: #ef4444;\
+  color: white;\
+\}}

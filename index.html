@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sukikatte Studio シーン管理</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>Sukikatte Studio</h1>
+      <p class="subtitle">ショートドラマ / 短編映画 シーン管理</p>
+    </header>
+
+    <main class="container">
+      <section class="card form-card">
+        <h2>シーンを追加 / 編集</h2>
+        <form id="sceneForm">
+          <input type="hidden" id="sceneId" />
+
+          <div class="grid">
+            <div class="field">
+              <label for="projectName">プロジェクト名</label>
+              <input type="text" id="projectName" placeholder="例：Sukikatte Studio ショートドラマ" required />
+            </div>
+
+            <div class="field">
+              <label for="sceneNumber">シーン番号</label>
+              <input type="text" id="sceneNumber" placeholder="例：1" required />
+            </div>
+
+            <div class="field">
+              <label for="shootOrder">撮影順</label>
+              <input type="number" id="shootOrder" placeholder="例：3" required min="1" />
+            </div>
+
+            <div class="field">
+              <label for="sceneTitle">シーン名</label>
+              <input type="text" id="sceneTitle" placeholder="例：居酒屋 カウンター席 会話シーン" required />
+            </div>
+
+            <div class="field">
+              <label for="location">場所</label>
+              <input type="text" id="location" placeholder="例：居酒屋" />
+            </div>
+
+            <div class="field">
+              <label for="inOut">内 / 外</label>
+              <select id="inOut">
+                <option value="">選択してください</option>
+                <option value="内">内</option>
+                <option value="外">外</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="dayNight">昼 / 夜</label>
+              <select id="dayNight">
+                <option value="">選択してください</option>
+                <option value="昼">昼</option>
+                <option value="夜">夜</option>
+              </select>
+            </div>
+
+            <div class="field full">
+              <label for="cast">出演者</label>
+              <input type="text" id="cast" placeholder="例：長嶋琢磨 宮下和" />
+            </div>
+
+            <div class="field full">
+              <label for="props">小道具</label>
+              <input type="text" id="props" placeholder="例：グラス メニュー表 スマホ 財布" />
+            </div>
+
+            <div class="field full">
+              <label for="gear">機材</label>
+              <input type="text" id="gear" placeholder="例：FX3 24-70GM2 70-200GM2 300c" />
+            </div>
+
+            <div class="field full">
+              <label for="memo">メモ</label>
+              <textarea id="memo" rows="4" placeholder="例：縦動画 CU多め 会話テンポ重視"></textarea>
+            </div>
+
+            <div class="field checkbox-field">
+              <label>
+                <input type="checkbox" id="isShot" />
+                撮影済み
+              </label>
+            </div>
+          </div>
+
+          <div class="button-row">
+            <button type="submit" class="primary-btn">保存する</button>
+            <button type="button" id="cancelEditBtn" class="secondary-btn">編集をキャンセル</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card list-card">
+        <div class="list-header">
+          <h2>シーン一覧</h2>
+          <div class="sort-area">
+            <label for="sortMode">並び順</label>
+            <select id="sortMode">
+              <option value="shootOrder">撮影順</option>
+              <option value="sceneNumber">シーン番号順</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="project-filter">
+          <label for="projectFilter">プロジェクト</label>
+          <select id="projectFilter">
+            <option value="all">すべてのプロジェクト</option>
+          </select>
+        </div>
+
+        <div class="search-area">
+          <input type="text" id="searchInput" placeholder="検索（シーン名・出演者・場所・メモなど）" />
+        </div>
+
+        <div class="filter-area">
+          <label>
+            <input type="checkbox" id="showUnshotOnly" />
+            未撮影のみ表示
+          </label>
+        </div>
+
+        <div id="emptyState" class="empty-state">
+          表示するシーンがありません
+        </div>
+
+        <div id="sceneList" class="scene-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
