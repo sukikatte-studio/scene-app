@@ -5,80 +5,77 @@
 \paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\f0\fs24 \cf0 body \{\
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;\
-  background: #0f172a;\
-  color: #fff;\
-  margin: 0;\
-  font-size: 16px;\
+\f0\fs24 \cf0 :root \{\
+  --bg: #0b0f19;\
+  --panel: #151c2c;\
+  --panel-2: #1d2638;\
+  --text: #f3f4f6;\
+  --sub: #9ca3af;\
+  --line: #334155;\
+  --green: #22c55e;\
+  --gray: #475569;\
+  --red: #ef4444;\
+  --blue: #0f766e;\
+  --orange: #f59e0b;\
 \}\
 \
 * \{\
   box-sizing: border-box;\
 \}\
 \
+body \{\
+  margin: 0;\
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;\
+  background: var(--bg);\
+  color: var(--text);\
+\}\
+\
 .app \{\
-  max-width: 760px;\
+  max-width: 860px;\
   margin: 0 auto;\
-  padding: 12px;\
+  padding: 16px;\
 \}\
 \
 .app-header \{\
-  padding: 20px 0 12px;\
-\}\
-\
-.app-header h1 \{\
-  margin: 0;\
-  font-size: 28px;\
-\}\
-\
-.subtitle \{\
-  margin: 6px 0 0;\
-  opacity: 0.75;\
-  font-size: 14px;\
-\}\
-\
-.card \{\
-  background: #1e293b;\
-  border-radius: 14px;\
-  padding: 18px;\
   margin-bottom: 16px;\
 \}\
 \
-.form-header \{\
-  display: flex;\
-  justify-content: space-between;\
-  align-items: flex-start;\
-  gap: 12px;\
-  flex-wrap: wrap;\
+.app-header h1 \{\
+  margin: 0 0 6px;\
+  font-size: 30px;\
 \}\
 \
-.form-header h2 \{\
+.subtitle \{\
   margin: 0;\
+  color: var(--sub);\
 \}\
 \
-.form-subtitle \{\
-  margin: 6px 0 0;\
-  font-size: 13px;\
-  opacity: 0.65;\
+.card \{\
+  background: var(--panel);\
+  border: 1px solid var(--line);\
+  border-radius: 16px;\
+  padding: 16px;\
+  margin-bottom: 16px;\
 \}\
 \
-.form-toggle-btn \{\
-  white-space: nowrap;\
+.section-header \{\
+  margin-bottom: 14px;\
 \}\
 \
-.form-container \{\
-  margin-top: 16px;\
+.section-header h2 \{\
+  margin: 0 0 4px;\
 \}\
 \
-.hidden \{\
-  display: none;\
+.section-subtitle \{\
+  margin: 0;\
+  color: var(--sub);\
+  font-size: 14px;\
 \}\
 \
 .grid \{\
   display: grid;\
   grid-template-columns: 1fr;\
-  gap: 14px;\
+  gap: 12px;\
 \}\
 \
 .field \{\
@@ -90,49 +87,58 @@
   grid-column: 1 / -1;\
 \}\
 \
-input,\
-select,\
-textarea \{\
-  width: 100%;\
-  padding: 14px;\
-  font-size: 16px;\
-  border-radius: 10px;\
-  border: none;\
-  margin-top: 6px;\
-\}\
-\
 label \{\
-  font-size: 13px;\
-  opacity: 0.75;\
+  font-size: 14px;\
+  color: var(--sub);\
+  margin-bottom: 6px;\
 \}\
 \
-.checkbox-field label \{\
-  display: flex;\
-  align-items: center;\
-  gap: 8px;\
+input,\
+textarea,\
+select,\
+button \{\
+  border-radius: 12px;\
+  font-size: 16px;\
+  border: 1px solid var(--line);\
 \}\
 \
-.checkbox-field input \{\
-  width: auto;\
-  margin: 0;\
+input,\
+textarea,\
+select \{\
+  width: 100%;\
+  padding: 12px;\
+  background: var(--panel-2);\
+  color: var(--text);\
+\}\
+\
+textarea \{\
+  resize: vertical;\
 \}\
 \
 button \{\
-  padding: 14px;\
-  border-radius: 10px;\
-  border: none;\
-  font-size: 16px;\
+  padding: 14px 16px;\
   cursor: pointer;\
+  color: white;\
 \}\
 \
 .primary-btn \{\
-  background: #22c55e;\
-  color: #fff;\
+  background: var(--green);\
+  border-color: transparent;\
 \}\
 \
 .secondary-btn \{\
-  background: #475569;\
-  color: #fff;\
+  background: var(--gray);\
+  border-color: transparent;\
+\}\
+\
+.danger-btn \{\
+  background: var(--red);\
+  border-color: transparent;\
+\}\
+\
+.edit-btn \{\
+  background: var(--orange);\
+  border-color: transparent;\
 \}\
 \
 .button-row \{\
@@ -143,136 +149,60 @@ button \{\
 \}\
 \
 .button-row button \{\
-  flex: 1 1 140px;\
+  flex: 1 1 180px;\
 \}\
 \
-.list-header \{\
-  display: flex;\
-  justify-content: space-between;\
-  align-items: center;\
-  gap: 12px;\
-  flex-wrap: wrap;\
-  margin-bottom: 14px;\
-\}\
-\
-.sort-area \{\
-  display: flex;\
-  flex-direction: column;\
-  min-width: 180px;\
-\}\
-\
-.filter-grid \{\
+.toolbar \{\
   display: grid;\
   grid-template-columns: 1fr;\
   gap: 12px;\
-  margin-bottom: 12px;\
+  margin-bottom: 16px;\
 \}\
 \
-.project-filter \{\
-  display: flex;\
-  flex-direction: column;\
+.empty-state \{\
+  text-align: center;\
+  color: var(--sub);\
+  padding: 24px 0;\
 \}\
 \
-.filter-area \{\
-  margin-bottom: 12px;\
+.scene-list \{\
+  display: block;\
 \}\
 \
 .scene-item \{\
-  background: #334155;\
-  padding: 16px;\
+  background: var(--panel-2);\
+  border: 1px solid var(--line);\
   border-radius: 14px;\
-  margin-bottom: 14px;\
+  padding: 14px;\
+  margin-top: 12px;\
 \}\
 \
-.scene-top \{\
-  display: flex;\
-  justify-content: space-between;\
-  align-items: flex-start;\
-  gap: 12px;\
-  flex-wrap: wrap;\
+.scene-item:first-child \{\
+  margin-top: 0;\
 \}\
 \
 .scene-title \{\
-  font-size: 18px;\
-  margin: 0 0 8px;\
+  margin: 0 0 10px;\
+  font-size: 20px;\
 \}\
 \
-.scene-badges \{\
-  display: flex;\
-  flex-wrap: wrap;\
-  gap: 6px;\
-  margin-bottom: 10px;\
-\}\
-\
-.badge \{\
-  background: #1e293b;\
-  padding: 6px 10px;\
-  border-radius: 999px;\
-  font-size: 12px;\
-\}\
-\
-.badge.done \{\
-  background: #22c55e;\
-\}\
-\
-.badge.priority-high \{\
-  background: #dc2626;\
-\}\
-\
-.badge.priority-mid \{\
-  background: #d97706;\
-\}\
-\
-.badge.priority-low \{\
-  background: #2563eb;\
-\}\
-\
-.badge.status-prep \{\
-  background: #7c3aed;\
-\}\
-\
-.scene-summary \{\
+.scene-meta \{\
   display: grid;\
   grid-template-columns: 1fr;\
   gap: 8px;\
   margin-bottom: 12px;\
 \}\
 \
-.summary-line \{\
-  background: #1e293b;\
-  padding: 10px;\
-  border-radius: 10px;\
-\}\
-\
-.summary-label \{\
-  font-size: 12px;\
-  opacity: 0.6;\
-  margin-bottom: 4px;\
-\}\
-\
-.summary-value \{\
-  font-size: 14px;\
-  line-height: 1.5;\
-  white-space: pre-wrap;\
-  word-break: break-word;\
-\}\
-\
-.scene-meta \{\
-  display: grid;\
-  grid-template-columns: 1fr;\
-  gap: 10px;\
-  margin-bottom: 12px;\
-\}\
-\
 .meta-box \{\
-  background: #1e293b;\
-  padding: 10px;\
+  background: #121826;\
+  border: 1px solid var(--line);\
   border-radius: 10px;\
+  padding: 10px;\
 \}\
 \
 .meta-label \{\
   font-size: 12px;\
-  opacity: 0.6;\
+  color: var(--sub);\
   margin-bottom: 4px;\
 \}\
 \
@@ -289,41 +219,8 @@ button \{\
   flex-wrap: wrap;\
 \}\
 \
-.action-btn \{\
-  flex: 1 1 100px;\
-  padding: 10px;\
-  border-radius: 8px;\
-  color: #fff;\
-\}\
-\
-.detail-btn \{\
-  background: #0f766e;\
-\}\
-\
-.move-up-btn \{\
-  background: #0ea5e9;\
-\}\
-\
-.move-down-btn \{\
-  background: #6366f1;\
-\}\
-\
-.copy-btn \{\
-  background: #8b5cf6;\
-\}\
-\
-.edit-btn \{\
-  background: #f59e0b;\
-\}\
-\
-.delete-btn \{\
-  background: #ef4444;\
-\}\
-\
-.empty-state \{\
-  opacity: 0.7;\
-  text-align: center;\
-  padding: 20px 0;\
+.scene-actions button \{\
+  flex: 1 1 120px;\
 \}\
 \
 @media (min-width: 700px) \{\
@@ -331,21 +228,11 @@ button \{\
     grid-template-columns: 1fr 1fr;\
   \}\
 \
-  .field.full \{\
-    grid-column: 1 / -1;\
+  .toolbar \{\
+    grid-template-columns: 1fr 220px;\
   \}\
 \
-  .filter-grid \{\
-    grid-template-columns: 1fr 1fr;\
-  \}\
-\
-  .scene-summary,\
   .scene-meta \{\
     grid-template-columns: 1fr 1fr;\
-  \}\
-\
-  .scene-meta .meta-box.full-width,\
-  .scene-summary .summary-line.full-width \{\
-    grid-column: 1 / -1;\
   \}\
 \}}

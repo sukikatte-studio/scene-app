@@ -1,245 +1,903 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sukikatte Studio シーン管理</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sukikatte Studio</title>
+
+<style>
+:root{
+  --bg:#0b0f19;
+  --panel:#151c2c;
+  --panel-2:#1d2638;
+  --panel-3:#121826;
+  --text:#f3f4f6;
+  --sub:#9ca3af;
+  --line:#334155;
+  --green:#22c55e;
+  --red:#ef4444;
+  --orange:#f59e0b;
+  --blue:#2563eb;
+  --gray:#475569;
+  --teal:#0f766e;
+  --link:#93c5fd;
+}
+
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+}
+
+.app{
+  max-width:980px;
+  margin:auto;
+  padding:16px;
+}
+
+.app-header{
+  margin-bottom:16px;
+  padding:8px 2px 4px;
+}
+
+.app-header h1{
+  margin:0 0 6px;
+  font-size:32px;
+  letter-spacing:.02em;
+}
+
+.subtitle{
+  margin:0;
+  color:var(--sub);
+  font-size:14px;
+}
+
+.card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:16px;
+}
+
+.section-header{
+  margin-bottom:14px;
+}
+
+.section-header h2{
+  margin:0 0 4px;
+  font-size:22px;
+}
+
+.section-subtitle{
+  margin:0;
+  color:var(--sub);
+  font-size:14px;
+}
+
+.debug-box{
+  background:var(--panel-3);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:12px;
+  font-size:14px;
+  white-space:pre-wrap;
+  line-height:1.5;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+}
+
+.field.full{
+  grid-column:1 / -1;
+}
+
+label{
+  font-size:13px;
+  color:var(--sub);
+  margin-bottom:6px;
+}
+
+input,textarea,select,button{
+  border-radius:12px;
+  font-size:16px;
+  border:1px solid var(--line);
+  font-family:inherit;
+}
+
+input,textarea,select{
+  width:100%;
+  padding:12px;
+  background:var(--panel-2);
+  color:var(--text);
+}
+
+textarea{
+  resize:vertical;
+  min-height:110px;
+}
+
+button{
+  padding:14px 16px;
+  cursor:pointer;
+  color:white;
+}
+
+.primary-btn{
+  background:var(--green);
+  border-color:transparent;
+}
+
+.secondary-btn{
+  background:var(--gray);
+  border-color:transparent;
+}
+
+.danger-btn{
+  background:var(--red);
+  border-color:transparent;
+}
+
+.edit-btn{
+  background:var(--orange);
+  border-color:transparent;
+}
+
+.done-btn{
+  background:var(--blue);
+  border-color:transparent;
+}
+
+.detail-btn{
+  background:var(--teal);
+  border-color:transparent;
+}
+
+.button-row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:16px;
+}
+
+.button-row button{
+  flex:1 1 180px;
+}
+
+.filter-bar{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+  margin-bottom:16px;
+}
+
+.filter-check{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:var(--text);
+  font-size:14px;
+}
+
+.filter-check input{
+  width:auto;
+  margin:0;
+  transform:scale(1.1);
+  accent-color:var(--green);
+}
+
+.empty-state{
+  text-align:center;
+  color:var(--sub);
+  padding:24px 0;
+}
+
+.scene-list{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+}
+
+.group-title{
+  margin:8px 0 0;
+  font-size:18px;
+  color:var(--link);
+}
+
+.scene{
+  background:var(--panel-2);
+  border:1px solid var(--line);
+  padding:14px;
+  border-radius:14px;
+}
+
+.scene-title{
+  margin:0 0 10px;
+  font-size:20px;
+  line-height:1.4;
+}
+
+.badges{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-bottom:12px;
+}
+
+.badge{
+  font-size:12px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:#1e293b;
+  border:1px solid var(--line);
+  color:var(--sub);
+  line-height:1.2;
+}
+
+.high{
+  background:rgba(239,68,68,.18);
+  color:#fee2e2;
+  border-color:rgba(239,68,68,.4);
+}
+
+.mid{
+  background:rgba(245,158,11,.18);
+  color:#fef3c7;
+  border-color:rgba(245,158,11,.4);
+}
+
+.low{
+  background:rgba(37,99,235,.18);
+  color:#dbeafe;
+  border-color:rgba(37,99,235,.4);
+}
+
+.done-badge{
+  background:rgba(34,197,94,.18);
+  color:#dcfce7;
+  border-color:rgba(34,197,94,.4);
+}
+
+.schedule-badge{
+  background:rgba(15,118,110,.18);
+  color:#d1fae5;
+  border-color:rgba(15,118,110,.4);
+}
+
+.scene-summary{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:8px;
+  margin-bottom:12px;
+}
+
+.meta-box{
+  background:var(--panel-3);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:10px;
+}
+
+.meta-label{
+  font-size:12px;
+  color:var(--sub);
+  margin-bottom:4px;
+}
+
+.meta-value{
+  font-size:14px;
+  line-height:1.55;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+.meta-link{
+  color:var(--link);
+  text-decoration:underline;
+  word-break:break-all;
+}
+
+.detail-area{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:8px;
+  margin-bottom:12px;
+}
+
+.actions{
+  margin-top:10px;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.actions button{
+  flex:1 1 120px;
+}
+
+@media (min-width:700px){
+  .grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .filter-bar{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .scene-summary,
+  .detail-area{
+    grid-template-columns:1fr 1fr;
+  }
+}
+</style>
 </head>
+
 <body>
-  <div class="app">
-    <header class="app-header">
-      <h1>Sukikatte Studio</h1>
-      <p class="subtitle">ショートドラマ / 短編映画 シーン管理</p>
-    </header>
+<div class="app">
 
-    <main class="container">
-      <section class="card form-card">
-        <div class="form-header">
-          <div>
-            <h2 id="formTitle">シーン入力</h2>
-            <p class="form-subtitle" id="formSubtitle">追加や編集が必要な時だけ開いて使います</p>
-          </div>
-          <button type="button" id="toggleFormBtn" class="primary-btn form-toggle-btn">
-            ＋ シーンを追加
-          </button>
+  <header class="app-header">
+    <h1>Sukikatte Studio</h1>
+    <p class="subtitle">黒UI 1ファイル安定版 / シーン管理</p>
+  </header>
+
+  <section class="card">
+    <div class="section-header">
+      <div>
+        <h2>動作確認</h2>
+        <p class="section-subtitle">保存件数と撮影済み件数を表示します</p>
+      </div>
+    </div>
+    <div id="debug" class="debug-box">読み込み中...</div>
+  </section>
+
+  <section class="card">
+    <div class="section-header">
+      <div>
+        <h2 id="formTitle">シーン入力</h2>
+        <p class="section-subtitle">固定土台を崩さずに機能を追加しています</p>
+      </div>
+    </div>
+
+    <form id="form">
+      <input type="hidden" id="id">
+
+      <div class="grid">
+        <div class="field">
+          <label for="project">プロジェクト名</label>
+          <input id="project" placeholder="プロジェクト">
         </div>
 
-        <div id="formContainer" class="form-container hidden">
-          <form id="sceneForm">
-            <input type="hidden" id="sceneId" />
-
-            <div class="grid">
-              <div class="field">
-                <label for="projectName">プロジェクト名</label>
-                <input type="text" id="projectName" placeholder="例：Sukikatte Studio ショートドラマ" required />
-              </div>
-
-              <div class="field">
-                <label for="sceneNumber">シーン番号</label>
-                <input type="text" id="sceneNumber" placeholder="例：1" required />
-              </div>
-
-              <div class="field">
-                <label for="shootOrder">撮影順</label>
-                <input type="number" id="shootOrder" placeholder="例：3" required min="1" />
-              </div>
-
-              <div class="field">
-                <label for="sceneTitle">シーン名</label>
-                <input type="text" id="sceneTitle" placeholder="例：居酒屋 カウンター席 会話シーン" required />
-              </div>
-
-              <div class="field">
-                <label for="location">場所</label>
-                <input type="text" id="location" placeholder="例：居酒屋" />
-              </div>
-
-              <div class="field">
-                <label for="inOut">内 / 外</label>
-                <select id="inOut">
-                  <option value="">選択してください</option>
-                  <option value="内">内</option>
-                  <option value="外">外</option>
-                </select>
-              </div>
-
-              <div class="field">
-                <label for="dayNight">昼 / 夜</label>
-                <select id="dayNight">
-                  <option value="">選択してください</option>
-                  <option value="昼">昼</option>
-                  <option value="夜">夜</option>
-                </select>
-              </div>
-
-              <div class="field">
-                <label for="priority">優先度</label>
-                <select id="priority">
-                  <option value="中">中</option>
-                  <option value="高">高</option>
-                  <option value="低">低</option>
-                </select>
-              </div>
-
-              <div class="field">
-                <label for="status">ステータス</label>
-                <select id="status">
-                  <option value="未着手">未着手</option>
-                  <option value="準備中">準備中</option>
-                  <option value="撮影済み">撮影済み</option>
-                </select>
-              </div>
-
-              <div class="field full">
-                <label for="cast">出演者</label>
-                <input type="text" id="cast" placeholder="例：長嶋琢磨 宮下和" />
-              </div>
-
-              <div class="field full">
-                <label for="props">小道具</label>
-                <input type="text" id="props" placeholder="例：グラス メニュー表 スマホ 財布" />
-              </div>
-
-              <div class="field full">
-                <label for="gear">機材</label>
-                <input type="text" id="gear" placeholder="例：FX3 24-70GM2 70-200GM2 300c" />
-              </div>
-
-              <div class="field full">
-                <label for="costume">衣装</label>
-                <input type="text" id="costume" placeholder="例：黒スーツ エプロン 制服" />
-              </div>
-
-              <div class="field full">
-                <label for="makeup">メイク</label>
-                <input type="text" id="makeup" placeholder="例：ナチュラル 疲れメイク 傷メイク" />
-              </div>
-
-              <div class="field">
-                <label for="emotion">感情</label>
-                <input type="text" id="emotion" placeholder="例：緊張 怒り 不安 安心" />
-              </div>
-
-              <div class="field">
-                <label for="cameraSize">カメラサイズ</label>
-                <input type="text" id="cameraSize" placeholder="例：CU MS WS" />
-              </div>
-
-              <div class="field">
-                <label for="tempo">テンポ</label>
-                <input type="text" id="tempo" placeholder="例：早め ゆっくり 間重視" />
-              </div>
-
-              <div class="field">
-                <label for="durationMemo">尺メモ</label>
-                <input type="text" id="durationMemo" placeholder="例：30秒 1分半 2ページ分" />
-              </div>
-
-              <div class="field full">
-                <label for="referenceWorks">参考作品</label>
-                <input type="text" id="referenceWorks" placeholder="例：○○っぽい空気感 △△の会話テンポ" />
-              </div>
-
-              <div class="field full">
-                <label for="directionMemo">演出メモ</label>
-                <textarea id="directionMemo" rows="3" placeholder="例：距離感を大事に 視線を外してから話す"></textarea>
-              </div>
-
-              <div class="field full">
-                <label for="lightingMemo">照明メモ</label>
-                <textarea id="lightingMemo" rows="3" placeholder="例：窓側キー 背景は少し落とす 実景を活かす"></textarea>
-              </div>
-
-              <div class="field full">
-                <label for="cautionMemo">注意点</label>
-                <textarea id="cautionMemo" rows="3" placeholder="例：店内音に注意 通行人映り込み NG小道具あり"></textarea>
-              </div>
-
-              <div class="field full">
-                <label for="memo">メモ</label>
-                <textarea id="memo" rows="4" placeholder="例：縦動画 CU多め 会話テンポ重視"></textarea>
-              </div>
-
-              <div class="field checkbox-field">
-                <label>
-                  <input type="checkbox" id="isShot" />
-                  撮影済み
-                </label>
-              </div>
-            </div>
-
-            <div class="button-row">
-              <button type="submit" id="submitBtn" class="primary-btn">保存する</button>
-              <button type="button" id="cancelEditBtn" class="secondary-btn">編集をキャンセル</button>
-              <button type="button" id="closeFormBtn" class="secondary-btn">フォームを閉じる</button>
-            </div>
-          </form>
-        </div>
-      </section>
-
-      <section class="card list-card">
-        <div class="list-header">
-          <h2>シーン一覧</h2>
-          <div class="sort-area">
-            <label for="sortMode">並び順</label>
-            <select id="sortMode">
-              <option value="shootOrder">撮影順</option>
-              <option value="sceneNumber">シーン番号順</option>
-            </select>
-          </div>
+        <div class="field">
+          <label for="sceneNo">シーン番号</label>
+          <input id="sceneNo" placeholder="シーン番号">
         </div>
 
-        <div class="filter-grid">
-          <div class="project-filter">
-            <label for="projectFilter">プロジェクト</label>
-            <select id="projectFilter">
-              <option value="all">すべてのプロジェクト</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label for="searchInput">検索</label>
-            <input type="text" id="searchInput" placeholder="シーン名・出演者・場所・メモなど" />
-          </div>
-
-          <div class="field">
-            <label for="priorityFilter">優先度</label>
-            <select id="priorityFilter">
-              <option value="all">すべて</option>
-              <option value="高">高</option>
-              <option value="中">中</option>
-              <option value="低">低</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label for="statusFilter">ステータス</label>
-            <select id="statusFilter">
-              <option value="all">すべて</option>
-              <option value="未着手">未着手</option>
-              <option value="準備中">準備中</option>
-              <option value="撮影済み">撮影済み</option>
-            </select>
-          </div>
+        <div class="field">
+          <label for="order">撮影順</label>
+          <input id="order" type="number" placeholder="撮影順">
         </div>
 
-        <div class="filter-area">
-          <label>
-            <input type="checkbox" id="showUnshotOnly" />
-            未撮影のみ表示
+        <div class="field">
+          <label for="title">シーン名</label>
+          <input id="title" placeholder="シーン名">
+        </div>
+
+        <div class="field">
+          <label for="date">撮影日</label>
+          <input id="date" type="date">
+        </div>
+
+        <div class="field">
+          <label for="block">撮影ブロック</label>
+          <input id="block" placeholder="ブロック">
+        </div>
+
+        <div class="field">
+          <label for="call">集合時間</label>
+          <input id="call" type="time">
+        </div>
+
+        <div class="field">
+          <label for="start">開始</label>
+          <input id="start" type="time">
+        </div>
+
+        <div class="field">
+          <label for="end">終了</label>
+          <input id="end" type="time">
+        </div>
+
+        <div class="field">
+          <label for="priority">優先度</label>
+          <select id="priority">
+            <option>高</option>
+            <option selected>中</option>
+            <option>低</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="loc">場所</label>
+          <input id="loc" placeholder="場所">
+        </div>
+
+        <div class="field">
+          <label>&nbsp;</label>
+          <label class="filter-check">
+            <input type="checkbox" id="doneCheck">撮影済み
           </label>
         </div>
 
-        <div id="emptyState" class="empty-state">
-          表示するシーンがありません
+        <div class="field full">
+          <label for="address">住所</label>
+          <input id="address" placeholder="例：東京都渋谷区○○1-2-3">
         </div>
 
-        <div id="sceneList" class="scene-list"></div>
-      </section>
-    </main>
-  </div>
+        <div class="field full">
+          <label for="mapUrl">GoogleマップURL</label>
+          <input id="mapUrl" placeholder="https://maps.google.com/..." inputmode="url">
+        </div>
 
-  <script src="script.js"></script>
+        <div class="field full">
+          <label for="memo">メモ</label>
+          <textarea id="memo" placeholder="メモ"></textarea>
+        </div>
+      </div>
+
+      <div class="button-row">
+        <button class="primary-btn" type="submit">保存</button>
+        <button type="button" id="cancel" class="secondary-btn">キャンセル</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="card">
+    <div class="section-header">
+      <div>
+        <h2>シーン一覧</h2>
+        <p class="section-subtitle">プロジェクト絞り込み / 詳細開閉つき</p>
+      </div>
+    </div>
+
+    <div class="filter-bar">
+      <div class="field">
+        <label for="projectFilter">プロジェクト絞り込み</label>
+        <select id="projectFilter">
+          <option value="">すべてのプロジェクト</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="search">検索</label>
+        <input id="search" placeholder="検索">
+      </div>
+
+      <div class="field">
+        <label for="sort">並び順</label>
+        <select id="sort">
+          <option value="order">撮影順</option>
+          <option value="date">撮影日</option>
+          <option value="priority">優先度</option>
+          <option value="sceneNo">シーン番号</option>
+          <option value="title">タイトル</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>&nbsp;</label>
+        <label class="filter-check">
+          <input type="checkbox" id="unshotOnly">未撮影のみ
+        </label>
+      </div>
+    </div>
+
+    <div id="list" class="scene-list"></div>
+    <div id="emptyState" class="empty-state">表示するシーンがありません</div>
+  </section>
+
+</div>
+
+<script>
+const KEY = "scene_app_v9";
+
+let data = JSON.parse(localStorage.getItem(KEY) || "[]");
+let openIds = new Set();
+
+const $ = id => document.getElementById(id);
+
+function save(){
+  localStorage.setItem(KEY, JSON.stringify(data));
+}
+
+function priorityOrder(v){
+  return v === "高" ? 0 : v === "中" ? 1 : 2;
+}
+
+function compareSceneNo(a,b){
+  const aNum = Number(a);
+  const bNum = Number(b);
+  if(!Number.isNaN(aNum) && !Number.isNaN(bNum)) return aNum - bNum;
+  return String(a || "").localeCompare(String(b || ""), "ja");
+}
+
+function normalize(v){
+  return {
+    id: v.id || String(Date.now()) + "-" + Math.floor(Math.random() * 100000),
+    project: String(v.project || ""),
+    sceneNo: String(v.sceneNo || ""),
+    order: Number(v.order || 0),
+    title: String(v.title || ""),
+    date: String(v.date || ""),
+    block: String(v.block || ""),
+    call: String(v.call || ""),
+    start: String(v.start || ""),
+    end: String(v.end || ""),
+    priority: String(v.priority || "中"),
+    loc: String(v.loc || ""),
+    address: String(v.address || ""),
+    mapUrl: String(v.mapUrl || ""),
+    memo: String(v.memo || ""),
+    doneCheck: Boolean(v.doneCheck || v.done)
+  };
+}
+
+data = data.map(normalize);
+save();
+
+function updateProjectFilter(){
+  const select = $("projectFilter");
+  const current = select.value;
+  const projects = [...new Set(data.map(d => d.project).filter(Boolean))];
+
+  select.innerHTML = '<option value="">すべてのプロジェクト</option>';
+
+  projects.forEach(p => {
+    const opt = document.createElement("option");
+    opt.value = p;
+    opt.textContent = p;
+    select.appendChild(opt);
+  });
+
+  select.value = projects.includes(current) ? current : "";
+}
+
+function resetForm(){
+  $("form").reset();
+  $("id").value = "";
+  $("priority").value = "中";
+  $("doneCheck").checked = false;
+  $("formTitle").textContent = "シーン入力";
+}
+
+function buildSchedule(v){
+  return [
+    v.date || "-",
+    v.block || "",
+    v.call ? "集合 " + v.call : "",
+    (v.start || v.end) ? ((v.start || "--:--") + "〜" + (v.end || "--:--")) : ""
+  ].filter(Boolean).join(" / ");
+}
+
+function toggleDone(id){
+  const item = data.find(d => d.id === id);
+  if(!item) return;
+  item.doneCheck = !item.doneCheck;
+  save();
+  render();
+}
+
+function toggleDetail(id){
+  if(openIds.has(id)){
+    openIds.delete(id);
+  }else{
+    openIds.add(id);
+  }
+  render();
+}
+
+function render(){
+  const list = $("list");
+  const empty = $("emptyState");
+  list.innerHTML = "";
+
+  let arr = [...data];
+
+  const q = $("search").value.toLowerCase();
+  const projectFilter = $("projectFilter").value;
+  const unshot = $("unshotOnly").checked;
+
+  if(projectFilter){
+    arr = arr.filter(v => v.project === projectFilter);
+  }
+
+  if(q){
+    arr = arr.filter(v => JSON.stringify(v).toLowerCase().includes(q));
+  }
+
+  if(unshot){
+    arr = arr.filter(v => !v.doneCheck);
+  }
+
+  const sort = $("sort").value;
+
+  arr.sort((a,b)=>{
+    if(sort === "priority"){
+      const diff = priorityOrder(a.priority) - priorityOrder(b.priority);
+      if(diff !== 0) return diff;
+      return (a.order || 0) - (b.order || 0);
+    }
+    if(sort === "date"){
+      return (a.date || "9999-99-99").localeCompare(b.date || "9999-99-99");
+    }
+    if(sort === "sceneNo"){
+      return compareSceneNo(a.sceneNo, b.sceneNo);
+    }
+    if(sort === "title"){
+      return String(a.title).localeCompare(String(b.title), "ja");
+    }
+    return (a.order || 0) - (b.order || 0);
+  });
+
+  if(arr.length === 0){
+    empty.style.display = "block";
+  }else{
+    empty.style.display = "none";
+  }
+
+  const groups = {};
+  arr.forEach(v=>{
+    const key = v.date || "未設定";
+    if(!groups[key]) groups[key] = [];
+    groups[key].push(v);
+  });
+
+  Object.keys(groups).forEach(date=>{
+    const title = document.createElement("div");
+    title.className = "group-title";
+    title.textContent = date === "未設定" ? "撮影日未設定" : date;
+    list.appendChild(title);
+
+    groups[date].forEach(v=>{
+      const el = document.createElement("div");
+      el.className = "scene";
+
+      const isOpen = openIds.has(v.id);
+
+      el.innerHTML = `
+        <h3 class="scene-title">${escapeHtml(v.title)}</h3>
+
+        <div class="badges">
+          <span class="badge">作品：${escapeHtml(v.project)}</span>
+          <span class="badge">シーン：${escapeHtml(v.sceneNo)}</span>
+          <span class="badge">撮影順：${escapeHtml(String(v.order))}</span>
+          <span class="badge ${v.priority==='高'?'high':v.priority==='中'?'mid':'low'}">${escapeHtml(v.priority)}</span>
+          ${v.doneCheck ? '<span class="badge done-badge">撮影済み</span>' : ''}
+          ${v.date ? `<span class="badge schedule-badge">${escapeHtml(v.date)}</span>` : ''}
+          ${v.block ? `<span class="badge schedule-badge">${escapeHtml(v.block)}</span>` : ''}
+        </div>
+
+        <div class="scene-summary">
+          <div class="meta-box">
+            <div class="meta-label">時間帯</div>
+            <div class="meta-value">${escapeHtml(buildSchedule(v) || "-")}</div>
+          </div>
+
+          <div class="meta-box">
+            <div class="meta-label">場所</div>
+            <div class="meta-value">${escapeHtml(v.loc || "-")}</div>
+          </div>
+        </div>
+
+        ${
+          isOpen ? `
+          <div class="detail-area">
+            <div class="meta-box">
+              <div class="meta-label">プロジェクト</div>
+              <div class="meta-value">${escapeHtml(v.project || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">シーン番号</div>
+              <div class="meta-value">${escapeHtml(v.sceneNo || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">撮影順</div>
+              <div class="meta-value">${escapeHtml(String(v.order || "-"))}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">優先度</div>
+              <div class="meta-value">${escapeHtml(v.priority || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">撮影日</div>
+              <div class="meta-value">${escapeHtml(v.date || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">ブロック</div>
+              <div class="meta-value">${escapeHtml(v.block || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">集合時間</div>
+              <div class="meta-value">${escapeHtml(v.call || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">開始〜終了</div>
+              <div class="meta-value">${escapeHtml((v.start || "--:--") + "〜" + (v.end || "--:--"))}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">場所</div>
+              <div class="meta-value">${escapeHtml(v.loc || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">住所</div>
+              <div class="meta-value">${escapeHtml(v.address || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">GoogleマップURL</div>
+              <div class="meta-value">
+                ${v.mapUrl ? `<a class="meta-link" href="${escapeAttr(v.mapUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(v.mapUrl)}</a>` : "-"}
+              </div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">撮影状態</div>
+              <div class="meta-value">${v.doneCheck ? "撮影済み" : "未撮影"}</div>
+            </div>
+
+            <div class="meta-box" style="grid-column:1 / -1;">
+              <div class="meta-label">メモ</div>
+              <div class="meta-value">${escapeHtml(v.memo || "-")}</div>
+            </div>
+          </div>
+          ` : ''
+        }
+
+        <div class="actions">
+          <button class="detail-btn">${isOpen ? "詳細を閉じる" : "詳細を開く"}</button>
+          <button class="done-btn">${v.doneCheck ? "未撮影に戻す" : "撮影済みにする"}</button>
+          <button class="edit-btn">編集</button>
+          <button class="danger-btn">削除</button>
+        </div>
+      `;
+
+      el.querySelector(".detail-btn").onclick = () => {
+        toggleDetail(v.id);
+      };
+
+      el.querySelector(".done-btn").onclick = () => {
+        toggleDone(v.id);
+      };
+
+      el.querySelector(".edit-btn").onclick = () => {
+        $("id").value = v.id;
+        $("project").value = v.project || "";
+        $("sceneNo").value = v.sceneNo || "";
+        $("order").value = v.order || "";
+        $("title").value = v.title || "";
+        $("date").value = v.date || "";
+        $("block").value = v.block || "";
+        $("call").value = v.call || "";
+        $("start").value = v.start || "";
+        $("end").value = v.end || "";
+        $("priority").value = v.priority || "中";
+        $("loc").value = v.loc || "";
+        $("address").value = v.address || "";
+        $("mapUrl").value = v.mapUrl || "";
+        $("memo").value = v.memo || "";
+        $("doneCheck").checked = !!v.doneCheck;
+        $("formTitle").textContent = "シーン編集中";
+        window.scrollTo({ top:0, behavior:"smooth" });
+      };
+
+      el.querySelector(".danger-btn").onclick = () => {
+        if(confirm("削除する？")){
+          data = data.filter(d => d.id !== v.id);
+          openIds.delete(v.id);
+          save();
+          updateProjectFilter();
+          render();
+        }
+      };
+
+      list.appendChild(el);
+    });
+  });
+
+  const doneCount = data.filter(v => v.doneCheck).length;
+  const unshotCount = data.length - doneCount;
+
+  $("debug").textContent =
+    "保存件数：" + data.length + "\n" +
+    "撮影済み件数：" + doneCount + "\n" +
+    "未撮影件数：" + unshotCount;
+}
+
+$("form").onsubmit = e => {
+  e.preventDefault();
+
+  const obj = normalize({
+    id: $("id").value || "",
+    project: $("project").value,
+    sceneNo: $("sceneNo").value,
+    order: Number($("order").value),
+    title: $("title").value,
+    date: $("date").value,
+    block: $("block").value,
+    call: $("call").value,
+    start: $("start").value,
+    end: $("end").value,
+    priority: $("priority").value,
+    loc: $("loc").value,
+    address: $("address").value,
+    mapUrl: $("mapUrl").value,
+    memo: $("memo").value,
+    doneCheck: $("doneCheck").checked
+  });
+
+  if(!obj.project || !obj.sceneNo || !obj.order || !obj.title){
+    alert("必須入力");
+    return;
+  }
+
+  const i = data.findIndex(d => d.id === obj.id);
+  if(i >= 0) data[i] = obj;
+  else data.push(obj);
+
+  save();
+  updateProjectFilter();
+  render();
+  resetForm();
+};
+
+$("cancel").onclick = () => {
+  resetForm();
+};
+
+$("search").oninput = render;
+$("sort").onchange = render;
+$("unshotOnly").onchange = render;
+$("projectFilter").onchange = render;
+
+updateProjectFilter();
+render();
+
+function escapeHtml(value){
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function escapeAttr(value){
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;");
+}
+</script>
+
 </body>
 </html>
