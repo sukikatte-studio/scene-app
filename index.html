@@ -36,7 +36,7 @@ body{
 }
 
 .app{
-  max-width:1120px;
+  max-width:1180px;
   margin:auto;
   padding:16px;
 }
@@ -88,7 +88,7 @@ body{
   padding:12px;
   font-size:14px;
   white-space:pre-wrap;
-  line-height:1.5;
+  line-height:1.6;
 }
 
 .summary-grid{
@@ -173,19 +173,29 @@ button{
 .export-btn{ background:var(--green); border-color:transparent; }
 .import-btn{ background:var(--blue); border-color:transparent; }
 .backup-btn{ background:var(--purple); border-color:transparent; }
-.select-actor-btn{ background:var(--blue); border-color:transparent; }
-.mode-btn{ background:var(--panel-3); border:1px solid var(--line); color:var(--text); }
-.mode-btn.active{ background:var(--blue); border-color:transparent; }
+.actor-add-btn{ background:var(--blue); border-color:transparent; }
+.mode-btn,.dept-tab{
+  background:var(--panel-3);
+  border:1px solid var(--line);
+  color:var(--text);
+}
+.mode-btn.active,.dept-tab.active{
+  background:var(--blue);
+  border-color:transparent;
+}
 
-.button-row{
+.button-row,
+.mode-switch,
+.dept-tabs{
   display:flex;
   gap:10px;
   flex-wrap:wrap;
   margin-top:16px;
 }
 
-.button-row button{
-  flex:1 1 180px;
+.button-row button,
+.dept-tabs button{
+  flex:1 1 160px;
 }
 
 .filter-bar{
@@ -231,16 +241,114 @@ button{
   display:none !important;
 }
 
+.current-project-box,
+.mode-status{
+  background:var(--panel-3);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:12px;
+  margin-top:12px;
+}
+
+.current-project-label,
+.mode-status-label{
+  font-size:12px;
+  color:var(--sub);
+  margin-bottom:4px;
+}
+
+.current-project-value,
+.mode-status-value{
+  font-size:16px;
+  font-weight:700;
+}
+
+.dept-note{
+  margin-top:10px;
+  color:var(--sub);
+  font-size:13px;
+  line-height:1.5;
+}
+
+.project-list,
+.actor-grid,
+.inline-actor-grid,
 .scene-list{
   display:grid;
   grid-template-columns:1fr;
   gap:12px;
 }
 
-.group-title{
-  margin:8px 0 0;
+.project-card,
+.actor-card{
+  background:var(--panel-3);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px;
+}
+
+.project-card.is-active{
+  border-color:var(--blue);
+  box-shadow:0 0 0 1px rgba(37,99,235,.35) inset;
+}
+
+.project-title,
+.actor-name{
   font-size:18px;
-  color:var(--link);
+  font-weight:700;
+  margin-bottom:8px;
+}
+
+.project-meta{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:8px;
+}
+
+.project-actions,
+.actor-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
+
+.project-actions button,
+.actor-actions button{
+  flex:1 1 140px;
+}
+
+.actor-thumb{
+  width:100%;
+  aspect-ratio:1 / 1;
+  object-fit:cover;
+  display:block;
+  background:#0f172a;
+  border-radius:10px;
+}
+
+.actor-thumb-placeholder{
+  width:100%;
+  aspect-ratio:1 / 1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#0f172a;
+  color:var(--sub);
+  font-size:14px;
+  border-radius:10px;
+}
+
+.actor-body{
+  padding-top:12px;
+}
+
+.actor-sub{
+  font-size:13px;
+  color:var(--sub);
+  white-space:pre-wrap;
+  word-break:break-word;
+  line-height:1.5;
 }
 
 .scene{
@@ -262,49 +370,33 @@ button{
   background:#334155;
 }
 
-.scene.scene-label-red::before{ background:#ef4444; }
-.scene.scene-label-blue::before{ background:#2563eb; }
-.scene.scene-label-green::before{ background:#22c55e; }
-.scene.scene-label-yellow::before{ background:#ca8a04; }
-.scene.scene-label-purple::before{ background:#7c3aed; }
-.scene.scene-label-pink::before{ background:#db2777; }
+.scene.field-card{
+  padding:18px 18px 18px 22px;
+  border-color:rgba(37,99,235,.35);
+  box-shadow:0 0 0 1px rgba(37,99,235,.12) inset;
+}
 
-.scene.is-shot{
-  opacity:.82;
+.scene.field-card::before{
+  width:8px;
+}
+
+.scene.label-red::before{ background:#ef4444; }
+.scene.label-blue::before{ background:#2563eb; }
+.scene.label-green::before{ background:#22c55e; }
+.scene.label-yellow::before{ background:#ca8a04; }
+.scene.label-purple::before{ background:#7c3aed; }
+.scene.label-pink::before{ background:#db2777; }
+
+.group-title{
+  margin:8px 0 0;
+  font-size:18px;
+  color:var(--link);
 }
 
 .scene-title{
   margin:0 0 10px;
   font-size:20px;
   line-height:1.4;
-}
-
-.scene-color-head{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin-bottom:8px;
-}
-
-.scene-color-dot{
-  width:12px;
-  height:12px;
-  border-radius:999px;
-  display:inline-block;
-  border:1px solid rgba(255,255,255,.18);
-}
-
-.scene-color-dot.red{ background:#ef4444; }
-.scene-color-dot.blue{ background:#2563eb; }
-.scene-color-dot.green{ background:#22c55e; }
-.scene-color-dot.yellow{ background:#ca8a04; }
-.scene-color-dot.purple{ background:#7c3aed; }
-.scene-color-dot.pink{ background:#db2777; }
-
-.scene-color-text{
-  font-size:13px;
-  font-weight:700;
-  color:#e5e7eb;
 }
 
 .badges{
@@ -354,112 +446,73 @@ button{
   border-color:rgba(15,118,110,.4);
 }
 
+.oktake-badge{
+  background:rgba(124,58,237,.22);
+  color:#ede9fe;
+  border-color:rgba(124,58,237,.4);
+}
+
+.cuttake-badge{
+  background:rgba(37,99,235,.18);
+  color:#dbeafe;
+  border-color:rgba(37,99,235,.4);
+}
+
+.label-badge-red{
+  background:rgba(239,68,68,.22);
+  color:#fff;
+  border-color:rgba(239,68,68,.55);
+  font-weight:700;
+}
+.label-badge-blue{
+  background:rgba(37,99,235,.22);
+  color:#fff;
+  border-color:rgba(37,99,235,.55);
+  font-weight:700;
+}
+.label-badge-green{
+  background:rgba(34,197,94,.22);
+  color:#fff;
+  border-color:rgba(34,197,94,.55);
+  font-weight:700;
+}
+.label-badge-yellow{
+  background:rgba(202,138,4,.25);
+  color:#fff7d6;
+  border-color:rgba(202,138,4,.6);
+  font-weight:700;
+}
+.label-badge-purple{
+  background:rgba(124,58,237,.24);
+  color:#fff;
+  border-color:rgba(124,58,237,.6);
+  font-weight:700;
+}
+.label-badge-pink{
+  background:rgba(219,39,119,.24);
+  color:#fff;
+  border-color:rgba(219,39,119,.6);
+  font-weight:700;
+}
+
 .status-not-started{
   background:rgba(71,85,105,.22);
   color:#e5e7eb;
   border-color:rgba(148,163,184,.3);
 }
-
 .status-prep{
   background:rgba(124,58,237,.2);
   color:#ede9fe;
   border-color:rgba(124,58,237,.35);
 }
-
 .status-shot{
   background:rgba(34,197,94,.18);
   color:#dcfce7;
   border-color:rgba(34,197,94,.4);
 }
 
-.label-red{
-  background:rgba(239,68,68,.22);
-  color:#ffffff;
-  border-color:rgba(239,68,68,.55);
-  font-weight:700;
-}
-
-.label-blue{
-  background:rgba(37,99,235,.22);
-  color:#ffffff;
-  border-color:rgba(37,99,235,.55);
-  font-weight:700;
-}
-
-.label-green{
-  background:rgba(34,197,94,.22);
-  color:#ffffff;
-  border-color:rgba(34,197,94,.55);
-  font-weight:700;
-}
-
-.label-yellow{
-  background:rgba(202,138,4,.25);
-  color:#fff7d6;
-  border-color:rgba(202,138,4,.6);
-  font-weight:700;
-}
-
-.label-purple{
-  background:rgba(124,58,237,.24);
-  color:#ffffff;
-  border-color:rgba(124,58,237,.6);
-  font-weight:700;
-}
-
-.label-pink{
-  background:rgba(219,39,119,.24);
-  color:#ffffff;
-  border-color:rgba(219,39,119,.6);
-  font-weight:700;
-}
-
-.precheck-chip{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  padding:7px 10px;
-  border-radius:999px;
-  font-size:12px;
-  border:1px solid var(--line);
-  background:#182133;
-  color:#d1d5db;
-}
-
-.precheck-chip.ok{
-  background:rgba(34,197,94,.18);
-  color:#dcfce7;
-  border-color:rgba(34,197,94,.4);
-}
-
-.precheck-chip.ng{
-  background:rgba(239,68,68,.18);
-  color:#fee2e2;
-  border-color:rgba(239,68,68,.4);
-}
-
-.precheck-row{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  margin-bottom:12px;
-}
-
-.scene-summary{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:8px;
-  margin-bottom:12px;
-}
-
-.scene-summary-card{
-  background:var(--panel-3);
-  border:1px solid var(--line);
-  border-radius:10px;
-  padding:10px;
-}
-
-.dept-list-grid{
+.scene-summary,
+.detail-area{
   display:grid;
   grid-template-columns:1fr;
   gap:8px;
@@ -492,11 +545,26 @@ button{
   word-break:break-all;
 }
 
-.detail-area{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:8px;
+.highlight-box{
+  background:linear-gradient(180deg, rgba(37,99,235,.14), rgba(37,99,235,.06));
+  border:1px solid rgba(37,99,235,.28);
+  border-radius:12px;
+  padding:12px;
   margin-bottom:12px;
+}
+
+.highlight-label{
+  font-size:12px;
+  color:#bfdbfe;
+  margin-bottom:6px;
+}
+
+.highlight-value{
+  font-size:16px;
+  font-weight:700;
+  line-height:1.5;
+  white-space:pre-wrap;
+  word-break:break-word;
 }
 
 .actions{
@@ -510,44 +578,20 @@ button{
   flex:1 1 120px;
 }
 
-.field-mode-card{
-  background:linear-gradient(180deg, rgba(37,99,235,.15), rgba(37,99,235,.05));
-  border:1px solid rgba(37,99,235,.35);
-  border-radius:14px;
-  padding:14px;
-  margin-bottom:12px;
+.field-actions{
+  margin-top:14px;
 }
 
-.field-mode-top{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  margin-bottom:12px;
-  flex-wrap:wrap;
-}
-
-.field-shot-btn{
+.field-actions .done-btn,
+.field-actions .detail-btn{
   font-size:18px;
+  padding:16px 18px;
   font-weight:700;
-  padding:18px 20px;
-  border-radius:14px;
-  flex:1 1 260px;
-  background:var(--green);
-  border:none;
 }
 
-.field-unshot-btn{
-  font-size:18px;
-  font-weight:700;
-  padding:18px 20px;
-  border-radius:14px;
-  flex:1 1 260px;
-  background:var(--gray);
-  border:none;
-}
-
-.checklist-box{
+.checklist-box,
+.cuttake-box,
+.field-edit-box{
   background:var(--panel-3);
   border:1px solid var(--line);
   border-radius:10px;
@@ -555,13 +599,16 @@ button{
   grid-column:1 / -1;
 }
 
-.checklist-label{
+.checklist-label,
+.cuttake-label,
+.field-edit-label{
   font-size:12px;
   color:var(--sub);
   margin-bottom:8px;
 }
 
-.checklist-list{
+.checklist-list,
+.cuttake-list{
   display:flex;
   flex-direction:column;
   gap:8px;
@@ -593,145 +640,87 @@ button{
   color:var(--sub);
 }
 
-.tab-row{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-bottom:16px;
-}
-
-.tab-btn{
-  background:var(--panel-3);
-  border:1px solid var(--line);
-  color:var(--text);
-  padding:10px 14px;
-  border-radius:999px;
-  font-size:14px;
-  line-height:1;
-}
-
-.tab-btn.active{
-  background:var(--blue);
-  border-color:transparent;
-}
-
-.current-box{
-  background:var(--panel-3);
-  border:1px solid var(--line);
-  border-radius:12px;
-  padding:12px;
-  margin-bottom:16px;
-}
-
-.current-label{
-  font-size:12px;
-  color:var(--sub);
-  margin-bottom:4px;
-}
-
-.current-value{
-  font-size:16px;
-  font-weight:700;
-}
-
-.actor-grid{
+.cuttake-builder,
+.field-edit-top,
+.field-edit-grid{
   display:grid;
   grid-template-columns:1fr;
-  gap:12px;
+  gap:10px;
 }
 
-.actor-card{
-  background:var(--panel-3);
-  border:1px solid var(--line);
-  border-radius:14px;
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
+.cuttake-item{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:8px;
+  padding:10px;
+  border-radius:10px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.05);
 }
 
-.actor-thumb{
-  width:100%;
-  aspect-ratio:1/1;
-  object-fit:cover;
-  background:#0f172a;
-  display:block;
-}
-
-.actor-thumb-placeholder{
-  width:100%;
-  aspect-ratio:1/1;
-  background:#0f172a;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:var(--sub);
-  font-size:14px;
-}
-
-.actor-body{
-  padding:12px;
-}
-
-.actor-name{
-  font-size:16px;
-  font-weight:700;
-  margin-bottom:4px;
-}
-
-.actor-sub{
-  font-size:13px;
-  color:var(--sub);
-  margin-bottom:8px;
-  white-space:pre-wrap;
-  word-break:break-word;
-}
-
-.actor-actions{
+.cuttake-top{
   display:flex;
   gap:8px;
   flex-wrap:wrap;
-  margin-top:10px;
+  align-items:center;
 }
 
-.actor-actions button{
+.cuttake-chip{
+  font-size:12px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:#1e293b;
+  border:1px solid var(--line);
+  color:var(--text);
+}
+
+.cuttake-chip.ok{
+  background:rgba(34,197,94,.18);
+  color:#dcfce7;
+  border-color:rgba(34,197,94,.4);
+  font-weight:700;
+}
+
+.cuttake-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.cuttake-actions button{
   flex:1 1 120px;
 }
 
-.actor-picker-note{
-  margin:0 0 12px;
-  color:var(--sub);
-  font-size:13px;
+.field-edit-top button{
+  width:100%;
 }
 
-.actor-inline-list{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:12px;
-  margin-top:12px;
-}
-
-@media (min-width:700px){
+@media (min-width:760px){
   .summary-grid{
     grid-template-columns:repeat(5, 1fr);
   }
-
   .grid{
     grid-template-columns:1fr 1fr;
   }
-
   .filter-bar{
     grid-template-columns:1fr 1fr;
   }
-
   .scene-summary,
   .detail-area,
-  .dept-list-grid{
+  .project-meta{
     grid-template-columns:1fr 1fr;
   }
-
   .actor-grid,
-  .actor-inline-list{
+  .inline-actor-grid{
     grid-template-columns:repeat(3, 1fr);
+  }
+  .cuttake-builder{
+    grid-template-columns:1fr 1fr 160px 1fr auto;
+    align-items:end;
+  }
+  .field-edit-grid{
+    grid-template-columns:1fr 1fr 160px 1fr auto;
+    align-items:end;
   }
 }
 </style>
@@ -742,8 +731,43 @@ button{
 
   <header class="app-header">
     <h1>Sukikatte Studio</h1>
-    <p class="subtitle">黒UI 安定版 / プロジェクト + シーン管理</p>
+    <p class="subtitle">黒UI 1ファイル完全版 / 現場モードでOKテイク・カットテイク編集対応</p>
   </header>
+
+  <section class="card">
+    <div class="section-header">
+      <h2>モード切替</h2>
+      <p class="section-subtitle">準備用と現場用を切り替えられます</p>
+    </div>
+
+    <div class="mode-switch">
+      <button type="button" class="mode-btn active" data-mode="prep">準備モード</button>
+      <button type="button" class="mode-btn" data-mode="field">現場モード</button>
+    </div>
+
+    <div class="mode-status">
+      <div class="mode-status-label">現在のモード</div>
+      <div class="mode-status-value" id="currentModeLabel">準備モード</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-header">
+      <h2>部署タブ</h2>
+      <p class="section-subtitle">見る部署ごとに必要な情報を見やすく切り替えます</p>
+    </div>
+
+    <div class="dept-tabs">
+      <button type="button" class="dept-tab active" data-dept="all">ALL</button>
+      <button type="button" class="dept-tab" data-dept="director">監督</button>
+      <button type="button" class="dept-tab" data-dept="camera">撮影部</button>
+      <button type="button" class="dept-tab" data-dept="lighting">照明部</button>
+      <button type="button" class="dept-tab" data-dept="production">制作部</button>
+      <button type="button" class="dept-tab" data-dept="actor">俳優部</button>
+    </div>
+
+    <div class="dept-note" id="deptNote">ALL表示です</div>
+  </section>
 
   <section class="card">
     <div class="section-header">
@@ -753,10 +777,58 @@ button{
     <div id="debug" class="debug-box">読み込み中...</div>
   </section>
 
+  <section class="card" id="projectManageSection">
+    <div class="section-header">
+      <h2>プロジェクト作成</h2>
+      <p class="section-subtitle">作品 / 脚本ごとに先に作成してからシーンを管理します</p>
+    </div>
+
+    <form id="projectForm">
+      <input type="hidden" id="projectId">
+
+      <div class="grid">
+        <div class="field">
+          <label for="projectTitle">プロジェクト名</label>
+          <input id="projectTitle" placeholder="例：覚えてなくていい">
+        </div>
+
+        <div class="field">
+          <label for="projectDirector">監督名</label>
+          <input id="projectDirector" placeholder="例：菅原昌規">
+        </div>
+
+        <div class="field full">
+          <label for="projectMemo">プロジェクトメモ</label>
+          <textarea id="projectMemo" placeholder="例：短編映画版 2日撮影 夜シーン多め"></textarea>
+        </div>
+      </div>
+
+      <div class="button-row">
+        <button class="primary-btn" type="submit">プロジェクト保存</button>
+        <button type="button" id="cancelProjectEdit" class="secondary-btn">キャンセル</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="card" id="projectListSection">
+    <div class="section-header">
+      <h2>プロジェクト一覧</h2>
+      <p class="section-subtitle">選択したプロジェクトに対してシーンを追加します</p>
+    </div>
+
+    <div id="projectList" class="project-list"></div>
+    <div id="projectEmptyState" class="empty-state">プロジェクトがまだありません</div>
+
+    <div class="current-project-box">
+      <div class="current-project-label">選択中プロジェクト</div>
+      <div class="current-project-value" id="activeProjectLabel">未選択</div>
+    </div>
+  </section>
+
   <section class="card">
     <div class="section-header">
       <h2>サマリー</h2>
-      <p class="section-subtitle">全体状況をすぐ確認できます</p>
+      <p class="section-subtitle">全体状況を確認できます</p>
     </div>
 
     <div class="summary-grid">
@@ -783,91 +855,10 @@ button{
     </div>
   </section>
 
-  <section class="card">
+  <section class="card" id="actorMasterSection">
     <div class="section-header">
-      <h2>モード切替</h2>
-      <p class="section-subtitle">準備では作成と編集 現場では確認と撮影済み更新に集中できます</p>
-    </div>
-
-    <div class="tab-row">
-      <button type="button" class="mode-btn active" data-mode="prep">準備モード</button>
-      <button type="button" class="mode-btn" data-mode="field">現場モード</button>
-    </div>
-
-    <div class="current-box">
-      <div class="current-label">現在のモード</div>
-      <div class="current-value" id="currentModeLabel">準備モード</div>
-    </div>
-  </section>
-
-  <section class="card" id="projectManageCard">
-    <div class="section-header">
-      <h2>プロジェクト管理</h2>
-      <p class="section-subtitle">作品 / 脚本単位で先に作成してから シーンを追加します</p>
-    </div>
-
-    <form id="projectForm">
-      <input type="hidden" id="projectId">
-
-      <div class="grid">
-        <div class="field">
-          <label for="projectTitle">プロジェクト名</label>
-          <input id="projectTitle" placeholder="例：覚えてなくていい">
-        </div>
-
-        <div class="field">
-          <label for="projectDirector">監督名</label>
-          <input id="projectDirector" placeholder="例：菅原昌規">
-        </div>
-
-        <div class="field full">
-          <label for="projectMemo">プロジェクトメモ</label>
-          <textarea id="projectMemo" placeholder="例：TikTok縦ドラマ / 2日撮影予定 / ロケ許可済み"></textarea>
-        </div>
-      </div>
-
-      <div class="button-row">
-        <button class="primary-btn" type="submit">プロジェクト保存</button>
-        <button type="button" id="cancelProjectEdit" class="secondary-btn">キャンセル</button>
-      </div>
-    </form>
-
-    <div id="projectList" class="scene-list" style="margin-top:16px;"></div>
-    <div id="projectEmptyState" class="empty-state">プロジェクトがまだありません</div>
-  </section>
-
-  <section class="card">
-    <div class="section-header">
-      <h2>プロジェクト選択</h2>
-      <p class="section-subtitle">シーンは必ず選択中プロジェクトに紐づきます</p>
-    </div>
-
-    <div class="grid">
-      <div class="field">
-        <label for="activeProjectSelect">作業中プロジェクト</label>
-        <select id="activeProjectSelect">
-          <option value="">先にプロジェクトを作成してください</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label for="projectFilter">一覧のプロジェクト絞り込み</label>
-        <select id="projectFilter">
-          <option value="">すべてのプロジェクト</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="current-box" style="margin-top:12px;">
-      <div class="current-label">選択中プロジェクト</div>
-      <div class="current-value" id="activeProjectLabel">未選択</div>
-    </div>
-  </section>
-
-  <section class="card" id="actorManageCard">
-    <div class="section-header">
-      <h2>俳優マスター</h2>
-      <p class="section-subtitle">写真付きで俳優を登録して 出演者へワンタップ追加できます</p>
+      <h2>俳優一覧</h2>
+      <p class="section-subtitle">写真から選んで出演者に追加できます</p>
     </div>
 
     <form id="actorForm">
@@ -875,47 +866,50 @@ button{
 
       <div class="grid">
         <div class="field">
-          <label for="actorName">名前</label>
+          <label for="actorName">俳優名</label>
           <input id="actorName" placeholder="例：岡本尚子">
         </div>
 
         <div class="field">
-          <label for="actorRole">役名・属性</label>
-          <input id="actorRole" placeholder="例：ヒロイン / 刑事 / 高校生">
+          <label for="actorImage">写真URL</label>
+          <input id="actorImage" placeholder="https://example.com/actor.jpg" inputmode="url">
         </div>
 
         <div class="field full">
-          <label for="actorPhotoUrl">写真URL</label>
-          <input id="actorPhotoUrl" placeholder="https://example.com/actor.jpg" inputmode="url">
-        </div>
-
-        <div class="field full">
-          <label for="actorMemo">メモ</label>
-          <textarea id="actorMemo" placeholder="例：一人称 僕 ナチュラル芝居 得意"></textarea>
+          <label for="actorMemo">俳優メモ</label>
+          <textarea id="actorMemo" placeholder="例：高校生役 ナチュラル 一人称は僕"></textarea>
         </div>
       </div>
 
       <div class="button-row">
-        <button class="primary-btn" type="submit">俳優を保存</button>
+        <button class="primary-btn" type="submit">俳優登録</button>
         <button type="button" id="cancelActorEdit" class="secondary-btn">キャンセル</button>
       </div>
     </form>
 
-    <p class="actor-picker-note">下の俳優カードは シーン入力中に押すと出演者欄へ追加できます</p>
-    <div id="actorMasterList" class="actor-grid"></div>
-    <div id="actorEmptyState" class="empty-state">俳優マスターがまだありません</div>
+    <div style="height:12px;"></div>
+
+    <div id="actorList" class="actor-grid"></div>
+    <div id="actorEmptyState" class="empty-state">俳優がまだいません</div>
   </section>
 
-  <section class="card" id="sceneFormCard">
+  <section class="card" id="sceneFormSection">
     <div class="section-header">
       <h2 id="formTitle">シーン入力</h2>
-      <p class="section-subtitle">選択中プロジェクト内にシーンを追加します</p>
+      <p class="section-subtitle">シーンは必ずプロジェクトに紐づきます</p>
     </div>
 
     <form id="form">
       <input type="hidden" id="id">
 
       <div class="grid">
+        <div class="field">
+          <label for="projectIdSelect">プロジェクト</label>
+          <select id="projectIdSelect">
+            <option value="">先にプロジェクトを作成してください</option>
+          </select>
+        </div>
+
         <div class="field">
           <label for="sceneNo">シーン番号</label>
           <input id="sceneNo" placeholder="シーン番号">
@@ -988,23 +982,8 @@ button{
         </div>
 
         <div class="field">
-          <label for="loc">場所</label>
-          <input id="loc" placeholder="場所">
-        </div>
-
-        <div class="field">
-          <label for="locationContactName">ロケ地連絡先名</label>
-          <input id="locationContactName" placeholder="例：田中様 店長 山本さん">
-        </div>
-
-        <div class="field">
-          <label for="locationContactPhone">ロケ地連絡先電話</label>
-          <input id="locationContactPhone" placeholder="例：09012345678">
-        </div>
-
-        <div class="field">
-          <label for="locationContactEmail">ロケ地連絡先メール</label>
-          <input id="locationContactEmail" placeholder="例：sample@example.com" inputmode="email">
+          <label for="loc">ロケ場所名</label>
+          <input id="loc" placeholder="例：居酒屋かつら">
         </div>
 
         <div class="field">
@@ -1015,107 +994,18 @@ button{
         </div>
 
         <div class="field full">
-          <label for="locationContactMemo">ロケ地連絡先メモ</label>
-          <textarea id="locationContactMemo" placeholder="例：到着10分前に連絡 裏口から入る 夜は電話よりSMS希望"></textarea>
-        </div>
-
-        <div class="field">
-          <label for="permitCheck">許可確認</label>
-          <select id="permitCheck">
-            <option value="未確認" selected>未確認</option>
-            <option value="OK">OK</option>
-            <option value="NG">NG</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="powerCheck">電源確認</label>
-          <select id="powerCheck">
-            <option value="未確認" selected>未確認</option>
-            <option value="OK">OK</option>
-            <option value="NG">NG</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="soundCheck">音確認</label>
-          <select id="soundCheck">
-            <option value="未確認" selected>未確認</option>
-            <option value="OK">OK</option>
-            <option value="NG">NG</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="parkingCheck">駐車確認</label>
-          <select id="parkingCheck">
-            <option value="未確認" selected>未確認</option>
-            <option value="OK">OK</option>
-            <option value="NG">NG</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="carryInCheck">搬入確認</label>
-          <select id="carryInCheck">
-            <option value="未確認" selected>未確認</option>
-            <option value="OK">OK</option>
-            <option value="NG">NG</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="rainCheck">雨天確認</label>
-          <select id="rainCheck">
-            <option value="未確認" selected>未確認</option>
-            <option value="OK">OK</option>
-            <option value="NG">NG</option>
-          </select>
-        </div>
-
-        <div class="field full">
-          <label for="precheckMemo">開始前チェックメモ</label>
-          <textarea id="precheckMemo" placeholder="例：許可書は前日再送済み 電源はレジ裏1口のみ 音は17時以降車通り増える"></textarea>
-        </div>
-
-        <div class="field full">
           <label for="cast">出演者</label>
-          <textarea id="cast" placeholder="例：岡本尚子 長嶋琢磨"></textarea>
+          <textarea id="cast" placeholder="1行1名でも スペース区切りでも可"></textarea>
         </div>
 
         <div class="field full">
-          <label>俳優マスターから追加</label>
-          <div id="actorPickerInForm" class="actor-inline-list"></div>
-        </div>
-
-        <div class="field">
-          <label for="sceneRoleName">このシーンの役名</label>
-          <input id="sceneRoleName" placeholder="例：娘 刑事A 店主 彼氏">
-        </div>
-
-        <div class="field">
-          <label for="actorCallMemo">俳優集合メモ</label>
-          <input id="actorCallMemo" placeholder="例：主演は15分前 女優のみ先メイク">
-        </div>
-
-        <div class="field full">
-          <label for="makeupMemo">メイクメモ</label>
-          <textarea id="makeupMemo" placeholder="例：涙メイクあり 顔色少し悪め 前髪固定"></textarea>
-        </div>
-
-        <div class="field full">
-          <label for="actingMemo">演技メモ</label>
-          <textarea id="actingMemo" placeholder="例：最初は距離を取る 後半で一気に感情を出す 目線を外し気味"></textarea>
-        </div>
-
-        <div class="field full">
-          <label for="okTakeMemo">OKテイクメモ</label>
-          <textarea id="okTakeMemo" placeholder="例：テイク3 OK 演技良い&#10;テイク5 Bカメ良い"></textarea>
+          <label>俳優一覧から追加</label>
+          <div id="actorPickerArea" class="inline-actor-grid"></div>
         </div>
 
         <div class="field full">
           <label for="directionIntent">演出意図</label>
-          <textarea id="directionIntent" placeholder="例：距離感を強調したい ぎこちなさを残す"></textarea>
+          <textarea id="directionIntent" placeholder="例：距離感を強調 ぎこちなさを残す"></textarea>
         </div>
 
         <div class="field">
@@ -1128,34 +1018,50 @@ button{
           <input id="cameraSize" placeholder="例：CU MS WS">
         </div>
 
-        <div class="field">
-          <label for="lensMemo">レンズメモ</label>
-          <input id="lensMemo" placeholder="例：24-70GM2 / 70-200GM2 / 35mm固定">
-        </div>
-
-        <div class="field">
-          <label for="cameraPosition">カメラ位置</label>
-          <input id="cameraPosition" placeholder="例：入口側から 右壁際 カウンター奥">
-        </div>
-
-        <div class="field">
-          <label for="shotMovement">カメラ動き</label>
-          <input id="shotMovement" placeholder="例：固定 パン 前進 ジンバル">
-        </div>
-
-        <div class="field">
-          <label for="windowDirection">窓向き</label>
-          <input id="windowDirection" placeholder="例：南向き 西向き 窓なし">
+        <div class="field full">
+          <label for="okTakeMemo">OKテイクメモ</label>
+          <textarea id="okTakeMemo" placeholder="例：テイク3 OK&#10;テイク5 Bカメ良い"></textarea>
         </div>
 
         <div class="field full">
-          <label for="lightingMemo">照明メモ</label>
-          <textarea id="lightingMemo" placeholder="例：メインは窓光 補助で300c 天井低いのでスタンド注意"></textarea>
-        </div>
+          <label>カット / テイク管理</label>
 
-        <div class="field full">
-          <label for="sunMemo">日当たりメモ</label>
-          <textarea id="sunMemo" placeholder="例：15時以降西日強い 午前は逆光になりにくい"></textarea>
+          <div class="cuttake-box">
+            <div class="cuttake-label">カット番号・テイク番号・OK・メモを追加できます</div>
+
+            <div class="cuttake-builder">
+              <div class="field">
+                <label for="cutNoInput">カット番号</label>
+                <input id="cutNoInput" placeholder="例：C1">
+              </div>
+
+              <div class="field">
+                <label for="takeNoInput">テイク番号</label>
+                <input id="takeNoInput" placeholder="例：T1">
+              </div>
+
+              <div class="field">
+                <label for="takeIsOkInput">OK</label>
+                <select id="takeIsOkInput">
+                  <option value="no" selected>未OK</option>
+                  <option value="yes">OK</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="takeMemoInput">テイクメモ</label>
+                <input id="takeMemoInput" placeholder="例：芝居良い Bカメ良い">
+              </div>
+
+              <div class="field">
+                <label>&nbsp;</label>
+                <button type="button" id="addCutTakeBtn" class="primary-btn">追加</button>
+              </div>
+            </div>
+
+            <div id="cutTakeList" class="cuttake-list"></div>
+            <div id="cutTakeEmptyState" class="empty-state">カット / テイクはまだありません</div>
+          </div>
         </div>
 
         <div class="field full">
@@ -1166,6 +1072,11 @@ button{
         <div class="field full">
           <label for="mapUrl">GoogleマップURL</label>
           <input id="mapUrl" placeholder="https://maps.google.com/..." inputmode="url">
+        </div>
+
+        <div class="field full">
+          <label for="locationPermitMemo">ロケ場所の許可取りメモ</label>
+          <textarea id="locationPermitMemo" placeholder="例：店長確認済み 撮影申請書送付済み 連絡先○○"></textarea>
         </div>
 
         <div class="field full">
@@ -1228,32 +1139,18 @@ button{
 
   <section class="card">
     <div class="section-header">
-      <h2>表示モード</h2>
-      <p class="section-subtitle">部署ごとに見やすい情報へ切り替えられます</p>
-    </div>
-
-    <div class="tab-row">
-      <button type="button" class="tab-btn active" data-dept="ALL">ALL</button>
-      <button type="button" class="tab-btn" data-dept="監督">監督</button>
-      <button type="button" class="tab-btn" data-dept="撮影部">撮影部</button>
-      <button type="button" class="tab-btn" data-dept="照明部">照明部</button>
-      <button type="button" class="tab-btn" data-dept="制作部">制作部</button>
-      <button type="button" class="tab-btn" data-dept="俳優部">俳優部</button>
-    </div>
-
-    <div class="current-box">
-      <div class="current-label">現在の表示モード</div>
-      <div class="current-value" id="currentDeptLabel">ALL</div>
-    </div>
-  </section>
-
-  <section class="card">
-    <div class="section-header">
       <h2>シーン一覧</h2>
-      <p class="section-subtitle">プロジェクト絞り込み / 詳細開閉つき</p>
+      <p class="section-subtitle">プロジェクト単位で絞り込みできます</p>
     </div>
 
     <div class="filter-bar">
+      <div class="field">
+        <label for="projectFilter">プロジェクト絞り込み</label>
+        <select id="projectFilter">
+          <option value="">すべてのプロジェクト</option>
+        </select>
+      </div>
+
       <div class="field">
         <label for="search">検索</label>
         <input id="search" placeholder="検索">
@@ -1293,26 +1190,38 @@ button{
 </div>
 
 <script>
-const SCENE_KEY = "scene_app_v30";
+const SCENE_KEY = "scene_app_full_v3";
+const LEGACY_SCENE_KEYS = ["scene_app_full_v2", "scene_app_full_v1", "scene_app_project_v2"];
 const PROJECT_KEY = "scene_project_master_v1";
 const ACTOR_KEY = "scene_actor_master_v1";
-const LAST_SAVED_KEY = "scene_app_v30_last_saved_at";
-const DEPT_KEY = "scene_app_v30_current_dept";
-const MODE_KEY = "scene_app_v30_current_mode";
-const ACTIVE_PROJECT_KEY = "scene_app_v30_active_project";
+const LAST_SAVED_KEY = "scene_app_full_v3_last_saved_at";
+const ACTIVE_PROJECT_KEY = "scene_app_full_v3_active_project_id";
+const MODE_KEY = "scene_app_full_v3_mode";
+const DEPT_KEY = "scene_app_full_v3_department";
 
-let data = JSON.parse(localStorage.getItem(SCENE_KEY) || "[]");
+let data = JSON.parse(localStorage.getItem(SCENE_KEY) || "null") || [];
+if(data.length === 0){
+  for(const key of LEGACY_SCENE_KEYS){
+    const legacy = JSON.parse(localStorage.getItem(key) || "[]");
+    if(Array.isArray(legacy) && legacy.length){
+      data = legacy;
+      break;
+    }
+  }
+}
+
 let projects = JSON.parse(localStorage.getItem(PROJECT_KEY) || "[]");
-let actorMaster = JSON.parse(localStorage.getItem(ACTOR_KEY) || "[]");
+let actors = JSON.parse(localStorage.getItem(ACTOR_KEY) || "[]");
 let openIds = new Set();
-let currentDept = localStorage.getItem(DEPT_KEY) || "ALL";
-let currentMode = localStorage.getItem(MODE_KEY) || "prep";
 let activeProjectId = localStorage.getItem(ACTIVE_PROJECT_KEY) || "";
+let currentMode = localStorage.getItem(MODE_KEY) || "prep";
+let currentDept = localStorage.getItem(DEPT_KEY) || "all";
+let currentCutTakesEditor = [];
 
 const $ = id => document.getElementById(id);
 
-function uid(prefix="id"){
-  return `${prefix}_${Date.now()}_${Math.floor(Math.random()*100000)}`;
+function uid(prefix){
+  return `${prefix}_${Date.now()}_${Math.floor(Math.random() * 100000)}`;
 }
 
 function formatDateTime(isoString){
@@ -1347,13 +1256,25 @@ function saveProjects(){
 }
 
 function saveActors(){
-  localStorage.setItem(ACTOR_KEY, JSON.stringify(actorMaster));
+  localStorage.setItem(ACTOR_KEY, JSON.stringify(actors));
   setLastSavedAt();
+}
+
+function saveActiveProject(){
+  localStorage.setItem(ACTIVE_PROJECT_KEY, activeProjectId || "");
+}
+
+function saveMode(){
+  localStorage.setItem(MODE_KEY, currentMode);
+}
+
+function saveDept(){
+  localStorage.setItem(DEPT_KEY, currentDept);
 }
 
 function normalizeProject(v){
   return {
-    id: v.id || uid("project"),
+    id: String(v.id || uid("project")),
     title: String(v.title || ""),
     director: String(v.director || ""),
     memo: String(v.memo || "")
@@ -1362,35 +1283,31 @@ function normalizeProject(v){
 
 function normalizeActor(v){
   return {
-    id: v.id || uid("actor"),
+    id: String(v.id || uid("actor")),
     name: String(v.name || ""),
-    role: String(v.role || ""),
-    photoUrl: String(v.photoUrl || ""),
+    image: String(v.image || ""),
     memo: String(v.memo || "")
   };
 }
 
 function normalizeChecklistItems(value){
   if(Array.isArray(value)){
-    return value
-      .map(item => ({
-        text: String(item?.text || "").trim(),
-        checked: Boolean(item?.checked)
-      }))
-      .filter(item => item.text);
+    return value.map(item => ({
+      text: String(item?.text || "").trim(),
+      checked: Boolean(item?.checked)
+    })).filter(item => item.text);
   }
   return [];
 }
 
 function checklistItemsToText(items){
-  return normalizeChecklistItems(items)
-    .map(item => item.text)
-    .join("\n");
+  return normalizeChecklistItems(items).map(item => item.text).join("\n");
 }
 
 function buildChecklistItemsFromText(text, previousItems = []){
   const prev = normalizeChecklistItems(previousItems);
   const previousCountMap = {};
+
   prev.forEach(item => {
     previousCountMap[item.text] = previousCountMap[item.text] || [];
     previousCountMap[item.text].push(item.checked);
@@ -1406,16 +1323,16 @@ function buildChecklistItemsFromText(text, previousItems = []){
     usedCount[line] = usedCount[line] || 0;
     const index = usedCount[line];
     usedCount[line] += 1;
-
     const previousCheckedList = previousCountMap[line] || [];
-    return {
-      text: line,
-      checked: previousCheckedList[index] || false
-    };
+    const checked = previousCheckedList[index] || false;
+    return { text: line, checked };
   });
 }
 
 function normalizeUrlLines(text){
+  if(Array.isArray(text)){
+    return text.map(v => String(v || "").trim()).filter(Boolean);
+  }
   return String(text || "")
     .split(/\r?\n/)
     .map(v => v.trim())
@@ -1423,23 +1340,38 @@ function normalizeUrlLines(text){
 }
 
 function urlLinesToText(lines){
-  return normalizeUrlLines((lines || []).join("\n")).join("\n");
+  return normalizeUrlLines(lines).join("\n");
 }
 
-function normalizePrecheckValue(v){
-  const s = String(v || "未確認");
-  if(s === "OK" || s === "NG" || s === "未確認") return s;
-  return "未確認";
+function normalizeCutTakes(value){
+  if(!Array.isArray(value)) return [];
+  return value.map(item => ({
+    id: String(item?.id || uid("cuttake")),
+    cutNo: String(item?.cutNo || "").trim(),
+    takeNo: String(item?.takeNo || "").trim(),
+    isOk: Boolean(item?.isOk),
+    memo: String(item?.memo || "").trim()
+  })).filter(item => item.cutNo || item.takeNo || item.memo);
+}
+
+function cutTakesToSummary(items){
+  return normalizeCutTakes(items)
+    .map(item => `${item.cutNo || "-"} ${item.takeNo || "-"}${item.isOk ? " OK" : ""}${item.memo ? " " + item.memo : ""}`.trim())
+    .join(" / ");
+}
+
+function getOkCutTakes(items){
+  return normalizeCutTakes(items).filter(item => item.isOk);
+}
+
+function getFirstOkCutTake(items){
+  return getOkCutTakes(items)[0] || null;
 }
 
 function normalizeScene(v){
   const normalizedStatus = String(v.status || (v.doneCheck ? "撮影済み" : "未着手"));
-  let imageSource = "";
-  if(Array.isArray(v.imageUrlMemo)) imageSource = v.imageUrlMemo.join("\n");
-  else imageSource = String(v.imageUrlMemo || "");
-
   return {
-    id: v.id || uid("scene"),
+    id: String(v.id || uid("scene")),
     projectId: String(v.projectId || ""),
     sceneNo: String(v.sceneNo || ""),
     order: Number(v.order || 0),
@@ -1453,40 +1385,21 @@ function normalizeScene(v){
     status: normalizedStatus,
     sceneLabel: String(v.sceneLabel || ""),
     loc: String(v.loc || ""),
-    locationContactName: String(v.locationContactName || ""),
-    locationContactPhone: String(v.locationContactPhone || ""),
-    locationContactEmail: String(v.locationContactEmail || ""),
-    locationContactMemo: String(v.locationContactMemo || ""),
-    permitCheck: normalizePrecheckValue(v.permitCheck),
-    powerCheck: normalizePrecheckValue(v.powerCheck),
-    soundCheck: normalizePrecheckValue(v.soundCheck),
-    parkingCheck: normalizePrecheckValue(v.parkingCheck),
-    carryInCheck: normalizePrecheckValue(v.carryInCheck),
-    rainCheck: normalizePrecheckValue(v.rainCheck),
-    precheckMemo: String(v.precheckMemo || ""),
     cast: String(v.cast || ""),
-    sceneRoleName: String(v.sceneRoleName || ""),
-    actorCallMemo: String(v.actorCallMemo || ""),
-    makeupMemo: String(v.makeupMemo || ""),
-    actingMemo: String(v.actingMemo || ""),
-    okTakeMemo: String(v.okTakeMemo || ""),
     directionIntent: String(v.directionIntent || ""),
     emotion: String(v.emotion || ""),
     cameraSize: String(v.cameraSize || ""),
-    lensMemo: String(v.lensMemo || ""),
-    cameraPosition: String(v.cameraPosition || ""),
-    shotMovement: String(v.shotMovement || ""),
-    lightingMemo: String(v.lightingMemo || ""),
-    windowDirection: String(v.windowDirection || ""),
-    sunMemo: String(v.sunMemo || ""),
+    okTakeMemo: String(v.okTakeMemo || ""),
+    cutTakes: normalizeCutTakes(v.cutTakes || []),
     address: String(v.address || ""),
     mapUrl: String(v.mapUrl || ""),
-    imageUrlMemo: normalizeUrlLines(imageSource),
+    locationPermitMemo: String(v.locationPermitMemo || ""),
+    imageUrlMemo: normalizeUrlLines(v.imageUrlMemo || ""),
     parkingMemo: String(v.parkingMemo || ""),
     powerMemo: String(v.powerMemo || ""),
     toiletMemo: String(v.toiletMemo || ""),
     rainPlanMemo: String(v.rainPlanMemo || ""),
-    checklistItems: normalizeChecklistItems(v.checklistItems),
+    checklistItems: normalizeChecklistItems(v.checklistItems || []),
     props: String(v.props || ""),
     gear: String(v.gear || ""),
     costume: String(v.costume || ""),
@@ -1495,12 +1408,406 @@ function normalizeScene(v){
   };
 }
 
-function getProjectById(id){
-  return projects.find(v => v.id === id) || null;
+function getProjectById(projectId){
+  return projects.find(v => v.id === projectId) || null;
 }
 
-function getProjectTitleById(id){
-  return getProjectById(id)?.title || "未設定";
+function getProjectTitleById(projectId){
+  return getProjectById(projectId)?.title || "";
+}
+
+function getDeptLabel(dept){
+  if(dept === "director") return "監督";
+  if(dept === "camera") return "撮影部";
+  if(dept === "lighting") return "照明部";
+  if(dept === "production") return "制作部";
+  if(dept === "actor") return "俳優部";
+  return "ALL";
+}
+
+function getDeptNote(dept){
+  if(dept === "director") return "演出・芝居・OKテイク・感情を優先表示します";
+  if(dept === "camera") return "撮影順・時間・カメラサイズ・機材・カット/テイクを優先表示します";
+  if(dept === "lighting") return "時間・場所・電源・雨天時・機材を優先表示します";
+  if(dept === "production") return "日時・住所・許可取り・駐車場・小道具を優先表示します";
+  if(dept === "actor") return "出演者・衣装・感情・OKテイクを優先表示します";
+  return "ALL表示です";
+}
+
+function setActiveProject(projectId){
+  activeProjectId = projectId || "";
+  saveActiveProject();
+  updateProjectSelectOptions();
+  renderProjectList();
+  render();
+}
+
+function setMode(mode){
+  currentMode = mode;
+  saveMode();
+  updateModeUI();
+  render();
+}
+
+function setDept(dept){
+  currentDept = dept;
+  saveDept();
+  updateDeptUI();
+  render();
+}
+
+function updateDeptUI(){
+  document.querySelectorAll("[data-dept]").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.dept === currentDept);
+  });
+  $("deptNote").textContent = getDeptNote(currentDept);
+}
+
+function updateModeUI(){
+  document.querySelectorAll("[data-mode]").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.mode === currentMode);
+  });
+
+  $("currentModeLabel").textContent = currentMode === "field" ? "現場モード" : "準備モード";
+
+  const isField = currentMode === "field";
+  $("projectManageSection").classList.toggle("hidden", isField);
+  $("projectListSection").classList.toggle("hidden", isField);
+  $("actorMasterSection").classList.toggle("hidden", isField);
+  $("sceneFormSection").classList.toggle("hidden", isField);
+  $("manageActions").classList.toggle("hidden", isField);
+}
+
+function updateProjectSelectOptions(){
+  const currentSceneProject = $("projectIdSelect").value;
+  const currentFilterProject = $("projectFilter").value;
+
+  $("projectIdSelect").innerHTML = projects.length
+    ? '<option value="">プロジェクトを選択</option>'
+    : '<option value="">先にプロジェクトを作成してください</option>';
+
+  $("projectFilter").innerHTML = '<option value="">すべてのプロジェクト</option>';
+
+  const sortedProjects = [...projects].sort((a,b) => String(a.title).localeCompare(String(b.title), "ja"));
+
+  sortedProjects.forEach(project => {
+    const opt1 = document.createElement("option");
+    opt1.value = project.id;
+    opt1.textContent = project.title;
+    $("projectIdSelect").appendChild(opt1);
+
+    const opt2 = document.createElement("option");
+    opt2.value = project.id;
+    opt2.textContent = project.title;
+    $("projectFilter").appendChild(opt2);
+  });
+
+  if(sortedProjects.some(v => v.id === currentSceneProject)){
+    $("projectIdSelect").value = currentSceneProject;
+  }else if(activeProjectId && sortedProjects.some(v => v.id === activeProjectId)){
+    $("projectIdSelect").value = activeProjectId;
+  }else{
+    $("projectIdSelect").value = "";
+  }
+
+  if(sortedProjects.some(v => v.id === currentFilterProject)){
+    $("projectFilter").value = currentFilterProject;
+  }else if(activeProjectId && sortedProjects.some(v => v.id === activeProjectId)){
+    $("projectFilter").value = activeProjectId;
+  }else{
+    $("projectFilter").value = "";
+  }
+
+  $("activeProjectLabel").textContent = getProjectTitleById(activeProjectId) || "未選択";
+}
+
+function renderProjectList(){
+  const wrap = $("projectList");
+  const empty = $("projectEmptyState");
+  const sortedProjects = [...projects].sort((a,b) => String(a.title).localeCompare(String(b.title), "ja"));
+
+  if(sortedProjects.length === 0){
+    empty.style.display = "block";
+    wrap.innerHTML = "";
+    return;
+  }
+
+  empty.style.display = "none";
+
+  wrap.innerHTML = sortedProjects.map(project => {
+    const projectScenes = data.filter(v => v.projectId === project.id);
+    const doneCount = projectScenes.filter(v => v.doneCheck).length;
+    const unshotCount = projectScenes.length - doneCount;
+    const okTakeCount = projectScenes.filter(v => v.okTakeMemo.trim()).length;
+    const okCutTakeCount = projectScenes.reduce((sum, scene) => sum + getOkCutTakes(scene.cutTakes).length, 0);
+
+    return `
+      <div class="project-card ${project.id === activeProjectId ? "is-active" : ""}">
+        <div class="project-title">${escapeHtml(project.title)}</div>
+
+        <div class="project-meta">
+          <div class="meta-box">
+            <div class="meta-label">監督名</div>
+            <div class="meta-value">${escapeHtml(project.director || "-")}</div>
+          </div>
+
+          <div class="meta-box">
+            <div class="meta-label">プロジェクト状況</div>
+            <div class="meta-value">シーン数 ${escapeHtml(String(projectScenes.length))} / 撮影済み ${escapeHtml(String(doneCount))} / 未撮影 ${escapeHtml(String(unshotCount))} / OKテイク記録 ${escapeHtml(String(okTakeCount))} / OKカットテイク ${escapeHtml(String(okCutTakeCount))}</div>
+          </div>
+
+          <div class="meta-box" style="grid-column:1 / -1;">
+            <div class="meta-label">メモ</div>
+            <div class="meta-value">${escapeHtml(project.memo || "-")}</div>
+          </div>
+        </div>
+
+        <div class="project-actions">
+          <button type="button" class="detail-btn" data-project-select="${escapeAttr(project.id)}">このプロジェクトを使う</button>
+          <button type="button" class="edit-btn" data-project-edit="${escapeAttr(project.id)}">編集</button>
+          <button type="button" class="danger-btn" data-project-delete="${escapeAttr(project.id)}">削除</button>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  wrap.querySelectorAll("[data-project-select]").forEach(btn => {
+    btn.onclick = () => setActiveProject(btn.dataset.projectSelect);
+  });
+
+  wrap.querySelectorAll("[data-project-edit]").forEach(btn => {
+    btn.onclick = () => {
+      const project = getProjectById(btn.dataset.projectEdit);
+      if(!project) return;
+      $("projectId").value = project.id;
+      $("projectTitle").value = project.title;
+      $("projectDirector").value = project.director;
+      $("projectMemo").value = project.memo;
+      window.scrollTo({ top:0, behavior:"smooth" });
+    };
+  });
+
+  wrap.querySelectorAll("[data-project-delete]").forEach(btn => {
+    btn.onclick = () => {
+      const projectId = btn.dataset.projectDelete;
+      const hasScenes = data.some(v => v.projectId === projectId);
+
+      const msg = hasScenes
+        ? "このプロジェクトを削除すると紐づくシーンも削除されます 削除する？"
+        : "このプロジェクトを削除する？";
+
+      if(!confirm(msg)) return;
+
+      projects = projects.filter(v => v.id !== projectId);
+      data = data.filter(v => v.projectId !== projectId);
+
+      if(activeProjectId === projectId){
+        activeProjectId = projects[0]?.id || "";
+        saveActiveProject();
+      }
+
+      saveProjects();
+      saveScenes();
+      updateProjectSelectOptions();
+      renderProjectList();
+      render();
+    };
+  });
+}
+
+function getSceneLabelClass(value){
+  if(value === "赤") return "label-red";
+  if(value === "青") return "label-blue";
+  if(value === "緑") return "label-green";
+  if(value === "黄") return "label-yellow";
+  if(value === "紫") return "label-purple";
+  if(value === "ピンク") return "label-pink";
+  return "";
+}
+
+function getSceneLabelBadgeClass(value){
+  if(value === "赤") return "label-badge-red";
+  if(value === "青") return "label-badge-blue";
+  if(value === "緑") return "label-badge-green";
+  if(value === "黄") return "label-badge-yellow";
+  if(value === "紫") return "label-badge-purple";
+  if(value === "ピンク") return "label-badge-pink";
+  return "";
+}
+
+function renderActorCard(actor, { picker = false, editable = false } = {}){
+  const thumbHtml = actor.image
+    ? `<img class="actor-thumb" src="${escapeAttr(actor.image)}" alt="${escapeAttr(actor.name)}" onerror="this.outerHTML='<div class=&quot;actor-thumb-placeholder&quot;>画像なし</div>'">`
+    : `<div class="actor-thumb-placeholder">画像なし</div>`;
+
+  return `
+    <div class="actor-card">
+      ${thumbHtml}
+      <div class="actor-body">
+        <div class="actor-name">${escapeHtml(actor.name || "-")}</div>
+        <div class="actor-sub">${escapeHtml(actor.memo || "-")}</div>
+        <div class="actor-actions">
+          ${picker ? `<button type="button" class="actor-add-btn" data-pick-actor="${escapeAttr(actor.id)}">出演者に追加</button>` : ""}
+          ${editable ? `<button type="button" class="edit-btn" data-edit-actor="${escapeAttr(actor.id)}">編集</button>` : ""}
+          ${editable ? `<button type="button" class="danger-btn" data-delete-actor="${escapeAttr(actor.id)}">削除</button>` : ""}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderActorList(){
+  const wrap = $("actorList");
+  const empty = $("actorEmptyState");
+  const sortedActors = [...actors].sort((a,b) => String(a.name).localeCompare(String(b.name), "ja"));
+
+  if(sortedActors.length === 0){
+    empty.style.display = "block";
+    wrap.innerHTML = "";
+    return;
+  }
+
+  empty.style.display = "none";
+  wrap.innerHTML = sortedActors.map(actor => renderActorCard(actor, { editable:true })).join("");
+
+  wrap.querySelectorAll("[data-edit-actor]").forEach(btn => {
+    btn.onclick = () => {
+      const actor = actors.find(v => v.id === btn.dataset.editActor);
+      if(!actor) return;
+      $("actorId").value = actor.id;
+      $("actorName").value = actor.name || "";
+      $("actorImage").value = actor.image || "";
+      $("actorMemo").value = actor.memo || "";
+      window.scrollTo({ top:0, behavior:"smooth" });
+    };
+  });
+
+  wrap.querySelectorAll("[data-delete-actor]").forEach(btn => {
+    btn.onclick = () => {
+      if(!confirm("この俳優を削除する？")) return;
+      actors = actors.filter(v => v.id !== btn.dataset.deleteActor);
+      saveActors();
+      renderActorList();
+      renderActorPickerArea();
+      render();
+    };
+  });
+}
+
+function renderActorPickerArea(){
+  const wrap = $("actorPickerArea");
+  const sortedActors = [...actors].sort((a,b) => String(a.name).localeCompare(String(b.name), "ja"));
+
+  if(sortedActors.length === 0){
+    wrap.innerHTML = `<div class="empty-state" style="padding:8px 0;">俳優がまだいません</div>`;
+    return;
+  }
+
+  wrap.innerHTML = sortedActors.map(actor => renderActorCard(actor, { picker:true })).join("");
+
+  wrap.querySelectorAll("[data-pick-actor]").forEach(btn => {
+    btn.onclick = () => {
+      const actor = actors.find(v => v.id === btn.dataset.pickActor);
+      if(!actor) return;
+      addActorToCast(actor.name);
+    };
+  });
+}
+
+function addActorToCast(name){
+  const current = $("cast").value
+    .split(/\r?\n/)
+    .map(v => v.trim())
+    .filter(Boolean);
+
+  if(current.includes(name)) return;
+
+  current.push(name);
+  $("cast").value = current.join("\n");
+}
+
+function renderCutTakeEditor(){
+  const wrap = $("cutTakeList");
+  const empty = $("cutTakeEmptyState");
+  const items = normalizeCutTakes(currentCutTakesEditor);
+
+  if(items.length === 0){
+    empty.style.display = "block";
+    wrap.innerHTML = "";
+    return;
+  }
+
+  empty.style.display = "none";
+  wrap.innerHTML = items.map((item, index) => `
+    <div class="cuttake-item">
+      <div class="cuttake-top">
+        <span class="cuttake-chip">${escapeHtml(item.cutNo || "-")}</span>
+        <span class="cuttake-chip">${escapeHtml(item.takeNo || "-")}</span>
+        ${item.isOk ? '<span class="cuttake-chip ok">OK</span>' : '<span class="cuttake-chip">未OK</span>'}
+      </div>
+      <div class="meta-value">${escapeHtml(item.memo || "-")}</div>
+      <div class="cuttake-actions">
+        <button type="button" class="edit-btn" data-cuttake-toggle-ok="${escapeAttr(String(index))}">${item.isOk ? "OKを外す" : "OKにする"}</button>
+        <button type="button" class="danger-btn" data-cuttake-delete="${escapeAttr(String(index))}">削除</button>
+      </div>
+    </div>
+  `).join("");
+
+  wrap.querySelectorAll("[data-cuttake-toggle-ok]").forEach(btn => {
+    btn.onclick = () => {
+      const index = Number(btn.getAttribute("data-cuttake-toggle-ok"));
+      if(!currentCutTakesEditor[index]) return;
+      currentCutTakesEditor[index].isOk = !currentCutTakesEditor[index].isOk;
+      renderCutTakeEditor();
+    };
+  });
+
+  wrap.querySelectorAll("[data-cuttake-delete]").forEach(btn => {
+    btn.onclick = () => {
+      const index = Number(btn.getAttribute("data-cuttake-delete"));
+      currentCutTakesEditor.splice(index, 1);
+      renderCutTakeEditor();
+    };
+  });
+}
+
+function addCutTakeEntry(){
+  const cutNo = $("cutNoInput").value.trim();
+  const takeNo = $("takeNoInput").value.trim();
+  const isOk = $("takeIsOkInput").value === "yes";
+  const memo = $("takeMemoInput").value.trim();
+
+  if(!cutNo && !takeNo && !memo){
+    alert("カット番号 もしくは テイク番号を入力してください");
+    return;
+  }
+
+  currentCutTakesEditor.push({
+    id: uid("cuttake"),
+    cutNo,
+    takeNo,
+    isOk,
+    memo
+  });
+
+  $("cutNoInput").value = "";
+  $("takeNoInput").value = "";
+  $("takeIsOkInput").value = "no";
+  $("takeMemoInput").value = "";
+  renderCutTakeEditor();
+}
+
+function updateSummary(){
+  const total = data.length;
+  const done = data.filter(v => v.doneCheck).length;
+  const unshot = total - done;
+  const high = data.filter(v => v.priority === "高").length;
+
+  $("summaryProjects").textContent = projects.length;
+  $("summaryTotal").textContent = total;
+  $("summaryDone").textContent = done;
+  $("summaryUnshot").textContent = unshot;
+  $("summaryHigh").textContent = high;
 }
 
 function priorityOrder(v){
@@ -1519,357 +1826,11 @@ function statusClass(v){
   return "status-shot";
 }
 
-function sceneLabelClass(v){
-  if(v === "赤") return "label-red";
-  if(v === "青") return "label-blue";
-  if(v === "緑") return "label-green";
-  if(v === "黄") return "label-yellow";
-  if(v === "紫") return "label-purple";
-  if(v === "ピンク") return "label-pink";
-  return "";
-}
-
-function sceneLabelBarClass(v){
-  if(v === "赤") return "scene-label-red";
-  if(v === "青") return "scene-label-blue";
-  if(v === "緑") return "scene-label-green";
-  if(v === "黄") return "scene-label-yellow";
-  if(v === "紫") return "scene-label-purple";
-  if(v === "ピンク") return "scene-label-pink";
-  return "";
-}
-
-function sceneColorDotClass(v){
-  if(v === "赤") return "red";
-  if(v === "青") return "blue";
-  if(v === "緑") return "green";
-  if(v === "黄") return "yellow";
-  if(v === "紫") return "purple";
-  if(v === "ピンク") return "pink";
-  return "";
-}
-
 function compareSceneNo(a,b){
   const aNum = Number(a);
   const bNum = Number(b);
   if(!Number.isNaN(aNum) && !Number.isNaN(bNum)) return aNum - bNum;
   return String(a || "").localeCompare(String(b || ""), "ja");
-}
-
-function parseCastNames(castText){
-  return String(castText || "")
-    .split(/[\n、,\/・\s]+/)
-    .map(v => v.trim())
-    .filter(Boolean);
-}
-
-function getMatchedActorsForScene(scene){
-  const names = parseCastNames(scene.cast);
-  return actorMaster.filter(actor => names.includes(actor.name));
-}
-
-function addActorToCast(actorName){
-  const current = $("cast").value.trim();
-  const names = parseCastNames(current);
-  if(names.includes(actorName)) return;
-  $("cast").value = current ? current + "\n" + actorName : actorName;
-}
-
-function getNextOrderInProject(projectId){
-  const scenes = data.filter(v => v.projectId === projectId);
-  if(scenes.length === 0) return 1;
-  return Math.max(...scenes.map(v => Number(v.order || 0))) + 1;
-}
-
-function setCurrentMode(mode){
-  currentMode = mode;
-  localStorage.setItem(MODE_KEY, mode);
-  updateModeUi();
-  render();
-}
-
-function setActiveProject(projectId){
-  activeProjectId = projectId;
-  localStorage.setItem(ACTIVE_PROJECT_KEY, projectId);
-  updateProjectSelects();
-  render();
-}
-
-function updateModeUi(){
-  document.querySelectorAll("[data-mode]").forEach(btn => {
-    btn.classList.toggle("active", btn.dataset.mode === currentMode);
-  });
-
-  $("currentModeLabel").textContent = currentMode === "field" ? "現場モード" : "準備モード";
-
-  const isField = currentMode === "field";
-  $("projectManageCard").classList.toggle("hidden", isField);
-  $("actorManageCard").classList.toggle("hidden", isField);
-  $("sceneFormCard").classList.toggle("hidden", isField);
-  $("manageActions").classList.toggle("hidden", isField);
-}
-
-function updateDeptTabs(){
-  document.querySelectorAll("[data-dept]").forEach(btn => {
-    btn.classList.toggle("active", btn.dataset.dept === currentDept);
-  });
-  $("currentDeptLabel").textContent = currentDept;
-}
-
-function updateProjectSelects(){
-  const activeSelect = $("activeProjectSelect");
-  const filterSelect = $("projectFilter");
-  const currentFilter = filterSelect.value;
-
-  activeSelect.innerHTML = "";
-  filterSelect.innerHTML = '<option value="">すべてのプロジェクト</option>';
-
-  if(projects.length === 0){
-    activeSelect.innerHTML = '<option value="">先にプロジェクトを作成してください</option>';
-    $("activeProjectLabel").textContent = "未選択";
-    return;
-  }
-
-  activeSelect.innerHTML = '<option value="">プロジェクトを選択</option>';
-
-  const sortedProjects = [...projects].sort((a,b) => String(a.title).localeCompare(String(b.title), "ja"));
-  sortedProjects.forEach(p => {
-    const opt1 = document.createElement("option");
-    opt1.value = p.id;
-    opt1.textContent = p.title;
-    activeSelect.appendChild(opt1);
-
-    const opt2 = document.createElement("option");
-    opt2.value = p.id;
-    opt2.textContent = p.title;
-    filterSelect.appendChild(opt2);
-  });
-
-  if(activeProjectId && projects.some(v => v.id === activeProjectId)){
-    activeSelect.value = activeProjectId;
-  }else{
-    activeProjectId = "";
-    localStorage.setItem(ACTIVE_PROJECT_KEY, "");
-    activeSelect.value = "";
-  }
-
-  if(projects.some(v => v.id === currentFilter)){
-    filterSelect.value = currentFilter;
-  }else{
-    filterSelect.value = "";
-  }
-
-  $("activeProjectLabel").textContent = activeProjectId ? getProjectTitleById(activeProjectId) : "未選択";
-}
-
-function renderProjectList(){
-  const wrap = $("projectList");
-  const empty = $("projectEmptyState");
-  wrap.innerHTML = "";
-
-  if(projects.length === 0){
-    empty.style.display = "block";
-    return;
-  }
-  empty.style.display = "none";
-
-  const sorted = [...projects].sort((a,b) => String(a.title).localeCompare(String(b.title), "ja"));
-
-  sorted.forEach(project => {
-    const scenes = data.filter(v => v.projectId === project.id);
-    const done = scenes.filter(v => v.doneCheck).length;
-    const unshot = scenes.length - done;
-
-    const el = document.createElement("div");
-    el.className = "scene";
-    el.innerHTML = `
-      <h3 class="scene-title">${escapeHtml(project.title)}</h3>
-      <div class="badges">
-        <span class="badge">監督：${escapeHtml(project.director || "-")}</span>
-        <span class="badge">シーン数：${escapeHtml(String(scenes.length))}</span>
-        <span class="badge">撮影済み：${escapeHtml(String(done))}</span>
-        <span class="badge">未撮影：${escapeHtml(String(unshot))}</span>
-        ${activeProjectId === project.id ? '<span class="badge done-badge">選択中</span>' : ""}
-      </div>
-      <div class="scene-summary">
-        <div class="scene-summary-card">
-          <div class="meta-label">プロジェクトメモ</div>
-          <div class="meta-value">${escapeHtml(project.memo || "-")}</div>
-        </div>
-      </div>
-      <div class="actions">
-        <button type="button" class="detail-btn">このプロジェクトを使う</button>
-        <button type="button" class="edit-btn">編集</button>
-        <button type="button" class="danger-btn">削除</button>
-      </div>
-    `;
-
-    const [selectBtn, editBtn, deleteBtn] = el.querySelectorAll("button");
-
-    selectBtn.onclick = () => {
-      setActiveProject(project.id);
-    };
-
-    editBtn.onclick = () => {
-      $("projectId").value = project.id;
-      $("projectTitle").value = project.title || "";
-      $("projectDirector").value = project.director || "";
-      $("projectMemo").value = project.memo || "";
-      window.scrollTo({ top:0, behavior:"smooth" });
-    };
-
-    deleteBtn.onclick = () => {
-      const hasScenes = data.some(v => v.projectId === project.id);
-      const msg = hasScenes
-        ? "このプロジェクトを削除すると紐づくシーンも削除されます 削除しますか？"
-        : "このプロジェクトを削除しますか？";
-      if(!confirm(msg)) return;
-
-      data = data.filter(v => v.projectId !== project.id);
-      projects = projects.filter(v => v.id !== project.id);
-
-      if(activeProjectId === project.id){
-        setActiveProject("");
-      }else{
-        saveScenes();
-        saveProjects();
-        updateProjectSelects();
-        render();
-      }
-    };
-
-    wrap.appendChild(el);
-  });
-}
-
-function renderActorCard(actor, options = {}){
-  const { showSelect = false, showEdit = false, showDelete = false } = options;
-  const thumbHtml = actor.photoUrl
-    ? `<img class="actor-thumb" src="${escapeAttr(actor.photoUrl)}" alt="${escapeAttr(actor.name)}" onerror="this.outerHTML='<div class=&quot;actor-thumb-placeholder&quot;>画像なし</div>'">`
-    : `<div class="actor-thumb-placeholder">画像なし</div>`;
-
-  return `
-    <div class="actor-card">
-      ${thumbHtml}
-      <div class="actor-body">
-        <div class="actor-name">${escapeHtml(actor.name || "-")}</div>
-        <div class="actor-sub">${escapeHtml(actor.role || "-")}</div>
-        ${actor.memo ? `<div class="actor-sub">${escapeHtml(actor.memo)}</div>` : ""}
-        <div class="actor-actions">
-          ${showSelect ? `<button type="button" class="select-actor-btn" data-select-actor="${escapeAttr(actor.id)}">出演者に追加</button>` : ""}
-          ${showEdit ? `<button type="button" class="edit-btn" data-edit-actor="${escapeAttr(actor.id)}">編集</button>` : ""}
-          ${showDelete ? `<button type="button" class="danger-btn" data-delete-actor="${escapeAttr(actor.id)}">削除</button>` : ""}
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function renderActorMaster(){
-  const wrap = $("actorMasterList");
-  const empty = $("actorEmptyState");
-  wrap.innerHTML = "";
-
-  const sortedActors = [...actorMaster].sort((a,b) => String(a.name).localeCompare(String(b.name), "ja"));
-
-  if(sortedActors.length === 0){
-    empty.style.display = "block";
-  }else{
-    empty.style.display = "none";
-  }
-
-  wrap.innerHTML = sortedActors.map(actor =>
-    renderActorCard(actor, { showSelect:true, showEdit:true, showDelete:true })
-  ).join("");
-
-  wrap.querySelectorAll("[data-select-actor]").forEach(btn => {
-    btn.onclick = () => {
-      const actor = actorMaster.find(v => v.id === btn.dataset.selectActor);
-      if(actor) addActorToCast(actor.name);
-    };
-  });
-
-  wrap.querySelectorAll("[data-edit-actor]").forEach(btn => {
-    btn.onclick = () => {
-      const actor = actorMaster.find(v => v.id === btn.dataset.editActor);
-      if(!actor) return;
-      $("actorId").value = actor.id;
-      $("actorName").value = actor.name || "";
-      $("actorRole").value = actor.role || "";
-      $("actorPhotoUrl").value = actor.photoUrl || "";
-      $("actorMemo").value = actor.memo || "";
-      window.scrollTo({ top:0, behavior:"smooth" });
-    };
-  });
-
-  wrap.querySelectorAll("[data-delete-actor]").forEach(btn => {
-    btn.onclick = () => {
-      if(!confirm("俳優マスターから削除しますか？")) return;
-      actorMaster = actorMaster.filter(v => v.id !== btn.dataset.deleteActor);
-      saveActors();
-      renderActorMaster();
-      renderActorPickerInForm();
-      render();
-    };
-  });
-}
-
-function renderActorPickerInForm(){
-  const wrap = $("actorPickerInForm");
-  const sortedActors = [...actorMaster].sort((a,b) => String(a.name).localeCompare(String(b.name), "ja"));
-
-  if(sortedActors.length === 0){
-    wrap.innerHTML = `<div class="empty-state" style="padding:8px 0;">俳優マスターを先に登録してください</div>`;
-    return;
-  }
-
-  wrap.innerHTML = sortedActors.map(actor => renderActorCard(actor, { showSelect:true })).join("");
-
-  wrap.querySelectorAll("[data-select-actor]").forEach(btn => {
-    btn.onclick = () => {
-      const actor = actorMaster.find(v => v.id === btn.dataset.selectActor);
-      if(actor) addActorToCast(actor.name);
-    };
-  });
-}
-
-function resetProjectForm(){
-  $("projectForm").reset();
-  $("projectId").value = "";
-}
-
-function resetActorForm(){
-  $("actorForm").reset();
-  $("actorId").value = "";
-}
-
-function resetSceneForm(){
-  $("form").reset();
-  $("id").value = "";
-  $("priority").value = "中";
-  $("status").value = "未着手";
-  $("sceneLabel").value = "";
-  $("doneCheck").checked = false;
-  $("permitCheck").value = "未確認";
-  $("powerCheck").value = "未確認";
-  $("soundCheck").value = "未確認";
-  $("parkingCheck").value = "未確認";
-  $("carryInCheck").value = "未確認";
-  $("rainCheck").value = "未確認";
-  $("formTitle").textContent = "シーン入力";
-}
-
-function updateSummary(){
-  const total = data.length;
-  const done = data.filter(v => v.doneCheck).length;
-  const unshot = total - done;
-  const high = data.filter(v => v.priority === "高").length;
-
-  $("summaryProjects").textContent = projects.length;
-  $("summaryTotal").textContent = total;
-  $("summaryDone").textContent = done;
-  $("summaryUnshot").textContent = unshot;
-  $("summaryHigh").textContent = high;
 }
 
 function buildSchedule(v){
@@ -1881,283 +1842,92 @@ function buildSchedule(v){
   ].filter(Boolean).join(" / ");
 }
 
-function createMetaBox(label, value, options = {}){
-  const { rawHtml = false, full = false } = options;
-  return `
-    <div class="meta-box" ${full ? 'style="grid-column:1 / -1;"' : ""}>
-      <div class="meta-label">${escapeHtml(label)}</div>
-      <div class="meta-value">${rawHtml ? value : escapeHtml(value || "-")}</div>
-    </div>
-  `;
+function getFirstOkTakeLine(text){
+  return String(text || "")
+    .split(/\r?\n/)
+    .map(v => v.trim())
+    .find(Boolean) || "";
 }
 
-function renderActorCardsInline(actors){
-  if(!actors.length) return `<div class="meta-value">-</div>`;
-  return `<div class="actor-inline-list">${actors.map(actor => renderActorCard(actor)).join("")}</div>`;
-}
+function getDeptSummaryBoxes(v){
+  const firstOkCutTake = getFirstOkCutTake(v.cutTakes);
+  const cutTakeSummary = firstOkCutTake
+    ? `${firstOkCutTake.cutNo || "-"} ${firstOkCutTake.takeNo || "-"}${firstOkCutTake.memo ? " / " + firstOkCutTake.memo : ""}`
+    : (cutTakesToSummary(v.cutTakes) || "-");
 
-function buildPrecheckChips(v){
-  const items = [
-    ["許可", v.permitCheck],
-    ["電源", v.powerCheck],
-    ["音", v.soundCheck],
-    ["駐車", v.parkingCheck],
-    ["搬入", v.carryInCheck],
-    ["雨天", v.rainCheck]
-  ];
-
-  return items.map(([label, value]) => {
-    const cls = value === "OK" ? "ok" : value === "NG" ? "ng" : "";
-    return `<span class="precheck-chip ${cls}">${escapeHtml(label)}：${escapeHtml(value)}</span>`;
-  }).join("");
-}
-
-function buildDeptListSummary(v){
-  if(currentDept === "監督"){
+  if(currentDept === "director"){
     return `
-      <div class="dept-list-grid">
-        ${createMetaBox("このシーンの役名", v.sceneRoleName || "-")}
-        ${createMetaBox("感情", v.emotion || "-")}
-        ${createMetaBox("演技メモ", v.actingMemo || "-", { full:true })}
+      <div class="meta-box">
+        <div class="meta-label">演出意図</div>
+        <div class="meta-value">${escapeHtml(v.directionIntent || "-")}</div>
+      </div>
+      <div class="meta-box">
+        <div class="meta-label">感情 / OKカットテイク</div>
+        <div class="meta-value">${escapeHtml((v.emotion || "-") + " / " + cutTakeSummary)}</div>
       </div>
     `;
   }
 
-  if(currentDept === "撮影部"){
+  if(currentDept === "camera"){
     return `
-      <div class="dept-list-grid">
-        ${createMetaBox("カメラサイズ", v.cameraSize || "-")}
-        ${createMetaBox("レンズ", v.lensMemo || "-")}
-        ${createMetaBox("カメラ位置", v.cameraPosition || "-")}
-        ${createMetaBox("カメラ動き", v.shotMovement || "-")}
+      <div class="meta-box">
+        <div class="meta-label">時間帯</div>
+        <div class="meta-value">${escapeHtml(buildSchedule(v) || "-")}</div>
+      </div>
+      <div class="meta-box">
+        <div class="meta-label">カメラサイズ / 機材 / カットテイク</div>
+        <div class="meta-value">${escapeHtml((v.cameraSize || "-") + " / " + (v.gear || "-") + " / " + cutTakeSummary)}</div>
       </div>
     `;
   }
 
-  if(currentDept === "照明部"){
+  if(currentDept === "lighting"){
     return `
-      <div class="dept-list-grid">
-        ${createMetaBox("照明メモ", v.lightingMemo || "-", { full:true })}
-        ${createMetaBox("窓向き", v.windowDirection || "-")}
-        ${createMetaBox("日当たり", v.sunMemo || "-")}
-        ${createMetaBox("電源確認", v.powerCheck || "-")}
+      <div class="meta-box">
+        <div class="meta-label">場所</div>
+        <div class="meta-value">${escapeHtml(v.loc || "-")}</div>
+      </div>
+      <div class="meta-box">
+        <div class="meta-label">電源 / 雨天時</div>
+        <div class="meta-value">${escapeHtml((v.powerMemo || "-") + " / " + (v.rainPlanMemo || "-"))}</div>
       </div>
     `;
   }
 
-  if(currentDept === "制作部"){
+  if(currentDept === "production"){
     return `
-      <div class="dept-list-grid">
-        ${createMetaBox("ロケ地連絡先", v.locationContactName || "-")}
-        ${createMetaBox("俳優集合", v.actorCallMemo || "-")}
-        ${createMetaBox("開始前チェック", buildPrecheckChips(v), { rawHtml:true, full:true })}
+      <div class="meta-box">
+        <div class="meta-label">住所 / 駐車場</div>
+        <div class="meta-value">${escapeHtml((v.address || "-") + " / " + (v.parkingMemo || "-"))}</div>
+      </div>
+      <div class="meta-box">
+        <div class="meta-label">許可取り / 小道具</div>
+        <div class="meta-value">${escapeHtml((v.locationPermitMemo || "-") + " / " + (v.props || "-"))}</div>
       </div>
     `;
   }
 
-  if(currentDept === "俳優部"){
+  if(currentDept === "actor"){
     return `
-      <div class="dept-list-grid">
-        ${createMetaBox("このシーンの役名", v.sceneRoleName || "-")}
-        ${createMetaBox("俳優集合メモ", v.actorCallMemo || "-")}
-        ${createMetaBox("メイクメモ", v.makeupMemo || "-", { full:true })}
-        ${createMetaBox("演技メモ", v.actingMemo || "-", { full:true })}
+      <div class="meta-box">
+        <div class="meta-label">出演者</div>
+        <div class="meta-value">${escapeHtml(v.cast || "-")}</div>
+      </div>
+      <div class="meta-box">
+        <div class="meta-label">衣装 / 感情 / OKカットテイク</div>
+        <div class="meta-value">${escapeHtml((v.costume || "-") + " / " + (v.emotion || "-") + " / " + cutTakeSummary)}</div>
       </div>
     `;
   }
-
-  return "";
-}
-
-function renderDetailArea(v){
-  const imageUrls = normalizeUrlLines(v.imageUrlMemo);
-  const checklistItems = normalizeChecklistItems(v.checklistItems);
-  const matchedActors = getMatchedActorsForScene(v);
-  const imageLinksHtml = imageUrls.length
-    ? imageUrls.map(url => `<a class="meta-link" href="${escapeAttr(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(url)}</a>`).join("<br>")
-    : "-";
-
-  const phoneHtml = v.locationContactPhone ? `<a class="meta-link" href="tel:${escapeAttr(v.locationContactPhone)}">${escapeHtml(v.locationContactPhone)}</a>` : "-";
-  const emailHtml = v.locationContactEmail ? `<a class="meta-link" href="mailto:${escapeAttr(v.locationContactEmail)}">${escapeHtml(v.locationContactEmail)}</a>` : "-";
-  const precheckChipsHtml = `<div class="precheck-row">${buildPrecheckChips(v)}</div>`;
-
-  const sections = {
-    "ALL": [
-      createMetaBox("プロジェクト", getProjectTitleById(v.projectId)),
-      createMetaBox("シーン番号", v.sceneNo),
-      createMetaBox("撮影順", String(v.order || "-")),
-      createMetaBox("優先度", v.priority),
-      createMetaBox("ステータス", v.status),
-      createMetaBox("色分けラベル", v.sceneLabel || "-"),
-      createMetaBox("撮影日", v.date),
-      createMetaBox("ブロック", v.block),
-      createMetaBox("集合時間", v.call),
-      createMetaBox("開始〜終了", (v.start || "--:--") + "〜" + (v.end || "--:--")),
-      createMetaBox("場所", v.loc),
-      createMetaBox("ロケ地連絡先名", v.locationContactName || "-"),
-      createMetaBox("ロケ地連絡先電話", phoneHtml, { rawHtml:true }),
-      createMetaBox("ロケ地連絡先メール", emailHtml, { rawHtml:true }),
-      createMetaBox("ロケ地連絡先メモ", v.locationContactMemo || "-", { full:true }),
-      createMetaBox("開始前チェック", precheckChipsHtml, { rawHtml:true, full:true }),
-      createMetaBox("開始前チェックメモ", v.precheckMemo || "-", { full:true }),
-      createMetaBox("出演者", v.cast),
-      createMetaBox("このシーンの役名", v.sceneRoleName || "-"),
-      createMetaBox("俳優集合メモ", v.actorCallMemo || "-"),
-      createMetaBox("メイクメモ", v.makeupMemo || "-", { full:true }),
-      createMetaBox("演技メモ", v.actingMemo || "-", { full:true }),
-      createMetaBox("OKテイクメモ", v.okTakeMemo || "-", { full:true }),
-      createMetaBox("演出意図", v.directionIntent),
-      createMetaBox("感情", v.emotion),
-      createMetaBox("カメラサイズ", v.cameraSize),
-      createMetaBox("レンズメモ", v.lensMemo || "-"),
-      createMetaBox("カメラ位置", v.cameraPosition || "-"),
-      createMetaBox("カメラ動き", v.shotMovement || "-"),
-      createMetaBox("照明メモ", v.lightingMemo || "-", { full:true }),
-      createMetaBox("窓向き", v.windowDirection || "-"),
-      createMetaBox("日当たりメモ", v.sunMemo || "-", { full:true }),
-      createMetaBox("住所", v.address),
-      createMetaBox("GoogleマップURL", v.mapUrl ? `<a class="meta-link" href="${escapeAttr(v.mapUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(v.mapUrl)}</a>` : "-", { rawHtml:true }),
-      createMetaBox("画像URLメモ", imageLinksHtml, { rawHtml:true, full:true }),
-      createMetaBox("駐車場メモ", v.parkingMemo),
-      createMetaBox("電源メモ", v.powerMemo),
-      createMetaBox("トイレメモ", v.toiletMemo),
-      createMetaBox("雨天時メモ", v.rainPlanMemo),
-      createMetaBox("撮影状態", v.doneCheck ? "撮影済み" : "未撮影"),
-      createMetaBox("小道具", v.props),
-      createMetaBox("機材", v.gear),
-      createMetaBox("衣装", v.costume),
-      createMetaBox("メモ", v.memo, { full:true }),
-      createMetaBox("俳優カード", renderActorCardsInline(matchedActors), { rawHtml:true, full:true })
-    ],
-    "監督": [
-      createMetaBox("シーン名", v.title),
-      createMetaBox("出演者", v.cast),
-      createMetaBox("このシーンの役名", v.sceneRoleName || "-"),
-      createMetaBox("演技メモ", v.actingMemo || "-", { full:true }),
-      createMetaBox("OKテイクメモ", v.okTakeMemo || "-", { full:true }),
-      createMetaBox("演出意図", v.directionIntent),
-      createMetaBox("感情", v.emotion),
-      createMetaBox("優先度", v.priority),
-      createMetaBox("ステータス", v.status),
-      createMetaBox("色分けラベル", v.sceneLabel || "-"),
-      createMetaBox("撮影日", v.date),
-      createMetaBox("場所", v.loc),
-      createMetaBox("参考画像URL", imageLinksHtml, { rawHtml:true, full:true }),
-      createMetaBox("衣装", v.costume),
-      createMetaBox("小道具", v.props),
-      createMetaBox("メモ", v.memo, { full:true })
-    ],
-    "撮影部": [
-      createMetaBox("シーン名", v.title),
-      createMetaBox("カメラサイズ", v.cameraSize),
-      createMetaBox("レンズメモ", v.lensMemo || "-"),
-      createMetaBox("カメラ位置", v.cameraPosition || "-"),
-      createMetaBox("カメラ動き", v.shotMovement || "-"),
-      createMetaBox("OKテイクメモ", v.okTakeMemo || "-", { full:true }),
-      createMetaBox("機材", v.gear),
-      createMetaBox("撮影日", v.date),
-      createMetaBox("ブロック", v.block),
-      createMetaBox("集合時間", v.call),
-      createMetaBox("開始〜終了", (v.start || "--:--") + "〜" + (v.end || "--:--")),
-      createMetaBox("場所", v.loc),
-      createMetaBox("住所", v.address),
-      createMetaBox("GoogleマップURL", v.mapUrl ? `<a class="meta-link" href="${escapeAttr(v.mapUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(v.mapUrl)}</a>` : "-", { rawHtml:true }),
-      createMetaBox("参考画像URL", imageLinksHtml, { rawHtml:true, full:true }),
-      createMetaBox("出演者", v.cast),
-      createMetaBox("演出意図", v.directionIntent),
-      createMetaBox("小道具", v.props),
-      createMetaBox("メモ", v.memo, { full:true })
-    ],
-    "照明部": [
-      createMetaBox("シーン名", v.title),
-      createMetaBox("撮影日", v.date),
-      createMetaBox("ブロック", v.block),
-      createMetaBox("開始〜終了", (v.start || "--:--") + "〜" + (v.end || "--:--")),
-      createMetaBox("場所", v.loc),
-      createMetaBox("住所", v.address),
-      createMetaBox("GoogleマップURL", v.mapUrl ? `<a class="meta-link" href="${escapeAttr(v.mapUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(v.mapUrl)}</a>` : "-", { rawHtml:true }),
-      createMetaBox("照明メモ", v.lightingMemo || "-", { full:true }),
-      createMetaBox("窓向き", v.windowDirection || "-"),
-      createMetaBox("日当たりメモ", v.sunMemo || "-", { full:true }),
-      createMetaBox("電源メモ", v.powerMemo),
-      createMetaBox("雨天時メモ", v.rainPlanMemo),
-      createMetaBox("開始前チェック", precheckChipsHtml, { rawHtml:true, full:true }),
-      createMetaBox("開始前チェックメモ", v.precheckMemo || "-", { full:true }),
-      createMetaBox("参考画像URL", imageLinksHtml, { rawHtml:true, full:true }),
-      createMetaBox("機材", v.gear),
-      createMetaBox("演出意図", v.directionIntent),
-      createMetaBox("メモ", v.memo, { full:true })
-    ],
-    "制作部": [
-      createMetaBox("シーン名", v.title),
-      createMetaBox("撮影日", v.date),
-      createMetaBox("ブロック", v.block),
-      createMetaBox("集合時間", v.call),
-      createMetaBox("開始〜終了", (v.start || "--:--") + "〜" + (v.end || "--:--")),
-      createMetaBox("場所", v.loc),
-      createMetaBox("ロケ地連絡先名", v.locationContactName || "-"),
-      createMetaBox("ロケ地連絡先電話", phoneHtml, { rawHtml:true }),
-      createMetaBox("ロケ地連絡先メール", emailHtml, { rawHtml:true }),
-      createMetaBox("ロケ地連絡先メモ", v.locationContactMemo || "-", { full:true }),
-      createMetaBox("開始前チェック", precheckChipsHtml, { rawHtml:true, full:true }),
-      createMetaBox("開始前チェックメモ", v.precheckMemo || "-", { full:true }),
-      createMetaBox("住所", v.address),
-      createMetaBox("GoogleマップURL", v.mapUrl ? `<a class="meta-link" href="${escapeAttr(v.mapUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(v.mapUrl)}</a>` : "-", { rawHtml:true }),
-      createMetaBox("駐車場メモ", v.parkingMemo),
-      createMetaBox("電源メモ", v.powerMemo),
-      createMetaBox("トイレメモ", v.toiletMemo),
-      createMetaBox("雨天時メモ", v.rainPlanMemo),
-      createMetaBox("出演者", v.cast),
-      createMetaBox("小道具", v.props),
-      createMetaBox("衣装", v.costume),
-      createMetaBox("メモ", v.memo, { full:true })
-    ],
-    "俳優部": [
-      createMetaBox("シーン名", v.title),
-      createMetaBox("出演者", v.cast),
-      createMetaBox("このシーンの役名", v.sceneRoleName || "-"),
-      createMetaBox("俳優集合メモ", v.actorCallMemo || "-"),
-      createMetaBox("メイクメモ", v.makeupMemo || "-", { full:true }),
-      createMetaBox("演技メモ", v.actingMemo || "-", { full:true }),
-      createMetaBox("OKテイクメモ", v.okTakeMemo || "-", { full:true }),
-      createMetaBox("感情", v.emotion),
-      createMetaBox("演出意図", v.directionIntent),
-      createMetaBox("撮影日", v.date),
-      createMetaBox("集合時間", v.call),
-      createMetaBox("開始〜終了", (v.start || "--:--") + "〜" + (v.end || "--:--")),
-      createMetaBox("場所", v.loc),
-      createMetaBox("住所", v.address),
-      createMetaBox("GoogleマップURL", v.mapUrl ? `<a class="meta-link" href="${escapeAttr(v.mapUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(v.mapUrl)}</a>` : "-", { rawHtml:true }),
-      createMetaBox("衣装", v.costume),
-      createMetaBox("小道具", v.props),
-      createMetaBox("参考画像URL", imageLinksHtml, { rawHtml:true, full:true }),
-      createMetaBox("俳優カード", renderActorCardsInline(matchedActors), { rawHtml:true, full:true }),
-      createMetaBox("メモ", v.memo, { full:true })
-    ]
-  };
-
-  const checklistHtml = `
-    <div class="checklist-box">
-      <div class="checklist-label">持ち物チェックリスト</div>
-      ${
-        checklistItems.length
-          ? `<div class="checklist-list">
-              ${checklistItems.map((item, index) => `
-                <label class="checklist-item ${item.checked ? "is-checked" : ""}">
-                  <input type="checkbox" data-check-scene="${escapeAttr(v.id)}" data-check-index="${escapeAttr(String(index))}" ${item.checked ? "checked" : ""}>
-                  <span class="checklist-item-text">${escapeHtml(item.text)}</span>
-                </label>
-              `).join("")}
-            </div>`
-          : `<div class="meta-value">-</div>`
-      }
-    </div>
-  `;
 
   return `
-    <div class="detail-area">
-      ${sections[currentDept].join("")}
-      ${checklistHtml}
+    <div class="meta-box">
+      <div class="meta-label">時間帯</div>
+      <div class="meta-value">${escapeHtml(buildSchedule(v) || "-")}</div>
+    </div>
+    <div class="meta-box">
+      <div class="meta-label">場所 / カットテイク</div>
+      <div class="meta-value">${escapeHtml((v.loc || "-") + " / " + cutTakeSummary)}</div>
     </div>
   `;
 }
@@ -2172,12 +1942,14 @@ function getFilteredScenesForView(){
 
   if(projectFilter){
     arr = arr.filter(v => v.projectId === projectFilter);
-  }else if(currentMode === "field" && activeProjectId){
-    arr = arr.filter(v => v.projectId === activeProjectId);
   }
 
   if(q){
-    arr = arr.filter(v => JSON.stringify(v).toLowerCase().includes(q));
+    arr = arr.filter(v => JSON.stringify({
+      ...v,
+      projectTitle: getProjectTitleById(v.projectId),
+      cutTakesSummary: cutTakesToSummary(v.cutTakes)
+    }).toLowerCase().includes(q));
   }
 
   if(unshot){
@@ -2210,128 +1982,79 @@ function getFilteredScenesForView(){
   return arr;
 }
 
-function exportCsv(){
-  const rows = getFilteredScenesForView();
-  if(rows.length === 0){
-    alert("書き出すデータがありません");
+function duplicateScene(id){
+  const original = data.find(v => v.id === id);
+  if(!original) return;
+
+  const copy = normalizeScene({
+    ...original,
+    id: "",
+    title: (original.title || "無題シーン") + " コピー",
+    status: "未着手",
+    doneCheck: false,
+    checklistItems: normalizeChecklistItems(original.checklistItems).map(item => ({
+      text: item.text,
+      checked: false
+    })),
+    cutTakes: normalizeCutTakes(original.cutTakes).map(item => ({
+      ...item,
+      id: uid("cuttake"),
+      isOk: false
+    }))
+  });
+
+  data.push(copy);
+  saveScenes();
+  render();
+}
+
+function moveScene(id, direction){
+  const visibleScenes = getFilteredScenesForView();
+  const index = visibleScenes.findIndex(v => v.id === id);
+  if(index < 0) return;
+
+  const targetIndex = direction === "up" ? index - 1 : index + 1;
+  if(targetIndex < 0 || targetIndex >= visibleScenes.length) return;
+
+  const current = visibleScenes[index];
+  const target = visibleScenes[targetIndex];
+
+  const currentProjectId = current.projectId || "";
+  const targetProjectId = target.projectId || "";
+
+  if(currentProjectId !== targetProjectId){
+    alert("別プロジェクト間では並び替えできません");
     return;
   }
 
-  const headers = [
-    "プロジェクト名","シーン番号","撮影順","シーン名","撮影日","撮影ブロック","集合時間","開始","終了",
-    "優先度","ステータス","色分けラベル","撮影済み","場所","ロケ地連絡先名","ロケ地連絡先電話",
-    "ロケ地連絡先メール","ロケ地連絡先メモ","許可確認","電源確認","音確認","駐車確認","搬入確認","雨天確認",
-    "開始前チェックメモ","出演者","このシーンの役名","俳優集合メモ","メイクメモ","演技メモ","OKテイクメモ",
-    "演出意図","感情","カメラサイズ","レンズメモ","カメラ位置","カメラ動き","照明メモ","窓向き","日当たりメモ",
-    "住所","GoogleマップURL","画像URLメモ","駐車場メモ","電源メモ","トイレメモ","雨天時メモ","持ち物チェック","小道具","機材","衣装","メモ"
-  ];
+  const sameProjectScenes = data
+    .filter(v => (v.projectId || "") === currentProjectId)
+    .sort((a, b) => {
+      const diff = Number(a.order || 0) - Number(b.order || 0);
+      if(diff !== 0) return diff;
+      return String(a.id).localeCompare(String(b.id), "ja");
+    });
 
-  const csvRows = [headers];
+  const projectIndex = sameProjectScenes.findIndex(v => v.id === current.id);
+  const projectTargetIndex = sameProjectScenes.findIndex(v => v.id === target.id);
 
-  rows.forEach(v => {
-    const checklistText = normalizeChecklistItems(v.checklistItems).map(item => `${item.checked ? "☑" : "☐"} ${item.text}`).join(" / ");
-    const imageUrlText = normalizeUrlLines(v.imageUrlMemo).join(" / ");
-    csvRows.push([
-      getProjectTitleById(v.projectId), v.sceneNo, v.order, v.title, v.date, v.block, v.call, v.start, v.end,
-      v.priority, v.status, v.sceneLabel, v.doneCheck ? "はい" : "いいえ", v.loc, v.locationContactName, v.locationContactPhone,
-      v.locationContactEmail, v.locationContactMemo, v.permitCheck, v.powerCheck, v.soundCheck, v.parkingCheck, v.carryInCheck, v.rainCheck,
-      v.precheckMemo, v.cast, v.sceneRoleName, v.actorCallMemo, v.makeupMemo, v.actingMemo, v.okTakeMemo,
-      v.directionIntent, v.emotion, v.cameraSize, v.lensMemo, v.cameraPosition, v.shotMovement, v.lightingMemo, v.windowDirection, v.sunMemo,
-      v.address, v.mapUrl, imageUrlText, v.parkingMemo, v.powerMemo, v.toiletMemo, v.rainPlanMemo, checklistText, v.props, v.gear, v.costume, v.memo
-    ]);
+  if(projectIndex < 0 || projectTargetIndex < 0) return;
+
+  const movedItem = sameProjectScenes.splice(projectIndex, 1)[0];
+  sameProjectScenes.splice(projectTargetIndex, 0, movedItem);
+
+  sameProjectScenes.forEach((scene, i) => {
+    scene.order = i + 1;
   });
 
-  const csvText = csvRows.map(row =>
-    row.map(value => `"${String(value ?? "").replaceAll('"', '""')}"`).join(",")
-  ).join("\r\n");
+  data = data.map(scene => {
+    if((scene.projectId || "") !== currentProjectId) return scene;
+    const updated = sameProjectScenes.find(v => v.id === scene.id);
+    return updated ? normalizeScene(updated) : scene;
+  });
 
-  const blob = new Blob(["\uFEFF" + csvText], { type:"text/csv;charset=utf-8;" });
-  const url = URL.createObjectURL(blob);
-  const projectName = $("projectFilter").value ? getProjectTitleById($("projectFilter").value) : (activeProjectId ? getProjectTitleById(activeProjectId) : "all-projects");
-  const safeProject = projectName.replace(/[\\/:*?"<>| ]+/g, "_");
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `scene-export_${safeProject}_${new Date().toISOString().slice(0,10)}.csv`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-}
-
-function backupJson(){
-  const payload = {
-    app:"Sukikatte Studio Scene Manager",
-    version:1,
-    exportedAt:new Date().toISOString(),
-    projects,
-    scenes:data,
-    actorMaster
-  };
-
-  const blob = new Blob([JSON.stringify(payload, null, 2)], { type:"application/json;charset=utf-8;" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `scene-backup_${new Date().toISOString().slice(0,10)}.json`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-}
-
-function importJsonFile(file){
-  if(!file) return;
-  const reader = new FileReader();
-
-  reader.onload = () => {
-    try{
-      const raw = JSON.parse(reader.result);
-      let importedProjects = [];
-      let importedScenes = [];
-      let importedActors = [];
-
-      if(Array.isArray(raw)){
-        importedScenes = raw.map(normalizeScene);
-      }else{
-        importedProjects = Array.isArray(raw.projects) ? raw.projects.map(normalizeProject) : [];
-        importedScenes = Array.isArray(raw.scenes) ? raw.scenes.map(normalizeScene) : [];
-        importedActors = Array.isArray(raw.actorMaster) ? raw.actorMaster.map(normalizeActor) : [];
-      }
-
-      const replaceAll = confirm("JSONを読み込みます\n\nOK：今のデータを全部置き換える\nキャンセル：今のデータに追加する");
-
-      if(replaceAll){
-        projects = importedProjects;
-        data = importedScenes;
-        actorMaster = importedActors;
-      }else{
-        projects = [...projects, ...importedProjects];
-        data = [...data, ...importedScenes];
-        actorMaster = [...actorMaster, ...importedActors];
-      }
-
-      saveProjects();
-      saveScenes();
-      saveActors();
-      updateProjectSelects();
-      renderProjectList();
-      renderActorMaster();
-      renderActorPickerInForm();
-      render();
-      alert("JSON読み込みが完了しました");
-    }catch(e){
-      alert("JSONの読み込みに失敗しました");
-    }finally{
-      $("importJsonInput").value = "";
-    }
-  };
-
-  reader.onerror = () => {
-    alert("ファイルの読み込みに失敗しました");
-    $("importJsonInput").value = "";
-  };
-
-  reader.readAsText(file, "utf-8");
+  saveScenes();
+  render();
 }
 
 function toggleDone(id){
@@ -2351,92 +2074,339 @@ function toggleDone(id){
 }
 
 function toggleDetail(id){
-  if(openIds.has(id)) openIds.delete(id);
-  else openIds.add(id);
+  if(openIds.has(id)){
+    openIds.delete(id);
+  }else{
+    openIds.add(id);
+  }
   render();
 }
 
-function duplicateScene(id){
-  const original = data.find(v => v.id === id);
-  if(!original) return;
+function toggleFieldEdit(id){
+  const scene = data.find(v => v.id === id);
+  if(!scene) return;
+  scene.__fieldEditOpen = !scene.__fieldEditOpen;
+  render();
+}
 
-  const copy = normalizeScene({
-    ...original,
-    id:"",
-    title:(original.title || "無題シーン") + " コピー",
-    order:getNextOrderInProject(original.projectId),
-    status:"未着手",
-    doneCheck:false,
-    checklistItems: normalizeChecklistItems(original.checklistItems).map(item => ({
-      text:item.text,
-      checked:false
-    }))
+function updateFieldOkTake(sceneId, value){
+  const scene = data.find(v => v.id === sceneId);
+  if(!scene) return;
+  scene.okTakeMemo = value;
+}
+
+function addFieldCutTake(sceneId){
+  const scene = data.find(v => v.id === sceneId);
+  if(!scene) return;
+
+  const cutNoInput = document.querySelector(`[data-field-cut-no="${sceneId}"]`);
+  const takeNoInput = document.querySelector(`[data-field-take-no="${sceneId}"]`);
+  const isOkInput = document.querySelector(`[data-field-take-ok="${sceneId}"]`);
+  const memoInput = document.querySelector(`[data-field-take-memo="${sceneId}"]`);
+
+  if(!cutNoInput || !takeNoInput || !isOkInput || !memoInput) return;
+
+  const cutNo = cutNoInput.value.trim();
+  const takeNo = takeNoInput.value.trim();
+  const isOk = isOkInput.value === "yes";
+  const memo = memoInput.value.trim();
+
+  if(!cutNo && !takeNo && !memo){
+    alert("カット番号 もしくは テイク番号を入力してください");
+    return;
+  }
+
+  scene.cutTakes = normalizeCutTakes(scene.cutTakes);
+  scene.cutTakes.push({
+    id: uid("cuttake"),
+    cutNo,
+    takeNo,
+    isOk,
+    memo
   });
 
-  data.push(copy);
   saveScenes();
   render();
 }
 
-function moveScene(id, direction){
-  const projectFilter = $("projectFilter").value || activeProjectId || "";
-  const targetScenes = projectFilter ? data.filter(v => v.projectId === projectFilter) : [...data];
-  const ordered = [...targetScenes].sort((a,b)=>{
-    const diff = Number(a.order || 0) - Number(b.order || 0);
-    if(diff !== 0) return diff;
-    return String(a.id).localeCompare(String(b.id), "ja");
+function toggleFieldCutTakeOk(sceneId, cutTakeId){
+  const scene = data.find(v => v.id === sceneId);
+  if(!scene) return;
+  scene.cutTakes = normalizeCutTakes(scene.cutTakes).map(item => {
+    if(item.id !== cutTakeId) return item;
+    return { ...item, isOk: !item.isOk };
   });
+  saveScenes();
+  render();
+}
 
-  const index = ordered.findIndex(v => v.id === id);
-  if(index < 0) return;
+function deleteFieldCutTake(sceneId, cutTakeId){
+  const scene = data.find(v => v.id === sceneId);
+  if(!scene) return;
+  scene.cutTakes = normalizeCutTakes(scene.cutTakes).filter(item => item.id !== cutTakeId);
+  saveScenes();
+  render();
+}
 
-  const targetIndex = direction === "up" ? index - 1 : index + 1;
-  if(targetIndex < 0 || targetIndex >= ordered.length) return;
+function saveFieldEdit(sceneId){
+  const scene = data.find(v => v.id === sceneId);
+  if(!scene) return;
 
-  const current = ordered[index];
-  const target = ordered[targetIndex];
-  const tempOrder = current.order;
-  current.order = target.order;
-  target.order = tempOrder;
-
-  const currentDataIndex = data.findIndex(v => v.id === current.id);
-  const targetDataIndex = data.findIndex(v => v.id === target.id);
-
-  if(currentDataIndex >= 0) data[currentDataIndex] = normalizeScene(current);
-  if(targetDataIndex >= 0) data[targetDataIndex] = normalizeScene(target);
+  const okTakeArea = document.querySelector(`[data-field-oktake="${sceneId}"]`);
+  if(okTakeArea){
+    scene.okTakeMemo = okTakeArea.value;
+  }
 
   saveScenes();
   render();
 }
 
-function buildFieldModeTop(v){
-  return `
-    <div class="field-mode-card">
-      <div class="field-mode-top">
-        <button type="button" class="${v.doneCheck ? "field-unshot-btn" : "field-shot-btn"}" data-field-done="${escapeAttr(v.id)}">
-          ${v.doneCheck ? "未撮影に戻す" : "このシーンを撮影済みにする"}
-        </button>
-      </div>
-      <div class="badges">
-        <span class="badge">作品：${escapeHtml(getProjectTitleById(v.projectId))}</span>
-        <span class="badge">シーン：${escapeHtml(v.sceneNo || "-")}</span>
-        <span class="badge">場所：${escapeHtml(v.loc || "-")}</span>
-        ${v.okTakeMemo ? `<span class="badge done-badge">OKテイクあり</span>` : ""}
-      </div>
-    </div>
-  `;
+function editScene(v){
+  $("id").value = v.id;
+  $("projectIdSelect").value = v.projectId || "";
+  $("sceneNo").value = v.sceneNo || "";
+  $("order").value = v.order || "";
+  $("title").value = v.title || "";
+  $("date").value = v.date || "";
+  $("block").value = v.block || "";
+  $("call").value = v.call || "";
+  $("start").value = v.start || "";
+  $("end").value = v.end || "";
+  $("priority").value = v.priority || "中";
+  $("status").value = v.status || "未着手";
+  $("sceneLabel").value = v.sceneLabel || "";
+  $("loc").value = v.loc || "";
+  $("cast").value = v.cast || "";
+  $("directionIntent").value = v.directionIntent || "";
+  $("emotion").value = v.emotion || "";
+  $("cameraSize").value = v.cameraSize || "";
+  $("okTakeMemo").value = v.okTakeMemo || "";
+  $("address").value = v.address || "";
+  $("mapUrl").value = v.mapUrl || "";
+  $("locationPermitMemo").value = v.locationPermitMemo || "";
+  $("imageUrlMemo").value = urlLinesToText(v.imageUrlMemo);
+  $("parkingMemo").value = v.parkingMemo || "";
+  $("powerMemo").value = v.powerMemo || "";
+  $("toiletMemo").value = v.toiletMemo || "";
+  $("rainPlanMemo").value = v.rainPlanMemo || "";
+  $("checklistText").value = checklistItemsToText(v.checklistItems);
+  $("props").value = v.props || "";
+  $("gear").value = v.gear || "";
+  $("costume").value = v.costume || "";
+  $("memo").value = v.memo || "";
+  $("doneCheck").checked = !!v.doneCheck;
+  currentCutTakesEditor = normalizeCutTakes(v.cutTakes);
+  renderCutTakeEditor();
+  $("formTitle").textContent = "シーン編集中";
+
+  if(currentMode === "field"){
+    setMode("prep");
+  }
+
+  window.scrollTo({ top:0, behavior:"smooth" });
+}
+
+function exportCsv(){
+  const rows = getFilteredScenesForView();
+
+  if(rows.length === 0){
+    alert("書き出すデータがありません");
+    return;
+  }
+
+  const headers = [
+    "プロジェクト名","シーン番号","撮影順","シーン名","撮影日","撮影ブロック","集合時間","開始","終了",
+    "優先度","ステータス","色分けラベル","撮影済み","場所","出演者","演出意図","感情","カメラサイズ",
+    "OKテイクメモ","カットテイク一覧","住所","GoogleマップURL","ロケ許可取りメモ","画像URLメモ","駐車場メモ","電源メモ",
+    "トイレメモ","雨天時メモ","持ち物チェック","小道具","機材","衣装","メモ"
+  ];
+
+  const csvRows = [headers];
+
+  rows.forEach(v => {
+    const checklistText = normalizeChecklistItems(v.checklistItems)
+      .map(item => `${item.checked ? "☑" : "☐"} ${item.text}`)
+      .join(" / ");
+
+    csvRows.push([
+      getProjectTitleById(v.projectId),
+      v.sceneNo,
+      v.order,
+      v.title,
+      v.date,
+      v.block,
+      v.call,
+      v.start,
+      v.end,
+      v.priority,
+      v.status,
+      v.sceneLabel,
+      v.doneCheck ? "はい" : "いいえ",
+      v.loc,
+      v.cast,
+      v.directionIntent,
+      v.emotion,
+      v.cameraSize,
+      v.okTakeMemo,
+      cutTakesToSummary(v.cutTakes),
+      v.address,
+      v.mapUrl,
+      v.locationPermitMemo,
+      normalizeUrlLines(v.imageUrlMemo).join(" / "),
+      v.parkingMemo,
+      v.powerMemo,
+      v.toiletMemo,
+      v.rainPlanMemo,
+      checklistText,
+      v.props,
+      v.gear,
+      v.costume,
+      v.memo
+    ]);
+  });
+
+  const csvText = csvRows.map(row =>
+    row.map(value => `"${String(value ?? "").replaceAll('"', '""')}"`).join(",")
+  ).join("\r\n");
+
+  const blob = new Blob(["\uFEFF" + csvText], { type:"text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const projectName = $("projectFilter").value ? (getProjectTitleById($("projectFilter").value) || "project") : "all-projects";
+  const safeProject = projectName.replace(/[\\/:*?"<>| ]+/g, "_");
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `scene-export_${safeProject}_${new Date().toISOString().slice(0,10)}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function backupJson(){
+  const payload = {
+    app: "Sukikatte Studio Project Scene Manager",
+    version: 3,
+    exportedAt: new Date().toISOString(),
+    mode: currentMode,
+    department: currentDept,
+    activeProjectId,
+    projects,
+    actors,
+    scenes: data
+  };
+
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type:"application/json;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `scene-backup_${new Date().toISOString().slice(0,10)}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function importJsonFile(file){
+  if(!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = () => {
+    try{
+      const raw = JSON.parse(reader.result);
+
+      let nextProjects = [];
+      let nextScenes = [];
+      let nextActors = [];
+      let nextMode = "";
+      let nextDept = "";
+      let nextActiveProjectId = "";
+
+      if(Array.isArray(raw)){
+        nextScenes = raw.map(normalizeScene);
+      }else{
+        if(Array.isArray(raw.projects)) nextProjects = raw.projects.map(normalizeProject);
+        if(Array.isArray(raw.scenes)) nextScenes = raw.scenes.map(normalizeScene);
+        if(Array.isArray(raw.actors)) nextActors = raw.actors.map(normalizeActor);
+        if(raw.mode) nextMode = String(raw.mode);
+        if(raw.department) nextDept = String(raw.department);
+        if(raw.activeProjectId) nextActiveProjectId = String(raw.activeProjectId);
+      }
+
+      if(!nextProjects.length && !nextScenes.length && !nextActors.length){
+        alert("JSON形式が正しくありません");
+        return;
+      }
+
+      const replaceAll = confirm(
+        "JSONを読み込みます\n\nOK：今のデータを全部置き換える\nキャンセル：今のデータに追加する"
+      );
+
+      if(replaceAll){
+        if(nextProjects.length) projects = nextProjects;
+        if(nextScenes.length) data = nextScenes;
+        if(nextActors.length) actors = nextActors;
+        if(nextMode === "prep" || nextMode === "field") currentMode = nextMode;
+        if(["all","director","camera","lighting","production","actor"].includes(nextDept)) currentDept = nextDept;
+        if(nextActiveProjectId) activeProjectId = nextActiveProjectId;
+      }else{
+        projects = [...projects, ...nextProjects];
+        data = [...data, ...nextScenes];
+        actors = [...actors, ...nextActors];
+      }
+
+      if(!projects.some(v => v.id === activeProjectId)){
+        activeProjectId = projects[0]?.id || "";
+      }
+
+      saveProjects();
+      saveScenes();
+      saveActors();
+      saveActiveProject();
+      saveMode();
+      saveDept();
+      updateProjectSelectOptions();
+      updateModeUI();
+      updateDeptUI();
+      renderProjectList();
+      renderActorList();
+      renderActorPickerArea();
+      render();
+      alert("JSON読み込みが完了しました");
+    }catch(error){
+      alert("JSONの読み込みに失敗しました");
+    }finally{
+      $("importJsonInput").value = "";
+    }
+  };
+
+  reader.onerror = () => {
+    alert("ファイルの読み込みに失敗しました");
+    $("importJsonInput").value = "";
+  };
+
+  reader.readAsText(file, "utf-8");
+}
+
+function toggleChecklistItem(sceneId, itemIndex){
+  const scene = data.find(v => v.id === sceneId);
+  if(!scene) return;
+  if(!Array.isArray(scene.checklistItems)) return;
+  if(!scene.checklistItems[itemIndex]) return;
+
+  scene.checklistItems[itemIndex].checked = !scene.checklistItems[itemIndex].checked;
+  saveScenes();
+  render();
 }
 
 function render(){
+  updateSummary();
+
   const list = $("list");
   const empty = $("emptyState");
   list.innerHTML = "";
-
-  updateSummary();
-  updateModeUi();
-  updateDeptTabs();
-  updateProjectSelects();
-  renderProjectList();
 
   const arr = getFilteredScenesForView();
 
@@ -2447,189 +2417,401 @@ function render(){
   }
 
   const groups = {};
-  arr.forEach(v=>{
-    const key = v.date || "未設定";
+  arr.forEach(v => {
+    const key = v.projectId || "未設定";
     if(!groups[key]) groups[key] = [];
     groups[key].push(v);
   });
 
-  Object.keys(groups).forEach(date=>{
+  Object.keys(groups).forEach(projectId => {
     const title = document.createElement("div");
     title.className = "group-title";
-    title.textContent = date === "未設定" ? "撮影日未設定" : date;
+    title.textContent = `${getProjectTitleById(projectId) || "プロジェクト未設定"} / ${getDeptLabel(currentDept)}`;
     list.appendChild(title);
 
-    groups[date].forEach(v=>{
+    groups[projectId].forEach(v => {
       const el = document.createElement("div");
-      el.className = `scene ${sceneLabelBarClass(v.sceneLabel)} ${v.doneCheck ? "is-shot" : ""}`;
+      el.className = `scene ${currentMode === "field" ? "field-card" : ""} ${getSceneLabelClass(v.sceneLabel)}`;
 
       const isOpen = openIds.has(v.id);
       const checklistItems = normalizeChecklistItems(v.checklistItems);
       const imageUrls = normalizeUrlLines(v.imageUrlMemo);
+      const cutTakes = normalizeCutTakes(v.cutTakes);
+      const okCutTakes = getOkCutTakes(cutTakes);
+      const firstOkCutTake = getFirstOkCutTake(cutTakes);
+      const fieldHighlight = firstOkCutTake
+        ? `${firstOkCutTake.cutNo || "-"} ${firstOkCutTake.takeNo || "-"}${firstOkCutTake.memo ? " / " + firstOkCutTake.memo : ""}`
+        : (getFirstOkTakeLine(v.okTakeMemo) || "");
+      const isFieldEditOpen = Boolean(v.__fieldEditOpen);
 
       el.innerHTML = `
-        ${currentMode === "field" ? buildFieldModeTop(v) : ""}
-
-        ${v.sceneLabel ? `
-          <div class="scene-color-head">
-            <span class="scene-color-dot ${sceneColorDotClass(v.sceneLabel)}"></span>
-            <span class="scene-color-text">色分けラベル：${escapeHtml(v.sceneLabel)}</span>
-          </div>
-        ` : ""}
-
         <h3 class="scene-title">${escapeHtml(v.title)}</h3>
 
         <div class="badges">
-          <span class="badge">作品：${escapeHtml(getProjectTitleById(v.projectId))}</span>
-          <span class="badge">シーン：${escapeHtml(v.sceneNo)}</span>
-          <span class="badge">撮影順：${escapeHtml(String(v.order))}</span>
+          <span class="badge">作品：${escapeHtml(getProjectTitleById(v.projectId) || "-")}</span>
+          <span class="badge">シーン：${escapeHtml(v.sceneNo || "-")}</span>
+          <span class="badge">撮影順：${escapeHtml(String(v.order || "-"))}</span>
           <span class="badge ${v.priority==='高'?'high':v.priority==='中'?'mid':'low'}">${escapeHtml(v.priority)}</span>
           <span class="badge ${statusClass(v.status)}">${escapeHtml(v.status)}</span>
-          ${v.sceneLabel ? `<span class="badge ${sceneLabelClass(v.sceneLabel)}">色：${escapeHtml(v.sceneLabel)}</span>` : ""}
-          ${v.locationContactName ? `<span class="badge">連絡先：${escapeHtml(v.locationContactName)}</span>` : ""}
-          ${v.sceneRoleName ? `<span class="badge">役名：${escapeHtml(v.sceneRoleName)}</span>` : ""}
-          ${v.makeupMemo ? `<span class="badge">メイクあり</span>` : ""}
-          ${v.actingMemo ? `<span class="badge">演技メモあり</span>` : ""}
-          ${v.okTakeMemo ? `<span class="badge done-badge">OKテイクあり</span>` : ""}
-          ${v.lensMemo ? `<span class="badge">レンズあり</span>` : ""}
-          ${v.lightingMemo ? `<span class="badge">照明メモあり</span>` : ""}
-          ${v.permitCheck === "OK" ? `<span class="badge done-badge">許可OK</span>` : ""}
-          ${v.powerCheck === "OK" ? `<span class="badge done-badge">電源OK</span>` : ""}
-          ${v.doneCheck ? '<span class="badge done-badge">撮影済み</span>' : ''}
-          ${v.date ? `<span class="badge schedule-badge">${escapeHtml(v.date)}</span>` : ''}
-          ${v.block ? `<span class="badge schedule-badge">${escapeHtml(v.block)}</span>` : ''}
+          ${v.sceneLabel ? `<span class="badge ${getSceneLabelBadgeClass(v.sceneLabel)}">色：${escapeHtml(v.sceneLabel)}</span>` : ""}
+          ${v.doneCheck ? '<span class="badge done-badge">撮影済み</span>' : ""}
+          ${v.okTakeMemo.trim() ? '<span class="badge oktake-badge">OKテイクあり</span>' : ""}
+          ${cutTakes.length ? `<span class="badge cuttake-badge">カット/テイク ${escapeHtml(String(cutTakes.length))}</span>` : ""}
+          ${okCutTakes.length ? `<span class="badge done-badge">OKカット/テイク ${escapeHtml(String(okCutTakes.length))}</span>` : ""}
+          ${v.date ? `<span class="badge schedule-badge">${escapeHtml(v.date)}</span>` : ""}
+          ${v.block ? `<span class="badge schedule-badge">${escapeHtml(v.block)}</span>` : ""}
           ${checklistItems.length ? `<span class="badge">持ち物 ${escapeHtml(String(checklistItems.filter(item => item.checked).length))}/${escapeHtml(String(checklistItems.length))}</span>` : ""}
-          ${imageUrls.length ? `<span class="badge">画像URL ${escapeHtml(String(imageUrls.length))}</span>` : ""}
-          <span class="badge">表示：${escapeHtml(currentDept)}</span>
         </div>
 
-        <div class="precheck-row">
-          <span class="precheck-chip ${v.permitCheck === "OK" ? "ok" : v.permitCheck === "NG" ? "ng" : ""}">許可：${escapeHtml(v.permitCheck)}</span>
-          <span class="precheck-chip ${v.powerCheck === "OK" ? "ok" : v.powerCheck === "NG" ? "ng" : ""}">電源：${escapeHtml(v.powerCheck)}</span>
-          <span class="precheck-chip ${v.soundCheck === "OK" ? "ok" : v.soundCheck === "NG" ? "ng" : ""}">音：${escapeHtml(v.soundCheck)}</span>
-          <span class="precheck-chip ${v.parkingCheck === "OK" ? "ok" : v.parkingCheck === "NG" ? "ng" : ""}">駐車：${escapeHtml(v.parkingCheck)}</span>
-        </div>
-
-        ${buildDeptListSummary(v)}
+        ${currentMode === "field" && fieldHighlight ? `
+          <div class="highlight-box">
+            <div class="highlight-label">現場注目メモ</div>
+            <div class="highlight-value">${escapeHtml(fieldHighlight)}</div>
+          </div>
+        ` : ""}
 
         <div class="scene-summary">
-          <div class="scene-summary-card">
-            <div class="meta-label">時間帯</div>
-            <div class="meta-value">${escapeHtml(buildSchedule(v) || "-")}</div>
-          </div>
-
-          <div class="scene-summary-card">
-            <div class="meta-label">場所</div>
-            <div class="meta-value">${escapeHtml(v.loc || "-")}</div>
-          </div>
+          ${getDeptSummaryBoxes(v)}
         </div>
 
-        ${isOpen ? renderDetailArea(v) : ""}
+        ${currentMode === "field" ? `
+          <div class="field-edit-box">
+            <div class="field-edit-label">現場入力</div>
+            <div class="button-row" style="margin-top:0; margin-bottom:10px;">
+              <button type="button" class="detail-btn" data-action="toggle-field-edit">${isFieldEditOpen ? "現場入力を閉じる" : "現場入力を開く"}</button>
+              <button type="button" class="done-btn" data-action="toggle-done">${v.doneCheck ? "未撮影に戻す" : "撮影済みにする"}</button>
+            </div>
 
-        <div class="actions">
-          <button type="button" class="move-btn" data-action="move-up">上へ</button>
-          <button type="button" class="move-btn" data-action="move-down">下へ</button>
+            ${isFieldEditOpen ? `
+              <div class="field">
+                <label>OKテイクメモ</label>
+                <textarea data-field-oktake="${escapeAttr(v.id)}">${escapeHtml(v.okTakeMemo || "")}</textarea>
+              </div>
+
+              <div class="field-edit-grid" style="margin-top:10px;">
+                <div class="field">
+                  <label>カット番号</label>
+                  <input data-field-cut-no="${escapeAttr(v.id)}" placeholder="例：C1">
+                </div>
+
+                <div class="field">
+                  <label>テイク番号</label>
+                  <input data-field-take-no="${escapeAttr(v.id)}" placeholder="例：T1">
+                </div>
+
+                <div class="field">
+                  <label>OK</label>
+                  <select data-field-take-ok="${escapeAttr(v.id)}">
+                    <option value="no" selected>未OK</option>
+                    <option value="yes">OK</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label>テイクメモ</label>
+                  <input data-field-take-memo="${escapeAttr(v.id)}" placeholder="例：芝居良い">
+                </div>
+
+                <div class="field">
+                  <label>&nbsp;</label>
+                  <button type="button" class="primary-btn" data-action="field-add-cuttake">追加</button>
+                </div>
+              </div>
+
+              <div class="cuttake-box" style="margin-top:10px;">
+                <div class="cuttake-label">現場カット / テイク一覧</div>
+                ${
+                  cutTakes.length
+                    ? `<div class="cuttake-list">
+                        ${cutTakes.map(item => `
+                          <div class="cuttake-item">
+                            <div class="cuttake-top">
+                              <span class="cuttake-chip">${escapeHtml(item.cutNo || "-")}</span>
+                              <span class="cuttake-chip">${escapeHtml(item.takeNo || "-")}</span>
+                              ${item.isOk ? '<span class="cuttake-chip ok">OK</span>' : '<span class="cuttake-chip">未OK</span>'}
+                            </div>
+                            <div class="meta-value">${escapeHtml(item.memo || "-")}</div>
+                            <div class="cuttake-actions">
+                              <button type="button" class="edit-btn" data-action="field-toggle-cuttake-ok" data-cuttake-id="${escapeAttr(item.id)}">${item.isOk ? "OKを外す" : "OKにする"}</button>
+                              <button type="button" class="danger-btn" data-action="field-delete-cuttake" data-cuttake-id="${escapeAttr(item.id)}">削除</button>
+                            </div>
+                          </div>
+                        `).join("")}
+                      </div>`
+                    : `<div class="meta-value">-</div>`
+                }
+              </div>
+
+              <div class="button-row">
+                <button type="button" class="primary-btn" data-action="field-save">現場入力を保存</button>
+              </div>
+            ` : ""}
+          </div>
+        ` : ""}
+
+        ${
+          isOpen ? `
+          <div class="detail-area">
+            <div class="meta-box">
+              <div class="meta-label">プロジェクト</div>
+              <div class="meta-value">${escapeHtml(getProjectTitleById(v.projectId) || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">シーン番号</div>
+              <div class="meta-value">${escapeHtml(v.sceneNo || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">撮影順</div>
+              <div class="meta-value">${escapeHtml(String(v.order || "-"))}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">優先度</div>
+              <div class="meta-value">${escapeHtml(v.priority || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">ステータス</div>
+              <div class="meta-value">${escapeHtml(v.status || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">色分けラベル</div>
+              <div class="meta-value">${escapeHtml(v.sceneLabel || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">撮影日</div>
+              <div class="meta-value">${escapeHtml(v.date || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">ブロック</div>
+              <div class="meta-value">${escapeHtml(v.block || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">集合時間</div>
+              <div class="meta-value">${escapeHtml(v.call || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">開始〜終了</div>
+              <div class="meta-value">${escapeHtml((v.start || "--:--") + "〜" + (v.end || "--:--"))}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">ロケ場所名</div>
+              <div class="meta-value">${escapeHtml(v.loc || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">出演者</div>
+              <div class="meta-value">${escapeHtml(v.cast || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">演出意図</div>
+              <div class="meta-value">${escapeHtml(v.directionIntent || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">感情</div>
+              <div class="meta-value">${escapeHtml(v.emotion || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">カメラサイズ</div>
+              <div class="meta-value">${escapeHtml(v.cameraSize || "-")}</div>
+            </div>
+
+            <div class="meta-box" style="grid-column:1 / -1;">
+              <div class="meta-label">OKテイクメモ</div>
+              <div class="meta-value">${escapeHtml(v.okTakeMemo || "-")}</div>
+            </div>
+
+            <div class="cuttake-box">
+              <div class="cuttake-label">カット / テイク一覧</div>
+              ${
+                cutTakes.length
+                  ? `<div class="cuttake-list">
+                      ${cutTakes.map(item => `
+                        <div class="cuttake-item">
+                          <div class="cuttake-top">
+                            <span class="cuttake-chip">${escapeHtml(item.cutNo || "-")}</span>
+                            <span class="cuttake-chip">${escapeHtml(item.takeNo || "-")}</span>
+                            ${item.isOk ? '<span class="cuttake-chip ok">OK</span>' : '<span class="cuttake-chip">未OK</span>'}
+                          </div>
+                          <div class="meta-value">${escapeHtml(item.memo || "-")}</div>
+                        </div>
+                      `).join("")}
+                    </div>`
+                  : `<div class="meta-value">-</div>`
+              }
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">住所</div>
+              <div class="meta-value">${escapeHtml(v.address || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">GoogleマップURL</div>
+              <div class="meta-value">${v.mapUrl ? `<a class="meta-link" href="${escapeAttr(v.mapUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(v.mapUrl)}</a>` : "-"}</div>
+            </div>
+
+            <div class="meta-box" style="grid-column:1 / -1;">
+              <div class="meta-label">ロケ場所の許可取りメモ</div>
+              <div class="meta-value">${escapeHtml(v.locationPermitMemo || "-")}</div>
+            </div>
+
+            <div class="meta-box" style="grid-column:1 / -1;">
+              <div class="meta-label">画像URLメモ</div>
+              <div class="meta-value">
+                ${
+                  imageUrls.length
+                    ? imageUrls.map(url => `<a class="meta-link" href="${escapeAttr(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(url)}</a>`).join("<br>")
+                    : "-"
+                }
+              </div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">駐車場メモ</div>
+              <div class="meta-value">${escapeHtml(v.parkingMemo || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">電源メモ</div>
+              <div class="meta-value">${escapeHtml(v.powerMemo || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">トイレメモ</div>
+              <div class="meta-value">${escapeHtml(v.toiletMemo || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">雨天時メモ</div>
+              <div class="meta-value">${escapeHtml(v.rainPlanMemo || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">小道具</div>
+              <div class="meta-value">${escapeHtml(v.props || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">機材</div>
+              <div class="meta-value">${escapeHtml(v.gear || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">衣装</div>
+              <div class="meta-value">${escapeHtml(v.costume || "-")}</div>
+            </div>
+
+            <div class="meta-box" style="grid-column:1 / -1;">
+              <div class="meta-label">メモ</div>
+              <div class="meta-value">${escapeHtml(v.memo || "-")}</div>
+            </div>
+
+            <div class="checklist-box">
+              <div class="checklist-label">持ち物チェックリスト</div>
+              ${
+                checklistItems.length
+                  ? `<div class="checklist-list">
+                      ${checklistItems.map((item, index) => `
+                        <label class="checklist-item ${item.checked ? "is-checked" : ""}">
+                          <input type="checkbox" data-check-scene="${escapeAttr(v.id)}" data-check-index="${escapeAttr(String(index))}" ${item.checked ? "checked" : ""}>
+                          <span class="checklist-item-text">${escapeHtml(item.text)}</span>
+                        </label>
+                      `).join("")}
+                    </div>`
+                  : `<div class="meta-value">-</div>`
+              }
+            </div>
+          </div>
+          ` : ""
+        }
+
+        <div class="actions ${currentMode === "field" ? "field-actions" : ""}">
           <button type="button" class="detail-btn" data-action="toggle-detail">${isOpen ? "詳細を閉じる" : "詳細を開く"}</button>
-          <button type="button" class="done-btn" data-action="toggle-done">${v.doneCheck ? "未撮影に戻す" : "撮影済みにする"}</button>
-          ${currentMode === "prep" ? `<button type="button" class="copy-btn" data-action="copy">複製</button>` : ""}
-          ${currentMode === "prep" ? `<button type="button" class="edit-btn" data-action="edit">編集</button>` : ""}
-          ${currentMode === "prep" ? `<button type="button" class="danger-btn" data-action="delete">削除</button>` : ""}
+          ${currentMode !== "field" ? `<button type="button" class="done-btn" data-action="toggle-done">${v.doneCheck ? "未撮影に戻す" : "撮影済みにする"}</button>` : ""}
+          ${currentMode === "prep" ? `
+            <button type="button" class="move-btn" data-action="move-up">上へ</button>
+            <button type="button" class="move-btn" data-action="move-down">下へ</button>
+            <button type="button" class="copy-btn" data-action="copy">複製</button>
+            <button type="button" class="edit-btn" data-action="edit">編集</button>
+            <button type="button" class="danger-btn" data-action="delete">削除</button>
+          ` : ""}
         </div>
       `;
 
-      el.querySelector('[data-action="move-up"]').onclick = () => moveScene(v.id, "up");
-      el.querySelector('[data-action="move-down"]').onclick = () => moveScene(v.id, "down");
-      el.querySelector('[data-action="toggle-detail"]').onclick = () => toggleDetail(v.id);
-      el.querySelector('[data-action="toggle-done"]').onclick = () => toggleDone(v.id);
+      const detailBtn = el.querySelector('[data-action="toggle-detail"]');
+      if(detailBtn){
+        detailBtn.onclick = () => toggleDetail(v.id);
+      }
 
-      if(el.querySelector('[data-action="copy"]')){
+      const doneBtn = el.querySelector('[data-action="toggle-done"]');
+      if(doneBtn){
+        doneBtn.onclick = () => toggleDone(v.id);
+      }
+
+      if(currentMode === "field"){
+        const toggleFieldBtn = el.querySelector('[data-action="toggle-field-edit"]');
+        if(toggleFieldBtn){
+          toggleFieldBtn.onclick = () => toggleFieldEdit(v.id);
+        }
+
+        const fieldSaveBtn = el.querySelector('[data-action="field-save"]');
+        if(fieldSaveBtn){
+          fieldSaveBtn.onclick = () => saveFieldEdit(v.id);
+        }
+
+        const fieldAddBtn = el.querySelector('[data-action="field-add-cuttake"]');
+        if(fieldAddBtn){
+          fieldAddBtn.onclick = () => addFieldCutTake(v.id);
+        }
+
+        el.querySelectorAll('[data-action="field-toggle-cuttake-ok"]').forEach(btn => {
+          btn.onclick = () => toggleFieldCutTakeOk(v.id, btn.getAttribute("data-cuttake-id"));
+        });
+
+        el.querySelectorAll('[data-action="field-delete-cuttake"]').forEach(btn => {
+          btn.onclick = () => deleteFieldCutTake(v.id, btn.getAttribute("data-cuttake-id"));
+        });
+
+        const okTakeArea = el.querySelector(`[data-field-oktake="${CSS.escape(v.id)}"]`);
+        if(okTakeArea){
+          okTakeArea.addEventListener("input", e => updateFieldOkTake(v.id, e.target.value));
+        }
+      }
+
+      if(currentMode === "prep"){
+        el.querySelector('[data-action="move-up"]').onclick = () => moveScene(v.id, "up");
+        el.querySelector('[data-action="move-down"]').onclick = () => moveScene(v.id, "down");
         el.querySelector('[data-action="copy"]').onclick = () => duplicateScene(v.id);
-      }
-
-      if(el.querySelector('[data-action="edit"]')){
-        el.querySelector('[data-action="edit"]').onclick = () => {
-          $("id").value = v.id;
-          $("sceneNo").value = v.sceneNo || "";
-          $("order").value = v.order || "";
-          $("title").value = v.title || "";
-          $("date").value = v.date || "";
-          $("block").value = v.block || "";
-          $("call").value = v.call || "";
-          $("start").value = v.start || "";
-          $("end").value = v.end || "";
-          $("priority").value = v.priority || "中";
-          $("status").value = v.status || "未着手";
-          $("sceneLabel").value = v.sceneLabel || "";
-          $("loc").value = v.loc || "";
-          $("locationContactName").value = v.locationContactName || "";
-          $("locationContactPhone").value = v.locationContactPhone || "";
-          $("locationContactEmail").value = v.locationContactEmail || "";
-          $("locationContactMemo").value = v.locationContactMemo || "";
-          $("permitCheck").value = v.permitCheck || "未確認";
-          $("powerCheck").value = v.powerCheck || "未確認";
-          $("soundCheck").value = v.soundCheck || "未確認";
-          $("parkingCheck").value = v.parkingCheck || "未確認";
-          $("carryInCheck").value = v.carryInCheck || "未確認";
-          $("rainCheck").value = v.rainCheck || "未確認";
-          $("precheckMemo").value = v.precheckMemo || "";
-          $("cast").value = v.cast || "";
-          $("sceneRoleName").value = v.sceneRoleName || "";
-          $("actorCallMemo").value = v.actorCallMemo || "";
-          $("makeupMemo").value = v.makeupMemo || "";
-          $("actingMemo").value = v.actingMemo || "";
-          $("okTakeMemo").value = v.okTakeMemo || "";
-          $("directionIntent").value = v.directionIntent || "";
-          $("emotion").value = v.emotion || "";
-          $("cameraSize").value = v.cameraSize || "";
-          $("lensMemo").value = v.lensMemo || "";
-          $("cameraPosition").value = v.cameraPosition || "";
-          $("shotMovement").value = v.shotMovement || "";
-          $("lightingMemo").value = v.lightingMemo || "";
-          $("windowDirection").value = v.windowDirection || "";
-          $("sunMemo").value = v.sunMemo || "";
-          $("address").value = v.address || "";
-          $("mapUrl").value = v.mapUrl || "";
-          $("imageUrlMemo").value = urlLinesToText(v.imageUrlMemo);
-          $("parkingMemo").value = v.parkingMemo || "";
-          $("powerMemo").value = v.powerMemo || "";
-          $("toiletMemo").value = v.toiletMemo || "";
-          $("rainPlanMemo").value = v.rainPlanMemo || "";
-          $("checklistText").value = checklistItemsToText(v.checklistItems);
-          $("props").value = v.props || "";
-          $("gear").value = v.gear || "";
-          $("costume").value = v.costume || "";
-          $("memo").value = v.memo || "";
-          $("doneCheck").checked = !!v.doneCheck;
-          setActiveProject(v.projectId);
-          $("formTitle").textContent = "シーン編集中";
-          window.scrollTo({ top:0, behavior:"smooth" });
-        };
-      }
-
-      if(el.querySelector('[data-action="delete"]')){
+        el.querySelector('[data-action="edit"]').onclick = () => editScene(v);
         el.querySelector('[data-action="delete"]').onclick = () => {
-          if(!confirm("削除しますか？")) return;
-          data = data.filter(d => d.id !== v.id);
-          openIds.delete(v.id);
-          saveScenes();
-          render();
+          if(confirm("削除する？")){
+            data = data.filter(d => d.id !== v.id);
+            openIds.delete(v.id);
+            saveScenes();
+            render();
+          }
         };
       }
 
       el.querySelectorAll("[data-check-scene]").forEach(input => {
         input.onchange = () => {
-          const scene = data.find(s => s.id === input.getAttribute("data-check-scene"));
-          const idx = Number(input.getAttribute("data-check-index"));
-          if(scene && scene.checklistItems[idx]){
-            scene.checklistItems[idx].checked = !scene.checklistItems[idx].checked;
-            saveScenes();
-            render();
-          }
+          toggleChecklistItem(
+            input.getAttribute("data-check-scene"),
+            Number(input.getAttribute("data-check-index"))
+          );
         };
-      });
-
-      el.querySelectorAll("[data-field-done]").forEach(btn => {
-        btn.onclick = () => toggleDone(btn.getAttribute("data-field-done"));
       });
 
       list.appendChild(el);
@@ -2638,18 +2820,38 @@ function render(){
 
   const doneCount = data.filter(v => v.doneCheck).length;
   const unshotCount = data.length - doneCount;
+  const okTakeCount = data.filter(v => v.okTakeMemo.trim()).length;
+  const okCutTakeCount = data.reduce((sum, scene) => sum + getOkCutTakes(scene.cutTakes).length, 0);
+  const lastSavedText = formatDateTime(getLastSavedAt());
 
   $("debug").textContent =
     "保存プロジェクト数：" + projects.length + "\n" +
     "保存シーン数：" + data.length + "\n" +
-    "俳優マスター件数：" + actorMaster.length + "\n" +
+    "俳優一覧数：" + actors.length + "\n" +
+    "現在部署：" + getDeptLabel(currentDept) + "\n" +
+    "OKテイク記録ありシーン数：" + okTakeCount + "\n" +
+    "OKカット/テイク数：" + okCutTakeCount + "\n" +
     "撮影済み件数：" + doneCount + "\n" +
     "未撮影件数：" + unshotCount + "\n" +
     "現在モード：" + (currentMode === "field" ? "現場モード" : "準備モード") + "\n" +
-    "選択中プロジェクト：" + (activeProjectId ? getProjectTitleById(activeProjectId) : "未選択") + "\n" +
-    "現在の表示モード：" + currentDept + "\n" +
-    "最終保存日時：" + formatDateTime(getLastSavedAt());
+    "選択中プロジェクト：" + (getProjectTitleById(activeProjectId) || "未選択") + "\n" +
+    "最終保存日時：" + lastSavedText;
 }
+
+projects = projects.map(normalizeProject);
+actors = actors.map(normalizeActor);
+data = data.map(normalizeScene);
+
+if(!projects.some(v => v.id === activeProjectId)){
+  activeProjectId = projects[0]?.id || "";
+  saveActiveProject();
+}
+
+saveProjects();
+saveActors();
+saveScenes();
+saveMode();
+saveDept();
 
 $("projectForm").onsubmit = e => {
   e.preventDefault();
@@ -2671,12 +2873,12 @@ $("projectForm").onsubmit = e => {
   else projects.push(project);
 
   saveProjects();
-  updateProjectSelects();
-  if(!activeProjectId) setActiveProject(project.id);
-  renderProjectList();
-  render();
+  updateProjectSelectOptions();
+  setActiveProject(project.id);
   resetProjectForm();
 };
+
+$("cancelProjectEdit").onclick = resetProjectForm;
 
 $("actorForm").onsubmit = e => {
   e.preventDefault();
@@ -2684,8 +2886,7 @@ $("actorForm").onsubmit = e => {
   const actor = normalizeActor({
     id: $("actorId").value || "",
     name: $("actorName").value,
-    role: $("actorRole").value,
-    photoUrl: $("actorPhotoUrl").value,
+    image: $("actorImage").value,
     memo: $("actorMemo").value
   });
 
@@ -2694,32 +2895,29 @@ $("actorForm").onsubmit = e => {
     return;
   }
 
-  const i = actorMaster.findIndex(v => v.id === actor.id);
-  if(i >= 0) actorMaster[i] = actor;
-  else actorMaster.push(actor);
+  const i = actors.findIndex(v => v.id === actor.id);
+  if(i >= 0) actors[i] = actor;
+  else actors.push(actor);
 
   saveActors();
-  renderActorMaster();
-  renderActorPickerInForm();
+  renderActorList();
+  renderActorPickerArea();
   render();
   resetActorForm();
 };
 
+$("cancelActorEdit").onclick = resetActorForm;
+$("addCutTakeBtn").onclick = addCutTakeEntry;
+
 $("form").onsubmit = e => {
   e.preventDefault();
 
-  if(!activeProjectId){
-    alert("先にプロジェクトを選択してください");
-    return;
-  }
-
-  const statusValue = $("status").value;
   const existingScene = data.find(d => d.id === $("id").value);
   const previousChecklistItems = existingScene?.checklistItems || [];
 
   const obj = normalizeScene({
     id: $("id").value || "",
-    projectId: activeProjectId,
+    projectId: $("projectIdSelect").value,
     sceneNo: $("sceneNo").value,
     order: Number($("order").value),
     title: $("title").value,
@@ -2729,37 +2927,18 @@ $("form").onsubmit = e => {
     start: $("start").value,
     end: $("end").value,
     priority: $("priority").value,
-    status: statusValue,
+    status: $("status").value,
     sceneLabel: $("sceneLabel").value,
     loc: $("loc").value,
-    locationContactName: $("locationContactName").value,
-    locationContactPhone: $("locationContactPhone").value,
-    locationContactEmail: $("locationContactEmail").value,
-    locationContactMemo: $("locationContactMemo").value,
-    permitCheck: $("permitCheck").value,
-    powerCheck: $("powerCheck").value,
-    soundCheck: $("soundCheck").value,
-    parkingCheck: $("parkingCheck").value,
-    carryInCheck: $("carryInCheck").value,
-    rainCheck: $("rainCheck").value,
-    precheckMemo: $("precheckMemo").value,
     cast: $("cast").value,
-    sceneRoleName: $("sceneRoleName").value,
-    actorCallMemo: $("actorCallMemo").value,
-    makeupMemo: $("makeupMemo").value,
-    actingMemo: $("actingMemo").value,
-    okTakeMemo: $("okTakeMemo").value,
     directionIntent: $("directionIntent").value,
     emotion: $("emotion").value,
     cameraSize: $("cameraSize").value,
-    lensMemo: $("lensMemo").value,
-    cameraPosition: $("cameraPosition").value,
-    shotMovement: $("shotMovement").value,
-    lightingMemo: $("lightingMemo").value,
-    windowDirection: $("windowDirection").value,
-    sunMemo: $("sunMemo").value,
+    okTakeMemo: $("okTakeMemo").value,
+    cutTakes: currentCutTakesEditor,
     address: $("address").value,
     mapUrl: $("mapUrl").value,
+    locationPermitMemo: $("locationPermitMemo").value,
     imageUrlMemo: normalizeUrlLines($("imageUrlMemo").value),
     parkingMemo: $("parkingMemo").value,
     powerMemo: $("powerMemo").value,
@@ -2770,40 +2949,46 @@ $("form").onsubmit = e => {
     gear: $("gear").value,
     costume: $("costume").value,
     memo: $("memo").value,
-    doneCheck: statusValue === "撮影済み"
+    doneCheck: $("status").value === "撮影済み"
   });
 
-  if(!obj.sceneNo || !obj.title){
-    alert("シーン番号とシーン名は必須です");
+  if(!obj.projectId){
+    alert("先にプロジェクトを選択してください");
     return;
   }
 
-  if(!obj.order){
-    obj.order = getNextOrderInProject(activeProjectId);
+  if(!obj.sceneNo || !obj.order || !obj.title){
+    alert("プロジェクト シーン番号 撮影順 シーン名は必須です");
+    return;
   }
 
   const i = data.findIndex(d => d.id === obj.id);
   if(i >= 0) data[i] = obj;
   else data.push(obj);
 
+  activeProjectId = obj.projectId;
+  saveActiveProject();
   saveScenes();
+  updateProjectSelectOptions();
+  renderProjectList();
   render();
   resetSceneForm();
 };
 
-$("cancelProjectEdit").onclick = resetProjectForm;
-$("cancelActorEdit").onclick = resetActorForm;
 $("cancel").onclick = resetSceneForm;
+$("doneCheck").onchange = syncStatusFromCheckbox;
+$("status").onchange = syncCheckboxFromStatus;
 
-$("doneCheck").onchange = () => {
-  $("status").value = $("doneCheck").checked ? "撮影済み" : "未着手";
+$("projectIdSelect").onchange = () => {
+  if($("projectIdSelect").value){
+    activeProjectId = $("projectIdSelect").value;
+    saveActiveProject();
+    updateProjectSelectOptions();
+    renderProjectList();
+    render();
+  }
 };
 
-$("status").onchange = () => {
-  $("doneCheck").checked = $("status").value === "撮影済み";
-};
-
-$("activeProjectSelect").onchange = e => setActiveProject(e.target.value);
 $("projectFilter").onchange = render;
 $("search").oninput = render;
 $("sort").onchange = render;
@@ -2814,38 +2999,59 @@ $("importJsonBtn").onclick = () => $("importJsonInput").click();
 $("importJsonInput").onchange = e => importJsonFile(e.target.files[0]);
 
 document.querySelectorAll("[data-mode]").forEach(btn => {
-  btn.onclick = () => setCurrentMode(btn.dataset.mode);
+  btn.onclick = () => setMode(btn.dataset.mode);
 });
 
 document.querySelectorAll("[data-dept]").forEach(btn => {
-  btn.onclick = () => {
-    currentDept = btn.dataset.dept;
-    localStorage.setItem(DEPT_KEY, currentDept);
-    updateDeptTabs();
-    render();
-  };
+  btn.onclick = () => setDept(btn.dataset.dept);
 });
 
-projects = projects.map(normalizeProject);
-actorMaster = actorMaster.map(normalizeActor);
-data = data.map(normalizeScene);
+updateProjectSelectOptions();
+renderProjectList();
+renderActorList();
+renderActorPickerArea();
+renderCutTakeEditor();
+updateModeUI();
+updateDeptUI();
+resetSceneForm();
+render();
 
-saveProjects();
-saveActors();
-saveScenes();
-
-if(activeProjectId && !projects.some(v => v.id === activeProjectId)){
-  activeProjectId = "";
-  localStorage.setItem(ACTIVE_PROJECT_KEY, "");
+function resetProjectForm(){
+  $("projectForm").reset();
+  $("projectId").value = "";
 }
 
-updateModeUi();
-updateDeptTabs();
-updateProjectSelects();
-renderProjectList();
-renderActorMaster();
-renderActorPickerInForm();
-render();
+function resetActorForm(){
+  $("actorForm").reset();
+  $("actorId").value = "";
+}
+
+function resetSceneForm(){
+  $("form").reset();
+  $("id").value = "";
+  $("priority").value = "中";
+  $("status").value = "未着手";
+  $("sceneLabel").value = "";
+  $("doneCheck").checked = false;
+  $("checklistText").value = "";
+  $("imageUrlMemo").value = "";
+  currentCutTakesEditor = [];
+  renderCutTakeEditor();
+  $("cutNoInput").value = "";
+  $("takeNoInput").value = "";
+  $("takeIsOkInput").value = "no";
+  $("takeMemoInput").value = "";
+  $("formTitle").textContent = "シーン入力";
+  $("projectIdSelect").value = activeProjectId || "";
+}
+
+function syncStatusFromCheckbox(){
+  $("status").value = $("doneCheck").checked ? "撮影済み" : "未着手";
+}
+
+function syncCheckboxFromStatus(){
+  $("doneCheck").checked = $("status").value === "撮影済み";
+}
 
 function escapeHtml(value){
   return String(value ?? "")
