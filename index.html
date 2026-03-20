@@ -21,6 +21,7 @@
   --gray:#475569;
   --teal:#0f766e;
   --link:#93c5fd;
+  --purple:#7c3aed;
 }
 
 *{box-sizing:border-box;}
@@ -86,6 +87,31 @@ body{
   font-size:14px;
   white-space:pre-wrap;
   line-height:1.5;
+}
+
+.summary-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.summary-card{
+  background:var(--panel-3);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:12px;
+}
+
+.summary-label{
+  font-size:12px;
+  color:var(--sub);
+  margin-bottom:6px;
+}
+
+.summary-value{
+  font-size:24px;
+  font-weight:700;
+  line-height:1;
 }
 
 .grid{
@@ -275,6 +301,24 @@ button{
   border-color:rgba(15,118,110,.4);
 }
 
+.status-not-started{
+  background:rgba(71,85,105,.22);
+  color:#e5e7eb;
+  border-color:rgba(148,163,184,.3);
+}
+
+.status-prep{
+  background:rgba(124,58,237,.2);
+  color:#ede9fe;
+  border-color:rgba(124,58,237,.35);
+}
+
+.status-shot{
+  background:rgba(34,197,94,.18);
+  color:#dcfce7;
+  border-color:rgba(34,197,94,.4);
+}
+
 .scene-summary{
   display:grid;
   grid-template-columns:1fr;
@@ -327,6 +371,10 @@ button{
 }
 
 @media (min-width:700px){
+  .summary-grid{
+    grid-template-columns:repeat(5, 1fr);
+  }
+
   .grid{
     grid-template-columns:1fr 1fr;
   }
@@ -359,6 +407,38 @@ button{
       </div>
     </div>
     <div id="debug" class="debug-box">読み込み中...</div>
+  </section>
+
+  <section class="card">
+    <div class="section-header">
+      <div>
+        <h2>サマリー</h2>
+        <p class="section-subtitle">全体状況をすぐ確認できます</p>
+      </div>
+    </div>
+
+    <div class="summary-grid">
+      <div class="summary-card">
+        <div class="summary-label">総シーン数</div>
+        <div class="summary-value" id="summaryTotal">0</div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-label">撮影済み数</div>
+        <div class="summary-value" id="summaryDone">0</div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-label">未撮影数</div>
+        <div class="summary-value" id="summaryUnshot">0</div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-label">高優先度数</div>
+        <div class="summary-value" id="summaryHigh">0</div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-label">準備中数</div>
+        <div class="summary-value" id="summaryPrep">0</div>
+      </div>
+    </div>
   </section>
 
   <section class="card">
@@ -428,6 +508,15 @@ button{
         </div>
 
         <div class="field">
+          <label for="status">ステータス</label>
+          <select id="status">
+            <option value="未着手" selected>未着手</option>
+            <option value="準備中">準備中</option>
+            <option value="撮影済み">撮影済み</option>
+          </select>
+        </div>
+
+        <div class="field">
           <label for="loc">場所</label>
           <input id="loc" placeholder="場所">
         </div>
@@ -440,6 +529,26 @@ button{
         </div>
 
         <div class="field full">
+          <label for="cast">出演者</label>
+          <textarea id="cast" placeholder="例：長嶋琢磨 宮下和"></textarea>
+        </div>
+
+        <div class="field full">
+          <label for="directionIntent">演出意図</label>
+          <textarea id="directionIntent" placeholder="例：距離感を強調したい ぎこちなさを残す"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="emotion">感情</label>
+          <input id="emotion" placeholder="例：緊張 不安 安心 怒り">
+        </div>
+
+        <div class="field">
+          <label for="cameraSize">カメラサイズ</label>
+          <input id="cameraSize" placeholder="例：CU MS WS">
+        </div>
+
+        <div class="field full">
           <label for="address">住所</label>
           <input id="address" placeholder="例：東京都渋谷区○○1-2-3">
         </div>
@@ -447,6 +556,21 @@ button{
         <div class="field full">
           <label for="mapUrl">GoogleマップURL</label>
           <input id="mapUrl" placeholder="https://maps.google.com/..." inputmode="url">
+        </div>
+
+        <div class="field full">
+          <label for="props">小道具</label>
+          <textarea id="props" placeholder="例：グラス メニュー表 財布"></textarea>
+        </div>
+
+        <div class="field full">
+          <label for="gear">機材</label>
+          <textarea id="gear" placeholder="例：FX3 24-70GM2 70-200GM2 300c"></textarea>
+        </div>
+
+        <div class="field full">
+          <label for="costume">衣装</label>
+          <textarea id="costume" placeholder="例：黒スーツ エプロン 私服"></textarea>
         </div>
 
         <div class="field full">
@@ -489,6 +613,7 @@ button{
           <option value="order">撮影順</option>
           <option value="date">撮影日</option>
           <option value="priority">優先度</option>
+          <option value="status">ステータス</option>
           <option value="sceneNo">シーン番号</option>
           <option value="title">タイトル</option>
         </select>
@@ -509,7 +634,7 @@ button{
 </div>
 
 <script>
-const KEY = "scene_app_v9";
+const KEY = "scene_app_v14";
 
 let data = JSON.parse(localStorage.getItem(KEY) || "[]");
 let openIds = new Set();
@@ -524,6 +649,18 @@ function priorityOrder(v){
   return v === "高" ? 0 : v === "中" ? 1 : 2;
 }
 
+function statusOrder(v){
+  if(v === "未着手") return 0;
+  if(v === "準備中") return 1;
+  return 2;
+}
+
+function statusClass(v){
+  if(v === "未着手") return "status-not-started";
+  if(v === "準備中") return "status-prep";
+  return "status-shot";
+}
+
 function compareSceneNo(a,b){
   const aNum = Number(a);
   const bNum = Number(b);
@@ -532,6 +669,7 @@ function compareSceneNo(a,b){
 }
 
 function normalize(v){
+  const normalizedStatus = String(v.status || (v.doneCheck || v.done ? "撮影済み" : "未着手"));
   return {
     id: v.id || String(Date.now()) + "-" + Math.floor(Math.random() * 100000),
     project: String(v.project || ""),
@@ -544,11 +682,19 @@ function normalize(v){
     start: String(v.start || ""),
     end: String(v.end || ""),
     priority: String(v.priority || "中"),
+    status: normalizedStatus,
     loc: String(v.loc || ""),
+    cast: String(v.cast || ""),
+    directionIntent: String(v.directionIntent || ""),
+    emotion: String(v.emotion || ""),
+    cameraSize: String(v.cameraSize || ""),
     address: String(v.address || ""),
     mapUrl: String(v.mapUrl || ""),
+    props: String(v.props || ""),
+    gear: String(v.gear || ""),
+    costume: String(v.costume || ""),
     memo: String(v.memo || ""),
-    doneCheck: Boolean(v.doneCheck || v.done)
+    doneCheck: normalizedStatus === "撮影済み"
   };
 }
 
@@ -572,10 +718,25 @@ function updateProjectFilter(){
   select.value = projects.includes(current) ? current : "";
 }
 
+function updateSummary(){
+  const total = data.length;
+  const done = data.filter(v => v.doneCheck).length;
+  const unshot = total - done;
+  const high = data.filter(v => v.priority === "高").length;
+  const prep = data.filter(v => v.status === "準備中").length;
+
+  $("summaryTotal").textContent = total;
+  $("summaryDone").textContent = done;
+  $("summaryUnshot").textContent = unshot;
+  $("summaryHigh").textContent = high;
+  $("summaryPrep").textContent = prep;
+}
+
 function resetForm(){
   $("form").reset();
   $("id").value = "";
   $("priority").value = "中";
+  $("status").value = "未着手";
   $("doneCheck").checked = false;
   $("formTitle").textContent = "シーン入力";
 }
@@ -592,7 +753,15 @@ function buildSchedule(v){
 function toggleDone(id){
   const item = data.find(d => d.id === id);
   if(!item) return;
-  item.doneCheck = !item.doneCheck;
+
+  if(item.doneCheck){
+    item.doneCheck = false;
+    item.status = "未着手";
+  }else{
+    item.doneCheck = true;
+    item.status = "撮影済み";
+  }
+
   save();
   render();
 }
@@ -606,10 +775,20 @@ function toggleDetail(id){
   render();
 }
 
+function syncStatusFromCheckbox(){
+  $("status").value = $("doneCheck").checked ? "撮影済み" : "未着手";
+}
+
+function syncCheckboxFromStatus(){
+  $("doneCheck").checked = $("status").value === "撮影済み";
+}
+
 function render(){
   const list = $("list");
   const empty = $("emptyState");
   list.innerHTML = "";
+
+  updateSummary();
 
   let arr = [...data];
 
@@ -634,6 +813,11 @@ function render(){
   arr.sort((a,b)=>{
     if(sort === "priority"){
       const diff = priorityOrder(a.priority) - priorityOrder(b.priority);
+      if(diff !== 0) return diff;
+      return (a.order || 0) - (b.order || 0);
+    }
+    if(sort === "status"){
+      const diff = statusOrder(a.status) - statusOrder(b.status);
       if(diff !== 0) return diff;
       return (a.order || 0) - (b.order || 0);
     }
@@ -682,6 +866,7 @@ function render(){
           <span class="badge">シーン：${escapeHtml(v.sceneNo)}</span>
           <span class="badge">撮影順：${escapeHtml(String(v.order))}</span>
           <span class="badge ${v.priority==='高'?'high':v.priority==='中'?'mid':'low'}">${escapeHtml(v.priority)}</span>
+          <span class="badge ${statusClass(v.status)}">${escapeHtml(v.status)}</span>
           ${v.doneCheck ? '<span class="badge done-badge">撮影済み</span>' : ''}
           ${v.date ? `<span class="badge schedule-badge">${escapeHtml(v.date)}</span>` : ''}
           ${v.block ? `<span class="badge schedule-badge">${escapeHtml(v.block)}</span>` : ''}
@@ -723,6 +908,11 @@ function render(){
             </div>
 
             <div class="meta-box">
+              <div class="meta-label">ステータス</div>
+              <div class="meta-value">${escapeHtml(v.status || "-")}</div>
+            </div>
+
+            <div class="meta-box">
               <div class="meta-label">撮影日</div>
               <div class="meta-value">${escapeHtml(v.date || "-")}</div>
             </div>
@@ -748,6 +938,26 @@ function render(){
             </div>
 
             <div class="meta-box">
+              <div class="meta-label">出演者</div>
+              <div class="meta-value">${escapeHtml(v.cast || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">演出意図</div>
+              <div class="meta-value">${escapeHtml(v.directionIntent || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">感情</div>
+              <div class="meta-value">${escapeHtml(v.emotion || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">カメラサイズ</div>
+              <div class="meta-value">${escapeHtml(v.cameraSize || "-")}</div>
+            </div>
+
+            <div class="meta-box">
               <div class="meta-label">住所</div>
               <div class="meta-value">${escapeHtml(v.address || "-")}</div>
             </div>
@@ -762,6 +972,21 @@ function render(){
             <div class="meta-box">
               <div class="meta-label">撮影状態</div>
               <div class="meta-value">${v.doneCheck ? "撮影済み" : "未撮影"}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">小道具</div>
+              <div class="meta-value">${escapeHtml(v.props || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">機材</div>
+              <div class="meta-value">${escapeHtml(v.gear || "-")}</div>
+            </div>
+
+            <div class="meta-box">
+              <div class="meta-label">衣装</div>
+              <div class="meta-value">${escapeHtml(v.costume || "-")}</div>
             </div>
 
             <div class="meta-box" style="grid-column:1 / -1;">
@@ -800,9 +1025,17 @@ function render(){
         $("start").value = v.start || "";
         $("end").value = v.end || "";
         $("priority").value = v.priority || "中";
+        $("status").value = v.status || "未着手";
         $("loc").value = v.loc || "";
+        $("cast").value = v.cast || "";
+        $("directionIntent").value = v.directionIntent || "";
+        $("emotion").value = v.emotion || "";
+        $("cameraSize").value = v.cameraSize || "";
         $("address").value = v.address || "";
         $("mapUrl").value = v.mapUrl || "";
+        $("props").value = v.props || "";
+        $("gear").value = v.gear || "";
+        $("costume").value = v.costume || "";
         $("memo").value = v.memo || "";
         $("doneCheck").checked = !!v.doneCheck;
         $("formTitle").textContent = "シーン編集中";
@@ -835,6 +1068,7 @@ function render(){
 $("form").onsubmit = e => {
   e.preventDefault();
 
+  const statusValue = $("status").value;
   const obj = normalize({
     id: $("id").value || "",
     project: $("project").value,
@@ -847,11 +1081,19 @@ $("form").onsubmit = e => {
     start: $("start").value,
     end: $("end").value,
     priority: $("priority").value,
+    status: statusValue,
     loc: $("loc").value,
+    cast: $("cast").value,
+    directionIntent: $("directionIntent").value,
+    emotion: $("emotion").value,
+    cameraSize: $("cameraSize").value,
     address: $("address").value,
     mapUrl: $("mapUrl").value,
+    props: $("props").value,
+    gear: $("gear").value,
+    costume: $("costume").value,
     memo: $("memo").value,
-    doneCheck: $("doneCheck").checked
+    doneCheck: statusValue === "撮影済み"
   });
 
   if(!obj.project || !obj.sceneNo || !obj.order || !obj.title){
@@ -872,6 +1114,9 @@ $("form").onsubmit = e => {
 $("cancel").onclick = () => {
   resetForm();
 };
+
+$("doneCheck").onchange = syncStatusFromCheckbox;
+$("status").onchange = syncCheckboxFromStatus;
 
 $("search").oninput = render;
 $("sort").onchange = render;
