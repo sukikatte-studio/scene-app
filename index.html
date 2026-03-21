@@ -2,60 +2,287 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Sukikatte Studio</title>
 <style>
 :root{
-  --bg:#0b0f19;
-  --panel:#151c2c;
-  --panel-2:#1d2638;
-  --panel-3:#121826;
-  --text:#f3f4f6;
-  --sub:#9ca3af;
-  --line:#334155;
+  --bg:#070b14;
+  --bg-2:#0b1020;
+  --panel:#12192a;
+  --panel-2:#182134;
+  --panel-3:#0f1626;
+  --card:#141d2f;
+  --line:#2a3853;
+  --line-soft:rgba(255,255,255,.06);
+  --text:#f5f7fb;
+  --sub:#97a3ba;
+  --muted:#6f7b91;
   --green:#22c55e;
-  --blue:#2563eb;
-  --gray:#475569;
+  --blue:#3b82f6;
+  --blue-2:#60a5fa;
   --red:#ef4444;
   --orange:#f59e0b;
-  --purple:#7c3aed;
-  --teal:#0f766e;
+  --purple:#8b5cf6;
+  --pink:#ec4899;
+  --teal:#14b8a6;
+  --yellow:#eab308;
+  --shadow:0 10px 30px rgba(0,0,0,.28);
+  --radius:18px;
+  --radius-sm:12px;
+  --header-h:72px;
+  --safe-bottom:calc(env(safe-area-inset-bottom, 0px) + 18px);
 }
+
 *{box-sizing:border-box;}
+html,body{height:100%;}
 body{
   margin:0;
-  background:var(--bg);
+  background:
+    radial-gradient(circle at top, rgba(59,130,246,.12), transparent 30%),
+    radial-gradient(circle at 100% 0%, rgba(139,92,246,.08), transparent 24%),
+    linear-gradient(180deg, #050913 0%, #0a1020 100%);
   color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;
+  -webkit-font-smoothing:antialiased;
+  line-height:1.5;
 }
+
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
+
+button{
+  border:none;
+  cursor:pointer;
+  color:#fff;
+  transition:transform .12s ease, opacity .18s ease, box-shadow .18s ease;
+}
+button:active{
+  transform:scale(.985);
+}
+button:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
+input,textarea,select{
+  width:100%;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.04);
+  color:var(--text);
+  border-radius:14px;
+  padding:13px 14px;
+  font-size:16px;
+  outline:none;
+  appearance:none;
+}
+input:focus,textarea:focus,select:focus{
+  border-color:var(--blue-2);
+  box-shadow:0 0 0 3px rgba(96,165,250,.14);
+}
+textarea{
+  min-height:104px;
+  resize:vertical;
+}
+
+.app-shell{
+  max-width:460px;
+  margin:0 auto;
+  min-height:100vh;
+  position:relative;
+  background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+}
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:40;
+  backdrop-filter:blur(18px);
+  background:rgba(7,11,20,.82);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.topbar-inner{
+  padding:calc(10px + env(safe-area-inset-top, 0px)) 14px 12px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo-wrap{
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  background:linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.08);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.logo-wrap img{
+  width:34px;
+  height:34px;
+  object-fit:contain;
+  display:block;
+}
+.logo-fallback{
+  font-weight:700;
+  font-size:16px;
+  color:#fff;
+}
+
+.brand-text{
+  min-width:0;
+}
+.brand-title{
+  font-size:18px;
+  font-weight:800;
+  letter-spacing:.02em;
+  margin:0;
+}
+.brand-sub{
+  color:var(--sub);
+  font-size:12px;
+  margin-top:2px;
+}
+
 .app{
-  max-width:980px;
-  margin:auto;
+  padding:14px 14px calc(86px + var(--safe-bottom));
+}
+
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:20px;
+  padding:14px;
+  margin-bottom:14px;
+  box-shadow:var(--shadow);
+}
+
+.card-title-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:12px;
+}
+.card-title{
+  margin:0;
+  font-size:18px;
+  font-weight:800;
+}
+.card-sub{
+  color:var(--sub);
+  font-size:12px;
+}
+
+.section-toggle{
+  background:rgba(255,255,255,.06);
+  color:var(--sub);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;
+  padding:8px 10px;
+  font-size:12px;
+  white-space:nowrap;
+}
+.card.collapsed .card-body{
+  display:none;
+}
+.card.collapsed .section-toggle{
+  opacity:.9;
+}
+
+.hero-card{
   padding:16px;
+  background:
+    linear-gradient(135deg, rgba(59,130,246,.18), rgba(139,92,246,.14)),
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
 }
-.app-header{
-  margin-bottom:16px;
+.hero-top{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:flex-start;
 }
-.app-header h1{
+.hero-copy h2{
   margin:0 0 6px;
-  font-size:32px;
+  font-size:22px;
+  line-height:1.25;
 }
-.subtitle{
+.hero-copy p{
   margin:0;
   color:var(--sub);
+  font-size:13px;
+}
+.hero-badge{
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:999px;
+  padding:7px 10px;
+  font-size:12px;
+  color:#dbeafe;
+  white-space:nowrap;
+}
+
+.segment-label{
+  color:var(--sub);
+  font-size:12px;
+  margin:0 0 8px;
+}
+.segment{
+  display:grid;
+  gap:8px;
+}
+.segment.two{
+  grid-template-columns:1fr 1fr;
+}
+.segment.dept{
+  grid-template-columns:repeat(3,1fr);
+}
+.segment-btn{
+  min-height:44px;
+  padding:10px 12px;
+  border-radius:14px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.07);
+  color:#fff;
   font-size:14px;
+  font-weight:700;
 }
-.card{
-  background:var(--panel);
-  border:1px solid var(--line);
+.segment-btn.active-prep{ background:linear-gradient(180deg, rgba(34,197,94,.28), rgba(34,197,94,.16)); border-color:rgba(34,197,94,.42); }
+.segment-btn.active-field{ background:linear-gradient(180deg, rgba(59,130,246,.28), rgba(59,130,246,.16)); border-color:rgba(59,130,246,.42); }
+.segment-btn.active-dept{ background:linear-gradient(180deg, rgba(139,92,246,.28), rgba(139,92,246,.16)); border-color:rgba(139,92,246,.42); }
+
+.status-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:12px;
+}
+.status-tile{
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.06);
   border-radius:16px;
-  padding:16px;
-  margin-bottom:16px;
+  padding:12px;
 }
-h2{
-  margin:0 0 14px;
-  font-size:22px;
+.status-label{
+  color:var(--sub);
+  font-size:12px;
+  margin-bottom:6px;
 }
+.status-value{
+  font-size:16px;
+  font-weight:800;
+}
+
 .field{
   margin-bottom:12px;
 }
@@ -65,86 +292,97 @@ label{
   color:var(--sub);
   font-size:13px;
 }
-input,textarea,select{
-  width:100%;
-  padding:12px;
-  border-radius:10px;
-  border:1px solid var(--line);
-  background:var(--panel-2);
-  color:var(--text);
-  font-size:16px;
-  font-family:inherit;
-}
-textarea{
-  min-height:100px;
-  resize:vertical;
+.two-col{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
 .button-row{
   display:flex;
-  gap:10px;
   flex-wrap:wrap;
-  margin-top:8px;
+  gap:8px;
 }
 .button-row button{
-  flex:1 1 180px;
-}
-button{
-  padding:12px 14px;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
-  color:white;
-  font-size:15px;
-  font-family:inherit;
-}
-.primary-btn{background:var(--green);}
-.secondary-btn{background:var(--gray);}
-.select-btn{background:var(--blue);}
-.danger-btn{background:var(--red);}
-.edit-btn{background:var(--orange);}
-.detail-btn{background:var(--teal);}
-.copy-btn{background:var(--purple);}
-
-.mode-switch{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
-.mode-btn{
-  flex:1 1 180px;
-  background:var(--gray);
-}
-.mode-btn.active-prep{
-  background:var(--green);
-}
-.mode-btn.active-field{
-  background:var(--blue);
-}
-.dept-btn.active{
-  background:var(--purple);
+  flex:1 1 140px;
 }
 
-.mode-status,
+.primary-btn{ background:linear-gradient(180deg, #22c55e, #16a34a); }
+.secondary-btn{ background:linear-gradient(180deg, #4b5563, #374151); }
+.select-btn{ background:linear-gradient(180deg, #3b82f6, #2563eb); }
+.danger-btn{ background:linear-gradient(180deg, #ef4444, #dc2626); }
+.edit-btn{ background:linear-gradient(180deg, #f59e0b, #d97706); }
+.detail-btn{ background:linear-gradient(180deg, #14b8a6, #0f766e); }
+.copy-btn{ background:linear-gradient(180deg, #8b5cf6, #7c3aed); }
+
+.quick-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+.quick-btn{
+  min-height:52px;
+  border-radius:16px;
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.07);
+  color:#fff;
+  text-align:left;
+  padding:12px;
+}
+.quick-btn-title{
+  font-size:14px;
+  font-weight:800;
+}
+.quick-btn-sub{
+  font-size:11px;
+  color:var(--sub);
+  margin-top:3px;
+}
+
 .current-project-box,
 .box,
-.summary-box{
-  margin-top:12px;
+.summary-box,
+.current-scene-bar,
+.quick-check-box{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:16px;
   padding:12px;
-  border-radius:12px;
-  background:var(--panel-3);
-  border:1px solid var(--line);
   white-space:pre-wrap;
 }
+
+.current-project-label,
 .mode-status-label,
-.current-project-label{
+.current-scene-label{
   color:var(--sub);
   font-size:12px;
-  margin-bottom:4px;
+  margin-bottom:5px;
 }
+.current-project-value,
 .mode-status-value,
-.current-project-value{
+.current-scene-main{
   font-size:16px;
-  font-weight:700;
+  font-weight:800;
+}
+
+.summary-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:8px;
+}
+.summary-item{
+  padding:12px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.06);
+  background:rgba(255,255,255,.04);
+}
+.summary-label{
+  color:var(--sub);
+  font-size:11px;
+  margin-bottom:5px;
+}
+.summary-value{
+  font-size:20px;
+  font-weight:900;
 }
 
 .project-card,
@@ -152,16 +390,69 @@ button{
 .location-card,
 .actor-card,
 .prop-card{
-  margin-top:12px;
+  margin-top:10px;
   padding:12px;
-  border-radius:12px;
-  background:var(--panel-3);
-  border:1px solid var(--line);
+  border-radius:18px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06);
 }
 .project-card.active{
-  border-color:var(--blue);
-  box-shadow:0 0 0 1px rgba(37,99,235,.35) inset;
+  border-color:rgba(59,130,246,.48);
+  box-shadow:0 0 0 1px rgba(59,130,246,.25) inset;
 }
+
+.item-title{
+  font-size:17px;
+  font-weight:900;
+  margin-bottom:8px;
+  line-height:1.35;
+}
+.item-meta{
+  color:var(--sub);
+  font-size:13px;
+  line-height:1.6;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+.item-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:12px;
+}
+.item-actions button{
+  flex:1 1 120px;
+  min-height:42px;
+  border-radius:13px;
+}
+
+.badges{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-bottom:10px;
+}
+.badge{
+  font-size:11px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.06);
+  color:var(--sub);
+}
+.badge.done{
+  background:rgba(34,197,94,.16);
+  color:#dcfce7;
+  border-color:rgba(34,197,94,.35);
+}
+.badge.red{ background:rgba(239,68,68,.16); color:#fee2e2; border-color:rgba(239,68,68,.34); }
+.badge.blue{ background:rgba(59,130,246,.16); color:#dbeafe; border-color:rgba(59,130,246,.34); }
+.badge.green{ background:rgba(34,197,94,.16); color:#dcfce7; border-color:rgba(34,197,94,.34); }
+.badge.yellow{ background:rgba(234,179,8,.16); color:#fef9c3; border-color:rgba(234,179,8,.34); }
+.badge.purple{ background:rgba(139,92,246,.16); color:#ede9fe; border-color:rgba(139,92,246,.34); }
+.badge.pink{ background:rgba(236,72,153,.16); color:#fbcfe8; border-color:rgba(236,72,153,.34); }
+.badge.warn{ background:rgba(245,158,11,.16); color:#fde68a; border-color:rgba(245,158,11,.34); }
 
 .scene-card{
   position:relative;
@@ -173,47 +464,142 @@ button{
   left:0;
   top:0;
   bottom:0;
-  width:8px;
+  width:7px;
   background:#334155;
-  border-radius:12px 0 0 12px;
+  border-radius:18px 0 0 18px;
 }
 .scene-card.label-red::before{background:#ef4444;}
-.scene-card.label-blue::before{background:#2563eb;}
+.scene-card.label-blue::before{background:#3b82f6;}
 .scene-card.label-green::before{background:#22c55e;}
 .scene-card.label-yellow::before{background:#eab308;}
-.scene-card.label-purple::before{background:#7c3aed;}
-.scene-card.label-pink::before{background:#db2777;}
+.scene-card.label-purple::before{background:#8b5cf6;}
+.scene-card.label-pink::before{background:#ec4899;}
 
-.field-scene-card{
-  padding-left:18px;
+.scene-card.scene-done-card{
+  opacity:.72;
+  border-color:#334155;
 }
+.scene-card.scene-done-card::before{
+  background:#166534 !important;
+}
+.scene-card.scene-undone-card{
+  border-color:rgba(59,130,246,.34);
+  box-shadow:0 0 0 1px rgba(59,130,246,.16) inset;
+}
+.scene-card.next-target-card{
+  border-color:rgba(34,197,94,.48);
+  box-shadow:0 0 0 2px rgba(34,197,94,.18), 0 0 18px rgba(34,197,94,.10);
+}
+.scene-card.next-target-card::before{
+  background:#22c55e !important;
+}
+.scene-card.flash-focus{
+  box-shadow:0 0 0 2px rgba(59,130,246,.9), 0 0 18px rgba(59,130,246,.45);
+  border-color:#60a5fa;
+}
+
 .field-scene-card .item-title{
-  font-size:20px;
+  font-size:19px;
 }
-.field-scene-card .item-actions button{
-  flex:1 1 150px;
+
+.detail-box{
+  margin-top:10px;
+  padding:10px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:14px;
+}
+.meta-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:8px;
+}
+
+.scene-check-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:8px;
+}
+.scene-check-item{
+  display:flex;
+  gap:8px;
+  align-items:flex-start;
+  color:var(--text);
+  font-size:14px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:14px;
+  padding:11px 12px;
+}
+.scene-check-item input,
+.quick-check-item input{
+  width:auto;
+  margin-top:2px;
+}
+
+.scene-check-badges{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:10px;
+}
+.scene-check-badge{
+  font-size:12px;
+  padding:8px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.06);
+  background:rgba(255,255,255,.04);
+  color:var(--sub);
+}
+.scene-check-badge.on{
+  background:rgba(34,197,94,.18);
+  color:#dcfce7;
+  border-color:rgba(34,197,94,.35);
+}
+
+.progress-wrap{
+  margin-top:10px;
+}
+.progress-label-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:6px;
+  font-size:12px;
+  color:var(--sub);
+}
+.progress-bar{
+  width:100%;
+  height:10px;
+  border-radius:999px;
+  background:#09111e;
+  border:1px solid rgba(255,255,255,.06);
+  overflow:hidden;
+}
+.progress-bar-fill{
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg,#22c55e,#16a34a);
+  transition:width .25s ease;
 }
 
 .actor-card-inner{
   display:grid;
-  grid-template-columns:96px 1fr;
+  grid-template-columns:86px 1fr;
   gap:12px;
   align-items:start;
 }
-.actor-thumb{
-  width:96px;
-  height:96px;
-  border-radius:12px;
+.actor-thumb,
+.actor-thumb-placeholder{
+  width:86px;
+  height:86px;
+  border-radius:16px;
   object-fit:cover;
-  background:var(--panel-2);
-  border:1px solid var(--line);
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06);
 }
 .actor-thumb-placeholder{
-  width:96px;
-  height:96px;
-  border-radius:12px;
-  background:var(--panel-2);
-  border:1px solid var(--line);
   display:flex;
   align-items:center;
   justify-content:center;
@@ -223,148 +609,72 @@ button{
   padding:8px;
 }
 
-.item-title{
-  font-size:18px;
-  font-weight:700;
-  margin-bottom:8px;
-}
-.item-meta{
-  color:var(--sub);
-  font-size:14px;
-  line-height:1.6;
-  white-space:pre-wrap;
-  word-break:break-word;
-}
-.item-actions{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-top:12px;
-}
-.item-actions button{
-  flex:1 1 120px;
-}
-
-.badges{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  margin-bottom:10px;
-}
-.badge{
-  font-size:12px;
-  padding:6px 10px;
-  border-radius:999px;
-  background:#1e293b;
-  border:1px solid var(--line);
-  color:var(--sub);
-}
-.badge.done{
-  background:rgba(34,197,94,.18);
-  color:#dcfce7;
-  border-color:rgba(34,197,94,.4);
-}
-.badge.red{
-  background:rgba(239,68,68,.2);
-  color:#fee2e2;
-  border-color:rgba(239,68,68,.4);
-}
-.badge.blue{
-  background:rgba(37,99,235,.2);
-  color:#dbeafe;
-  border-color:rgba(37,99,235,.4);
-}
-.badge.green{
-  background:rgba(34,197,94,.2);
-  color:#dcfce7;
-  border-color:rgba(34,197,94,.4);
-}
-.badge.yellow{
-  background:rgba(234,179,8,.2);
-  color:#fef9c3;
-  border-color:rgba(234,179,8,.4);
-}
-.badge.purple{
-  background:rgba(124,58,237,.2);
-  color:#ede9fe;
-  border-color:rgba(124,58,237,.4);
-}
-.badge.pink{
-  background:rgba(219,39,119,.2);
-  color:#fbcfe8;
-  border-color:rgba(219,39,119,.4);
-}
-
 .group-title{
   margin:18px 0 8px;
-  font-size:18px;
+  font-size:16px;
   color:#93c5fd;
+  font-weight:900;
 }
-.empty-text{
-  color:var(--sub);
-  padding:8px 0;
-}
-.hidden{
-  display:none !important;
-}
-.detail-box{
-  margin-top:10px;
-  padding:10px;
-  background:var(--panel-2);
-  border:1px solid var(--line);
-  border-radius:10px;
-}
-.meta-grid{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:8px;
-}
-.summary-grid{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:10px;
-}
-.summary-item{
+.location-group-box,
+.priority-group-box{
+  margin-top:14px;
   padding:12px;
-  border-radius:12px;
-  border:1px solid var(--line);
-  background:var(--panel-2);
+  border-radius:18px;
 }
-.summary-label{
+.location-group-box{
+  border:1px solid rgba(255,255,255,.06);
+  background:rgba(255,255,255,.03);
+}
+.priority-group-box{
+  border:1px solid rgba(59,130,246,.38);
+  background:rgba(59,130,246,.08);
+}
+.priority-group-title{
+  font-size:17px;
+  font-weight:900;
+  color:#dbeafe;
+  margin-bottom:6px;
+}
+.priority-group-meta,
+.location-group-meta{
   color:var(--sub);
   font-size:12px;
+  margin-bottom:10px;
+}
+.location-group-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:10px;
+  margin-bottom:10px;
+}
+.location-group-title{
+  font-size:16px;
+  font-weight:900;
+  color:#bfdbfe;
   margin-bottom:4px;
 }
-.summary-value{
-  font-size:20px;
-  font-weight:700;
+.location-toggle-btn{
+  flex:0 0 auto;
+  min-height:40px;
+  padding:10px 12px;
+  border-radius:12px;
+  background:linear-gradient(180deg, #475569, #334155);
+  color:#fff;
+  font-size:12px;
 }
-.sticky-field-card{
-  position:sticky;
-  top:0;
-  z-index:10;
+.location-group-scenes.hidden{
+  display:none !important;
 }
 
-.field-top-bar{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:12px;
-}
 .quick-check-wrap{
   display:grid;
   grid-template-columns:1fr;
   gap:10px;
-  margin-top:12px;
-}
-.quick-check-box{
-  background:var(--panel-2);
-  border:1px solid var(--line);
-  border-radius:12px;
-  padding:12px;
 }
 .quick-check-title{
   font-size:14px;
-  font-weight:700;
+  font-weight:900;
   margin-bottom:8px;
 }
 .quick-check-list{
@@ -378,530 +688,631 @@ button{
   color:var(--text);
   font-size:14px;
 }
-.quick-check-item input{
-  width:auto;
-  margin-top:2px;
+
+.empty-text{
+  color:var(--sub);
+  padding:8px 0;
 }
-.field-section-title{
-  margin:18px 0 8px;
-  font-size:16px;
-  font-weight:700;
-  color:#cbd5e1;
-}
-.field-divider{
-  height:1px;
-  background:var(--line);
-  margin:14px 0;
+.hidden{
+  display:none !important;
 }
 
-.scene-check-grid{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:8px;
-  margin-top:8px;
-}
-.scene-check-item{
-  display:flex;
-  gap:8px;
-  align-items:flex-start;
-  color:var(--text);
-  font-size:14px;
-  background:var(--panel-2);
-  border:1px solid var(--line);
-  border-radius:10px;
-  padding:10px 12px;
-}
-.scene-check-item input{
-  width:auto;
-  margin-top:2px;
-}
-.scene-check-badges{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  margin-top:10px;
-}
-.scene-check-badge{
-  font-size:12px;
-  padding:6px 10px;
+.mobile-fab{
+  position:fixed;
+  right:16px;
+  bottom:calc(16px + var(--safe-bottom));
+  z-index:50;
+  width:60px;
+  height:60px;
   border-radius:999px;
-  border:1px solid var(--line);
-  background:#1e293b;
-  color:var(--sub);
+  background:linear-gradient(180deg, #3b82f6, #2563eb);
+  color:#fff;
+  font-size:28px;
+  box-shadow:0 18px 40px rgba(37,99,235,.34);
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
-.scene-check-badge.on{
-  background:rgba(34,197,94,.18);
-  color:#dcfce7;
-  border-color:rgba(34,197,94,.4);
+
+.desktop-note{
+  display:none;
 }
 
 @media (min-width:700px){
-  .two-col{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
+  body{
+    padding:18px;
   }
-  .meta-grid{
-    grid-template-columns:1fr 1fr;
+  .app-shell{
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:28px;
+    overflow:hidden;
+    box-shadow:0 30px 80px rgba(0,0,0,.38);
   }
-  .summary-grid{
-    grid-template-columns:1fr 1fr 1fr;
-  }
-  .field-top-bar{
-    grid-template-columns:1fr 1fr;
-  }
-  .quick-check-wrap{
-    grid-template-columns:1fr 1fr;
-  }
-  .scene-check-grid{
-    grid-template-columns:1fr 1fr;
+  .desktop-note{
+    display:block;
+    max-width:460px;
+    margin:0 auto 10px;
+    color:#94a3b8;
+    font-size:12px;
+    text-align:center;
   }
 }
-
-
 </style>
 </head>
 <body>
-<div class="app">
 
-  <header class="app-header">
-    <h1>Sukikatte Studio</h1>
-    <p class="subtitle">黒UI 安定版 / 1ファイル土台 / 現場モード強化版</p>
+<div class="desktop-note">PCではiPhone幅で表示されます そのまま作業して最終的にiPhoneで使えるUIです</div>
+
+<div class="app-shell">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo-wrap">
+          <img src="sukikatte-logo.png" alt="Sukikatte Studio ロゴ" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;logo-fallback&quot;>S</div>';">
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">Sukikatte Studio</div>
+          <div class="brand-sub">iPhone前提UI / シーン管理オールインワン</div>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <section class="card">
-    <h2>モード切替</h2>
-    <div class="mode-switch">
-      <button type="button" id="prepBtn" class="mode-btn">準備モード</button>
-      <button type="button" id="fieldBtn" class="mode-btn">現場モード</button>
-    </div>
-    <div class="mode-status">
-      <div class="mode-status-label">現在のモード</div>
-      <div id="modeLabel" class="mode-status-value">未切替</div>
-    </div>
-  </section>
+  <main class="app">
 
-  <section class="card" id="departmentSection">
-    <h2>部署</h2>
-    <div class="mode-switch">
-      <button type="button" class="mode-btn dept-btn active" data-dept="all">ALL</button>
-      <button type="button" class="mode-btn dept-btn" data-dept="direction">演出部</button>
-      <button type="button" class="mode-btn dept-btn" data-dept="camera">撮影部</button>
-      <button type="button" class="mode-btn dept-btn" data-dept="light">照明部</button>
-      <button type="button" class="mode-btn dept-btn" data-dept="make">メイク部</button>
-      <button type="button" class="mode-btn dept-btn" data-dept="costume">衣装部</button>
-      <button type="button" class="mode-btn dept-btn" data-dept="art">美術部</button>
-      <button type="button" class="mode-btn dept-btn" data-dept="production">制作部</button>
-      <button type="button" class="mode-btn dept-btn" data-dept="actor">俳優部</button>
-    </div>
-    <div class="mode-status">
-      <div class="mode-status-label">現在の部署</div>
-      <div id="deptLabel" class="mode-status-value">ALL</div>
-    </div>
-  </section>
-
-  <section class="card" id="projectCreateSection">
-    <h2>プロジェクト作成</h2>
-
-    <div class="field">
-      <label for="projectTitle">プロジェクト名</label>
-      <input id="projectTitle" placeholder="例：覚えてなくていい">
-    </div>
-
-    <div class="field">
-      <label for="projectDirector">監督名</label>
-      <input id="projectDirector" placeholder="例：菅原昌規">
-    </div>
-
-    <div class="field">
-      <label for="projectMemo">プロジェクトメモ</label>
-      <textarea id="projectMemo" placeholder="例：短編 2日撮影 夜シーン多め"></textarea>
-    </div>
-
-    <div class="button-row">
-      <button type="button" id="saveProjectBtn" class="primary-btn">プロジェクト保存</button>
-      <button type="button" id="clearProjectBtn" class="secondary-btn">クリア</button>
-    </div>
-  </section>
-
-  <section class="card" id="projectListSection">
-    <h2>プロジェクト一覧</h2>
-
-    <div class="current-project-box">
-      <div class="current-project-label">選択中プロジェクト</div>
-      <div id="currentProjectLabel" class="current-project-value">未選択</div>
-    </div>
-
-    <div id="projectList"></div>
-  </section>
-
-  <section class="card" id="locationMasterSection">
-    <h2>ロケ地マスタ</h2>
-
-    <div class="field">
-      <label for="locationName">ロケ地名</label>
-      <input id="locationName" placeholder="例：居酒屋かつら">
-    </div>
-
-    <div class="field">
-      <label for="locationAddress">住所</label>
-      <input id="locationAddress" placeholder="例：東京都渋谷区○○1-2-3">
-    </div>
-
-    <div class="field">
-  <label for="locationPhone">電話番号</label>
-  <input id="locationPhone" placeholder="例：03-1234-5678">
-</div>
-
-    <div class="field">
-      <label for="locationMapUrl">GoogleマップURL</label>
-      <input id="locationMapUrl" placeholder="https://maps.google.com/...">
-    </div>
-
-    <div class="field">
-      <label for="locationPermitMemo">ロケ許可メモ</label>
-      <textarea id="locationPermitMemo" placeholder="例：店長確認済み 申請書送付済み"></textarea>
-    </div>
-
-    <div class="field">
-      <label for="locationParkingMemo">駐車場メモ</label>
-      <textarea id="locationParkingMemo" placeholder="例：近隣コインPあり 店前2台まで"></textarea>
-    </div>
-
-    <div class="field">
-      <label for="locationPowerMemo">電源メモ</label>
-      <textarea id="locationPowerMemo" placeholder="例：店内コンセント使用可 延長コード必要"></textarea>
-    </div>
-
-    <div class="field">
-      <label for="locationToiletMemo">トイレメモ</label>
-      <textarea id="locationToiletMemo" placeholder="例：店内あり 共用部のみ"></textarea>
-    </div>
-
-    <div class="field">
-      <label for="locationRainMemo">雨天時メモ</label>
-      <textarea id="locationRainMemo" placeholder="例：雨天時は店内寄りで対応"></textarea>
-    </div>
-
-    <div class="button-row">
-      <button type="button" id="saveLocationBtn" class="primary-btn">ロケ地保存</button>
-      <button type="button" id="clearLocationBtn" class="secondary-btn">クリア</button>
-    </div>
-
-    <div id="locationList"></div>
-  </section>
-
-  <section class="card" id="actorMasterSection">
-    <h2>俳優一覧</h2>
-
-    <div class="field">
-      <label for="actorName">俳優名</label>
-      <input id="actorName" placeholder="例：岡本尚子">
-    </div>
-
-    <div class="field">
-      <label for="actorImageUrl">写真URL</label>
-      <input id="actorImageUrl" placeholder="https://example.com/actor.jpg">
-    </div>
-
-    <div class="field">
-      <label for="actorMemo">俳優メモ</label>
-      <textarea id="actorMemo" placeholder="例：高校生役 ナチュラル 一人称は僕"></textarea>
-    </div>
-
-    <div class="button-row">
-      <button type="button" id="saveActorBtn" class="primary-btn">俳優保存</button>
-      <button type="button" id="clearActorBtn" class="secondary-btn">クリア</button>
-    </div>
-
-    <div id="actorList"></div>
-  </section>
-
-  <section class="card" id="propMasterSection">
-    <h2>小道具マスタ</h2>
-
-    <div class="field">
-      <label for="propName">小道具名</label>
-      <input id="propName" placeholder="例：グラス">
-    </div>
-
-    <div class="field">
-      <label for="propStorage">保管場所</label>
-      <input id="propStorage" placeholder="例：自宅棚A / 事務所箱2">
-    </div>
-
-    <div class="field">
-      <label for="propMemo">小道具メモ</label>
-      <textarea id="propMemo" placeholder="例：割れやすい 予備あり"></textarea>
-    </div>
-
-    <div class="button-row">
-      <button type="button" id="savePropBtn" class="primary-btn">小道具保存</button>
-      <button type="button" id="clearPropBtn" class="secondary-btn">クリア</button>
-    </div>
-
-    <div id="propList"></div>
-  </section>
-
-  <section class="card" id="sceneFormSection">
-    <h2 id="sceneFormTitle">シーン入力</h2>
-
-    <div class="field">
-      <label for="sceneProjectSelect">プロジェクト</label>
-      <select id="sceneProjectSelect"></select>
-    </div>
-
-    <div class="field">
-      <label for="sceneLocationSelect">ロケ地マスタ選択</label>
-      <select id="sceneLocationSelect"></select>
-    </div>
-
-    <div class="button-row">
-      <button type="button" id="applyLocationBtn" class="select-btn">ロケ地情報を反映</button>
-    </div>
-
-    <div class="field">
-      <label for="sceneActorSelect">俳優一覧から追加</label>
-      <select id="sceneActorSelect"></select>
-    </div>
-
-    <div class="button-row">
-      <button type="button" id="applyActorBtn" class="select-btn">出演者に追加</button>
-    </div>
-
-    <div class="field">
-      <label for="scenePropSelect">小道具一覧から追加</label>
-      <select id="scenePropSelect"></select>
-    </div>
-
-    <div class="button-row">
-      <button type="button" id="applyPropBtn" class="select-btn">小道具に追加</button>
-    </div>
-
-    <div class="two-col">
-      <div class="field">
-        <label for="sceneNo">シーン番号</label>
-        <input id="sceneNo" placeholder="例：1">
+    <section class="card hero-card">
+      <div class="hero-top">
+        <div class="hero-copy">
+          <h2>現場で迷わない<br>シーン管理UI</h2>
+          <p>PCで作って iPhoneでそのまま使いやすい見た目に整理しています</p>
+        </div>
+        <div class="hero-badge">Sukikatte</div>
       </div>
 
-      <div class="field">
-        <label for="sceneOrder">撮影順</label>
-        <input id="sceneOrder" type="number" placeholder="例：1">
+      <div style="margin-top:14px;">
+        <div class="segment-label">モード</div>
+        <div class="segment two">
+          <button type="button" id="prepBtn" class="segment-btn">準備モード</button>
+          <button type="button" id="fieldBtn" class="segment-btn">現場モード</button>
+        </div>
       </div>
-    </div>
 
-    <div class="field">
-      <label for="sceneTitle">シーン名</label>
-      <input id="sceneTitle" placeholder="例：店内 会話シーン">
-    </div>
+      <div style="margin-top:12px;">
+        <div class="segment-label">部署</div>
+        <div class="segment dept">
+          <button type="button" class="segment-btn dept-btn" data-dept="all">ALL</button>
+          <button type="button" class="segment-btn dept-btn" data-dept="direction">演出</button>
+          <button type="button" class="segment-btn dept-btn" data-dept="camera">撮影</button>
+          <button type="button" class="segment-btn dept-btn" data-dept="light">照明</button>
+          <button type="button" class="segment-btn dept-btn" data-dept="make">メイク</button>
+          <button type="button" class="segment-btn dept-btn" data-dept="costume">衣装</button>
+          <button type="button" class="segment-btn dept-btn" data-dept="art">美術</button>
+          <button type="button" class="segment-btn dept-btn" data-dept="production">制作</button>
+          <button type="button" class="segment-btn dept-btn" data-dept="actor">俳優</button>
+        </div>
+      </div>
 
-    <div class="field">
-      <label for="sceneLabel">色分けラベル</label>
-      <select id="sceneLabel">
-        <option value="">なし</option>
-        <option value="赤">赤</option>
-        <option value="青">青</option>
-        <option value="緑">緑</option>
-        <option value="黄">黄</option>
-        <option value="紫">紫</option>
-        <option value="ピンク">ピンク</option>
-      </select>
-    </div>
+      <div class="status-grid">
+        <div class="status-tile">
+          <div class="status-label">現在のモード</div>
+          <div id="modeLabel" class="status-value">未切替</div>
+        </div>
+        <div class="status-tile">
+          <div class="status-label">現在の部署</div>
+          <div id="deptLabel" class="status-value">ALL</div>
+        </div>
+      </div>
+    </section>
 
-    <div class="field">
-      <label for="sceneCast">出演者</label>
-      <textarea id="sceneCast" placeholder="例：岡本尚子 長嶋琢磨"></textarea>
-    </div>
+    <section class="card" id="dashboardSection">
+      <div class="card-title-row">
+        <h2 class="card-title">クイック操作</h2>
+        <button type="button" class="section-toggle" data-toggle-card="dashboardSection">閉じる</button>
+      </div>
+      <div class="card-body">
+        <div class="quick-actions">
+          <button type="button" class="quick-btn" id="quickOpenSceneBtn">
+            <div class="quick-btn-title">新規シーン</div>
+            <div class="quick-btn-sub">すぐ入力を開く</div>
+          </button>
+          <button type="button" class="quick-btn" id="quickGoFieldBtn">
+            <div class="quick-btn-title">現場表示へ</div>
+            <div class="quick-btn-sub">未完了を確認</div>
+          </button>
+          <button type="button" class="quick-btn" id="quickGoProjectBtn">
+            <div class="quick-btn-title">プロジェクト</div>
+            <div class="quick-btn-sub">選択中を切り替え</div>
+          </button>
+          <button type="button" class="quick-btn" id="quickGoBackupBtn">
+            <div class="quick-btn-title">バックアップ</div>
+            <div class="quick-btn-sub">書き出しと復元</div>
+          </button>
+        </div>
+      </div>
+    </section>
 
-    <div class="field">
-      <label for="sceneLocation">ロケ場所</label>
-      <input id="sceneLocation" placeholder="例：居酒屋かつら">
-    </div>
+    <section class="card" id="projectCreateSection">
+      <div class="card-title-row">
+        <h2 id="projectFormTitle" class="card-title">プロジェクト作成</h2>
+        <button type="button" class="section-toggle" data-toggle-card="projectCreateSection">閉じる</button>
+      </div>
+      <div class="card-body">
+        <div class="field">
+          <label for="projectTitle">プロジェクト名</label>
+          <input id="projectTitle" placeholder="例：覚えてなくていい">
+        </div>
 
-    <div class="field">
-      <label for="sceneAddress">住所</label>
-      <input id="sceneAddress" placeholder="例：東京都渋谷区○○1-2-3">
-    </div>
+        <div class="field">
+          <label for="projectDirector">監督名</label>
+          <input id="projectDirector" placeholder="例：菅原昌規">
+        </div>
 
-    <div class="field">
-  <label for="scenePhone">電話番号</label>
-  <input id="scenePhone" placeholder="例：03-1234-5678">
+        <div class="field">
+          <label for="projectMemo">プロジェクトメモ</label>
+          <textarea id="projectMemo" placeholder="例：短編 2日撮影 夜シーン多め"></textarea>
+        </div>
+
+        <div class="button-row">
+          <button type="button" id="saveProjectBtn" class="primary-btn">プロジェクト保存</button>
+          <button type="button" id="clearProjectBtn" class="secondary-btn">クリア</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="projectListSection">
+      <div class="card-title-row">
+        <h2 class="card-title">プロジェクト一覧</h2>
+        <button type="button" class="section-toggle" data-toggle-card="projectListSection">閉じる</button>
+      </div>
+      <div class="card-body">
+        <div class="current-project-box">
+          <div class="current-project-label">選択中プロジェクト</div>
+          <div id="currentProjectLabel" class="current-project-value">未選択</div>
+        </div>
+        <div id="projectList"></div>
+      </div>
+    </section>
+
+    <section class="card" id="locationMasterSection">
+      <div class="card-title-row">
+        <h2 class="card-title">ロケ地マスタ</h2>
+        <button type="button" class="section-toggle" data-toggle-card="locationMasterSection">閉じる</button>
+      </div>
+      <div class="card-body">
+        <div class="field">
+          <label for="locationName">ロケ地名</label>
+          <input id="locationName" placeholder="例：居酒屋かつら">
+        </div>
+
+        <div class="field">
+          <label for="locationAddress">住所</label>
+          <input id="locationAddress" placeholder="例：東京都渋谷区○○1-2-3">
+        </div>
+
+        <div class="two-col">
+          <div class="field">
+            <label for="locationPhone">電話番号</label>
+            <input id="locationPhone" placeholder="03-1234-5678">
+          </div>
+
+          <div class="field">
+            <label for="locationMapUrl">GoogleマップURL</label>
+            <input id="locationMapUrl" placeholder="https://maps.google.com/...">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="locationPermitMemo">ロケ許可メモ</label>
+          <textarea id="locationPermitMemo" placeholder="例：店長確認済み 申請書送付済み"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="locationParkingMemo">駐車場メモ</label>
+          <textarea id="locationParkingMemo" placeholder="例：近隣コインPあり 店前2台まで"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="locationPowerMemo">電源メモ</label>
+          <textarea id="locationPowerMemo" placeholder="例：店内コンセント使用可 延長コード必要"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="locationToiletMemo">トイレメモ</label>
+          <textarea id="locationToiletMemo" placeholder="例：店内あり 共用部のみ"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="locationRainMemo">雨天時メモ</label>
+          <textarea id="locationRainMemo" placeholder="例：雨天時は店内寄りで対応"></textarea>
+        </div>
+
+        <div class="button-row">
+          <button type="button" id="saveLocationBtn" class="primary-btn">ロケ地保存</button>
+          <button type="button" id="clearLocationBtn" class="secondary-btn">クリア</button>
+        </div>
+
+        <div id="locationList"></div>
+      </div>
+    </section>
+
+    <section class="card" id="actorMasterSection">
+      <div class="card-title-row">
+        <h2 class="card-title">俳優一覧</h2>
+        <button type="button" class="section-toggle" data-toggle-card="actorMasterSection">閉じる</button>
+      </div>
+      <div class="card-body">
+        <div class="field">
+          <label for="actorName">俳優名</label>
+          <input id="actorName" placeholder="例：長島琢磨">
+        </div>
+
+        <div class="field">
+          <label for="actorImageUrl">写真URL</label>
+          <input id="actorImageUrl" placeholder="https://example.com/actor.jpg">
+        </div>
+
+        <div class="field">
+          <label for="actorMemo">俳優メモ</label>
+          <textarea id="actorMemo" placeholder="例：刑事役 寡黙 ナチュラル芝居"></textarea>
+        </div>
+
+        <div class="button-row">
+          <button type="button" id="saveActorBtn" class="primary-btn">俳優保存</button>
+          <button type="button" id="clearActorBtn" class="secondary-btn">クリア</button>
+        </div>
+
+        <div id="actorList"></div>
+      </div>
+    </section>
+
+    <section class="card" id="propMasterSection">
+      <div class="card-title-row">
+        <h2 class="card-title">小道具マスタ</h2>
+        <button type="button" class="section-toggle" data-toggle-card="propMasterSection">閉じる</button>
+      </div>
+      <div class="card-body">
+        <div class="field">
+          <label for="propName">小道具名</label>
+          <input id="propName" placeholder="例：グラス">
+        </div>
+
+        <div class="field">
+          <label for="propStorage">保管場所</label>
+          <input id="propStorage" placeholder="例：自宅棚A / 事務所箱2">
+        </div>
+
+        <div class="field">
+          <label for="propMemo">小道具メモ</label>
+          <textarea id="propMemo" placeholder="例：割れやすい 予備あり"></textarea>
+        </div>
+
+        <div class="button-row">
+          <button type="button" id="savePropBtn" class="primary-btn">小道具保存</button>
+          <button type="button" id="clearPropBtn" class="secondary-btn">クリア</button>
+        </div>
+
+        <div id="propList"></div>
+      </div>
+    </section>
+
+    <section class="card hidden" id="sceneFormSection">
+      <div class="card-title-row">
+        <h2 id="sceneFormTitle" class="card-title">シーン入力</h2>
+        <button type="button" class="section-toggle" data-toggle-card="sceneFormSection">閉じる</button>
+      </div>
+      <div class="card-body">
+
+        <div class="field">
+          <label for="sceneProjectSelect">プロジェクト</label>
+          <select id="sceneProjectSelect"></select>
+        </div>
+
+        <div class="field">
+          <label for="sceneLocationSelect">ロケ地マスタ選択</label>
+          <select id="sceneLocationSelect"></select>
+        </div>
+
+        <div class="button-row">
+          <button type="button" id="applyLocationBtn" class="select-btn">ロケ地情報を反映</button>
+        </div>
+
+        <div class="field">
+          <label for="sceneActorSelect">俳優一覧から追加</label>
+          <select id="sceneActorSelect"></select>
+        </div>
+
+        <div class="button-row">
+          <button type="button" id="applyActorBtn" class="select-btn">出演者に追加</button>
+        </div>
+
+        <div class="field">
+          <label for="scenePropSelect">小道具一覧から追加</label>
+          <select id="scenePropSelect"></select>
+        </div>
+
+        <div class="button-row">
+          <button type="button" id="applyPropBtn" class="select-btn">小道具に追加</button>
+        </div>
+
+        <div class="two-col">
+          <div class="field">
+            <label for="sceneNo">シーン番号</label>
+            <input id="sceneNo" placeholder="例：1">
+          </div>
+
+          <div class="field">
+            <label for="sceneOrder">撮影順</label>
+            <input id="sceneOrder" type="number" placeholder="例：1">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="sceneTitle">シーン名</label>
+          <input id="sceneTitle" placeholder="例：店内 会話シーン">
+        </div>
+
+        <div class="field">
+          <label for="sceneLabel">色分けラベル</label>
+          <select id="sceneLabel">
+            <option value="">なし</option>
+            <option value="赤">赤</option>
+            <option value="青">青</option>
+            <option value="緑">緑</option>
+            <option value="黄">黄</option>
+            <option value="紫">紫</option>
+            <option value="ピンク">ピンク</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="sceneCast">出演者</label>
+          <textarea id="sceneCast" placeholder="例：長島琢磨&#10;岡本尚子"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="sceneLocation">ロケ場所</label>
+          <input id="sceneLocation" placeholder="例：居酒屋かつら">
+        </div>
+
+        <div class="two-col">
+          <div class="field">
+            <label for="sceneAddress">住所</label>
+            <input id="sceneAddress" placeholder="例：東京都渋谷区○○1-2-3">
+          </div>
+          <div class="field">
+            <label for="scenePhone">電話番号</label>
+            <input id="scenePhone" placeholder="例：03-1234-5678">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="sceneMapUrl">GoogleマップURL</label>
+          <input id="sceneMapUrl" placeholder="https://maps.google.com/...">
+        </div>
+
+        <div class="field">
+          <label for="scenePermitMemo">ロケ許可メモ</label>
+          <textarea id="scenePermitMemo" placeholder="例：店長確認済み 申請書送付済み"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="sceneParkingMemo">駐車場メモ</label>
+          <textarea id="sceneParkingMemo" placeholder="例：近隣コインPあり"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="scenePowerMemo">電源メモ</label>
+          <textarea id="scenePowerMemo" placeholder="例：店内コンセント使用可"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="sceneToiletMemo">トイレメモ</label>
+          <textarea id="sceneToiletMemo" placeholder="例：店内あり"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="sceneRainMemo">雨天時メモ</label>
+          <textarea id="sceneRainMemo" placeholder="例：雨天時は店内寄りで対応"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="sceneProp">小道具</label>
+          <textarea id="sceneProp" placeholder="例：グラス&#10;メニュー表&#10;財布"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="sceneMemo">共通メモ</label>
+          <textarea id="sceneMemo" placeholder="例：重要シーン 先に撮る"></textarea>
+        </div>
+
+        <div class="field">
+          <label>シーンチェック</label>
+          <div class="scene-check-grid">
+            <label class="scene-check-item"><input type="checkbox" id="sceneCheckSchedule"> 香盤確認</label>
+            <label class="scene-check-item"><input type="checkbox" id="sceneCheckProp"> 小道具OK</label>
+            <label class="scene-check-item"><input type="checkbox" id="sceneCheckCast"> 出演者OK</label>
+            <label class="scene-check-item"><input type="checkbox" id="sceneCheckCostume"> 衣装メイクOK</label>
+            <label class="scene-check-item"><input type="checkbox" id="sceneCheckCamera"> カメラOK</label>
+            <label class="scene-check-item"><input type="checkbox" id="sceneCheckLight"> 照明OK</label>
+          </div>
+        </div>
+
+        <div class="field" id="directionNoteField">
+          <label for="sceneDirectionNote">演出部メモ</label>
+          <textarea id="sceneDirectionNote" placeholder="例：感情を抑えめに 目線は右奥"></textarea>
+        </div>
+
+        <div class="field" id="cameraNoteField">
+          <label for="sceneCameraNote">撮影部メモ</label>
+          <textarea id="sceneCameraNote" placeholder="例：Aカメ70-200 Bカメ24-70 縦寄り"></textarea>
+        </div>
+
+        <div class="field" id="lightNoteField">
+          <label for="sceneLightNote">照明部メモ</label>
+          <textarea id="sceneLightNote" placeholder="例：キー右45度 室内電球色に合わせる"></textarea>
+        </div>
+
+        <div class="field" id="productionNoteField">
+          <label for="sceneProductionNote">制作部メモ</label>
+          <textarea id="sceneProductionNote" placeholder="例：19時入館 20時完全撤収 近隣配慮あり"></textarea>
+        </div>
+
+        <div class="field" id="actorNoteField">
+          <label for="sceneActorNote">俳優部メモ</label>
+          <textarea id="sceneActorNote" placeholder="例：衣装替えあり 小道具は右手持ち"></textarea>
+        </div>
+
+        <div class="button-row">
+          <button type="button" id="saveSceneBtn" class="primary-btn">シーン保存</button>
+          <button type="button" id="clearSceneBtn" class="secondary-btn">クリア</button>
+          <button type="button" id="closeSceneBtn" class="secondary-btn">閉じる</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card hidden" id="fieldControlSection">
+      <div class="card-title-row">
+        <h2 class="card-title">現場モード操作</h2>
+        <button type="button" class="section-toggle" data-toggle-card="fieldControlSection">閉じる</button>
+      </div>
+      <div class="card-body">
+        <div class="current-scene-bar">
+          <div class="current-scene-label">現在見ているシーン</div>
+          <div id="currentSceneMain" class="current-scene-main">未選択</div>
+          <div id="currentSceneMeta" class="current-scene-meta"></div>
+          <div id="currentSceneActions" class="current-scene-actions" style="margin-top:10px;"></div>
+        </div>
+
+        <div class="button-row">
+          <button type="button" id="prevUndoneSceneBtn" class="secondary-btn">前の未完了</button>
+          <button type="button" id="nextUndoneSceneBtn" class="primary-btn">次の未完了</button>
+        </div>
+
+        <div class="summary-grid" style="margin-top:10px;">
+          <div class="summary-item">
+            <div class="summary-label">表示件数</div>
+            <div id="fieldVisibleCount" class="summary-value">0</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">未完了</div>
+            <div id="fieldRemainingCount" class="summary-value">0</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">完了</div>
+            <div id="fieldDoneCount" class="summary-value">0</div>
+          </div>
+        </div>
+
+        <div class="button-row" style="margin-top:10px;">
+          <button type="button" id="openNewSceneBtn" class="primary-btn">新規シーン入力を開く</button>
+        </div>
+
+        <div class="two-col" style="margin-top:10px;">
+          <div class="field">
+            <label for="fieldSearchInput">検索</label>
+            <input id="fieldSearchInput" placeholder="シーン名 出演者 場所 小道具など">
+          </div>
+
+          <div class="field">
+            <label for="fieldProjectFilter">プロジェクト絞り込み</label>
+            <select id="fieldProjectFilter"></select>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="field">
+            <label for="fieldStatusFilter">進行状況</label>
+            <select id="fieldStatusFilter">
+              <option value="all">すべて</option>
+              <option value="undone">未完了のみ</option>
+              <option value="done">完了のみ</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="fieldSortFilter">並び順</label>
+            <select id="fieldSortFilter">
+              <option value="default">未完了優先 ＋ 撮影順</option>
+              <option value="orderAsc">撮影順 昇順</option>
+              <option value="orderDesc">撮影順 降順</option>
+              <option value="titleAsc">シーン名 A-Z</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="button-row">
+          <button type="button" id="clearFieldFilterBtn" class="secondary-btn">現場フィルターをクリア</button>
+          <button type="button" id="expandAllGroupsBtn" class="select-btn">ロケ地を全部開く</button>
+          <button type="button" id="collapseAllGroupsBtn" class="secondary-btn">ロケ地を全部閉じる</button>
+        </div>
+
+        <div class="quick-check-wrap" style="margin-top:12px;">
+          <div class="quick-check-box">
+            <div class="quick-check-title">現場クイックチェック</div>
+            <div class="quick-check-list">
+              <label class="quick-check-item"><input type="checkbox" id="qcBattery"> バッテリー確認</label>
+              <label class="quick-check-item"><input type="checkbox" id="qcMedia"> メディア残量確認</label>
+              <label class="quick-check-item"><input type="checkbox" id="qcProp"> 小道具確認</label>
+              <label class="quick-check-item"><input type="checkbox" id="qcCast"> 出演者到着確認</label>
+            </div>
+          </div>
+
+          <div class="quick-check-box">
+            <div class="quick-check-title">撤収クイックチェック</div>
+            <div class="quick-check-list">
+              <label class="quick-check-item"><input type="checkbox" id="qcGearBack"> 機材積み忘れなし</label>
+              <label class="quick-check-item"><input type="checkbox" id="qcPropBack"> 小道具回収確認</label>
+              <label class="quick-check-item"><input type="checkbox" id="qcLocationClean"> 原状復帰確認</label>
+              <label class="quick-check-item"><input type="checkbox" id="qcDataBack"> データ退避確認</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="sceneListSection">
+      <div class="card-title-row">
+        <h2 class="card-title">シーン一覧</h2>
+        <button type="button" class="section-toggle" data-toggle-card="sceneListSection">閉じる</button>
+      </div>
+      <div class="card-body">
+        <div id="sceneList"></div>
+      </div>
+    </section>
+
+    <section class="card" id="backupSection">
+      <div class="card-title-row">
+        <h2 class="card-title">バックアップ</h2>
+        <button type="button" class="section-toggle" data-toggle-card="backupSection">閉じる</button>
+      </div>
+      <div class="card-body">
+        <div class="item-meta">現在のデータをJSONで保存したり 保存済みJSONから復元できます</div>
+
+        <div class="button-row" style="margin-top:10px;">
+          <button type="button" id="exportBackupBtn" class="primary-btn">バックアップを書き出し</button>
+          <button type="button" id="importBackupBtn" class="select-btn">バックアップを読み込む</button>
+        </div>
+
+        <input type="file" id="importBackupInput" accept=".json,application/json" class="hidden">
+
+        <div id="backupStatusBox" class="box" style="margin-top:10px;">バックアップ未実行</div>
+      </div>
+    </section>
+
+    <section class="card collapsed" id="debugSection">
+      <div class="card-title-row">
+        <h2 class="card-title">動作確認</h2>
+        <button type="button" class="section-toggle" data-toggle-card="debugSection">開く</button>
+      </div>
+      <div class="card-body">
+        <div id="debugBox" class="box">読み込み中...</div>
+      </div>
+    </section>
+
+  </main>
 </div>
 
-    <div class="field">
-      <label for="sceneMapUrl">GoogleマップURL</label>
-      <input id="sceneMapUrl" placeholder="https://maps.google.com/...">
-    </div>
-
-    <div class="field">
-      <label for="scenePermitMemo">ロケ許可メモ</label>
-      <textarea id="scenePermitMemo" placeholder="例：店長確認済み 申請書送付済み"></textarea>
-    </div>
-
-    <div class="field">
-      <label for="sceneParkingMemo">駐車場メモ</label>
-      <textarea id="sceneParkingMemo" placeholder="例：近隣コインPあり"></textarea>
-    </div>
-
-    <div class="field">
-      <label for="scenePowerMemo">電源メモ</label>
-      <textarea id="scenePowerMemo" placeholder="例：店内コンセント使用可"></textarea>
-    </div>
-
-    <div class="field">
-      <label for="sceneToiletMemo">トイレメモ</label>
-      <textarea id="sceneToiletMemo" placeholder="例：店内あり"></textarea>
-    </div>
-
-    <div class="field">
-      <label for="sceneRainMemo">雨天時メモ</label>
-      <textarea id="sceneRainMemo" placeholder="例：雨天時は店内寄りで対応"></textarea>
-    </div>
-
-    <div class="field">
-      <label for="sceneProp">小道具</label>
-      <textarea id="sceneProp" placeholder="例：グラス メニュー表 財布"></textarea>
-    </div>
-
-    <div class="field">
-      <label for="sceneMemo">共通メモ</label>
-      <textarea id="sceneMemo" placeholder="例：重要シーン 先に撮る"></textarea>
-    </div>
-
-    <div class="field">
-  <label>シーンチェック</label>
-  <div class="scene-check-grid">
-    <label class="scene-check-item"><input type="checkbox" id="sceneCheckSchedule"> 香盤確認</label>
-    <label class="scene-check-item"><input type="checkbox" id="sceneCheckProp"> 小道具OK</label>
-    <label class="scene-check-item"><input type="checkbox" id="sceneCheckCast"> 出演者OK</label>
-    <label class="scene-check-item"><input type="checkbox" id="sceneCheckCostume"> 衣装メイクOK</label>
-    <label class="scene-check-item"><input type="checkbox" id="sceneCheckCamera"> カメラOK</label>
-    <label class="scene-check-item"><input type="checkbox" id="sceneCheckLight"> 照明OK</label>
-  </div>
-</div>
-
-    <div class="field" id="directionNoteField">
-      <label for="sceneDirectionNote">演出部メモ</label>
-      <textarea id="sceneDirectionNote" placeholder="例：感情を抑えめに 目線は右奥"></textarea>
-    </div>
-
-    <div class="field" id="cameraNoteField">
-      <label for="sceneCameraNote">撮影部メモ</label>
-      <textarea id="sceneCameraNote" placeholder="例：Aカメ70-200 Bカメ24-70 縦寄り"></textarea>
-    </div>
-
-    <div class="field" id="lightNoteField">
-      <label for="sceneLightNote">照明部メモ</label>
-      <textarea id="sceneLightNote" placeholder="例：キー右45度 室内電球色に合わせる"></textarea>
-    </div>
-
-    <div class="field" id="productionNoteField">
-      <label for="sceneProductionNote">制作部メモ</label>
-      <textarea id="sceneProductionNote" placeholder="例：19時入館 20時完全撤収 近隣配慮あり"></textarea>
-    </div>
-
-    <div class="field" id="actorNoteField">
-      <label for="sceneActorNote">俳優部メモ</label>
-      <textarea id="sceneActorNote" placeholder="例：衣装替えあり 小道具は右手持ち"></textarea>
-    </div>
-
-    <div class="button-row">
-      <button type="button" id="saveSceneBtn" class="primary-btn">シーン保存</button>
-      <button type="button" id="clearSceneBtn" class="secondary-btn">クリア</button>
-    </div>
-  </section>
-
-<section class="card sticky-field-card hidden" id="fieldControlSection">
-  <h2>現場モード操作</h2>
-
-  <div class="summary-grid">
-    <div class="summary-item">
-      <div class="summary-label">表示件数</div>
-      <div id="fieldVisibleCount" class="summary-value">0</div>
-    </div>
-    <div class="summary-item">
-      <div class="summary-label">未完了</div>
-      <div id="fieldRemainingCount" class="summary-value">0</div>
-    </div>
-    <div class="summary-item">
-      <div class="summary-label">完了</div>
-      <div id="fieldDoneCount" class="summary-value">0</div>
-    </div>
-  </div>
-
-  <div class="field-top-bar" style="margin-top:12px;">
-    <div class="field">
-      <label for="fieldSearchInput">検索</label>
-      <input id="fieldSearchInput" placeholder="シーン名 出演者 場所 小道具など">
-    </div>
-
-    <div class="field">
-      <label for="fieldProjectFilter">プロジェクト絞り込み</label>
-      <select id="fieldProjectFilter"></select>
-    </div>
-  </div>
-
-  <div class="field-top-bar">
-    <div class="field">
-      <label for="fieldStatusFilter">進行状況</label>
-      <select id="fieldStatusFilter">
-        <option value="all">すべて</option>
-        <option value="undone">未完了のみ</option>
-        <option value="done">完了のみ</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label for="fieldSortFilter">並び順</label>
-      <select id="fieldSortFilter">
-        <option value="default">未完了優先 ＋ 撮影順</option>
-        <option value="orderAsc">撮影順 昇順</option>
-        <option value="orderDesc">撮影順 降順</option>
-        <option value="titleAsc">シーン名 A-Z</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="button-row">
-    <button type="button" id="clearFieldFilterBtn" class="secondary-btn">現場フィルターをクリア</button>
-  </div>
-
-  <div class="field-divider"></div>
-
-  <div class="quick-check-wrap">
-    <div class="quick-check-box">
-      <div class="quick-check-title">現場クイックチェック</div>
-      <div class="quick-check-list">
-        <label class="quick-check-item"><input type="checkbox" id="qcBattery"> バッテリー確認</label>
-        <label class="quick-check-item"><input type="checkbox" id="qcMedia"> メディア残量確認</label>
-        <label class="quick-check-item"><input type="checkbox" id="qcProp"> 小道具確認</label>
-        <label class="quick-check-item"><input type="checkbox" id="qcCast"> 出演者到着確認</label>
-      </div>
-    </div>
-
-    <div class="quick-check-box">
-      <div class="quick-check-title">撤収クイックチェック</div>
-      <div class="quick-check-list">
-        <label class="quick-check-item"><input type="checkbox" id="qcGearBack"> 機材積み忘れなし</label>
-        <label class="quick-check-item"><input type="checkbox" id="qcPropBack"> 小道具回収確認</label>
-        <label class="quick-check-item"><input type="checkbox" id="qcLocationClean"> 原状復帰確認</label>
-        <label class="quick-check-item"><input type="checkbox" id="qcDataBack"> データ退避確認</label>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="card" id="sceneListSection">
-  <h2>シーン一覧</h2>
-  <div id="sceneList"></div>
-</section>
-
-<section class="card">
-  <h2>動作確認</h2>
-  <div id="debugBox" class="box">読み込み中...</div>
-</section>
-
-</div>
+<button type="button" id="mobileFab" class="mobile-fab" aria-label="新規シーン入力を開く">＋</button>
 
 <script>
 (function(){
@@ -913,31 +1324,42 @@ button{
   const ACTOR_KEY = "scene_actors_restore_v6";
   const PROP_KEY = "scene_props_restore_v6";
   const QC_KEY = "scene_quickcheck_restore_v1";
+  const FIELD_GROUP_OPEN_KEY = "scene_field_group_open_restore_v1";
+  const DEPT_KEY = "scene_dept_restore_v1";
+  const COLLAPSE_KEY = "scene_section_collapse_restore_v1";
 
   const $ = (id) => document.getElementById(id);
 
   let mode = localStorage.getItem(MODE_KEY) || "prep";
   let activeProjectId = localStorage.getItem(ACTIVE_PROJECT_KEY) || "";
+  let currentDept = localStorage.getItem(DEPT_KEY) || "all";
+
   let projects = readJson(PROJECT_KEY, []);
   let scenes = readJson(SCENE_KEY, []);
   let locations = readJson(LOCATION_KEY, []);
   let actors = readJson(ACTOR_KEY, []);
   let props = readJson(PROP_KEY, []);
   let quickCheck = readJson(QC_KEY, {});
+  let fieldGroupOpenState = readJson(FIELD_GROUP_OPEN_KEY, {});
+  let sectionCollapseState = readJson(COLLAPSE_KEY, { debugSection:true });
+
+  let editingProjectId = "";
   let editingSceneId = "";
   let editingLocationId = "";
   let editingActorId = "";
   let editingPropId = "";
-  let currentDept = "all";
 
   const prepBtn = $("prepBtn");
   const fieldBtn = $("fieldBtn");
   const modeLabel = $("modeLabel");
+  const projectFormTitle = $("projectFormTitle");
+  const deptLabel = $("deptLabel");
 
   const saveProjectBtn = $("saveProjectBtn");
   const clearProjectBtn = $("clearProjectBtn");
   const saveSceneBtn = $("saveSceneBtn");
   const clearSceneBtn = $("clearSceneBtn");
+  const closeSceneBtn = $("closeSceneBtn");
   const saveLocationBtn = $("saveLocationBtn");
   const clearLocationBtn = $("clearLocationBtn");
   const applyLocationBtn = $("applyLocationBtn");
@@ -955,9 +1377,9 @@ button{
   const projectList = $("projectList");
 
   const locationName = $("locationName");
-const locationAddress = $("locationAddress");
-const locationPhone = $("locationPhone");
-const locationMapUrl = $("locationMapUrl");
+  const locationAddress = $("locationAddress");
+  const locationPhone = $("locationPhone");
+  const locationMapUrl = $("locationMapUrl");
   const locationPermitMemo = $("locationPermitMemo");
   const locationParkingMemo = $("locationParkingMemo");
   const locationPowerMemo = $("locationPowerMemo");
@@ -985,10 +1407,10 @@ const locationMapUrl = $("locationMapUrl");
   const sceneTitle = $("sceneTitle");
   const sceneLabel = $("sceneLabel");
   const sceneCast = $("sceneCast");
- const sceneLocation = $("sceneLocation");
-const sceneAddress = $("sceneAddress");
-const scenePhone = $("scenePhone");
-const sceneMapUrl = $("sceneMapUrl");
+  const sceneLocation = $("sceneLocation");
+  const sceneAddress = $("sceneAddress");
+  const scenePhone = $("scenePhone");
+  const sceneMapUrl = $("sceneMapUrl");
   const scenePermitMemo = $("scenePermitMemo");
   const sceneParkingMemo = $("sceneParkingMemo");
   const scenePowerMemo = $("scenePowerMemo");
@@ -1001,7 +1423,7 @@ const sceneMapUrl = $("sceneMapUrl");
   const sceneLightNote = $("sceneLightNote");
   const sceneProductionNote = $("sceneProductionNote");
   const sceneActorNote = $("sceneActorNote");
-    const sceneCheckSchedule = $("sceneCheckSchedule");
+  const sceneCheckSchedule = $("sceneCheckSchedule");
   const sceneCheckProp = $("sceneCheckProp");
   const sceneCheckCast = $("sceneCheckCast");
   const sceneCheckCostume = $("sceneCheckCostume");
@@ -1017,16 +1439,38 @@ const sceneMapUrl = $("sceneMapUrl");
   const sceneFormSection = $("sceneFormSection");
   const sceneListSection = $("sceneListSection");
   const fieldControlSection = $("fieldControlSection");
-  const debugBox = $("debugBox");
+  const backupSection = $("backupSection");
+  const dashboardSection = $("dashboardSection");
+  const debugSection = $("debugSection");
 
- const fieldSearchInput = $("fieldSearchInput");
-const fieldProjectFilter = $("fieldProjectFilter");
-const fieldStatusFilter = $("fieldStatusFilter");
-const fieldSortFilter = $("fieldSortFilter");
-const clearFieldFilterBtn = $("clearFieldFilterBtn");
-const fieldVisibleCount = $("fieldVisibleCount");
-const fieldRemainingCount = $("fieldRemainingCount");
-const fieldDoneCount = $("fieldDoneCount");
+  const debugBox = $("debugBox");
+  const exportBackupBtn = $("exportBackupBtn");
+  const importBackupBtn = $("importBackupBtn");
+  const importBackupInput = $("importBackupInput");
+  const backupStatusBox = $("backupStatusBox");
+
+  const fieldSearchInput = $("fieldSearchInput");
+  const fieldProjectFilter = $("fieldProjectFilter");
+  const fieldStatusFilter = $("fieldStatusFilter");
+  const fieldSortFilter = $("fieldSortFilter");
+  const clearFieldFilterBtn = $("clearFieldFilterBtn");
+  const expandAllGroupsBtn = $("expandAllGroupsBtn");
+  const collapseAllGroupsBtn = $("collapseAllGroupsBtn");
+  const fieldVisibleCount = $("fieldVisibleCount");
+  const fieldRemainingCount = $("fieldRemainingCount");
+  const fieldDoneCount = $("fieldDoneCount");
+  const openNewSceneBtn = $("openNewSceneBtn");
+  const prevUndoneSceneBtn = $("prevUndoneSceneBtn");
+  const nextUndoneSceneBtn = $("nextUndoneSceneBtn");
+  const currentSceneMain = $("currentSceneMain");
+  const currentSceneMeta = $("currentSceneMeta");
+  const currentSceneActions = $("currentSceneActions");
+
+  const quickOpenSceneBtn = $("quickOpenSceneBtn");
+  const quickGoFieldBtn = $("quickGoFieldBtn");
+  const quickGoProjectBtn = $("quickGoProjectBtn");
+  const quickGoBackupBtn = $("quickGoBackupBtn");
+  const mobileFab = $("mobileFab");
 
   function readJson(key, fallback){
     try{
@@ -1044,14 +1488,133 @@ const fieldDoneCount = $("fieldDoneCount");
   function saveLocations(){ localStorage.setItem(LOCATION_KEY, JSON.stringify(locations)); }
   function saveActors(){ localStorage.setItem(ACTOR_KEY, JSON.stringify(actors)); }
   function saveProps(){ localStorage.setItem(PROP_KEY, JSON.stringify(props)); }
-  function saveQuickCheck(){
-  localStorage.setItem(QC_KEY, JSON.stringify(quickCheck));
-}
-function applyQuickCheck(){
-  document.querySelectorAll(".quick-check-item input").forEach(input => {
-    input.checked = !!quickCheck[input.id];
-  });
-}
+  function saveQuickCheck(){ localStorage.setItem(QC_KEY, JSON.stringify(quickCheck)); }
+  function saveFieldGroupOpenState(){ localStorage.setItem(FIELD_GROUP_OPEN_KEY, JSON.stringify(fieldGroupOpenState)); }
+  function saveDept(){ localStorage.setItem(DEPT_KEY, currentDept); }
+  function saveCollapseState(){ localStorage.setItem(COLLAPSE_KEY, JSON.stringify(sectionCollapseState)); }
+
+  function setBackupStatus(message){
+    if(backupStatusBox){
+      backupStatusBox.textContent = message;
+    }
+  }
+
+  function exportBackup(){
+    try{
+      const backupData = {
+        exportedAt: new Date().toISOString(),
+        version: 1,
+        mode,
+        activeProjectId,
+        currentDept,
+        projects,
+        scenes,
+        locations,
+        actors,
+        props,
+        quickCheck,
+        fieldGroupOpenState,
+        sectionCollapseState
+      };
+
+      const blob = new Blob([JSON.stringify(backupData, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      const date = new Date();
+      const fileName =
+        `sukikatte_backup_${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}_${String(date.getHours()).padStart(2,"0")}-${String(date.getMinutes()).padStart(2,"0")}.json`;
+
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+
+      setBackupStatus("バックアップを書き出しました");
+    }catch(error){
+      alert("バックアップ書き出しに失敗しました");
+      setBackupStatus("バックアップ書き出し失敗");
+    }
+  }
+
+  function importBackupFile(file){
+    if(!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(event){
+      try{
+        const raw = event.target?.result;
+        const data = JSON.parse(raw);
+
+        if(!data || typeof data !== "object"){
+          throw new Error("invalid backup");
+        }
+
+        projects = Array.isArray(data.projects) ? data.projects : [];
+        scenes = Array.isArray(data.scenes) ? data.scenes : [];
+        locations = Array.isArray(data.locations) ? data.locations : [];
+        actors = Array.isArray(data.actors) ? data.actors : [];
+        props = Array.isArray(data.props) ? data.props : [];
+        quickCheck = data.quickCheck && typeof data.quickCheck === "object" ? data.quickCheck : {};
+        fieldGroupOpenState = data.fieldGroupOpenState && typeof data.fieldGroupOpenState === "object" ? data.fieldGroupOpenState : {};
+        sectionCollapseState = data.sectionCollapseState && typeof data.sectionCollapseState === "object" ? data.sectionCollapseState : { debugSection:true };
+        mode = data.mode === "field" ? "field" : "prep";
+        activeProjectId = typeof data.activeProjectId === "string" ? data.activeProjectId : "";
+        currentDept = typeof data.currentDept === "string" ? data.currentDept : "all";
+
+        saveProjects();
+        saveScenes();
+        saveLocations();
+        saveActors();
+        saveProps();
+        saveMode();
+        saveActiveProject();
+        saveQuickCheck();
+        saveFieldGroupOpenState();
+        saveDept();
+        saveCollapseState();
+
+        clearProjectForm();
+        clearLocationForm();
+        clearActorForm();
+        clearActorForm();
+        clearPropForm();
+        clearSceneForm();
+
+        renderMode();
+        setDept(currentDept);
+        renderProjects();
+        renderProjectSelect();
+        renderFieldProjectFilter();
+        renderLocations();
+        renderLocationSelect();
+        renderActors();
+        renderActorSelect();
+        renderProps();
+        renderPropSelect();
+        renderScenes();
+        renderDebug();
+        applyQuickCheck();
+        applySectionCollapseState();
+
+        setBackupStatus("バックアップを読み込みました");
+        alert("バックアップを読み込みました");
+      }catch(error){
+        alert("バックアップ読み込みに失敗しました JSON形式を確認してください");
+        setBackupStatus("バックアップ読み込み失敗");
+      }
+    };
+
+    reader.readAsText(file);
+  }
+
+  function applyQuickCheck(){
+    document.querySelectorAll(".quick-check-item input").forEach(input => {
+      input.checked = !!quickCheck[input.id];
+    });
+  }
 
   function uid(prefix){
     return `${prefix}_${Date.now()}_${Math.floor(Math.random() * 100000)}`;
@@ -1090,16 +1653,47 @@ function applyQuickCheck(){
     return projects.find(project => project.id === projectId)?.title || "";
   }
 
+  function getSceneLocationGroupKey(scene){
+    const value = String(scene.location || "").trim();
+    return value || "ロケ地未設定";
+  }
+
+  function isFieldGroupOpen(groupKey){
+    if(typeof fieldGroupOpenState[groupKey] === "boolean"){
+      return fieldGroupOpenState[groupKey];
+    }
+    return true;
+  }
+
+  function toggleFieldGroup(groupKey){
+    fieldGroupOpenState[groupKey] = !isFieldGroupOpen(groupKey);
+    saveFieldGroupOpenState();
+    renderScenes();
+  }
+
+  function setAllFieldGroups(open){
+    const filteredScenes = getFilteredScenesForField();
+    const keys = [...new Set(filteredScenes.map(scene => getSceneLocationGroupKey(scene)))];
+
+    keys.forEach(key => {
+      fieldGroupOpenState[key] = open;
+    });
+
+    saveFieldGroupOpenState();
+    renderScenes();
+  }
+
   function setDept(dept){
     currentDept = dept;
+    saveDept();
 
     document.querySelectorAll(".dept-btn").forEach(btn => {
-      btn.classList.remove("active");
+      btn.classList.remove("active-dept");
     });
 
     const activeBtn = document.querySelector(`[data-dept="${dept}"]`);
     if(activeBtn){
-      activeBtn.classList.add("active");
+      activeBtn.classList.add("active-dept");
     }
 
     const labelMap = {
@@ -1114,7 +1708,6 @@ function applyQuickCheck(){
       actor:"俳優部"
     };
 
-    const deptLabel = $("deptLabel");
     if(deptLabel){
       deptLabel.textContent = labelMap[dept] || "ALL";
     }
@@ -1216,23 +1809,58 @@ function applyQuickCheck(){
     renderMode();
     renderScenes();
     renderDebug();
+    updateOpenSceneButton();
   }
 
   function renderMode(){
     modeLabel.textContent = mode === "prep" ? "準備モード" : "現場モード";
 
-    prepBtn.className = mode === "prep" ? "mode-btn active-prep" : "mode-btn";
-    fieldBtn.className = mode === "field" ? "mode-btn active-field" : "mode-btn";
-
-    const departmentSection = $("departmentSection");
-    if(departmentSection){
-      departmentSection.classList.toggle("hidden", false);
-    }
+    prepBtn.className = mode === "prep" ? "segment-btn active-prep" : "segment-btn";
+    fieldBtn.className = mode === "field" ? "segment-btn active-field" : "segment-btn";
 
     renderDepartmentSections();
   }
 
+  function updateOpenSceneButton(){
+    if(!openNewSceneBtn) return;
+
+    const isOpen = !sceneFormSection.classList.contains("hidden");
+
+    if(editingSceneId && isOpen){
+      openNewSceneBtn.textContent = "編集中シーンを閉じる";
+    }else if(isOpen){
+      openNewSceneBtn.textContent = "新規シーン入力を閉じる";
+    }else{
+      openNewSceneBtn.textContent = "新規シーン入力を開く";
+    }
+  }
+
+  function setSectionCollapsed(sectionId, collapsed){
+    sectionCollapseState[sectionId] = collapsed;
+    saveCollapseState();
+
+    const section = $(sectionId);
+    if(!section) return;
+
+    section.classList.toggle("collapsed", collapsed);
+
+    const toggleBtn = section.querySelector(".section-toggle");
+    if(toggleBtn){
+      toggleBtn.textContent = collapsed ? "開く" : "閉じる";
+    }
+  }
+
+  function applySectionCollapseState(){
+    document.querySelectorAll("[data-toggle-card]").forEach(btn => {
+      const sectionId = btn.getAttribute("data-toggle-card");
+      const collapsed = !!sectionCollapseState[sectionId];
+      setSectionCollapsed(sectionId, collapsed);
+    });
+  }
+
   function clearProjectForm(){
+    editingProjectId = "";
+    projectFormTitle.textContent = "プロジェクト作成";
     projectTitle.value = "";
     projectDirector.value = "";
     projectMemo.value = "";
@@ -1242,7 +1870,7 @@ function applyQuickCheck(){
     editingLocationId = "";
     locationName.value = "";
     locationAddress.value = "";
-locationPhone.value = "";
+    locationPhone.value = "";
     locationMapUrl.value = "";
     locationPermitMemo.value = "";
     locationParkingMemo.value = "";
@@ -1268,6 +1896,7 @@ locationPhone.value = "";
   function clearSceneForm(){
     editingSceneId = "";
     sceneFormTitle.textContent = "シーン入力";
+    saveSceneBtn.textContent = "シーン保存";
     sceneNo.value = "";
     sceneOrder.value = "";
     sceneTitle.value = "";
@@ -1276,10 +1905,10 @@ locationPhone.value = "";
     sceneLocationSelect.value = "";
     sceneActorSelect.value = "";
     scenePropSelect.value = "";
-  sceneLocation.value = "";
-sceneAddress.value = "";
-scenePhone.value = "";
-sceneMapUrl.value = "";
+    sceneLocation.value = "";
+    sceneAddress.value = "";
+    scenePhone.value = "";
+    sceneMapUrl.value = "";
     scenePermitMemo.value = "";
     sceneParkingMemo.value = "";
     scenePowerMemo.value = "";
@@ -1303,17 +1932,25 @@ sceneMapUrl.value = "";
     if(activeProjectId && projects.some(project => project.id === activeProjectId)){
       sceneProjectSelect.value = activeProjectId;
     }
+
+    updateOpenSceneButton();
+  }
+
+  function closeSceneForm(){
+    clearSceneForm();
+    sceneFormSection.classList.add("hidden");
+    updateOpenSceneButton();
   }
 
   function clearFieldFilters(){
-  fieldSearchInput.value = "";
-  fieldProjectFilter.value = "all";
-  fieldStatusFilter.value = "all";
-  if(fieldSortFilter){
-    fieldSortFilter.value = "default";
+    fieldSearchInput.value = "";
+    fieldProjectFilter.value = "all";
+    fieldStatusFilter.value = "all";
+    if(fieldSortFilter){
+      fieldSortFilter.value = "default";
+    }
+    renderScenes();
   }
-  renderScenes();
-}
 
   function addProject(){
     const title = projectTitle.value.trim();
@@ -1325,11 +1962,26 @@ sceneMapUrl.value = "";
       return;
     }
 
-    projects.push({ id: uid("project"), title, director, memo });
+    const projectObject = {
+      id: editingProjectId || uid("project"),
+      title,
+      director,
+      memo
+    };
+
+    if(editingProjectId){
+      const index = projects.findIndex(project => project.id === editingProjectId);
+      if(index >= 0){
+        projects[index] = projectObject;
+      }
+    }else{
+      projects.push(projectObject);
+    }
+
     saveProjects();
 
     if(!activeProjectId){
-      activeProjectId = projects[0].id;
+      activeProjectId = projectObject.id;
       saveActiveProject();
     }
 
@@ -1339,6 +1991,19 @@ sceneMapUrl.value = "";
     renderFieldProjectFilter();
     renderScenes();
     renderDebug();
+  }
+
+  function editProject(projectId){
+    const project = projects.find(item => item.id === projectId);
+    if(!project) return;
+
+    editingProjectId = project.id;
+    projectFormTitle.textContent = "プロジェクト編集中";
+    projectTitle.value = project.title || "";
+    projectDirector.value = project.director || "";
+    projectMemo.value = project.memo || "";
+
+    window.scrollTo({ top: projectCreateSection.offsetTop - 20, behavior: "smooth" });
   }
 
   function deleteProject(projectId){
@@ -1358,6 +2023,9 @@ sceneMapUrl.value = "";
     if(activeProjectId === projectId){
       activeProjectId = projects[0]?.id || "";
       saveActiveProject();
+    }
+    if(editingProjectId === projectId){
+      clearProjectForm();
     }
 
     renderProjects();
@@ -1395,6 +2063,7 @@ sceneMapUrl.value = "";
           <div class="item-meta">${escapeHtml(project.memo || "-")}</div>
           <div class="item-actions">
             <button type="button" class="select-btn" data-project-select="${project.id}">使う</button>
+            <button type="button" class="edit-btn" data-project-edit="${project.id}">編集</button>
             <button type="button" class="danger-btn" data-project-delete="${project.id}">削除</button>
           </div>
         </div>
@@ -1406,6 +2075,10 @@ sceneMapUrl.value = "";
 
     projectList.querySelectorAll("[data-project-select]").forEach(btn => {
       btn.addEventListener("click", () => selectProject(btn.getAttribute("data-project-select")));
+    });
+
+    projectList.querySelectorAll("[data-project-edit]").forEach(btn => {
+      btn.addEventListener("click", () => editProject(btn.getAttribute("data-project-edit")));
     });
 
     projectList.querySelectorAll("[data-project-delete]").forEach(btn => {
@@ -1456,17 +2129,17 @@ sceneMapUrl.value = "";
 
   function addLocation(){
     const locationObject = {
-  id: editingLocationId || uid("location"),
-  name: locationName.value.trim(),
-  address: locationAddress.value.trim(),
-  phone: locationPhone.value.trim(),
-  mapUrl: locationMapUrl.value.trim(),
-  permitMemo: locationPermitMemo.value.trim(),
-  parkingMemo: locationParkingMemo.value.trim(),
-  powerMemo: locationPowerMemo.value.trim(),
-  toiletMemo: locationToiletMemo.value.trim(),
-  rainMemo: locationRainMemo.value.trim()
-};
+      id: editingLocationId || uid("location"),
+      name: locationName.value.trim(),
+      address: locationAddress.value.trim(),
+      phone: locationPhone.value.trim(),
+      mapUrl: locationMapUrl.value.trim(),
+      permitMemo: locationPermitMemo.value.trim(),
+      parkingMemo: locationParkingMemo.value.trim(),
+      powerMemo: locationPowerMemo.value.trim(),
+      toiletMemo: locationToiletMemo.value.trim(),
+      rainMemo: locationRainMemo.value.trim()
+    };
 
     if(!locationObject.name){
       alert("ロケ地名は必須です");
@@ -1492,10 +2165,10 @@ sceneMapUrl.value = "";
     if(!location) return;
 
     editingLocationId = location.id;
-   locationName.value = location.name || "";
-locationAddress.value = location.address || "";
-locationPhone.value = location.phone || "";
-locationMapUrl.value = location.mapUrl || "";
+    locationName.value = location.name || "";
+    locationAddress.value = location.address || "";
+    locationPhone.value = location.phone || "";
+    locationMapUrl.value = location.mapUrl || "";
     locationPermitMemo.value = location.permitMemo || "";
     locationParkingMemo.value = location.parkingMemo || "";
     locationPowerMemo.value = location.powerMemo || "";
@@ -1547,6 +2220,8 @@ locationMapUrl.value = location.mapUrl || "";
       btn.addEventListener("click", () => {
         sceneLocationSelect.value = btn.getAttribute("data-location-apply");
         applyLocationToScene();
+        sceneFormSection.classList.remove("hidden");
+        updateOpenSceneButton();
         window.scrollTo({ top: sceneFormSection.offsetTop - 20, behavior: "smooth" });
       });
     });
@@ -1578,10 +2253,10 @@ locationMapUrl.value = location.mapUrl || "";
     const location = locations.find(item => item.id === locationId);
     if(!location) return;
 
-   sceneLocation.value = location.name || "";
-sceneAddress.value = location.address || "";
-scenePhone.value = location.phone || "";
-sceneMapUrl.value = location.mapUrl || "";
+    sceneLocation.value = location.name || "";
+    sceneAddress.value = location.address || "";
+    scenePhone.value = location.phone || "";
+    sceneMapUrl.value = location.mapUrl || "";
     scenePermitMemo.value = location.permitMemo || "";
     sceneParkingMemo.value = location.parkingMemo || "";
     scenePowerMemo.value = location.powerMemo || "";
@@ -1671,6 +2346,8 @@ sceneMapUrl.value = location.mapUrl || "";
       btn.addEventListener("click", () => {
         sceneActorSelect.value = btn.getAttribute("data-actor-apply");
         applyActorToScene();
+        sceneFormSection.classList.remove("hidden");
+        updateOpenSceneButton();
         window.scrollTo({ top: sceneFormSection.offsetTop - 20, behavior: "smooth" });
       });
     });
@@ -1787,6 +2464,8 @@ sceneMapUrl.value = location.mapUrl || "";
       btn.addEventListener("click", () => {
         scenePropSelect.value = btn.getAttribute("data-prop-apply");
         applyPropToScene();
+        sceneFormSection.classList.remove("hidden");
+        updateOpenSceneButton();
         window.scrollTo({ top: sceneFormSection.offsetTop - 20, behavior: "smooth" });
       });
     });
@@ -1830,6 +2509,18 @@ sceneMapUrl.value = location.mapUrl || "";
     sceneProp.value = current.join("\n");
   }
 
+  function areAllSceneChecksComplete(checks){
+    return !!(
+      checks &&
+      checks.schedule &&
+      checks.prop &&
+      checks.cast &&
+      checks.costume &&
+      checks.camera &&
+      checks.light
+    );
+  }
+
   function addScene(){
     if(projects.length === 0){
       alert("先にプロジェクトを作成してください");
@@ -1838,7 +2529,7 @@ sceneMapUrl.value = location.mapUrl || "";
 
     const projectId = sceneProjectSelect.value;
     const no = sceneNo.value.trim();
-    const order = Number(sceneOrder.value);
+    const inputOrder = Number(sceneOrder.value);
     const title = sceneTitle.value.trim();
     const label = sceneLabel.value;
     const cast = sceneCast.value.trim();
@@ -1879,11 +2570,19 @@ sceneMapUrl.value = location.mapUrl || "";
       light: sceneCheckLight.checked
     };
 
+    const sameProjectScenes = scenes.filter(scene => scene.projectId === projectId);
+    const maxOrder = sameProjectScenes.reduce((max, scene) => {
+      const order = Number(scene.order) || 0;
+      return Math.max(max, order);
+    }, 0);
+
+    const finalOrder = Number.isFinite(inputOrder) && inputOrder > 0 ? inputOrder : maxOrder + 1;
+
     const sceneObject = {
       id: editingSceneId || uid("scene"),
       projectId,
       no,
-      order: Number.isFinite(order) && order > 0 ? order : 0,
+      order: finalOrder,
       title,
       label,
       cast,
@@ -1905,35 +2604,150 @@ sceneMapUrl.value = location.mapUrl || "";
       productionNote,
       actorNote,
       checks: sceneChecks,
-      done: false
+      done: areAllSceneChecksComplete(sceneChecks)
     };
 
     if(editingSceneId){
       const index = scenes.findIndex(scene => scene.id === editingSceneId);
       if(index >= 0){
-        sceneObject.done = scenes[index].done;
         scenes[index] = sceneObject;
       }
     }else{
       scenes.push(sceneObject);
     }
 
+    normalizeProjectSceneOrders(projectId);
+
     activeProjectId = projectId;
     saveActiveProject();
     saveScenes();
 
+    const savedId = sceneObject.id;
+
     clearSceneForm();
+
+    if(mode === "field"){
+      sceneFormSection.classList.add("hidden");
+    }
+
     renderProjects();
+    renderScenes();
+    renderDebug();
+    updateOpenSceneButton();
+    scrollToScene(savedId);
+  }
+
+  function getSceneCheckStatus(checks){
+    const safeChecks = checks || {
+      schedule:false,
+      prop:false,
+      cast:false,
+      costume:false,
+      camera:false,
+      light:false
+    };
+
+    const total = 6;
+    const doneCount = [
+      safeChecks.schedule,
+      safeChecks.prop,
+      safeChecks.cast,
+      safeChecks.costume,
+      safeChecks.camera,
+      safeChecks.light
+    ].filter(Boolean).length;
+
+    return {
+      total,
+      doneCount,
+      remainingCount: total - doneCount,
+      allDone: doneCount === total
+    };
+  }
+
+  function getSceneProgressPercent(checks){
+    const status = getSceneCheckStatus(checks);
+    return Math.round((status.doneCount / status.total) * 100);
+  }
+
+  function duplicateScene(sceneId){
+    const original = scenes.find(item => item.id === sceneId);
+    if(!original) return;
+
+    const duplicated = {
+      ...original,
+      id: uid("scene"),
+      title: `${original.title || "シーン"} コピー`,
+      done: false,
+      checks: {
+        schedule:false,
+        prop:false,
+        cast:false,
+        costume:false,
+        camera:false,
+        light:false
+      }
+    };
+
+    scenes.push(duplicated);
+    normalizeProjectSceneOrders(duplicated.projectId);
+    saveScenes();
+    renderProjects();
+    renderScenes();
+    renderDebug();
+    scrollToScene(duplicated.id);
+  }
+
+  function normalizeProjectSceneOrders(projectId){
+    const targetScenes = scenes
+      .filter(scene => scene.projectId === projectId)
+      .sort((a, b) => {
+        const orderA = Number(a.order) || 0;
+        const orderB = Number(b.order) || 0;
+        if(orderA !== orderB) return orderA - orderB;
+        return String(a.no || "").localeCompare(String(b.no || ""), "ja");
+           });
+
+    targetScenes.forEach((scene, index) => {
+      scene.order = index + 1;
+    });
+  }
+
+  function moveScene(sceneId, direction){
+    const target = scenes.find(scene => scene.id === sceneId);
+    if(!target) return;
+
+    normalizeProjectSceneOrders(target.projectId);
+
+    const sameProjectScenes = scenes
+      .filter(scene => scene.projectId === target.projectId)
+      .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+    const currentIndex = sameProjectScenes.findIndex(scene => scene.id === sceneId);
+    if(currentIndex < 0) return;
+
+    const swapIndex = direction === "up" ? currentIndex - 1 : currentIndex + 1;
+    if(swapIndex < 0 || swapIndex >= sameProjectScenes.length) return;
+
+    const currentScene = sameProjectScenes[currentIndex];
+    const swapScene = sameProjectScenes[swapIndex];
+
+    const tempOrder = currentScene.order;
+    currentScene.order = swapScene.order;
+    swapScene.order = tempOrder;
+
+    saveScenes();
     renderScenes();
     renderDebug();
   }
 
-   function editScene(sceneId){
+  function editScene(sceneId){
     const scene = scenes.find(item => item.id === sceneId);
     if(!scene) return;
 
     editingSceneId = scene.id;
     sceneFormTitle.textContent = "シーン編集中";
+    saveSceneBtn.textContent = "シーン更新";
     sceneProjectSelect.value = scene.projectId || "";
     sceneLocationSelect.value = scene.locationId || "";
     sceneNo.value = scene.no || "";
@@ -1966,14 +2780,20 @@ sceneMapUrl.value = location.mapUrl || "";
     sceneCheckCamera.checked = !!checks.camera;
     sceneCheckLight.checked = !!checks.light;
 
-    if(mode === "prep"){
-      window.scrollTo({ top: sceneFormSection.offsetTop - 20, behavior: "smooth" });
-    }
+    sceneFormSection.classList.remove("hidden");
+    setSectionCollapsed("sceneFormSection", false);
+    updateOpenSceneButton();
+    window.scrollTo({ top: sceneFormSection.offsetTop - 20, behavior: "smooth" });
   }
 
   function deleteScene(sceneId){
     if(!confirm("このシーンを削除する？")) return;
+
+    const targetScene = scenes.find(scene => scene.id === sceneId);
+    if(!targetScene) return;
+
     scenes = scenes.filter(scene => scene.id !== sceneId);
+    normalizeProjectSceneOrders(targetScene.projectId);
     saveScenes();
     renderProjects();
     renderScenes();
@@ -1984,22 +2804,278 @@ sceneMapUrl.value = location.mapUrl || "";
     }
   }
 
+  function scrollToScene(sceneId){
+    setTimeout(() => {
+      const el = document.querySelector(`[data-scene-id="${sceneId}"]`);
+      if(el){
+        el.scrollIntoView({ behavior:"smooth", block:"center" });
+        el.classList.remove("flash-focus");
+        void el.offsetWidth;
+        el.classList.add("flash-focus");
+        setTimeout(() => {
+          el.classList.remove("flash-focus");
+        }, 1400);
+      }
+    }, 50);
+  }
+
+  function moveToNextUndoneScene(projectId, currentSceneId){
+    const sameProjectScenes = scenes
+      .filter(scene => scene.projectId === projectId)
+      .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+    const currentIndex = sameProjectScenes.findIndex(scene => scene.id === currentSceneId);
+
+    for(let i = currentIndex + 1; i < sameProjectScenes.length; i++){
+      if(!sameProjectScenes[i].done){
+        scrollToScene(sameProjectScenes[i].id);
+        return;
+      }
+    }
+
+    for(let i = 0; i < currentIndex; i++){
+      if(!sameProjectScenes[i].done){
+        scrollToScene(sameProjectScenes[i].id);
+        return;
+      }
+    }
+
+    alert("このプロジェクトのシーンはすべて完了しています");
+  }
+
+  function moveToPrevUndoneScene(projectId, currentSceneId){
+    const sameProjectScenes = scenes
+      .filter(scene => scene.projectId === projectId)
+      .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+    const currentIndex = sameProjectScenes.findIndex(scene => scene.id === currentSceneId);
+
+    for(let i = currentIndex - 1; i >= 0; i--){
+      if(!sameProjectScenes[i].done){
+        scrollToScene(sameProjectScenes[i].id);
+        return;
+      }
+    }
+
+    for(let i = sameProjectScenes.length - 1; i > currentIndex; i--){
+      if(!sameProjectScenes[i].done){
+        scrollToScene(sameProjectScenes[i].id);
+        return;
+      }
+    }
+
+    alert("未完了シーンがありません");
+  }
+
+  function getCurrentVisibleSceneId(){
+    const cards = [...document.querySelectorAll("[data-scene-id]")].filter(card => {
+      return card.offsetParent !== null;
+    });
+
+    if(cards.length === 0) return "";
+
+    let bestId = "";
+    let bestDistance = Infinity;
+
+    cards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      const centerDistance = Math.abs((rect.top + rect.height / 2) - (window.innerHeight / 2));
+
+      if(centerDistance < bestDistance){
+        bestDistance = centerDistance;
+        bestId = card.getAttribute("data-scene-id") || "";
+      }
+    });
+
+    return bestId;
+  }
+
+  function moveFromCurrentScene(direction){
+    const currentSceneId = getCurrentVisibleSceneId();
+    if(!currentSceneId){
+      alert("シーンがありません");
+      return;
+    }
+
+    const currentScene = scenes.find(scene => scene.id === currentSceneId);
+    if(!currentScene){
+      alert("現在シーンを取得できませんでした");
+      return;
+    }
+
+    if(direction === "next"){
+      moveToNextUndoneScene(currentScene.projectId, currentSceneId);
+    }else{
+      moveToPrevUndoneScene(currentScene.projectId, currentSceneId);
+    }
+  }
+
+  async function copyText(text, successMessage){
+    if(!text) return;
+
+    try{
+      await navigator.clipboard.writeText(text);
+      alert(successMessage);
+    }catch(error){
+      const temp = document.createElement("textarea");
+      temp.value = text;
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand("copy");
+      document.body.removeChild(temp);
+      alert(successMessage);
+    }
+  }
+
   function toggleDone(sceneId){
     const scene = scenes.find(item => item.id === sceneId);
     if(!scene) return;
-    scene.done = !scene.done;
+
+    const checkStatus = getSceneCheckStatus(scene.checks);
+
+    if(checkStatus.allDone){
+      alert("このシーンは6項目すべて完了しているため 自動で完了になっています");
+    }else{
+      alert(`まだチェックが残っています あと${checkStatus.remainingCount}項目です`);
+    }
+
+    scene.done = areAllSceneChecksComplete(scene.checks);
     saveScenes();
     renderScenes();
     renderDebug();
+
+    if(scene.done){
+      moveToNextUndoneScene(scene.projectId, sceneId);
+    }else{
+      scrollToScene(sceneId);
+    }
   }
 
   function toggleDetail(sceneId){
-    const detail = document.getElementById("detail_" + sceneId);
-    if(!detail) return;
-    detail.classList.toggle("hidden");
+    const targetDetail = document.getElementById("detail_" + sceneId);
+    if(!targetDetail) return;
+
+    const willOpen = targetDetail.classList.contains("hidden");
+
+    document.querySelectorAll('[id^="detail_"]').forEach(detail => {
+      detail.classList.add("hidden");
+    });
+
+    if(willOpen){
+      targetDetail.classList.remove("hidden");
+    }
   }
 
-    function toggleSceneCheck(sceneId, checkKey){
+  function bindCurrentSceneActionEvents(){
+    if(!currentSceneActions) return;
+
+    currentSceneActions.querySelectorAll("[data-current-detail]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const sceneId = btn.getAttribute("data-current-detail");
+        toggleDetail(sceneId);
+        scrollToScene(sceneId);
+      });
+    });
+
+    currentSceneActions.querySelectorAll("[data-current-edit]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const sceneId = btn.getAttribute("data-current-edit");
+        editScene(sceneId);
+      });
+    });
+
+    currentSceneActions.querySelectorAll("[data-current-map]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const sceneId = btn.getAttribute("data-current-map");
+        const scene = scenes.find(item => item.id === sceneId);
+        if(!scene || !scene.mapUrl) return;
+        window.open(scene.mapUrl, "_blank");
+      });
+    });
+
+    currentSceneActions.querySelectorAll("[data-current-address]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const sceneId = btn.getAttribute("data-current-address");
+        const scene = scenes.find(item => item.id === sceneId);
+        if(!scene || !scene.address) return;
+        copyText(scene.address, "住所をコピーしました");
+      });
+    });
+
+    currentSceneActions.querySelectorAll("[data-current-phone]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const sceneId = btn.getAttribute("data-current-phone");
+        const scene = scenes.find(item => item.id === sceneId);
+        if(!scene || !scene.phone) return;
+        copyText(scene.phone, "電話番号をコピーしました");
+      });
+    });
+
+    currentSceneActions.querySelectorAll("[data-current-call]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const sceneId = btn.getAttribute("data-current-call");
+        const scene = scenes.find(item => item.id === sceneId);
+        if(!scene || !scene.phone) return;
+
+        const tel = scene.phone.replace(/[^\d+]/g, "");
+        window.location.href = `tel:${tel}`;
+      });
+    });
+  }
+
+  function updateCurrentSceneBar(){
+    if(!currentSceneMain || !currentSceneMeta || !currentSceneActions) return;
+
+    if(mode !== "field"){
+      currentSceneMain.textContent = "未選択";
+      currentSceneMeta.innerHTML = "";
+      currentSceneActions.innerHTML = "";
+      return;
+    }
+
+    const currentSceneId = getCurrentVisibleSceneId();
+    if(!currentSceneId){
+      currentSceneMain.textContent = "未選択";
+      currentSceneMeta.innerHTML = "";
+      currentSceneActions.innerHTML = "";
+      return;
+    }
+
+    const scene = scenes.find(item => item.id === currentSceneId);
+    if(!scene){
+      currentSceneMain.textContent = "未選択";
+      currentSceneMeta.innerHTML = "";
+      currentSceneActions.innerHTML = "";
+      return;
+    }
+
+    const checkStatus = getSceneCheckStatus(scene.checks);
+
+    currentSceneMain.textContent = scene.title || "名称未設定";
+
+    currentSceneMeta.innerHTML = `
+      ${getProjectTitle(scene.projectId) ? `<span class="badge">${escapeHtml(getProjectTitle(scene.projectId))}</span>` : ``}
+      ${scene.no ? `<span class="badge">シーン ${escapeHtml(scene.no)}</span>` : ``}
+      ${scene.order ? `<span class="badge">撮影順 ${scene.order}</span>` : ``}
+      ${scene.location ? `<span class="badge">${escapeHtml(scene.location)}</span>` : ``}
+      ${scene.label ? `<span class="badge ${badgeClass(scene.label)}">${escapeHtml(scene.label)}</span>` : ``}
+      ${scene.done ? `<span class="badge done">完了</span>` : `<span class="badge">未完了</span>`}
+      <span class="badge">${checkStatus.doneCount}/6</span>
+    `;
+
+    currentSceneActions.innerHTML = `
+      <button type="button" class="detail-btn" data-current-detail="${scene.id}">詳細</button>
+      <button type="button" class="edit-btn" data-current-edit="${scene.id}">編集</button>
+      ${scene.mapUrl ? `<button type="button" class="copy-btn" data-current-map="${scene.id}">地図を開く</button>` : ``}
+      ${scene.address ? `<button type="button" class="copy-btn" data-current-address="${scene.id}">住所コピー</button>` : ``}
+      ${scene.phone ? `<button type="button" class="copy-btn" data-current-phone="${scene.id}">電話コピー</button>` : ``}
+      ${scene.phone ? `<button type="button" class="select-btn" data-current-call="${scene.id}">電話する</button>` : ``}
+    `;
+
+    bindCurrentSceneActionEvents();
+  }
+
+  function toggleSceneCheck(sceneId, checkKey){
     const scene = scenes.find(item => item.id === sceneId);
     if(!scene) return;
 
@@ -2015,9 +3091,12 @@ sceneMapUrl.value = location.mapUrl || "";
     }
 
     scene.checks[checkKey] = !scene.checks[checkKey];
+    scene.done = areAllSceneChecksComplete(scene.checks);
+
     saveScenes();
     renderScenes();
     renderDebug();
+    scrollToScene(sceneId);
   }
 
   function buildSceneCheckBadges(scene){
@@ -2048,74 +3127,73 @@ sceneMapUrl.value = location.mapUrl || "";
   }
 
   function getFilteredScenesForField(){
-  const search = fieldSearchInput.value.trim().toLowerCase();
-  const projectFilter = fieldProjectFilter.value || "all";
-  const statusFilter = fieldStatusFilter.value || "all";
-  const sortFilter = fieldSortFilter ? fieldSortFilter.value : "default";
+    const search = fieldSearchInput.value.trim().toLowerCase();
+    const projectFilter = fieldProjectFilter.value || "all";
+    const statusFilter = fieldStatusFilter.value || "all";
+    const sortFilter = fieldSortFilter ? fieldSortFilter.value : "default";
 
-  let filtered = [...scenes];
+    let filtered = [...scenes];
 
-  if(projectFilter !== "all"){
-    filtered = filtered.filter(scene => scene.projectId === projectFilter);
-  }
+    if(projectFilter !== "all"){
+      filtered = filtered.filter(scene => scene.projectId === projectFilter);
+    }
 
-  if(statusFilter === "done"){
-    filtered = filtered.filter(scene => scene.done);
-  }else if(statusFilter === "undone"){
-    filtered = filtered.filter(scene => !scene.done);
-  }
+    if(statusFilter === "done"){
+      filtered = filtered.filter(scene => scene.done);
+    }else if(statusFilter === "undone"){
+      filtered = filtered.filter(scene => !scene.done);
+    }
 
-  if(search){
-    filtered = filtered.filter(scene => {
-      const text = [
-        scene.title,
-        scene.no,
-        scene.cast,
-        scene.location,
-        scene.address,
-        scene.phone,
-        scene.prop,
-        scene.memo,
-        scene.directionNote,
-        scene.cameraNote,
-        scene.lightNote,
-        scene.productionNote,
-        scene.actorNote,
-        getProjectTitle(scene.projectId)
-      ].join(" ").toLowerCase();
+    if(search){
+      filtered = filtered.filter(scene => {
+        const text = [
+          scene.title,
+          scene.no,
+          scene.cast,
+          scene.location,
+          scene.address,
+          scene.phone,
+          scene.prop,
+          scene.memo,
+          scene.directionNote,
+          scene.cameraNote,
+          scene.lightNote,
+          scene.productionNote,
+          scene.actorNote,
+          getProjectTitle(scene.projectId)
+        ].join(" ").toLowerCase();
+        return text.includes(search);
+      });
+    }
 
-      return text.includes(search);
-    });
-  }
+    filtered.sort((a, b) => {
+      if(sortFilter === "orderAsc"){
+        const orderDiff = (a.order || 0) - (b.order || 0);
+        if(orderDiff !== 0) return orderDiff;
+        return String(a.no || "").localeCompare(String(b.no || ""), "ja");
+      }
 
-  filtered.sort((a, b) => {
-    if(sortFilter === "orderAsc"){
+      if(sortFilter === "orderDesc"){
+        const orderDiff = (b.order || 0) - (a.order || 0);
+        if(orderDiff !== 0) return orderDiff;
+        return String(a.no || "").localeCompare(String(b.no || ""), "ja");
+      }
+
+      if(sortFilter === "titleAsc"){
+        return String(a.title || "").localeCompare(String(b.title || ""), "ja");
+      }
+
+      if(a.done !== b.done){
+        return a.done ? 1 : -1;
+      }
+
       const orderDiff = (a.order || 0) - (b.order || 0);
       if(orderDiff !== 0) return orderDiff;
       return String(a.no || "").localeCompare(String(b.no || ""), "ja");
-    }
+    });
 
-    if(sortFilter === "orderDesc"){
-      const orderDiff = (b.order || 0) - (a.order || 0);
-      if(orderDiff !== 0) return orderDiff;
-      return String(a.no || "").localeCompare(String(b.no || ""), "ja");
-    }
-
-    if(sortFilter === "titleAsc"){
-      return String(a.title || "").localeCompare(String(b.title || ""), "ja");
-    }
-
-    if(a.done !== b.done){
-      return a.done ? 1 : -1;
-    }
-
-    const orderDiff = (a.order || 0) - (b.order || 0);
-    if(orderDiff !== 0) return orderDiff;
-    return String(a.no || "").localeCompare(String(b.no || ""), "ja");
-  });
-
-  return filtered;
-}
+    return filtered;
+  }
 
   function updateFieldSummary(filteredScenes){
     if(!fieldVisibleCount || !fieldRemainingCount || !fieldDoneCount) return;
@@ -2124,18 +3202,16 @@ sceneMapUrl.value = location.mapUrl || "";
     fieldDoneCount.textContent = String(filteredScenes.filter(scene => scene.done).length);
   }
 
-  function renderScenes(){
-    if(mode === "field"){
-      const filteredScenes = getFilteredScenesForField();
-      updateFieldSummary(filteredScenes);
+  function renderSceneCard(scene, isFirst, isLast, isFieldMode, isNextTarget = false){
+    const checkStatus = getSceneCheckStatus(scene.checks);
+    const progressPercent = getSceneProgressPercent(scene.checks);
+    const doneCardClass = scene.done ? "scene-done-card" : "";
+    const undoneCardClass = scene.done ? "" : "scene-undone-card";
+    const nextTargetClass = isNextTarget ? "next-target-card" : "";
 
-      if(filteredScenes.length === 0){
-        sceneList.innerHTML = `<div class="empty-text">該当するシーンがありません</div>`;
-        return;
-      }
-
-      sceneList.innerHTML = filteredScenes.map(scene => `
-        <div class="scene-card field-scene-card ${labelClass(scene.label)}">
+    if(isFieldMode){
+      return `
+        <div class="scene-card field-scene-card ${labelClass(scene.label)} ${doneCardClass} ${undoneCardClass} ${nextTargetClass}" data-scene-id="${scene.id}">
           <div class="item-title">${escapeHtml(scene.title)}</div>
 
           <div class="badges">
@@ -2144,6 +3220,8 @@ sceneMapUrl.value = location.mapUrl || "";
             ${scene.order ? `<span class="badge">撮影順 ${scene.order}</span>` : ``}
             ${scene.label ? `<span class="badge ${badgeClass(scene.label)}">${escapeHtml(scene.label)}</span>` : ``}
             ${scene.done ? `<span class="badge done">完了</span>` : `<span class="badge">未完了</span>`}
+            ${checkStatus.allDone ? `<span class="badge done">チェック完了</span>` : `<span class="badge warn">あと${checkStatus.remainingCount}項目</span>`}
+            <span class="badge">${checkStatus.doneCount}/6</span>
             ${scene.location ? `<span class="badge">${escapeHtml(scene.location)}</span>` : ``}
           </div>
 
@@ -2152,6 +3230,15 @@ sceneMapUrl.value = location.mapUrl || "";
           <div class="item-meta">場所：${escapeHtml(scene.location || "-")}</div>
           <div class="item-meta">共通メモ：${escapeHtml(scene.memo || "-")}</div>
           ${buildSceneCheckBadges(scene)}
+          <div class="progress-wrap">
+            <div class="progress-label-row">
+              <span>シーン進行</span>
+              <span>${progressPercent}%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-bar-fill" style="width:${progressPercent}%"></div>
+            </div>
+          </div>
 
           <div id="detail_${scene.id}" class="detail-box hidden">
             <div class="meta-grid">
@@ -2168,103 +3255,107 @@ sceneMapUrl.value = location.mapUrl || "";
               <div class="item-meta">照明部メモ：${escapeHtml(scene.lightNote || "-")}</div>
               <div class="item-meta">制作部メモ：${escapeHtml(scene.productionNote || "-")}</div>
               <div class="item-meta">俳優部メモ：${escapeHtml(scene.actorNote || "-")}</div>
+              <div class="item-meta">チェック状況：${checkStatus.doneCount}/6 ${checkStatus.allDone ? "完了" : `あと${checkStatus.remainingCount}項目`}</div>
             </div>
           </div>
 
-  <div class="item-actions">
-  <button type="button" class="detail-btn" data-scene-detail="${scene.id}">詳細</button>
-  <button type="button" class="select-btn" data-scene-done="${scene.id}">${scene.done ? "未完了に戻す" : "完了にする"}</button>
-  ${scene.mapUrl ? `<button type="button" class="copy-btn" data-scene-map="${scene.id}">地図を開く</button>` : ``}
-  ${scene.address ? `<button type="button" class="copy-btn" data-scene-address="${scene.id}">住所コピー</button>` : ``}
-  ${scene.phone ? `<button type="button" class="copy-btn" data-scene-phone="${scene.id}">電話コピー</button>` : ``}
-  <button type="button" class="edit-btn" data-scene-edit="${scene.id}">編集</button>
-  <button type="button" class="danger-btn" data-scene-delete="${scene.id}">削除</button>
-</div>
+          <div class="item-actions">
+            <button type="button" class="detail-btn" data-scene-detail="${scene.id}">詳細</button>
+            <button type="button" class="select-btn" data-scene-done="${scene.id}">${scene.done ? "自動完了中" : "未完了"}</button>
+            ${!isFirst ? `<button type="button" class="secondary-btn" data-scene-up="${scene.id}">↑上へ</button>` : ``}
+            ${!isLast ? `<button type="button" class="secondary-btn" data-scene-down="${scene.id}">↓下へ</button>` : ``}
+            <button type="button" class="secondary-btn" data-scene-duplicate="${scene.id}">複製</button>
+            ${scene.mapUrl ? `<button type="button" class="copy-btn" data-scene-map="${scene.id}">地図を開く</button>` : ``}
+            ${scene.address ? `<button type="button" class="copy-btn" data-scene-address="${scene.id}">住所コピー</button>` : ``}
+            ${scene.phone ? `<button type="button" class="copy-btn" data-scene-phone="${scene.id}">電話コピー</button>` : ``}
+            ${scene.phone ? `<button type="button" class="select-btn" data-scene-call="${scene.id}">電話する</button>` : ``}
+            <button type="button" class="edit-btn" data-scene-edit="${scene.id}">編集</button>
+            <button type="button" class="danger-btn" data-scene-delete="${scene.id}">削除</button>
+          </div>
         </div>
-      `).join("");
-
-    }else{
-      if(scenes.length === 0){
-        sceneList.innerHTML = `<div class="empty-text">シーンがまだありません</div>`;
-        return;
-      }
-
-      const sortedProjects = [...projects].sort((a, b) => a.title.localeCompare(b.title, "ja"));
-
-      const groups = sortedProjects
-        .map(project => {
-          const projectScenes = scenes
-            .filter(scene => scene.projectId === project.id)
-            .sort((a, b) => {
-              const orderDiff = (a.order || 0) - (b.order || 0);
-              if(orderDiff !== 0) return orderDiff;
-              return String(a.no || "").localeCompare(String(b.no || ""), "ja");
-            });
-
-          return { project, scenes: projectScenes };
-        })
-        .filter(group => group.scenes.length > 0);
-
-      if(groups.length === 0){
-        sceneList.innerHTML = `<div class="empty-text">シーンがまだありません</div>`;
-        return;
-      }
-
-      sceneList.innerHTML = groups.map(group => `
-        <div class="group-title">${escapeHtml(group.project.title)}</div>
-        ${group.scenes.map(scene => `
-          <div class="scene-card ${labelClass(scene.label)}">
-            <div class="item-title">${escapeHtml(scene.title)}</div>
-
-            <div class="badges">
-              ${scene.no ? `<span class="badge">シーン ${escapeHtml(scene.no)}</span>` : ``}
-              ${scene.order ? `<span class="badge">撮影順 ${scene.order}</span>` : ``}
-              ${scene.label ? `<span class="badge ${badgeClass(scene.label)}">${escapeHtml(scene.label)}</span>` : ``}
-              ${scene.done ? `<span class="badge done">完了</span>` : ``}
-              ${scene.location ? `<span class="badge">${escapeHtml(scene.location)}</span>` : ``}
-            </div>
-
-            <div class="item-meta">出演者：${escapeHtml(scene.cast || "-")}</div>
-            <div class="item-meta">小道具：${escapeHtml(scene.prop || "-")}</div>
-            <div class="item-meta">場所：${escapeHtml(scene.location || "-")}</div>
-
-            <div id="detail_${scene.id}" class="detail-box hidden">
-              <div class="meta-grid">
-                <div class="item-meta">住所：${escapeHtml(scene.address || "-")}</div>
-                <div class="item-meta">電話番号：${escapeHtml(scene.phone || "-")}</div>
-                <div class="item-meta">GoogleマップURL：${escapeHtml(scene.mapUrl || "-")}</div>
-                <div class="item-meta">ロケ許可メモ：${escapeHtml(scene.permitMemo || "-")}</div>
-                <div class="item-meta">駐車場：${escapeHtml(scene.parkingMemo || "-")}</div>
-                <div class="item-meta">電源：${escapeHtml(scene.powerMemo || "-")}</div>
-                <div class="item-meta">トイレ：${escapeHtml(scene.toiletMemo || "-")}</div>
-                <div class="item-meta">雨天時：${escapeHtml(scene.rainMemo || "-")}</div>
-                <div class="item-meta">小道具詳細：${escapeHtml(scene.prop || "-")}</div>
-              </div>
-              <div class="item-meta">共通メモ：${escapeHtml(scene.memo || "-")}</div>
-              <div class="item-meta">演出部メモ：${escapeHtml(scene.directionNote || "-")}</div>
-              <div class="item-meta">撮影部メモ：${escapeHtml(scene.cameraNote || "-")}</div>
-              <div class="item-meta">照明部メモ：${escapeHtml(scene.lightNote || "-")}</div>
-              <div class="item-meta">制作部メモ：${escapeHtml(scene.productionNote || "-")}</div>
-              <div class="item-meta">俳優部メモ：${escapeHtml(scene.actorNote || "-")}</div>
-            </div>
-
-            <div class="item-actions">
-              <button type="button" class="detail-btn" data-scene-detail="${scene.id}">詳細</button>
-              <button type="button" class="select-btn" data-scene-done="${scene.id}">${scene.done ? "未完了に戻す" : "完了にする"}</button>
-              <button type="button" class="edit-btn" data-scene-edit="${scene.id}">編集</button>
-              <button type="button" class="danger-btn" data-scene-delete="${scene.id}">削除</button>
-            </div>
-          </div>
-        `).join("")}
-      `).join("");
+      `;
     }
 
+    return `
+      <div class="scene-card ${labelClass(scene.label)} ${doneCardClass} ${undoneCardClass} ${nextTargetClass}" data-scene-id="${scene.id}">
+        <div class="item-title">${escapeHtml(scene.title)}</div>
+
+        <div class="badges">
+          ${scene.no ? `<span class="badge">シーン ${escapeHtml(scene.no)}</span>` : ``}
+          ${scene.order ? `<span class="badge">撮影順 ${scene.order}</span>` : ``}
+          ${scene.label ? `<span class="badge ${badgeClass(scene.label)}">${escapeHtml(scene.label)}</span>` : ``}
+          ${scene.done ? `<span class="badge done">完了</span>` : `<span class="badge">未完了</span>`}
+          ${checkStatus.allDone ? `<span class="badge done">チェック完了</span>` : `<span class="badge warn">あと${checkStatus.remainingCount}項目</span>`}
+          <span class="badge">${checkStatus.doneCount}/6</span>
+          ${scene.location ? `<span class="badge">${escapeHtml(scene.location)}</span>` : ``}
+        </div>
+
+        <div class="item-meta">出演者：${escapeHtml(scene.cast || "-")}</div>
+        <div class="item-meta">小道具：${escapeHtml(scene.prop || "-")}</div>
+        <div class="item-meta">場所：${escapeHtml(scene.location || "-")}</div>
+        <div class="progress-wrap">
+          <div class="progress-label-row">
+            <span>シーン進行</span>
+            <span>${progressPercent}%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-bar-fill" style="width:${progressPercent}%"></div>
+          </div>
+        </div>
+
+        <div id="detail_${scene.id}" class="detail-box hidden">
+          <div class="meta-grid">
+            <div class="item-meta">住所：${escapeHtml(scene.address || "-")}</div>
+            <div class="item-meta">電話番号：${escapeHtml(scene.phone || "-")}</div>
+            <div class="item-meta">GoogleマップURL：${escapeHtml(scene.mapUrl || "-")}</div>
+            <div class="item-meta">ロケ許可メモ：${escapeHtml(scene.permitMemo || "-")}</div>
+            <div class="item-meta">駐車場：${escapeHtml(scene.parkingMemo || "-")}</div>
+            <div class="item-meta">電源：${escapeHtml(scene.powerMemo || "-")}</div>
+            <div class="item-meta">トイレ：${escapeHtml(scene.toiletMemo || "-")}</div>
+            <div class="item-meta">雨天時：${escapeHtml(scene.rainMemo || "-")}</div>
+            <div class="item-meta">小道具詳細：${escapeHtml(scene.prop || "-")}</div>
+            <div class="item-meta">チェック状況：${checkStatus.doneCount}/6 ${checkStatus.allDone ? "完了" : `あと${checkStatus.remainingCount}項目`}</div>
+          </div>
+          <div class="item-meta">共通メモ：${escapeHtml(scene.memo || "-")}</div>
+          <div class="item-meta">演出部メモ：${escapeHtml(scene.directionNote || "-")}</div>
+          <div class="item-meta">撮影部メモ：${escapeHtml(scene.cameraNote || "-")}</div>
+          <div class="item-meta">照明部メモ：${escapeHtml(scene.lightNote || "-")}</div>
+          <div class="item-meta">制作部メモ：${escapeHtml(scene.productionNote || "-")}</div>
+          <div class="item-meta">俳優部メモ：${escapeHtml(scene.actorNote || "-")}</div>
+        </div>
+
+        <div class="item-actions">
+          <button type="button" class="detail-btn" data-scene-detail="${scene.id}">詳細</button>
+          <button type="button" class="select-btn" data-scene-done="${scene.id}">${scene.done ? "自動完了中" : "未完了"}</button>
+          ${!isFirst ? `<button type="button" class="secondary-btn" data-scene-up="${scene.id}">↑上へ</button>` : ``}
+          ${!isLast ? `<button type="button" class="secondary-btn" data-scene-down="${scene.id}">↓下へ</button>` : ``}
+          <button type="button" class="secondary-btn" data-scene-duplicate="${scene.id}">複製</button>
+          <button type="button" class="edit-btn" data-scene-edit="${scene.id}">編集</button>
+          <button type="button" class="danger-btn" data-scene-delete="${scene.id}">削除</button>
+        </div>
+      </div>
+    `;
+  }
+
+  function bindSceneListEvents(){
     sceneList.querySelectorAll("[data-scene-detail]").forEach(btn => {
       btn.addEventListener("click", () => toggleDetail(btn.getAttribute("data-scene-detail")));
     });
 
     sceneList.querySelectorAll("[data-scene-done]").forEach(btn => {
       btn.addEventListener("click", () => toggleDone(btn.getAttribute("data-scene-done")));
+    });
+
+    sceneList.querySelectorAll("[data-scene-duplicate]").forEach(btn => {
+      btn.addEventListener("click", () => duplicateScene(btn.getAttribute("data-scene-duplicate")));
+    });
+
+    sceneList.querySelectorAll("[data-scene-up]").forEach(btn => {
+      btn.addEventListener("click", () => moveScene(btn.getAttribute("data-scene-up"), "up"));
+    });
+
+    sceneList.querySelectorAll("[data-scene-down]").forEach(btn => {
+      btn.addEventListener("click", () => moveScene(btn.getAttribute("data-scene-down"), "down"));
     });
 
     sceneList.querySelectorAll("[data-scene-edit]").forEach(btn => {
@@ -2276,55 +3367,44 @@ sceneMapUrl.value = location.mapUrl || "";
     });
 
     sceneList.querySelectorAll("[data-scene-map]").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const sceneId = btn.getAttribute("data-scene-map");
-    const scene = scenes.find(item => item.id === sceneId);
-    if(!scene || !scene.mapUrl) return;
-    window.open(scene.mapUrl, "_blank");
-  });
-});
-sceneList.querySelectorAll("[data-scene-address]").forEach(btn => {
-  btn.addEventListener("click", async () => {
-    const sceneId = btn.getAttribute("data-scene-address");
-    const scene = scenes.find(item => item.id === sceneId);
-    if(!scene || !scene.address) return;
+      btn.addEventListener("click", () => {
+        const sceneId = btn.getAttribute("data-scene-map");
+        const scene = scenes.find(item => item.id === sceneId);
+        if(!scene || !scene.mapUrl) return;
+        window.open(scene.mapUrl, "_blank");
+      });
+    });
 
-    try{
-      await navigator.clipboard.writeText(scene.address);
-      alert("住所をコピーしました");
-    }catch(error){
-      const temp = document.createElement("textarea");
-      temp.value = scene.address;
-      document.body.appendChild(temp);
-      temp.select();
-      document.execCommand("copy");
-      document.body.removeChild(temp);
-      alert("住所をコピーしました");
-    }
-  });
-});
+    sceneList.querySelectorAll("[data-scene-address]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const sceneId = btn.getAttribute("data-scene-address");
+        const scene = scenes.find(item => item.id === sceneId);
+        if(!scene || !scene.address) return;
+        copyText(scene.address, "住所をコピーしました");
+      });
+    });
 
-sceneList.querySelectorAll("[data-scene-phone]").forEach(btn => {
-  btn.addEventListener("click", async () => {
-    const sceneId = btn.getAttribute("data-scene-phone");
-    const scene = scenes.find(item => item.id === sceneId);
-    if(!scene || !scene.phone) return;
+    sceneList.querySelectorAll("[data-scene-phone]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const sceneId = btn.getAttribute("data-scene-phone");
+        const scene = scenes.find(item => item.id === sceneId);
+        if(!scene || !scene.phone) return;
+        copyText(scene.phone, "電話番号をコピーしました");
+      });
+    });
 
-    try{
-      await navigator.clipboard.writeText(scene.phone);
-      alert("電話番号をコピーしました");
-    }catch(error){
-      const temp = document.createElement("textarea");
-      temp.value = scene.phone;
-      document.body.appendChild(temp);
-      temp.select();
-      document.execCommand("copy");
-      document.body.removeChild(temp);
-      alert("電話番号をコピーしました");
-    }
-  });
-});
-        sceneList.querySelectorAll("[data-scene-check-toggle]").forEach(btn => {
+    sceneList.querySelectorAll("[data-scene-call]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const sceneId = btn.getAttribute("data-scene-call");
+        const scene = scenes.find(item => item.id === sceneId);
+        if(!scene || !scene.phone) return;
+
+        const tel = scene.phone.replace(/[^\d+]/g, "");
+        window.location.href = `tel:${tel}`;
+      });
+    });
+
+    sceneList.querySelectorAll("[data-scene-check-toggle]").forEach(btn => {
       btn.addEventListener("click", () => {
         toggleSceneCheck(
           btn.getAttribute("data-scene-check-toggle"),
@@ -2332,6 +3412,161 @@ sceneList.querySelectorAll("[data-scene-phone]").forEach(btn => {
         );
       });
     });
+
+    sceneList.querySelectorAll("[data-location-group-toggle]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        toggleFieldGroup(btn.getAttribute("data-location-group-toggle"));
+      });
+    });
+  }
+
+  function renderScenes(){
+    if(mode === "field"){
+      const filteredScenes = getFilteredScenesForField();
+      updateFieldSummary(filteredScenes);
+
+      if(filteredScenes.length === 0){
+        sceneList.innerHTML = `<div class="empty-text">該当するシーンがありません</div>`;
+        updateCurrentSceneBar();
+        return;
+      }
+
+      const undoneScenes = filteredScenes.filter(scene => !scene.done);
+      const doneScenes = filteredScenes.filter(scene => scene.done);
+
+      const locationGroups = [];
+      const groupMap = new Map();
+
+      doneScenes.forEach(scene => {
+        const key = getSceneLocationGroupKey(scene);
+        if(!groupMap.has(key)){
+          const group = { key, scenes: [] };
+          groupMap.set(key, group);
+          locationGroups.push(group);
+        }
+        groupMap.get(key).scenes.push(scene);
+      });
+
+      const activeUndoneScenes = undoneScenes.filter(scene => scene.projectId === activeProjectId);
+      const otherUndoneScenes = undoneScenes.filter(scene => scene.projectId !== activeProjectId);
+
+      function renderUndoneSceneGroup(groupTitle, groupScenes){
+        if(groupScenes.length === 0) return "";
+
+        return `
+          <div class="priority-group-box">
+            <div class="priority-group-title">${escapeHtml(groupTitle)}</div>
+            <div class="priority-group-meta">件数 ${groupScenes.length}</div>
+            ${groupScenes.map((scene, index) => {
+              const sameProjectScenes = scenes
+                .filter(item => item.projectId === scene.projectId)
+                .sort((a, b) => {
+                  const orderDiff = (a.order || 0) - (b.order || 0);
+                  if(orderDiff !== 0) return orderDiff;
+                  return String(a.no || "").localeCompare(String(b.no || ""), "ja");
+                });
+
+              const currentIndex = sameProjectScenes.findIndex(item => item.id === scene.id);
+              const isFirst = currentIndex === 0;
+              const isLast = currentIndex === sameProjectScenes.length - 1;
+              const isNextTarget = index === 0;
+
+              return renderSceneCard(scene, isFirst, isLast, true, isNextTarget);
+            }).join("")}
+          </div>
+        `;
+      }
+
+      const activeProjectTitle = getProjectTitle(activeProjectId) || "選択中プロジェクト";
+      const undoneHtml =
+        renderUndoneSceneGroup(`${activeProjectTitle} の未完了`, activeUndoneScenes) +
+        renderUndoneSceneGroup("その他の未完了シーン", otherUndoneScenes);
+
+      const doneGroupsHtml = locationGroups.map(group => {
+        const groupTotal = group.scenes.length;
+        const groupDone = group.scenes.filter(scene => scene.done).length;
+        const groupUndone = groupTotal - groupDone;
+        const isOpen = isFieldGroupOpen(group.key);
+
+        return `
+          <div class="location-group-box">
+            <div class="location-group-header">
+              <div class="location-group-header-left">
+                <div class="location-group-title">${escapeHtml(group.key)}</div>
+                <div class="location-group-meta">件数 ${groupTotal} / 完了 ${groupDone} / 未完了 ${groupUndone}</div>
+              </div>
+              <button type="button" class="location-toggle-btn" data-location-group-toggle="${escapeHtml(group.key)}">
+                ${isOpen ? "閉じる" : "開く"}
+              </button>
+            </div>
+
+            <div class="location-group-scenes ${isOpen ? "" : "hidden"}">
+              ${group.scenes.map(scene => {
+                const sameProjectScenes = scenes
+                  .filter(item => item.projectId === scene.projectId)
+                  .sort((a, b) => {
+                    const orderDiff = (a.order || 0) - (b.order || 0);
+                    if(orderDiff !== 0) return orderDiff;
+                    return String(a.no || "").localeCompare(String(b.no || ""), "ja");
+                  });
+
+                const currentIndex = sameProjectScenes.findIndex(item => item.id === scene.id);
+                const isFirst = currentIndex === 0;
+                const isLast = currentIndex === sameProjectScenes.length - 1;
+
+                return renderSceneCard(scene, isFirst, isLast, true);
+              }).join("")}
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      sceneList.innerHTML = undoneHtml + doneGroupsHtml;
+
+      bindSceneListEvents();
+      updateCurrentSceneBar();
+      return;
+    }
+
+    if(scenes.length === 0){
+      sceneList.innerHTML = `<div class="empty-text">シーンがまだありません</div>`;
+      updateCurrentSceneBar();
+      return;
+    }
+
+    const sortedProjects = [...projects].sort((a, b) => a.title.localeCompare(b.title, "ja"));
+
+    const groups = sortedProjects
+      .map(project => {
+        const projectScenes = scenes
+          .filter(scene => scene.projectId === project.id)
+          .sort((a, b) => {
+            const orderDiff = (a.order || 0) - (b.order || 0);
+            if(orderDiff !== 0) return orderDiff;
+            return String(a.no || "").localeCompare(String(b.no || ""), "ja");
+          });
+
+        return { project, scenes: projectScenes };
+      })
+      .filter(group => group.scenes.length > 0);
+
+    if(groups.length === 0){
+      sceneList.innerHTML = `<div class="empty-text">シーンがまだありません</div>`;
+      updateCurrentSceneBar();
+      return;
+    }
+
+    sceneList.innerHTML = groups.map(group => `
+      <div class="group-title">${escapeHtml(group.project.title)}</div>
+      ${group.scenes.map((scene, index) => {
+        const isFirst = index === 0;
+        const isLast = index === group.scenes.length - 1;
+        return renderSceneCard(scene, isFirst, isLast, false);
+      }).join("")}
+    `).join("");
+
+    bindSceneListEvents();
+    updateCurrentSceneBar();
   }
 
   function renderDebug(){
@@ -2344,11 +3579,26 @@ sceneList.querySelectorAll("[data-scene-phone]").forEach(btn => {
       "actors: " + actors.length + "\n" +
       "props: " + props.length + "\n" +
       "scenes: " + scenes.length + "\n" +
+      "editingProjectId: " + (editingProjectId || "なし") + "\n" +
       "editingLocationId: " + (editingLocationId || "なし") + "\n" +
       "editingActorId: " + (editingActorId || "なし") + "\n" +
       "editingPropId: " + (editingPropId || "なし") + "\n" +
       "editingSceneId: " + (editingSceneId || "なし") + "\n" +
       "activeProjectId: " + (activeProjectId || "なし");
+  }
+
+  function openSceneForm(){
+    clearSceneForm();
+    sceneFormSection.classList.remove("hidden");
+    setSectionCollapsed("sceneFormSection", false);
+    updateOpenSceneButton();
+    window.scrollTo({ top: sceneFormSection.offsetTop - 20, behavior: "smooth" });
+  }
+
+  function goToSection(section){
+    if(!section) return;
+    setSectionCollapsed(section.id, false);
+    window.scrollTo({ top: section.offsetTop - 20, behavior: "smooth" });
   }
 
   prepBtn.addEventListener("click", () => setMode("prep"));
@@ -2357,6 +3607,16 @@ sceneList.querySelectorAll("[data-scene-phone]").forEach(btn => {
   document.querySelectorAll(".dept-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       setDept(btn.getAttribute("data-dept"));
+    });
+  });
+
+  document.querySelectorAll("[data-toggle-card]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const sectionId = btn.getAttribute("data-toggle-card");
+      const section = $(sectionId);
+      if(!section) return;
+      const nextCollapsed = !section.classList.contains("collapsed");
+      setSectionCollapsed(sectionId, nextCollapsed);
     });
   });
 
@@ -2377,21 +3637,106 @@ sceneList.querySelectorAll("[data-scene-phone]").forEach(btn => {
 
   saveSceneBtn.addEventListener("click", addScene);
   clearSceneBtn.addEventListener("click", clearSceneForm);
+  closeSceneBtn.addEventListener("click", closeSceneForm);
 
-fieldSearchInput.addEventListener("input", renderScenes);
-fieldProjectFilter.addEventListener("change", renderScenes);
-fieldStatusFilter.addEventListener("change", renderScenes);
-fieldSortFilter.addEventListener("change", renderScenes);
-clearFieldFilterBtn.addEventListener("click", clearFieldFilters);
-document.querySelectorAll(".quick-check-item input").forEach(input => {
-  input.addEventListener("change", () => {
-    quickCheck[input.id] = input.checked;
-    saveQuickCheck();
+  fieldSearchInput.addEventListener("input", renderScenes);
+  fieldProjectFilter.addEventListener("change", renderScenes);
+  fieldStatusFilter.addEventListener("change", renderScenes);
+  fieldSortFilter.addEventListener("change", renderScenes);
+  clearFieldFilterBtn.addEventListener("click", clearFieldFilters);
+
+  if(expandAllGroupsBtn){
+    expandAllGroupsBtn.addEventListener("click", () => {
+      setAllFieldGroups(true);
+    });
+  }
+
+  if(collapseAllGroupsBtn){
+    collapseAllGroupsBtn.addEventListener("click", () => {
+      setAllFieldGroups(false);
+    });
+  }
+
+  if(openNewSceneBtn){
+    openNewSceneBtn.addEventListener("click", () => {
+      if(!sceneFormSection.classList.contains("hidden")){
+        closeSceneForm();
+        return;
+      }
+      openSceneForm();
+    });
+  }
+
+  if(prevUndoneSceneBtn){
+    prevUndoneSceneBtn.addEventListener("click", () => {
+      moveFromCurrentScene("prev");
+    });
+  }
+
+  if(nextUndoneSceneBtn){
+    nextUndoneSceneBtn.addEventListener("click", () => {
+      moveFromCurrentScene("next");
+    });
+  }
+
+  if(quickOpenSceneBtn){
+    quickOpenSceneBtn.addEventListener("click", () => {
+      openSceneForm();
+    });
+  }
+
+  if(quickGoFieldBtn){
+    quickGoFieldBtn.addEventListener("click", () => {
+      setMode("field");
+      goToSection(fieldControlSection);
+    });
+  }
+
+  if(quickGoProjectBtn){
+    quickGoProjectBtn.addEventListener("click", () => {
+      goToSection(projectListSection);
+    });
+  }
+
+  if(quickGoBackupBtn){
+    quickGoBackupBtn.addEventListener("click", () => {
+      goToSection(backupSection);
+    });
+  }
+
+  if(mobileFab){
+    mobileFab.addEventListener("click", () => {
+      openSceneForm();
+    });
+  }
+
+  document.querySelectorAll(".quick-check-item input").forEach(input => {
+    input.addEventListener("change", () => {
+      quickCheck[input.id] = input.checked;
+      saveQuickCheck();
+    });
   });
-});
+
+  exportBackupBtn.addEventListener("click", exportBackup);
+
+  importBackupBtn.addEventListener("click", () => {
+    importBackupInput.click();
+  });
+
+  importBackupInput.addEventListener("change", (event) => {
+    const file = event.target.files && event.target.files[0];
+    importBackupFile(file);
+    event.target.value = "";
+  });
+
+  window.addEventListener("scroll", () => {
+    if(mode === "field"){
+      updateCurrentSceneBar();
+    }
+  });
 
   renderMode();
-  setDept("all");
+  setDept(currentDept);
   renderProjects();
   renderProjectSelect();
   renderFieldProjectFilter();
@@ -2404,6 +3749,9 @@ document.querySelectorAll(".quick-check-item input").forEach(input => {
   renderScenes();
   renderDebug();
   applyQuickCheck();
+  applySectionCollapseState();
+  updateOpenSceneButton();
+  updateCurrentSceneBar();
 })();
 </script>
 </body>
