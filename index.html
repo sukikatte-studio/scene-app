@@ -8,14 +8,15 @@
 :root{
   --bg:#070b14;
   --bg-2:#0b1020;
-  --panel:#12192a;
-  --panel-2:#182134;
-  --panel-3:#0f1626;
-  --card:#141d2f;
-  --line:#2a3853;
-  --line-soft:rgba(255,255,255,.06);
-  --text:#f5f7fb;
-  --sub:#97a3ba;
+  --panel:#131b2d;
+  --panel-2:#1a2438;
+  --panel-3:#10192b;
+  --card:#172133;
+  --line:#334764;
+  --line-soft:rgba(255,255,255,.08);
+  --text:#f8fbff;
+  --sub:#b2bfd4;
+  --muted:#7f8ba3;;
   --muted:#6f7b91;
   --green:#22c55e;
   --blue:#3b82f6;
@@ -103,8 +104,8 @@ textarea{
   gap:12px;
 }
 .logo-wrap{
-  width:44px;
-  height:44px;
+  width:50px;
+  height:50px;
   border-radius:14px;
   background:linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.02));
   border:1px solid rgba(255,255,255,.08);
@@ -115,8 +116,8 @@ textarea{
   overflow:hidden;
 }
 .logo-wrap img{
-  width:34px;
-  height:34px;
+  width:40px;
+  height:40px;
   object-fit:contain;
   display:block;
 }
@@ -127,15 +128,25 @@ textarea{
 }
 .brand-text{min-width:0;}
 .brand-title{
-  font-size:18px;
-  font-weight:800;
+  font-size:20px;
+  font-weight:900;
   letter-spacing:.02em;
+  line-height:1.1;
   margin:0;
+}
+.brand-label{
+  color:var(--muted);
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin-bottom:2px;
 }
 .brand-sub{
   color:var(--sub);
-  font-size:12px;
-  margin-top:2px;
+  font-size:11px;
+  letter-spacing:.08em;
+  margin-top:3px;
 }
 
 .app{
@@ -143,12 +154,12 @@ textarea{
 }
 
 .card{
-  background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
-  border:1px solid rgba(255,255,255,.07);
+  background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.09);
   border-radius:20px;
-  padding:14px;
-  margin-bottom:14px;
-  box-shadow:var(--shadow);
+  padding:16px;
+  margin-bottom:16px;
+  box-shadow:0 14px 34px rgba(0,0,0,.32);
 }
 .card-title-row{
   display:flex;
@@ -159,12 +170,14 @@ textarea{
 }
 .card-title{
   margin:0;
-  font-size:18px;
-  font-weight:800;
+  font-size:19px;
+  font-weight:900;
+  letter-spacing:.01em;
 }
 .card-sub{
   color:var(--sub);
   font-size:12px;
+  line-height:1.6;
 }
 .section-toggle{
   background:rgba(255,255,255,.06);
@@ -253,8 +266,9 @@ textarea{
   margin-bottom:6px;
 }
 .status-value{
-  font-size:16px;
-  font-weight:800;
+  font-size:18px;
+  font-weight:900;
+  line-height:1.35;
 }
 
 .field{margin-bottom:12px;}
@@ -277,14 +291,14 @@ label{
 .button-row button{flex:1 1 140px;}
 
 .primary-btn{ background:linear-gradient(180deg, #22c55e, #16a34a); }
-.secondary-btn{ background:linear-gradient(180deg, #4b5563, #374151); }
+.secondary-btn{ background:linear-gradient(180deg, #475569, #334155); }
 .select-btn{ background:linear-gradient(180deg, #3b82f6, #2563eb); }
 .danger-btn{ background:linear-gradient(180deg, #ef4444, #dc2626); }
 .edit-btn{ background:linear-gradient(180deg, #f59e0b, #d97706); }
-.detail-btn{ background:linear-gradient(180deg, #14b8a6, #0f766e); }
-.copy-btn{ background:linear-gradient(180deg, #8b5cf6, #7c3aed); }
+.detail-btn{ background:linear-gradient(180deg, #6366f1, #4f46e5); }
+.copy-btn{ background:linear-gradient(180deg, #64748b, #475569); }
 .shot-btn{ background:linear-gradient(180deg, #22c55e, #15803d); }
-.unshot-btn{ background:linear-gradient(180deg, #475569, #334155); }
+.unshot-btn{ background:linear-gradient(180deg, #64748b, #475569); }
 
 .quick-actions{
   display:grid;
@@ -397,10 +411,10 @@ label{
 }
 
 .dashboard-hero-card{
-  padding:14px;
+  padding:16px;
   border-radius:18px;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.06);
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.09);
 }
 
 .dashboard-hero-label{
@@ -410,30 +424,31 @@ label{
 }
 
 .dashboard-hero-value{
-  font-size:24px;
+  font-size:28px;
   font-weight:900;
-  line-height:1.1;
+  line-height:1.05;
+  color:#ffffff;
 }
 
 .dashboard-hero-sub{
-  margin-top:6px;
-  color:#bfdbfe;
+  margin-top:8px;
+  color:#cbd5e1;
   font-size:12px;
-  line-height:1.5;
+  line-height:1.6;
 }
 
 .dashboard-panel{
-  padding:12px;
+  padding:14px;
   border-radius:18px;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.06);
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
 }
 
 .dashboard-panel-title{
-  font-size:14px;
+  font-size:15px;
   font-weight:900;
-  margin-bottom:8px;
-  color:#dbeafe;
+  margin-bottom:10px;
+  color:#eff6ff;
 }
 
 .dashboard-panel-body{
@@ -471,11 +486,11 @@ label{
 .location-card,
 .actor-card,
 .prop-card{
-  margin-top:10px;
-  padding:12px;
+  margin-top:12px;
+  padding:14px;
   border-radius:18px;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.06);
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
 }
 .project-card.active{
   border-color:rgba(59,130,246,.48);
@@ -483,15 +498,16 @@ label{
 }
 
 .item-title{
-  font-size:17px;
+  font-size:18px;
   font-weight:900;
-  margin-bottom:8px;
-  line-height:1.35;
+  margin-bottom:10px;
+  line-height:1.4;
+  color:#ffffff;
 }
 .item-meta{
   color:var(--sub);
   font-size:13px;
-  line-height:1.6;
+  line-height:1.75;
   white-space:pre-wrap;
   word-break:break-word;
 }
@@ -499,13 +515,14 @@ label{
 .item-actions{
   display:flex;
   flex-wrap:wrap;
-  gap:8px;
-  margin-top:12px;
+  gap:10px;
+  margin-top:14px;
 }
 .item-actions button{
   flex:1 1 120px;
-  min-height:42px;
-  border-radius:13px;
+  min-height:44px;
+  border-radius:14px;
+  font-weight:800;
 }
 
 .badges{
@@ -1176,23 +1193,23 @@ label{
   gap:8px;
 }
 .tab-btn{
-  min-height:58px;
+  min-height:60px;
   border-radius:16px;
-  background:rgba(255,255,255,.05);
+  background:rgba(255,255,255,.04);
   border:1px solid rgba(255,255,255,.08);
-  color:var(--sub);
+  color:#9fb0c9;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  gap:4px;
+  gap:5px;
   padding:8px 6px;
 }
 .tab-btn.active{
   color:#fff;
-  background:linear-gradient(180deg, rgba(59,130,246,.30), rgba(59,130,246,.14));
-  border-color:rgba(59,130,246,.42);
-  box-shadow:0 0 0 1px rgba(59,130,246,.18) inset;
+  background:linear-gradient(180deg, rgba(59,130,246,.38), rgba(59,130,246,.18));
+  border-color:rgba(96,165,250,.5);
+  box-shadow:0 0 0 1px rgba(96,165,250,.25) inset, 0 8px 20px rgba(37,99,235,.16);
 }
 .tab-icon{font-size:18px;line-height:1;}
 .tab-label{
@@ -1249,7 +1266,6 @@ label{
 </head>
 <body>
 
-<div class="desktop-note">PCではiPhone幅で表示されます そのまま作業して最終的にiPhoneで使えるUIです</div>
 
 <div class="app-shell">
   <header class="topbar">
@@ -1259,9 +1275,10 @@ label{
           <img src="sukikatte-logo.png" alt="Sukikatte Studio ロゴ" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;logo-fallback&quot;>S</div>';">
         </div>
         <div class="brand-text">
-          <div class="brand-title">Sukikatte Studio</div>
-          <div class="brand-sub">シーン管理</div>
-        </div>
+  <div class="brand-label">Sukikatte Studio</div>
+  <div class="brand-title">SetPilot</div>
+  <div class="brand-sub">Production Dashboard</div>
+</div>
       </div>
     </div>
   </header>
@@ -1316,63 +1333,64 @@ label{
 </section>
 
       <section class="card" id="dashboardSection">
-        <div class="card-title-row">
-          <h2 class="card-title">クイック操作</h2>
-          <button type="button" class="section-toggle" data-toggle-card="dashboardSection">閉じる</button>
-        </div>
-        <div class="card-body">
-           <div class="field">
+  <div class="card-title-row">
+    <h2 class="card-title">クイック操作</h2>
+    <button type="button" class="section-toggle" data-toggle-card="dashboardSection">閉じる</button>
+  </div>
+  <div class="card-body">
+    <div class="field">
       <label for="locationSearchInput">ロケ地検索</label>
       <input id="locationSearchInput" placeholder="ロケ地名 住所 メモで検索">
     </div>
-          <div class="quick-actions">
-            <button type="button" class="quick-btn" id="quickOpenSceneBtn">
-              <div class="quick-btn-title">新規シーン</div>
-              <div class="quick-btn-sub">すぐ入力を開く</div>
-            </button>
-            <button type="button" class="quick-btn" id="quickGoFieldBtn">
-              <div class="quick-btn-title">現場表示へ</div>
-              <div class="quick-btn-sub">未撮影を確認</div>
-            </button>
-            <button type="button" class="quick-btn" id="quickGoProjectBtn">
-              <div class="quick-btn-title">プロジェクト</div>
-              <div class="quick-btn-sub">選択中を切り替え</div>
-            </button>
-            <button type="button" class="quick-btn" id="quickGoBackupBtn">
-              <div class="quick-btn-title">バックアップ</div>
-              <div class="quick-btn-sub">書き出しと復元</div>
-            </button>
-          </div>
-        </div>
-      </section>
+
+    <div class="quick-actions">
+      <button type="button" class="quick-btn" id="quickOpenSceneBtn">
+        <div class="quick-btn-title">新規シーン</div>
+        <div class="quick-btn-sub">すぐ入力を開く</div>
+      </button>
+      <button type="button" class="quick-btn" id="quickGoFieldBtn">
+        <div class="quick-btn-title">現場表示へ</div>
+        <div class="quick-btn-sub">未撮影を確認</div>
+      </button>
+      <button type="button" class="quick-btn" id="quickGoProjectBtn">
+        <div class="quick-btn-title">プロジェクト</div>
+        <div class="quick-btn-sub">選択中を切り替え</div>
+      </button>
+      <button type="button" class="quick-btn" id="quickGoBackupBtn">
+        <div class="quick-btn-title">バックアップ</div>
+        <div class="quick-btn-sub">書き出しと復元</div>
+      </button>
     </div>
 
-              <div class="dashboard-hero-grid" style="margin-top:12px;">
-            <div class="dashboard-hero-card">
-              <div class="dashboard-hero-label">進行率</div>
-              <div id="homeProgressValue" class="dashboard-hero-value">0%</div>
-              <div id="homeProgressSub" class="dashboard-hero-sub">未開始</div>
-              <div class="progress-bar" style="margin-top:8px;">
-              <div id="homeProgressBar" class="progress-bar-fill"></div>
-              
-            </div>
+    <div class="dashboard-hero-grid" style="margin-top:12px;">
+      <div class="dashboard-hero-card">
+        <div class="dashboard-hero-label">進行率</div>
+        <div id="homeProgressValue" class="dashboard-hero-value">0%</div>
+        <div id="homeProgressSub" class="dashboard-hero-sub">未開始</div>
+        <div class="progress-bar" style="margin-top:8px;">
+          <div id="homeProgressBar" class="progress-bar-fill"></div>
+        </div>
+      </div>
 
-            <div class="dashboard-hero-card">
-              <div class="dashboard-hero-label">準備不足</div>
-              <div id="homeNotReadyCount" class="dashboard-hero-value">0</div>
-              <div class="dashboard-hero-sub">チェック未完了シーン</div>
-            </div>
-          </div>
+      <div class="dashboard-hero-card">
+        <div class="dashboard-hero-label">準備不足</div>
+        <div id="homeNotReadyCount" class="dashboard-hero-value">0</div>
+        <div class="dashboard-hero-sub">チェック未完了シーン</div>
+      </div>
+    </div>
 
-          <div class="dashboard-panel" style="margin-top:12px;">
-            <div class="dashboard-panel-title">今日やること</div>
-            <div id="homeTodayAction" class="dashboard-panel-body">まだデータがありません</div>
-          </div>
+    <div class="dashboard-panel" style="margin-top:12px;">
+      <div class="dashboard-panel-title">今日やること</div>
+      <div id="homeTodayAction" class="dashboard-panel-body">まだデータがありません</div>
+    </div>
 
-          <div class="dashboard-panel" style="margin-top:12px;">
-            <div class="dashboard-panel-title">要確認シーン</div>
-            <div id="homeAlertSceneList" class="dashboard-panel-body">まだデータがありません</div>
-          </div>
+        <div class="dashboard-panel" style="margin-top:12px;">
+      <div class="dashboard-panel-title">要確認シーン</div>
+      <div id="homeAlertSceneList" class="dashboard-panel-body">まだデータがありません</div>
+    </div>
+  </div>
+</section>
+</div>
 
     <div id="tabProject" class="tab-panel">
       <section class="card" id="projectCreateSection">
@@ -1941,7 +1959,7 @@ label{
   const FIELD_GROUP_OPEN_KEY = "scene_field_group_open_restore_v1";
   const DEPT_KEY = "scene_dept_restore_v1";
   const COLLAPSE_KEY = "scene_section_collapse_restore_v1";
-　const DEFAULT_COLLAPSE_STATE = {
+  const DEFAULT_COLLAPSE_STATE = {
   dashboardSection:false,
   projectCreateSection:true,
   projectListSection:false,
@@ -1967,7 +1985,10 @@ label{
   let props = readJson(PROP_KEY, []);
   let quickCheck = readJson(QC_KEY, {});
   let fieldGroupOpenState = readJson(FIELD_GROUP_OPEN_KEY, {});
-  let sectionCollapseState = readJson(COLLAPSE_KEY, DEFAULT_COLLAPSE_STATE);
+  let sectionCollapseState = {
+  ...DEFAULT_COLLAPSE_STATE,
+  ...readJson(COLLAPSE_KEY, {})
+};
 
   let editingProjectId = "";
   let editingSceneId = "";
@@ -2493,19 +2514,23 @@ label{
 }
 
   function setSectionCollapsed(sectionId, collapsed){
-    sectionCollapseState[sectionId] = collapsed;
-    saveCollapseState();
+  sectionCollapseState[sectionId] = collapsed;
+  saveCollapseState();
 
-    const section = $(sectionId);
-    if(!section) return;
+  const section = $(sectionId);
+  if(!section) return;
 
-    section.classList.toggle("collapsed", collapsed);
-
-    const toggleBtn = section.querySelector(".section-toggle");
-    if(toggleBtn){
-      toggleBtn.textContent = collapsed ? "開く" : "閉じる";
-    }
+  if(collapsed){
+    section.classList.add("collapsed");
+  }else{
+    section.classList.remove("collapsed");
   }
+
+  const toggleBtn = section.querySelector(".section-toggle");
+  if(toggleBtn){
+    toggleBtn.textContent = collapsed ? "開く" : "閉じる";
+  }
+}
 
   function applySectionCollapseState(){
     document.querySelectorAll("[data-toggle-card]").forEach(btn => {
@@ -3371,8 +3396,7 @@ label{
     `;
   }
 
-  function applyPropToScene(){
-    function togglePropDetail(propId){
+  function togglePropDetail(propId){
   const target = document.getElementById("prop_detail_" + propId);
   if(!target) return;
 
@@ -3386,22 +3410,24 @@ label{
     target.classList.remove("hidden");
   }
 }
-    const propId = scenePropSelect.value;
-    const prop = props.find(item => item.id === propId);
-    if(!prop) return;
 
-    const current = sceneProp.value
-      .split(/\r?\n|,|、/)
-      .map(v => v.trim())
-      .filter(Boolean);
+function applyPropToScene(){
+  const propId = scenePropSelect.value;
+  const prop = props.find(item => item.id === propId);
+  if(!prop) return;
 
-    if(!current.includes(prop.name)){
-      current.push(prop.name);
-    }
+  const current = sceneProp.value
+    .split(/\r?\n|,|、/)
+    .map(v => v.trim())
+    .filter(Boolean);
 
-    sceneProp.value = current.join("\n");
-    showToast("小道具に追加しました");
+  if(!current.includes(prop.name)){
+    current.push(prop.name);
   }
+
+  sceneProp.value = current.join("\n");
+  showToast("小道具に追加しました");
+}
 
   function areAllSceneChecksComplete(checks){
     return !!(
@@ -3861,50 +3887,56 @@ function getNotReadyScenes(projectId){
   }
 
   function bindCurrentSceneActionEvents(){
-    if(!currentSceneActions) return;
+  if(!currentSceneActions) return;
 
-    currentSceneActions.querySelectorAll("[data-current-detail]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const sceneId = btn.getAttribute("data-current-detail");
-        toggleDetail(sceneId);
-        scrollToScene(sceneId);
-      });
+  currentSceneActions.querySelectorAll("[data-current-detail]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const sceneId = btn.getAttribute("data-current-detail");
+      toggleDetail(sceneId);
+      scrollToScene(sceneId);
     });
+  });
 
-    currentSceneActions.querySelectorAll("[data-current-edit]").forEach(btn => {
-      btn.addEventListener("click", () => editScene(btn.getAttribute("data-current-edit")));
+  currentSceneActions.querySelectorAll("[data-scene-shot]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      toggleShotDone(btn.getAttribute("data-scene-shot"));
     });
+  });
 
-    currentSceneActions.querySelectorAll("[data-current-map]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const scene = scenes.find(item => item.id === btn.getAttribute("data-current-map"));
-        if(scene?.mapUrl) window.open(scene.mapUrl, "_blank");
-      });
-    });
+  currentSceneActions.querySelectorAll("[data-current-edit]").forEach(btn => {
+    btn.addEventListener("click", () => editScene(btn.getAttribute("data-current-edit")));
+  });
 
-    currentSceneActions.querySelectorAll("[data-current-address]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const scene = scenes.find(item => item.id === btn.getAttribute("data-current-address"));
-        if(scene?.address) copyText(scene.address, "住所をコピーしました");
-      });
+  currentSceneActions.querySelectorAll("[data-current-map]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const scene = scenes.find(item => item.id === btn.getAttribute("data-current-map"));
+      if(scene?.mapUrl) window.open(scene.mapUrl, "_blank");
     });
+  });
 
-    currentSceneActions.querySelectorAll("[data-current-phone]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const scene = scenes.find(item => item.id === btn.getAttribute("data-current-phone"));
-        if(scene?.phone) copyText(scene.phone, "電話番号をコピーしました");
-      });
+  currentSceneActions.querySelectorAll("[data-current-address]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const scene = scenes.find(item => item.id === btn.getAttribute("data-current-address"));
+      if(scene?.address) copyText(scene.address, "住所をコピーしました");
     });
+  });
 
-    currentSceneActions.querySelectorAll("[data-current-call]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const scene = scenes.find(item => item.id === btn.getAttribute("data-current-call"));
-        if(!scene?.phone) return;
-        const tel = scene.phone.replace(/[^\d+]/g, "");
-        window.location.href = `tel:${tel}`;
-      });
+  currentSceneActions.querySelectorAll("[data-current-phone]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const scene = scenes.find(item => item.id === btn.getAttribute("data-current-phone"));
+      if(scene?.phone) copyText(scene.phone, "電話番号をコピーしました");
     });
-  }
+  });
+
+  currentSceneActions.querySelectorAll("[data-current-call]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const scene = scenes.find(item => item.id === btn.getAttribute("data-current-call"));
+      if(!scene?.phone) return;
+      const tel = scene.phone.replace(/[^\d+]/g, "");
+      window.location.href = `tel:${tel}`;
+    });
+  });
+}
 
   function bindNextSceneActionEvents(){
     if(!nextSceneActions) return;
@@ -4717,23 +4749,15 @@ fieldBtn.addEventListener("click", () => {
   });
 
   document.querySelectorAll("[data-toggle-card]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const sectionId = btn.getAttribute("data-toggle-card");
-      const section = $(sectionId);
-      if(!section) return;
+  btn.addEventListener("click", () => {
+    const sectionId = btn.getAttribute("data-toggle-card");
+    const section = $(sectionId);
+    if(!section) return;
 
-      const isCurrentlyClosed = section.classList.contains("collapsed");
-
-      document.querySelectorAll("[data-toggle-card]").forEach(otherBtn => {
-        const otherId = otherBtn.getAttribute("data-toggle-card");
-        setSectionCollapsed(otherId, true);
-      });
-
-      if(isCurrentlyClosed){
-        setSectionCollapsed(sectionId, false);
-      }
-    });
+    const isCollapsed = section.classList.contains("collapsed");
+    setSectionCollapsed(sectionId, !isCollapsed);
   });
+});
 
   saveProjectBtn.addEventListener("click", addProject);
   clearProjectBtn.addEventListener("click", clearProjectForm);
