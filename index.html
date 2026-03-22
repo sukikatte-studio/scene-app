@@ -47,26 +47,16 @@ body{
   line-height:1.5;
 }
 
-button,
-input,
-select,
-textarea{
-  font:inherit;
-}
+button,input,select,textarea{font:inherit;}
 
 button{
   border:none;
   cursor:pointer;
   color:#fff;
-  transition:transform .12s ease, opacity .18s ease, box-shadow .18s ease;
+  transition:transform .12s ease, opacity .18s ease, box-shadow .18s ease, background .18s ease;
 }
-button:active{
-  transform:scale(.985);
-}
-button:disabled{
-  opacity:.55;
-  cursor:not-allowed;
-}
+button:active{transform:scale(.985);}
+button:disabled{opacity:.55;cursor:not-allowed;}
 
 input,textarea,select{
   width:100%;
@@ -104,17 +94,14 @@ textarea{
   background:rgba(7,11,20,.82);
   border-bottom:1px solid rgba(255,255,255,.06);
 }
-
 .topbar-inner{
   padding:calc(10px + env(safe-area-inset-top, 0px)) 14px 12px;
 }
-
 .brand{
   display:flex;
   align-items:center;
   gap:12px;
 }
-
 .logo-wrap{
   width:44px;
   height:44px;
@@ -138,10 +125,7 @@ textarea{
   font-size:16px;
   color:#fff;
 }
-
-.brand-text{
-  min-width:0;
-}
+.brand-text{min-width:0;}
 .brand-title{
   font-size:18px;
   font-weight:800;
@@ -166,7 +150,6 @@ textarea{
   margin-bottom:14px;
   box-shadow:var(--shadow);
 }
-
 .card-title-row{
   display:flex;
   align-items:center;
@@ -183,7 +166,6 @@ textarea{
   color:var(--sub);
   font-size:12px;
 }
-
 .section-toggle{
   background:rgba(255,255,255,.06);
   color:var(--sub);
@@ -193,12 +175,8 @@ textarea{
   font-size:12px;
   white-space:nowrap;
 }
-.card.collapsed .card-body{
-  display:none;
-}
-.card.collapsed .section-toggle{
-  opacity:.9;
-}
+.card.collapsed .card-body{display:none;}
+.card.collapsed .section-toggle{opacity:.9;}
 
 .hero-card{
   padding:16px;
@@ -241,12 +219,8 @@ textarea{
   display:grid;
   gap:8px;
 }
-.segment.two{
-  grid-template-columns:1fr 1fr;
-}
-.segment.dept{
-  grid-template-columns:repeat(3,1fr);
-}
+.segment.two{grid-template-columns:1fr 1fr;}
+.segment.dept{grid-template-columns:repeat(3,1fr);}
 .segment-btn{
   min-height:44px;
   padding:10px 12px;
@@ -283,9 +257,7 @@ textarea{
   font-weight:800;
 }
 
-.field{
-  margin-bottom:12px;
-}
+.field{margin-bottom:12px;}
 label{
   display:block;
   margin-bottom:6px;
@@ -302,9 +274,7 @@ label{
   flex-wrap:wrap;
   gap:8px;
 }
-.button-row button{
-  flex:1 1 140px;
-}
+.button-row button{flex:1 1 140px;}
 
 .primary-btn{ background:linear-gradient(180deg, #22c55e, #16a34a); }
 .secondary-btn{ background:linear-gradient(180deg, #4b5563, #374151); }
@@ -313,6 +283,8 @@ label{
 .edit-btn{ background:linear-gradient(180deg, #f59e0b, #d97706); }
 .detail-btn{ background:linear-gradient(180deg, #14b8a6, #0f766e); }
 .copy-btn{ background:linear-gradient(180deg, #8b5cf6, #7c3aed); }
+.shot-btn{ background:linear-gradient(180deg, #22c55e, #15803d); }
+.unshot-btn{ background:linear-gradient(180deg, #475569, #334155); }
 
 .quick-actions{
   display:grid;
@@ -342,7 +314,10 @@ label{
 .box,
 .summary-box,
 .current-scene-bar,
-.quick-check-box{
+.quick-check-box,
+.next-scene-box,
+.dashboard-mini,
+.form-block{
   background:rgba(255,255,255,.04);
   border:1px solid rgba(255,255,255,.06);
   border-radius:16px;
@@ -352,16 +327,37 @@ label{
 
 .current-project-label,
 .mode-status-label,
-.current-scene-label{
+.current-scene-label,
+.next-scene-label{
   color:var(--sub);
   font-size:12px;
   margin-bottom:5px;
 }
 .current-project-value,
 .mode-status-value,
-.current-scene-main{
+.current-scene-main,
+.next-scene-main{
   font-size:16px;
   font-weight:800;
+}
+.current-scene-meta,
+.next-scene-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:8px;
+}
+.current-scene-actions,
+.next-scene-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.current-scene-actions button,
+.next-scene-actions button{
+  flex:1 1 120px;
+  min-height:42px;
+  border-radius:13px;
 }
 
 .summary-grid{
@@ -383,6 +379,91 @@ label{
 .summary-value{
   font-size:20px;
   font-weight:900;
+}
+
+.dashboard-mini-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:12px;
+}
+.dashboard-mini .summary-label{margin-bottom:3px;}
+.dashboard-mini .summary-value{font-size:18px;}
+
+.dashboard-hero-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.dashboard-hero-card{
+  padding:14px;
+  border-radius:18px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06);
+}
+
+.dashboard-hero-label{
+  color:var(--sub);
+  font-size:12px;
+  margin-bottom:6px;
+}
+
+.dashboard-hero-value{
+  font-size:24px;
+  font-weight:900;
+  line-height:1.1;
+}
+
+.dashboard-hero-sub{
+  margin-top:6px;
+  color:#bfdbfe;
+  font-size:12px;
+  line-height:1.5;
+}
+
+.dashboard-panel{
+  padding:12px;
+  border-radius:18px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06);
+}
+
+.dashboard-panel-title{
+  font-size:14px;
+  font-weight:900;
+  margin-bottom:8px;
+  color:#dbeafe;
+}
+
+.dashboard-panel-body{
+  color:var(--sub);
+  font-size:13px;
+  line-height:1.7;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+.dashboard-alert-item{
+  padding:10px 0;
+  border-top:1px solid rgba(255,255,255,.06);
+}
+
+.dashboard-alert-item:first-child{
+  border-top:none;
+  padding-top:0;
+}
+
+.dashboard-alert-title{
+  color:#fff;
+  font-size:13px;
+  font-weight:800;
+}
+
+.dashboard-alert-sub{
+  color:var(--sub);
+  font-size:12px;
+  margin-top:3px;
 }
 
 .project-card,
@@ -446,6 +527,11 @@ label{
   color:#dcfce7;
   border-color:rgba(34,197,94,.35);
 }
+.badge.shot{
+  background:rgba(22,163,74,.22);
+  color:#dcfce7;
+  border-color:rgba(22,163,74,.45);
+}
 .badge.red{ background:rgba(239,68,68,.16); color:#fee2e2; border-color:rgba(239,68,68,.34); }
 .badge.blue{ background:rgba(59,130,246,.16); color:#dbeafe; border-color:rgba(59,130,246,.34); }
 .badge.green{ background:rgba(34,197,94,.16); color:#dcfce7; border-color:rgba(34,197,94,.34); }
@@ -475,11 +561,15 @@ label{
 .scene-card.label-purple::before{background:#8b5cf6;}
 .scene-card.label-pink::before{background:#ec4899;}
 
-.scene-card.scene-done-card{
+.scene-card.ready-card{
+  border-color:rgba(34,197,94,.30);
+}
+.scene-card.shot-done-card{
   opacity:.72;
   border-color:#334155;
+  background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
 }
-.scene-card.scene-done-card::before{
+.scene-card.shot-done-card::before{
   background:#166534 !important;
 }
 .scene-card.scene-undone-card{
@@ -497,9 +587,22 @@ label{
   box-shadow:0 0 0 2px rgba(59,130,246,.9), 0 0 18px rgba(59,130,246,.45);
   border-color:#60a5fa;
 }
+.field-scene-card .item-title{font-size:19px;}
 
-.field-scene-card .item-title{
-  font-size:19px;
+.compact-shot-card{
+  padding-top:10px;
+  padding-bottom:10px;
+}
+.compact-shot-card .item-title{
+  font-size:15px;
+  margin-bottom:6px;
+}
+.compact-shot-card .item-actions button{
+  min-height:38px;
+  flex:1 1 100px;
+}
+.compact-shot-card .item-meta{
+  font-size:12px;
 }
 
 .detail-box{
@@ -557,9 +660,7 @@ label{
   border-color:rgba(34,197,94,.35);
 }
 
-.progress-wrap{
-  margin-top:10px;
-}
+.progress-wrap{margin-top:10px;}
 .progress-label-row{
   display:flex;
   justify-content:space-between;
@@ -607,6 +708,252 @@ label{
   font-size:12px;
   text-align:center;
   padding:8px;
+}
+.actor-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:12px;
+}
+
+.actor-mini-card{
+  padding:12px;
+  border-radius:18px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06);
+  box-shadow:var(--shadow);
+}
+
+.actor-mini-top{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:10px;
+}
+
+.actor-mini-thumb,
+.actor-mini-thumb-placeholder{
+  width:92px;
+  height:92px;
+  border-radius:18px;
+  object-fit:cover;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06);
+}
+
+.actor-mini-thumb-placeholder{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--sub);
+  font-size:12px;
+  padding:8px;
+}
+
+.actor-mini-name{
+  font-size:15px;
+  font-weight:900;
+  line-height:1.35;
+  word-break:break-word;
+}
+
+.actor-mini-memo{
+  margin-top:6px;
+  color:var(--sub);
+  font-size:12px;
+  line-height:1.5;
+  white-space:pre-wrap;
+  word-break:break-word;
+  text-align:left;
+  min-height:54px;
+}
+
+.actor-mini-actions{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:8px;
+  margin-top:10px;
+}
+
+.actor-mini-actions button{
+  width:100%;
+  min-height:40px;
+  border-radius:12px;
+}
+
+@media (max-width:380px){
+  .actor-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+.actor-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:12px;
+}
+
+.actor-mini-card{
+  padding:12px;
+  border-radius:18px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06);
+  box-shadow:var(--shadow);
+}
+
+.actor-mini-top{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:10px;
+}
+
+.actor-mini-thumb,
+.actor-mini-thumb-placeholder{
+  width:92px;
+  height:92px;
+  border-radius:18px;
+  object-fit:cover;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06);
+}
+
+.actor-mini-thumb-placeholder{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--sub);
+  font-size:12px;
+  padding:8px;
+}
+
+.actor-mini-name{
+  font-size:15px;
+  font-weight:900;
+  line-height:1.35;
+  word-break:break-word;
+}
+
+.actor-mini-count{
+  margin-top:4px;
+  font-size:12px;
+  color:#bfdbfe;
+  font-weight:700;
+  text-align:center;
+}
+
+.actor-mini-memo{
+  margin-top:8px;
+  color:var(--sub);
+  font-size:12px;
+  line-height:1.5;
+  white-space:pre-wrap;
+  word-break:break-word;
+  text-align:left;
+  min-height:54px;
+}
+
+.actor-mini-actions{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:8px;
+  margin-top:10px;
+}
+
+.actor-mini-actions button{
+  width:100%;
+  min-height:40px;
+  border-radius:12px;
+}
+
+.actor-detail-box{
+  margin-top:10px;
+  padding:10px;
+  border-radius:14px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06);
+}
+
+.actor-detail-row{
+  color:var(--sub);
+  font-size:12px;
+  line-height:1.6;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+@media (max-width:380px){
+  .actor-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+.location-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:10px;
+  margin-top:12px;
+}
+
+.location-mini-card{
+  padding:12px;
+  border-radius:18px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06);
+  box-shadow:var(--shadow);
+}
+
+.location-mini-title{
+  font-size:16px;
+  font-weight:900;
+  line-height:1.35;
+}
+
+.location-mini-count{
+  margin-top:4px;
+  font-size:12px;
+  color:#bfdbfe;
+  font-weight:700;
+}
+
+.location-mini-meta{
+  margin-top:8px;
+  color:var(--sub);
+  font-size:12px;
+  line-height:1.6;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+.location-mini-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:10px;
+}
+
+.location-mini-actions button{
+  min-height:40px;
+  border-radius:12px;
+}
+
+.location-detail-box{
+  margin-top:10px;
+  padding:10px;
+  border-radius:14px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06);
+}
+
+.location-detail-row{
+  color:var(--sub);
+  font-size:12px;
+  line-height:1.6;
+  white-space:pre-wrap;
+  word-break:break-word;
 }
 
 .group-title{
@@ -663,8 +1010,89 @@ label{
   color:#fff;
   font-size:12px;
 }
-.location-group-scenes.hidden{
-  display:none !important;
+.location-group-scenes.hidden{display:none !important;}
+
+.prop-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:12px;
+}
+
+.prop-mini-card{
+  padding:12px;
+  border-radius:18px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06);
+  box-shadow:var(--shadow);
+}
+
+.prop-mini-title{
+  font-size:15px;
+  font-weight:900;
+  line-height:1.35;
+  word-break:break-word;
+}
+
+.prop-mini-count{
+  margin-top:4px;
+  font-size:12px;
+  color:#bfdbfe;
+  font-weight:700;
+}
+
+.prop-mini-storage{
+  margin-top:8px;
+  color:#dbeafe;
+  font-size:12px;
+  line-height:1.5;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+.prop-mini-memo{
+  margin-top:6px;
+  color:var(--sub);
+  font-size:12px;
+  line-height:1.5;
+  white-space:pre-wrap;
+  word-break:break-word;
+  min-height:54px;
+}
+
+.prop-mini-actions{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:8px;
+  margin-top:10px;
+}
+
+.prop-mini-actions button{
+  width:100%;
+  min-height:40px;
+  border-radius:12px;
+}
+
+.prop-detail-box{
+  margin-top:10px;
+  padding:10px;
+  border-radius:14px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06);
+}
+
+.prop-detail-row{
+  color:var(--sub);
+  font-size:12px;
+  line-height:1.6;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+@media (max-width:380px){
+  .prop-grid{
+    grid-template-columns:1fr;
+  }
 }
 
 .quick-check-wrap{
@@ -689,34 +1117,45 @@ label{
   font-size:14px;
 }
 
+.form-block{
+  margin-bottom:12px;
+  padding:12px;
+}
+.form-block-title{
+  font-size:14px;
+  font-weight:900;
+  margin-bottom:10px;
+  color:#dbeafe;
+}
+.form-block.compact .field:last-child{margin-bottom:0;}
+
 .empty-text{
   color:var(--sub);
   padding:8px 0;
 }
-.hidden{
-  display:none !important;
-}
+.hidden{display:none !important;}
 
 .mobile-fab{
   position:fixed;
-  right:16px;
-  bottom:calc(16px + var(--safe-bottom));
-  z-index:50;
-  width:60px;
-  height:60px;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:calc(84px + env(safe-area-inset-bottom, 0px));
+  z-index:90;
+  min-width:220px;
+  height:54px;
+  padding:0 22px;
   border-radius:999px;
   background:linear-gradient(180deg, #3b82f6, #2563eb);
   color:#fff;
-  font-size:28px;
+  font-size:16px;
+  font-weight:900;
   box-shadow:0 18px 40px rgba(37,99,235,.34);
   display:flex;
   align-items:center;
   justify-content:center;
 }
 
-.desktop-note{
-  display:none;
-}
+.desktop-note{display:none;}
 
 .tabbar{
   position:fixed;
@@ -731,13 +1170,11 @@ label{
   backdrop-filter:blur(18px);
   border-top:1px solid rgba(255,255,255,.08);
 }
-
 .tabbar-inner{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:8px;
 }
-
 .tab-btn{
   min-height:58px;
   border-radius:16px;
@@ -751,37 +1188,48 @@ label{
   gap:4px;
   padding:8px 6px;
 }
-
 .tab-btn.active{
   color:#fff;
   background:linear-gradient(180deg, rgba(59,130,246,.30), rgba(59,130,246,.14));
   border-color:rgba(59,130,246,.42);
   box-shadow:0 0 0 1px rgba(59,130,246,.18) inset;
 }
-
-.tab-icon{
-  font-size:18px;
-  line-height:1;
-}
-
+.tab-icon{font-size:18px;line-height:1;}
 .tab-label{
   font-size:11px;
   font-weight:800;
   line-height:1.1;
 }
 
-.tab-panel{
-  display:none;
-}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
 
-.tab-panel.active{
-  display:block;
+.toast{
+  position:fixed;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:calc(90px + env(safe-area-inset-bottom, 0px));
+  z-index:120;
+  min-width:180px;
+  max-width:90vw;
+  padding:12px 14px;
+  border-radius:14px;
+  background:rgba(7,11,20,.94);
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 18px 40px rgba(0,0,0,.38);
+  color:#fff;
+  font-size:13px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .22s ease, transform .22s ease;
+}
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(-4px);
 }
 
 @media (min-width:700px){
-  body{
-    padding:18px;
-  }
+  body{padding:18px;}
   .app-shell{
     border:1px solid rgba(255,255,255,.07);
     border-radius:28px;
@@ -796,8 +1244,7 @@ label{
     font-size:12px;
     text-align:center;
   }
-} 
-
+}
 </style>
 </head>
 <body>
@@ -813,58 +1260,60 @@ label{
         </div>
         <div class="brand-text">
           <div class="brand-title">Sukikatte Studio</div>
-          <div class="brand-sub">iPhone前提UI / シーン管理オールインワン</div>
+          <div class="brand-sub">シーン管理</div>
         </div>
       </div>
     </div>
   </header>
 
-   <main class="app">
+  <main class="app">
 
     <div id="tabHome" class="tab-panel active">
       <section class="card hero-card">
-        <div class="hero-top">
-          <div class="hero-copy">
-            <h2>現場で迷わない<br>シーン管理UI</h2>
-            <p>PCで作って iPhoneでそのまま使いやすい見た目に整理しています</p>
-          </div>
-          <div class="hero-badge">Sukikatte</div>
-        </div>
 
-        <div style="margin-top:14px;">
-          <div class="segment-label">モード</div>
-          <div class="segment two">
-            <button type="button" id="prepBtn" class="segment-btn">準備モード</button>
-            <button type="button" id="fieldBtn" class="segment-btn">現場モード</button>
-          </div>
-        </div>
+  <div class="status-grid">
+    <div class="status-tile">
+      <div class="status-label">選択中案件</div>
+      <div id="homeActiveProject" class="status-value">未選択</div>
+    </div>
+    <div class="status-tile">
+      <div class="status-label">次シーン</div>
+      <div id="homeNextScene" class="status-value">なし</div>
+    </div>
+    <div class="status-tile">
+      <div class="status-label">総シーン</div>
+      <div id="homeSceneTotal" class="status-value">0</div>
+    </div>
+    <div class="status-tile">
+      <div class="status-label">未撮影</div>
+      <div id="homeSceneRemaining" class="status-value">0</div>
+    </div>
+  </div>
 
-        <div style="margin-top:12px;">
-          <div class="segment-label">部署</div>
-          <div class="segment dept">
-            <button type="button" class="segment-btn dept-btn" data-dept="all">ALL</button>
-            <button type="button" class="segment-btn dept-btn" data-dept="direction">演出</button>
-            <button type="button" class="segment-btn dept-btn" data-dept="camera">撮影</button>
-            <button type="button" class="segment-btn dept-btn" data-dept="light">照明</button>
-            <button type="button" class="segment-btn dept-btn" data-dept="make">メイク</button>
-            <button type="button" class="segment-btn dept-btn" data-dept="costume">衣装</button>
-            <button type="button" class="segment-btn dept-btn" data-dept="art">美術</button>
-            <button type="button" class="segment-btn dept-btn" data-dept="production">制作</button>
-            <button type="button" class="segment-btn dept-btn" data-dept="actor">俳優</button>
-          </div>
-        </div>
+  <div style="margin-top:14px;">
+    <div class="segment-label">モード</div>
+    <div class="segment two">
+      <button type="button" id="prepBtn" class="segment-btn">準備</button>
+      <button type="button" id="fieldBtn" class="segment-btn">現場</button>
+    </div>
+  </div>
 
-        <div class="status-grid">
-          <div class="status-tile">
-            <div class="status-label">現在のモード</div>
-            <div id="modeLabel" class="status-value">未切替</div>
-          </div>
-          <div class="status-tile">
-            <div class="status-label">現在の部署</div>
-            <div id="deptLabel" class="status-value">ALL</div>
-          </div>
-        </div>
-      </section>
+  <div style="margin-top:12px;">
+    <div class="segment-label">部署</div>
+    <div class="segment dept">
+      <button type="button" class="segment-btn dept-btn" data-dept="all">ALL</button>
+      <button type="button" class="segment-btn dept-btn" data-dept="direction">演出</button>
+      <button type="button" class="segment-btn dept-btn" data-dept="camera">撮影</button>
+      <button type="button" class="segment-btn dept-btn" data-dept="light">照明</button>
+      <button type="button" class="segment-btn dept-btn" data-dept="make">メイク</button>
+      <button type="button" class="segment-btn dept-btn" data-dept="costume">衣装</button>
+      <button type="button" class="segment-btn dept-btn" data-dept="art">美術</button>
+      <button type="button" class="segment-btn dept-btn" data-dept="production">制作</button>
+      <button type="button" class="segment-btn dept-btn" data-dept="actor">俳優</button>
+    </div>
+  </div>
+
+</section>
 
       <section class="card" id="dashboardSection">
         <div class="card-title-row">
@@ -872,6 +1321,10 @@ label{
           <button type="button" class="section-toggle" data-toggle-card="dashboardSection">閉じる</button>
         </div>
         <div class="card-body">
+           <div class="field">
+      <label for="locationSearchInput">ロケ地検索</label>
+      <input id="locationSearchInput" placeholder="ロケ地名 住所 メモで検索">
+    </div>
           <div class="quick-actions">
             <button type="button" class="quick-btn" id="quickOpenSceneBtn">
               <div class="quick-btn-title">新規シーン</div>
@@ -879,7 +1332,7 @@ label{
             </button>
             <button type="button" class="quick-btn" id="quickGoFieldBtn">
               <div class="quick-btn-title">現場表示へ</div>
-              <div class="quick-btn-sub">未完了を確認</div>
+              <div class="quick-btn-sub">未撮影を確認</div>
             </button>
             <button type="button" class="quick-btn" id="quickGoProjectBtn">
               <div class="quick-btn-title">プロジェクト</div>
@@ -893,6 +1346,33 @@ label{
         </div>
       </section>
     </div>
+
+              <div class="dashboard-hero-grid" style="margin-top:12px;">
+            <div class="dashboard-hero-card">
+              <div class="dashboard-hero-label">進行率</div>
+              <div id="homeProgressValue" class="dashboard-hero-value">0%</div>
+              <div id="homeProgressSub" class="dashboard-hero-sub">未開始</div>
+              <div class="progress-bar" style="margin-top:8px;">
+              <div id="homeProgressBar" class="progress-bar-fill"></div>
+              
+            </div>
+
+            <div class="dashboard-hero-card">
+              <div class="dashboard-hero-label">準備不足</div>
+              <div id="homeNotReadyCount" class="dashboard-hero-value">0</div>
+              <div class="dashboard-hero-sub">チェック未完了シーン</div>
+            </div>
+          </div>
+
+          <div class="dashboard-panel" style="margin-top:12px;">
+            <div class="dashboard-panel-title">今日やること</div>
+            <div id="homeTodayAction" class="dashboard-panel-body">まだデータがありません</div>
+          </div>
+
+          <div class="dashboard-panel" style="margin-top:12px;">
+            <div class="dashboard-panel-title">要確認シーン</div>
+            <div id="homeAlertSceneList" class="dashboard-panel-body">まだデータがありません</div>
+          </div>
 
     <div id="tabProject" class="tab-panel">
       <section class="card" id="projectCreateSection">
@@ -958,7 +1438,6 @@ label{
               <label for="locationPhone">電話番号</label>
               <input id="locationPhone" placeholder="03-1234-5678">
             </div>
-
             <div class="field">
               <label for="locationMapUrl">GoogleマップURL</label>
               <input id="locationMapUrl" placeholder="https://maps.google.com/...">
@@ -1005,6 +1484,10 @@ label{
           <button type="button" class="section-toggle" data-toggle-card="actorMasterSection">閉じる</button>
         </div>
         <div class="card-body">
+              <div class="field">
+      <label for="actorSearchInput">俳優検索</label>
+      <input id="actorSearchInput" placeholder="名前やメモで検索">
+    </div>
           <div class="field">
             <label for="actorName">俳優名</label>
             <input id="actorName" placeholder="例：長島琢磨">
@@ -1035,6 +1518,10 @@ label{
           <button type="button" class="section-toggle" data-toggle-card="propMasterSection">閉じる</button>
         </div>
         <div class="card-body">
+              <div class="field">
+      <label for="propSearchInput">小道具検索</label>
+      <input id="propSearchInput" placeholder="小道具名 保管場所 メモで検索">
+    </div>
           <div class="field">
             <label for="propName">小道具名</label>
             <input id="propName" placeholder="例：グラス">
@@ -1068,164 +1555,191 @@ label{
         </div>
         <div class="card-body">
 
-          <div class="field">
-            <label for="sceneProjectSelect">プロジェクト</label>
-            <select id="sceneProjectSelect"></select>
-          </div>
+          <div class="form-block compact">
+            <div class="form-block-title">基本</div>
 
-          <div class="field">
-            <label for="sceneLocationSelect">ロケ地マスタ選択</label>
-            <select id="sceneLocationSelect"></select>
-          </div>
-
-          <div class="button-row">
-            <button type="button" id="applyLocationBtn" class="select-btn">ロケ地情報を反映</button>
-          </div>
-
-          <div class="field">
-            <label for="sceneActorSelect">俳優一覧から追加</label>
-            <select id="sceneActorSelect"></select>
-          </div>
-
-          <div class="button-row">
-            <button type="button" id="applyActorBtn" class="select-btn">出演者に追加</button>
-          </div>
-
-          <div class="field">
-            <label for="scenePropSelect">小道具一覧から追加</label>
-            <select id="scenePropSelect"></select>
-          </div>
-
-          <div class="button-row">
-            <button type="button" id="applyPropBtn" class="select-btn">小道具に追加</button>
-          </div>
-
-          <div class="two-col">
             <div class="field">
-              <label for="sceneNo">シーン番号</label>
-              <input id="sceneNo" placeholder="例：1">
+              <label for="sceneProjectSelect">プロジェクト</label>
+              <select id="sceneProjectSelect"></select>
+            </div>
+
+            <div class="two-col">
+              <div class="field">
+                <label for="sceneNo">シーン番号</label>
+                <input id="sceneNo" placeholder="例：1">
+              </div>
+
+              <div class="field">
+                <label for="sceneOrder">撮影順</label>
+                <input id="sceneOrder" type="number" placeholder="例：1">
+              </div>
             </div>
 
             <div class="field">
-              <label for="sceneOrder">撮影順</label>
-              <input id="sceneOrder" type="number" placeholder="例：1">
+              <label for="sceneTitle">シーン名</label>
+              <input id="sceneTitle" placeholder="例：店内 会話シーン">
             </div>
-          </div>
 
-          <div class="field">
-            <label for="sceneTitle">シーン名</label>
-            <input id="sceneTitle" placeholder="例：店内 会話シーン">
-          </div>
-
-          <div class="field">
-            <label for="sceneLabel">色分けラベル</label>
-            <select id="sceneLabel">
-              <option value="">なし</option>
-              <option value="赤">赤</option>
-              <option value="青">青</option>
-              <option value="緑">緑</option>
-              <option value="黄">黄</option>
-              <option value="紫">紫</option>
-              <option value="ピンク">ピンク</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label for="sceneCast">出演者</label>
-            <textarea id="sceneCast" placeholder="例：長島琢磨&#10;岡本尚子"></textarea>
-          </div>
-
-          <div class="field">
-            <label for="sceneLocation">ロケ場所</label>
-            <input id="sceneLocation" placeholder="例：居酒屋かつら">
-          </div>
-
-          <div class="two-col">
             <div class="field">
-              <label for="sceneAddress">住所</label>
-              <input id="sceneAddress" placeholder="例：東京都渋谷区○○1-2-3">
+              <label for="sceneLabel">色分けラベル</label>
+              <select id="sceneLabel">
+                <option value="">なし</option>
+                <option value="赤">赤</option>
+                <option value="青">青</option>
+                <option value="緑">緑</option>
+                <option value="黄">黄</option>
+                <option value="紫">紫</option>
+                <option value="ピンク">ピンク</option>
+              </select>
             </div>
+          </div>
+
+          <div class="form-block compact">
+            <div class="form-block-title">人</div>
+
             <div class="field">
-              <label for="scenePhone">電話番号</label>
-              <input id="scenePhone" placeholder="例：03-1234-5678">
+              <label for="sceneActorSelect">俳優一覧から追加</label>
+              <select id="sceneActorSelect"></select>
+            </div>
+
+            <div class="button-row">
+              <button type="button" id="applyActorBtn" class="select-btn">出演者に追加</button>
+            </div>
+
+            <div class="field">
+              <label for="sceneCast">出演者</label>
+              <textarea id="sceneCast" placeholder="例：長島琢磨&#10;岡本尚子"></textarea>
             </div>
           </div>
 
-          <div class="field">
-            <label for="sceneMapUrl">GoogleマップURL</label>
-            <input id="sceneMapUrl" placeholder="https://maps.google.com/...">
-          </div>
+          <div class="form-block compact">
+            <div class="form-block-title">場所</div>
 
-          <div class="field">
-            <label for="scenePermitMemo">ロケ許可メモ</label>
-            <textarea id="scenePermitMemo" placeholder="例：店長確認済み 申請書送付済み"></textarea>
-          </div>
+            <div class="field">
+              <label for="sceneLocationSelect">ロケ地マスタ選択</label>
+              <select id="sceneLocationSelect"></select>
+            </div>
 
-          <div class="field">
-            <label for="sceneParkingMemo">駐車場メモ</label>
-            <textarea id="sceneParkingMemo" placeholder="例：近隣コインPあり"></textarea>
-          </div>
+            <div class="button-row">
+              <button type="button" id="applyLocationBtn" class="select-btn">ロケ地情報を反映</button>
+            </div>
 
-          <div class="field">
-            <label for="scenePowerMemo">電源メモ</label>
-            <textarea id="scenePowerMemo" placeholder="例：店内コンセント使用可"></textarea>
-          </div>
+            <div class="field">
+              <label for="sceneLocation">ロケ場所</label>
+              <input id="sceneLocation" placeholder="例：居酒屋かつら">
+            </div>
 
-          <div class="field">
-            <label for="sceneToiletMemo">トイレメモ</label>
-            <textarea id="sceneToiletMemo" placeholder="例：店内あり"></textarea>
-          </div>
+            <div class="two-col">
+              <div class="field">
+                <label for="sceneAddress">住所</label>
+                <input id="sceneAddress" placeholder="例：東京都渋谷区○○1-2-3">
+              </div>
+              <div class="field">
+                <label for="scenePhone">電話番号</label>
+                <input id="scenePhone" placeholder="例：03-1234-5678">
+              </div>
+            </div>
 
-          <div class="field">
-            <label for="sceneRainMemo">雨天時メモ</label>
-            <textarea id="sceneRainMemo" placeholder="例：雨天時は店内寄りで対応"></textarea>
-          </div>
-
-          <div class="field">
-            <label for="sceneProp">小道具</label>
-            <textarea id="sceneProp" placeholder="例：グラス&#10;メニュー表&#10;財布"></textarea>
-          </div>
-
-          <div class="field">
-            <label for="sceneMemo">共通メモ</label>
-            <textarea id="sceneMemo" placeholder="例：重要シーン 先に撮る"></textarea>
-          </div>
-
-          <div class="field">
-            <label>シーンチェック</label>
-            <div class="scene-check-grid">
-              <label class="scene-check-item"><input type="checkbox" id="sceneCheckSchedule"> 香盤確認</label>
-              <label class="scene-check-item"><input type="checkbox" id="sceneCheckProp"> 小道具OK</label>
-              <label class="scene-check-item"><input type="checkbox" id="sceneCheckCast"> 出演者OK</label>
-              <label class="scene-check-item"><input type="checkbox" id="sceneCheckCostume"> 衣装メイクOK</label>
-              <label class="scene-check-item"><input type="checkbox" id="sceneCheckCamera"> カメラOK</label>
-              <label class="scene-check-item"><input type="checkbox" id="sceneCheckLight"> 照明OK</label>
+            <div class="field">
+              <label for="sceneMapUrl">GoogleマップURL</label>
+              <input id="sceneMapUrl" placeholder="https://maps.google.com/...">
             </div>
           </div>
 
-          <div class="field" id="directionNoteField">
-            <label for="sceneDirectionNote">演出部メモ</label>
-            <textarea id="sceneDirectionNote" placeholder="例：感情を抑えめに 目線は右奥"></textarea>
+          <div class="form-block compact">
+            <div class="form-block-title">物</div>
+
+            <div class="field">
+              <label for="scenePropSelect">小道具一覧から追加</label>
+              <select id="scenePropSelect"></select>
+            </div>
+
+            <div class="button-row">
+              <button type="button" id="applyPropBtn" class="select-btn">小道具に追加</button>
+            </div>
+
+            <div class="field">
+              <label for="sceneProp">小道具</label>
+              <textarea id="sceneProp" placeholder="例：グラス&#10;メニュー表&#10;財布"></textarea>
+            </div>
           </div>
 
-          <div class="field" id="cameraNoteField">
-            <label for="sceneCameraNote">撮影部メモ</label>
-            <textarea id="sceneCameraNote" placeholder="例：Aカメ70-200 Bカメ24-70 縦寄り"></textarea>
+          <div class="form-block">
+            <div class="form-block-title">詳細メモ</div>
+
+            <div class="field">
+              <label for="scenePermitMemo">ロケ許可メモ</label>
+              <textarea id="scenePermitMemo" placeholder="例：店長確認済み 申請書送付済み"></textarea>
+            </div>
+
+            <div class="field">
+              <label for="sceneParkingMemo">駐車場メモ</label>
+              <textarea id="sceneParkingMemo" placeholder="例：近隣コインPあり"></textarea>
+            </div>
+
+            <div class="field">
+              <label for="scenePowerMemo">電源メモ</label>
+              <textarea id="scenePowerMemo" placeholder="例：店内コンセント使用可"></textarea>
+            </div>
+
+            <div class="field">
+              <label for="sceneToiletMemo">トイレメモ</label>
+              <textarea id="sceneToiletMemo" placeholder="例：店内あり"></textarea>
+            </div>
+
+            <div class="field">
+              <label for="sceneRainMemo">雨天時メモ</label>
+              <textarea id="sceneRainMemo" placeholder="例：雨天時は店内寄りで対応"></textarea>
+            </div>
+
+            <div class="field">
+              <label for="sceneMemo">共通メモ</label>
+              <textarea id="sceneMemo" placeholder="例：重要シーン 先に撮る"></textarea>
+            </div>
           </div>
 
-          <div class="field" id="lightNoteField">
-            <label for="sceneLightNote">照明部メモ</label>
-            <textarea id="sceneLightNote" placeholder="例：キー右45度 室内電球色に合わせる"></textarea>
+          <div class="form-block">
+            <div class="form-block-title">シーンチェック</div>
+
+            <div class="field">
+              <div class="scene-check-grid">
+                <label class="scene-check-item"><input type="checkbox" id="sceneCheckSchedule"> 香盤確認</label>
+                <label class="scene-check-item"><input type="checkbox" id="sceneCheckProp"> 小道具OK</label>
+                <label class="scene-check-item"><input type="checkbox" id="sceneCheckCast"> 出演者OK</label>
+                <label class="scene-check-item"><input type="checkbox" id="sceneCheckCostume"> 衣装メイクOK</label>
+                <label class="scene-check-item"><input type="checkbox" id="sceneCheckCamera"> カメラOK</label>
+                <label class="scene-check-item"><input type="checkbox" id="sceneCheckLight"> 照明OK</label>
+              </div>
+            </div>
           </div>
 
-          <div class="field" id="productionNoteField">
-            <label for="sceneProductionNote">制作部メモ</label>
-            <textarea id="sceneProductionNote" placeholder="例：19時入館 20時完全撤収 近隣配慮あり"></textarea>
-          </div>
+          <div class="form-block">
+            <div class="form-block-title">部署別メモ</div>
 
-          <div class="field" id="actorNoteField">
-            <label for="sceneActorNote">俳優部メモ</label>
-            <textarea id="sceneActorNote" placeholder="例：衣装替えあり 小道具は右手持ち"></textarea>
+            <div class="field" id="directionNoteField">
+              <label for="sceneDirectionNote">演出部メモ</label>
+              <textarea id="sceneDirectionNote" placeholder="例：感情を抑えめに 目線は右奥"></textarea>
+            </div>
+
+            <div class="field" id="cameraNoteField">
+              <label for="sceneCameraNote">撮影部メモ</label>
+              <textarea id="sceneCameraNote" placeholder="例：Aカメ70-200 Bカメ24-70 縦寄り"></textarea>
+            </div>
+
+            <div class="field" id="lightNoteField">
+              <label for="sceneLightNote">照明部メモ</label>
+              <textarea id="sceneLightNote" placeholder="例：キー右45度 室内電球色に合わせる"></textarea>
+            </div>
+
+            <div class="field" id="productionNoteField">
+              <label for="sceneProductionNote">制作部メモ</label>
+              <textarea id="sceneProductionNote" placeholder="例：19時入館 20時完全撤収 近隣配慮あり"></textarea>
+            </div>
+
+            <div class="field" id="actorNoteField">
+              <label for="sceneActorNote">俳優部メモ</label>
+              <textarea id="sceneActorNote" placeholder="例：衣装替えあり 小道具は右手持ち"></textarea>
+            </div>
           </div>
 
           <div class="button-row">
@@ -1254,6 +1768,14 @@ label{
           <button type="button" class="section-toggle" data-toggle-card="fieldControlSection">閉じる</button>
         </div>
         <div class="card-body">
+
+          <div class="next-scene-box" style="margin-bottom:10px;">
+            <div class="next-scene-label">次に撮るシーン</div>
+            <div id="nextSceneMain" class="next-scene-main">未選択</div>
+            <div id="nextSceneMeta" class="next-scene-meta"></div>
+            <div id="nextSceneActions" class="next-scene-actions" style="margin-top:10px;"></div>
+          </div>
+
           <div class="current-scene-bar">
             <div class="current-scene-label">現在見ているシーン</div>
             <div id="currentSceneMain" class="current-scene-main">未選択</div>
@@ -1261,9 +1783,9 @@ label{
             <div id="currentSceneActions" class="current-scene-actions" style="margin-top:10px;"></div>
           </div>
 
-          <div class="button-row">
-            <button type="button" id="prevUndoneSceneBtn" class="secondary-btn">前の未完了</button>
-            <button type="button" id="nextUndoneSceneBtn" class="primary-btn">次の未完了</button>
+          <div class="button-row" style="margin-top:10px;">
+            <button type="button" id="prevUndoneSceneBtn" class="secondary-btn">前の未撮影</button>
+            <button type="button" id="nextUndoneSceneBtn" class="primary-btn">次の未撮影</button>
           </div>
 
           <div class="summary-grid" style="margin-top:10px;">
@@ -1272,11 +1794,11 @@ label{
               <div id="fieldVisibleCount" class="summary-value">0</div>
             </div>
             <div class="summary-item">
-              <div class="summary-label">未完了</div>
+              <div class="summary-label">未撮影</div>
               <div id="fieldRemainingCount" class="summary-value">0</div>
             </div>
             <div class="summary-item">
-              <div class="summary-label">完了</div>
+              <div class="summary-label">撮影完了</div>
               <div id="fieldDoneCount" class="summary-value">0</div>
             </div>
           </div>
@@ -1302,15 +1824,15 @@ label{
               <label for="fieldStatusFilter">進行状況</label>
               <select id="fieldStatusFilter">
                 <option value="all">すべて</option>
-                <option value="undone">未完了のみ</option>
-                <option value="done">完了のみ</option>
+                <option value="undone">未撮影のみ</option>
+                <option value="done">撮影完了のみ</option>
               </select>
             </div>
 
             <div class="field">
               <label for="fieldSortFilter">並び順</label>
               <select id="fieldSortFilter">
-                <option value="default">未完了優先 ＋ 撮影順</option>
+                <option value="default">未撮影優先 ＋ 撮影順</option>
                 <option value="orderAsc">撮影順 昇順</option>
                 <option value="orderDesc">撮影順 降順</option>
                 <option value="titleAsc">シーン名 A-Z</option>
@@ -1362,7 +1884,6 @@ label{
           </div>
 
           <input type="file" id="importBackupInput" accept=".json,application/json" class="hidden">
-
           <div id="backupStatusBox" class="box" style="margin-top:10px;">バックアップ未実行</div>
         </div>
       </section>
@@ -1377,9 +1898,9 @@ label{
         </div>
       </section>
     </div>
-
   </main>
 </div>
+
 <nav class="tabbar">
   <div class="tabbar-inner">
     <button type="button" class="tab-btn active" data-tab="home">
@@ -1399,11 +1920,13 @@ label{
 
     <button type="button" class="tab-btn" data-tab="tool">
       <div class="tab-icon">🛠</div>
-      <div class="tab-label">ツール</div>
+      <div class="tab-label">現場</div>
     </button>
   </div>
 </nav>
-<button type="button" id="mobileFab" class="mobile-fab" aria-label="新規シーン入力を開く">＋</button>
+
+<button type="button" id="mobileFab" class="mobile-fab" aria-label="新規シーン入力を開く">＋ 新規シーン作成</button>
+<div id="toast" class="toast"></div>
 
 <script>
 (function(){
@@ -1418,21 +1941,7 @@ label{
   const FIELD_GROUP_OPEN_KEY = "scene_field_group_open_restore_v1";
   const DEPT_KEY = "scene_dept_restore_v1";
   const COLLAPSE_KEY = "scene_section_collapse_restore_v1";
-
-  const $ = (id) => document.getElementById(id);
-
-  let mode = localStorage.getItem(MODE_KEY) || "prep";
-  let activeProjectId = localStorage.getItem(ACTIVE_PROJECT_KEY) || "";
-  let currentDept = localStorage.getItem(DEPT_KEY) || "all";
-
-  let projects = readJson(PROJECT_KEY, []);
-  let scenes = readJson(SCENE_KEY, []);
-  let locations = readJson(LOCATION_KEY, []);
-  let actors = readJson(ACTOR_KEY, []);
-  let props = readJson(PROP_KEY, []);
-  let quickCheck = readJson(QC_KEY, {});
-  let fieldGroupOpenState = readJson(FIELD_GROUP_OPEN_KEY, {});
-  let sectionCollapseState = readJson(COLLAPSE_KEY, {
+　const DEFAULT_COLLAPSE_STATE = {
   dashboardSection:false,
   projectCreateSection:true,
   projectListSection:false,
@@ -1444,19 +1953,33 @@ label{
   sceneListSection:false,
   backupSection:true,
   debugSection:true
-});
+};
+  const $ = (id) => document.getElementById(id);
+
+  let mode = localStorage.getItem(MODE_KEY) || "prep";
+  let activeProjectId = localStorage.getItem(ACTIVE_PROJECT_KEY) || "";
+  let currentDept = localStorage.getItem(DEPT_KEY) || "all";
+
+  let projects = readJson(PROJECT_KEY, []);
+  let scenes = migrateScenes(readJson(SCENE_KEY, []));
+  let locations = readJson(LOCATION_KEY, []);
+  let actors = readJson(ACTOR_KEY, []);
+  let props = readJson(PROP_KEY, []);
+  let quickCheck = readJson(QC_KEY, {});
+  let fieldGroupOpenState = readJson(FIELD_GROUP_OPEN_KEY, {});
+  let sectionCollapseState = readJson(COLLAPSE_KEY, DEFAULT_COLLAPSE_STATE);
 
   let editingProjectId = "";
   let editingSceneId = "";
   let editingLocationId = "";
   let editingActorId = "";
   let editingPropId = "";
+  let toastTimer = null;
 
   const prepBtn = $("prepBtn");
   const fieldBtn = $("fieldBtn");
-  const modeLabel = $("modeLabel");
   const projectFormTitle = $("projectFormTitle");
-  const deptLabel = $("deptLabel");
+  const toast = $("toast");
 
   const saveProjectBtn = $("saveProjectBtn");
   const clearProjectBtn = $("clearProjectBtn");
@@ -1483,6 +2006,7 @@ label{
   const locationAddress = $("locationAddress");
   const locationPhone = $("locationPhone");
   const locationMapUrl = $("locationMapUrl");
+  const locationSearchInput = $("locationSearchInput");
   const locationPermitMemo = $("locationPermitMemo");
   const locationParkingMemo = $("locationParkingMemo");
   const locationPowerMemo = $("locationPowerMemo");
@@ -1494,11 +2018,13 @@ label{
   const actorImageUrl = $("actorImageUrl");
   const actorMemo = $("actorMemo");
   const actorList = $("actorList");
+  const actorSearchInput = $("actorSearchInput");
 
   const propName = $("propName");
   const propStorage = $("propStorage");
   const propMemo = $("propMemo");
   const propList = $("propList");
+  const propSearchInput = $("propSearchInput");
 
   const sceneFormTitle = $("sceneFormTitle");
   const sceneProjectSelect = $("sceneProjectSelect");
@@ -1568,6 +2094,9 @@ label{
   const currentSceneMain = $("currentSceneMain");
   const currentSceneMeta = $("currentSceneMeta");
   const currentSceneActions = $("currentSceneActions");
+  const nextSceneMain = $("nextSceneMain");
+  const nextSceneMeta = $("nextSceneMeta");
+  const nextSceneActions = $("nextSceneActions");
 
   const quickOpenSceneBtn = $("quickOpenSceneBtn");
   const quickGoFieldBtn = $("quickGoFieldBtn");
@@ -1579,6 +2108,17 @@ label{
   const tabScene = $("tabScene");
   const tabTool = $("tabTool");
 
+  const homeActiveProject = $("homeActiveProject");
+  const homeNextScene = $("homeNextScene");
+  const homeSceneTotal = $("homeSceneTotal");
+  const homeSceneRemaining = $("homeSceneRemaining");
+  const homeProgressValue = $("homeProgressValue");
+  const homeProgressBar = $("homeProgressBar");
+  const homeProgressSub = $("homeProgressSub");
+  const homeNotReadyCount = $("homeNotReadyCount");
+  const homeTodayAction = $("homeTodayAction");
+  const homeAlertSceneList = $("homeAlertSceneList");
+
   function readJson(key, fallback){
     try{
       const raw = localStorage.getItem(key);
@@ -1587,6 +2127,37 @@ label{
       return fallback;
     }
   }
+
+  function migrateScenes(rawScenes){
+    if(!Array.isArray(rawScenes)) return [];
+    return rawScenes.map(scene => {
+      const checks = scene && scene.checks ? scene.checks : {
+        schedule:false,
+        prop:false,
+        cast:false,
+        costume:false,
+        camera:false,
+        light:false
+      };
+      return {
+        ...scene,
+        checks,
+        done: areAllSceneChecksComplete(checks),
+        shotDone: !!scene.shotDone
+      };
+    });
+  }
+
+  function showToast(message){
+    if(!toast) return;
+    toast.textContent = message;
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toast.classList.remove("show");
+    }, 1800);
+  }
+
   function switchTab(tabName){
     const panels = {
       home: tabHome,
@@ -1604,6 +2175,7 @@ label{
       btn.classList.toggle("active", btn.getAttribute("data-tab") === tabName);
     });
   }
+
   function saveProjects(){ localStorage.setItem(PROJECT_KEY, JSON.stringify(projects)); }
   function saveScenes(){ localStorage.setItem(SCENE_KEY, JSON.stringify(scenes)); }
   function saveMode(){ localStorage.setItem(MODE_KEY, mode); }
@@ -1617,16 +2189,14 @@ label{
   function saveCollapseState(){ localStorage.setItem(COLLAPSE_KEY, JSON.stringify(sectionCollapseState)); }
 
   function setBackupStatus(message){
-    if(backupStatusBox){
-      backupStatusBox.textContent = message;
-    }
+    if(backupStatusBox) backupStatusBox.textContent = message;
   }
 
   function exportBackup(){
     try{
       const backupData = {
         exportedAt: new Date().toISOString(),
-        version: 1,
+        version: 2,
         mode,
         activeProjectId,
         currentDept,
@@ -1655,6 +2225,7 @@ label{
       URL.revokeObjectURL(url);
 
       setBackupStatus("バックアップを書き出しました");
+      showToast("バックアップを書き出しました");
     }catch(error){
       alert("バックアップ書き出しに失敗しました");
       setBackupStatus("バックアップ書き出し失敗");
@@ -1663,26 +2234,25 @@ label{
 
   function importBackupFile(file){
     if(!file) return;
-
     const reader = new FileReader();
 
     reader.onload = function(event){
       try{
         const raw = event.target?.result;
         const data = JSON.parse(raw);
-
-        if(!data || typeof data !== "object"){
-          throw new Error("invalid backup");
-        }
+        if(!data || typeof data !== "object") throw new Error("invalid backup");
 
         projects = Array.isArray(data.projects) ? data.projects : [];
-        scenes = Array.isArray(data.scenes) ? data.scenes : [];
+        scenes = migrateScenes(Array.isArray(data.scenes) ? data.scenes : []);
         locations = Array.isArray(data.locations) ? data.locations : [];
         actors = Array.isArray(data.actors) ? data.actors : [];
         props = Array.isArray(data.props) ? data.props : [];
         quickCheck = data.quickCheck && typeof data.quickCheck === "object" ? data.quickCheck : {};
         fieldGroupOpenState = data.fieldGroupOpenState && typeof data.fieldGroupOpenState === "object" ? data.fieldGroupOpenState : {};
-        sectionCollapseState = data.sectionCollapseState && typeof data.sectionCollapseState === "object" ? data.sectionCollapseState : { debugSection:true };
+       sectionCollapseState =
+  data.sectionCollapseState && typeof data.sectionCollapseState === "object"
+    ? { ...DEFAULT_COLLAPSE_STATE, ...data.sectionCollapseState }
+    : { ...DEFAULT_COLLAPSE_STATE };
         mode = data.mode === "field" ? "field" : "prep";
         activeProjectId = typeof data.activeProjectId === "string" ? data.activeProjectId : "";
         currentDept = typeof data.currentDept === "string" ? data.currentDept : "all";
@@ -1720,9 +2290,10 @@ label{
         renderDebug();
         applyQuickCheck();
         applySectionCollapseState();
+        renderHomeDashboard();
 
         setBackupStatus("バックアップを読み込みました");
-        alert("バックアップを読み込みました");
+        showToast("バックアップを読み込みました");
       }catch(error){
         alert("バックアップ読み込みに失敗しました JSON形式を確認してください");
         setBackupStatus("バックアップ読み込み失敗");
@@ -1772,8 +2343,8 @@ label{
   }
 
   function getProjectTitle(projectId){
-    return projects.find(project => project.id === projectId)?.title || "";
-  }
+  return projects.find(project => project.id === projectId)?.title || "";
+}
 
   function getSceneLocationGroupKey(scene){
     const value = String(scene.location || "").trim();
@@ -1796,48 +2367,29 @@ label{
   function setAllFieldGroups(open){
     const filteredScenes = getFilteredScenesForField();
     const keys = [...new Set(filteredScenes.map(scene => getSceneLocationGroupKey(scene)))];
-
     keys.forEach(key => {
       fieldGroupOpenState[key] = open;
     });
-
     saveFieldGroupOpenState();
     renderScenes();
   }
 
   function setDept(dept){
-    currentDept = dept;
-    saveDept();
+  currentDept = dept;
+  saveDept();
 
-    document.querySelectorAll(".dept-btn").forEach(btn => {
-      btn.classList.remove("active-dept");
-    });
+  document.querySelectorAll(".dept-btn").forEach(btn => {
+    btn.classList.remove("active-dept");
+  });
 
-    const activeBtn = document.querySelector(`[data-dept="${dept}"]`);
-    if(activeBtn){
-      activeBtn.classList.add("active-dept");
-    }
+  const activeBtn = document.querySelector(`[data-dept="${dept}"]`);
+  if(activeBtn) activeBtn.classList.add("active-dept");
 
-    const labelMap = {
-      all:"ALL",
-      direction:"演出部",
-      camera:"撮影部",
-      light:"照明部",
-      make:"メイク部",
-      costume:"衣装部",
-      art:"美術部",
-      production:"制作部",
-      actor:"俳優部"
-    };
 
-    if(deptLabel){
-      deptLabel.textContent = labelMap[dept] || "ALL";
-    }
-
-    renderDepartmentSections();
-    renderScenes();
-    renderDebug();
-  }
+  renderDepartmentSections();
+  renderScenes();
+  renderDebug();
+}
 
   function renderDepartmentSections(){
     if(mode === "field"){
@@ -1877,30 +2429,24 @@ label{
     if(projectCreateSection){
       projectCreateSection.classList.toggle("hidden", !(showAll || currentDept === "direction"));
     }
-
     if(projectListSection){
       projectListSection.classList.toggle("hidden", !(showAll || currentDept === "direction"));
     }
-
     if(locationMasterSection){
       locationMasterSection.classList.toggle("hidden", !(showAll || currentDept === "production"));
     }
-
     if(actorMasterSection){
       actorMasterSection.classList.toggle("hidden", !(showAll || currentDept === "actor"));
     }
-
     if(propMasterSection){
       propMasterSection.classList.toggle("hidden", !(showAll || currentDept === "production"));
     }
-
     if(sceneFormSection){
       sceneFormSection.classList.toggle(
         "hidden",
         !(showAll || currentDept === "direction" || currentDept === "camera" || currentDept === "light" || currentDept === "make" || currentDept === "costume" || currentDept === "art" || currentDept === "production" || currentDept === "actor")
       );
     }
-
     if(sceneListSection){
       sceneListSection.classList.toggle(
         "hidden",
@@ -1908,21 +2454,11 @@ label{
       );
     }
 
-    if(directionNoteField){
-      directionNoteField.classList.toggle("hidden", !(showAll || currentDept === "direction"));
-    }
-    if(cameraNoteField){
-      cameraNoteField.classList.toggle("hidden", !(showAll || currentDept === "camera"));
-    }
-    if(lightNoteField){
-      lightNoteField.classList.toggle("hidden", !(showAll || currentDept === "light"));
-    }
-    if(productionNoteField){
-      productionNoteField.classList.toggle("hidden", !(showAll || currentDept === "production"));
-    }
-    if(actorNoteField){
-      actorNoteField.classList.toggle("hidden", !(showAll || currentDept === "actor"));
-    }
+    if(directionNoteField) directionNoteField.classList.toggle("hidden", !(showAll || currentDept === "direction"));
+    if(cameraNoteField) cameraNoteField.classList.toggle("hidden", !(showAll || currentDept === "camera"));
+    if(lightNoteField) lightNoteField.classList.toggle("hidden", !(showAll || currentDept === "light"));
+    if(productionNoteField) productionNoteField.classList.toggle("hidden", !(showAll || currentDept === "production"));
+    if(actorNoteField) actorNoteField.classList.toggle("hidden", !(showAll || currentDept === "actor"));
   }
 
   function setMode(nextMode){
@@ -1934,28 +2470,27 @@ label{
     updateOpenSceneButton();
   }
 
-  function renderMode(){
-    modeLabel.textContent = mode === "prep" ? "準備モード" : "現場モード";
-
-    prepBtn.className = mode === "prep" ? "segment-btn active-prep" : "segment-btn";
-    fieldBtn.className = mode === "field" ? "segment-btn active-field" : "segment-btn";
-
-    renderDepartmentSections();
-  }
+ function renderMode(){
+  prepBtn.className = mode === "prep" ? "segment-btn active-prep" : "segment-btn";
+  fieldBtn.className = mode === "field" ? "segment-btn active-field" : "segment-btn";
+  renderDepartmentSections();
+}
 
   function updateOpenSceneButton(){
-    if(!openNewSceneBtn) return;
+  if(!openNewSceneBtn) return;
 
-    const isOpen = !sceneFormSection.classList.contains("hidden");
+  const isHidden = sceneFormSection.classList.contains("hidden");
+  const isCollapsed = sceneFormSection.classList.contains("collapsed");
+  const isOpen = !isHidden && !isCollapsed;
 
-    if(editingSceneId && isOpen){
-      openNewSceneBtn.textContent = "編集中シーンを閉じる";
-    }else if(isOpen){
-      openNewSceneBtn.textContent = "新規シーン入力を閉じる";
-    }else{
-      openNewSceneBtn.textContent = "新規シーン入力を開く";
-    }
+  if(editingSceneId && isOpen){
+    openNewSceneBtn.textContent = "編集中シーンを閉じる";
+  }else if(isOpen){
+    openNewSceneBtn.textContent = "新規シーン入力を閉じる";
+  }else{
+    openNewSceneBtn.textContent = "新規シーン入力を開く";
   }
+}
 
   function setSectionCollapsed(sectionId, collapsed){
     sectionCollapseState[sectionId] = collapsed;
@@ -1973,12 +2508,12 @@ label{
   }
 
   function applySectionCollapseState(){
-  document.querySelectorAll("[data-toggle-card]").forEach(btn => {
-    const sectionId = btn.getAttribute("data-toggle-card");
-    const collapsed = !!sectionCollapseState[sectionId];
-    setSectionCollapsed(sectionId, collapsed);
-  });
-}
+    document.querySelectorAll("[data-toggle-card]").forEach(btn => {
+      const sectionId = btn.getAttribute("data-toggle-card");
+      const collapsed = !!sectionCollapseState[sectionId];
+      setSectionCollapsed(sectionId, collapsed);
+    });
+  }
 
   function clearProjectForm(){
     editingProjectId = "";
@@ -2059,61 +2594,68 @@ label{
   }
 
   function closeSceneForm(){
-    clearSceneForm();
-    sceneFormSection.classList.add("hidden");
-    updateOpenSceneButton();
-  }
+  clearSceneForm();
+  sceneFormSection.classList.remove("hidden");
+  setSectionCollapsed("sceneFormSection", true);
+  updateOpenSceneButton();
+
+  setTimeout(() => {
+    if(sceneListSection && !sceneListSection.classList.contains("hidden")){
+      window.scrollTo({ top: sceneListSection.offsetTop - 20, behavior: "smooth" });
+    }
+  }, 50);
+}
 
   function clearFieldFilters(){
     fieldSearchInput.value = "";
     fieldProjectFilter.value = "all";
     fieldStatusFilter.value = "all";
-    if(fieldSortFilter){
-      fieldSortFilter.value = "default";
-    }
+    if(fieldSortFilter) fieldSortFilter.value = "default";
     renderScenes();
   }
 
   function addProject(){
-    const title = projectTitle.value.trim();
-    const director = projectDirector.value.trim();
-    const memo = projectMemo.value.trim();
+  const title = projectTitle.value.trim();
+  const director = projectDirector.value.trim();
+  const memo = projectMemo.value.trim();
 
-    if(!title){
-      alert("プロジェクト名は必須です");
-      return;
-    }
-
-    const projectObject = {
-      id: editingProjectId || uid("project"),
-      title,
-      director,
-      memo
-    };
-
-    if(editingProjectId){
-      const index = projects.findIndex(project => project.id === editingProjectId);
-      if(index >= 0){
-        projects[index] = projectObject;
-      }
-    }else{
-      projects.push(projectObject);
-    }
-
-    saveProjects();
-
-    if(!activeProjectId){
-      activeProjectId = projectObject.id;
-      saveActiveProject();
-    }
-
-    clearProjectForm();
-    renderProjects();
-    renderProjectSelect();
-    renderFieldProjectFilter();
-    renderScenes();
-    renderDebug();
+  if(!title){
+    alert("プロジェクト名は必須です");
+    return;
   }
+
+  const wasEditing = !!editingProjectId;
+
+  const projectObject = {
+    id: editingProjectId || uid("project"),
+    title,
+    director,
+    memo
+  };
+
+  if(editingProjectId){
+    const index = projects.findIndex(project => project.id === editingProjectId);
+    if(index >= 0) projects[index] = projectObject;
+  }else{
+    projects.push(projectObject);
+  }
+
+  saveProjects();
+
+  if(!activeProjectId){
+    activeProjectId = projectObject.id;
+    saveActiveProject();
+  }
+
+  clearProjectForm();
+  renderProjects();
+  renderProjectSelect();
+  renderFieldProjectFilter();
+  renderScenes();
+  renderDebug();
+  renderHomeDashboard();
+  showToast(wasEditing ? "プロジェクトを更新しました" : "プロジェクトを保存しました");
+}
 
   function editProject(projectId){
     const project = projects.find(item => item.id === projectId);
@@ -2125,6 +2667,8 @@ label{
     projectDirector.value = project.director || "";
     projectMemo.value = project.memo || "";
 
+    switchTab("project");
+    setSectionCollapsed("projectCreateSection", false);
     window.scrollTo({ top: projectCreateSection.offsetTop - 20, behavior: "smooth" });
   }
 
@@ -2155,6 +2699,8 @@ label{
     renderFieldProjectFilter();
     renderScenes();
     renderDebug();
+    renderHomeDashboard();
+    showToast("プロジェクトを削除しました");
   }
 
   function selectProject(projectId){
@@ -2164,6 +2710,8 @@ label{
     renderProjectSelect();
     renderScenes();
     renderDebug();
+    renderHomeDashboard();
+    showToast("プロジェクトを切り替えました");
   }
 
   function renderProjects(){
@@ -2177,11 +2725,13 @@ label{
 
     projectList.innerHTML = sorted.map(project => {
       const projectScenes = scenes.filter(scene => scene.projectId === project.id);
+      const remaining = projectScenes.filter(scene => !scene.shotDone).length;
       return `
         <div class="project-card ${project.id === activeProjectId ? "active" : ""}">
           <div class="item-title">${escapeHtml(project.title)}</div>
           <div class="item-meta">監督：${escapeHtml(project.director || "-")}</div>
           <div class="item-meta">シーン数：${projectScenes.length}</div>
+          <div class="item-meta">未撮影：${remaining}</div>
           <div class="item-meta">${escapeHtml(project.memo || "-")}</div>
           <div class="item-actions">
             <button type="button" class="select-btn" data-project-select="${project.id}">使う</button>
@@ -2198,11 +2748,9 @@ label{
     projectList.querySelectorAll("[data-project-select]").forEach(btn => {
       btn.addEventListener("click", () => selectProject(btn.getAttribute("data-project-select")));
     });
-
     projectList.querySelectorAll("[data-project-edit]").forEach(btn => {
       btn.addEventListener("click", () => editProject(btn.getAttribute("data-project-edit")));
     });
-
     projectList.querySelectorAll("[data-project-delete]").forEach(btn => {
       btn.addEventListener("click", () => deleteProject(btn.getAttribute("data-project-delete")));
     });
@@ -2249,38 +2797,41 @@ label{
     }
   }
 
-  function addLocation(){
-    const locationObject = {
-      id: editingLocationId || uid("location"),
-      name: locationName.value.trim(),
-      address: locationAddress.value.trim(),
-      phone: locationPhone.value.trim(),
-      mapUrl: locationMapUrl.value.trim(),
-      permitMemo: locationPermitMemo.value.trim(),
-      parkingMemo: locationParkingMemo.value.trim(),
-      powerMemo: locationPowerMemo.value.trim(),
-      toiletMemo: locationToiletMemo.value.trim(),
-      rainMemo: locationRainMemo.value.trim()
-    };
+ function addLocation(){
+  const locationObject = {
+    id: editingLocationId || uid("location"),
+    name: locationName.value.trim(),
+    address: locationAddress.value.trim(),
+    phone: locationPhone.value.trim(),
+    mapUrl: locationMapUrl.value.trim(),
+    permitMemo: locationPermitMemo.value.trim(),
+    parkingMemo: locationParkingMemo.value.trim(),
+    powerMemo: locationPowerMemo.value.trim(),
+    toiletMemo: locationToiletMemo.value.trim(),
+    rainMemo: locationRainMemo.value.trim()
+  };
 
-    if(!locationObject.name){
-      alert("ロケ地名は必須です");
-      return;
-    }
-
-    if(editingLocationId){
-      const index = locations.findIndex(location => location.id === editingLocationId);
-      if(index >= 0) locations[index] = locationObject;
-    }else{
-      locations.push(locationObject);
-    }
-
-    saveLocations();
-    clearLocationForm();
-    renderLocations();
-    renderLocationSelect();
-    renderDebug();
+  if(!locationObject.name){
+    alert("ロケ地名は必須です");
+    return;
   }
+
+  const wasEditing = !!editingLocationId;
+
+  if(editingLocationId){
+    const index = locations.findIndex(location => location.id === editingLocationId);
+    if(index >= 0) locations[index] = locationObject;
+  }else{
+    locations.push(locationObject);
+  }
+
+  saveLocations();
+  clearLocationForm();
+  renderLocations();
+  renderLocationSelect();
+  renderDebug();
+  showToast(wasEditing ? "ロケ地を更新しました" : "ロケ地を保存しました");
+}
 
   function editLocation(locationId){
     const location = locations.find(item => item.id === locationId);
@@ -2297,6 +2848,8 @@ label{
     locationToiletMemo.value = location.toiletMemo || "";
     locationRainMemo.value = location.rainMemo || "";
 
+    switchTab("project");
+    setSectionCollapsed("locationMasterSection", false);
     window.scrollTo({ top: locationMasterSection.offsetTop - 20, behavior: "smooth" });
   }
 
@@ -2307,55 +2860,125 @@ label{
     renderLocations();
     renderLocationSelect();
     renderDebug();
+    showToast("ロケ地を削除しました");
   }
 
   function renderLocations(){
-    if(locations.length === 0){
-      locationList.innerHTML = `<div class="empty-text">ロケ地がまだありません</div>`;
-      return;
-    }
-
-    const sorted = [...locations].sort((a, b) => a.name.localeCompare(b.name, "ja"));
-
-    locationList.innerHTML = sorted.map(location => `
-      <div class="location-card">
-        <div class="item-title">${escapeHtml(location.name)}</div>
-        <div class="meta-grid">
-          <div class="item-meta">住所：${escapeHtml(location.address || "-")}</div>
-          <div class="item-meta">電話番号：${escapeHtml(location.phone || "-")}</div>
-          <div class="item-meta">GoogleマップURL：${escapeHtml(location.mapUrl || "-")}</div>
-          <div class="item-meta">ロケ許可：${escapeHtml(location.permitMemo || "-")}</div>
-          <div class="item-meta">駐車場：${escapeHtml(location.parkingMemo || "-")}</div>
-          <div class="item-meta">電源：${escapeHtml(location.powerMemo || "-")}</div>
-          <div class="item-meta">トイレ：${escapeHtml(location.toiletMemo || "-")}</div>
-          <div class="item-meta">雨天時：${escapeHtml(location.rainMemo || "-")}</div>
-        </div>
-        <div class="item-actions">
-          <button type="button" class="select-btn" data-location-apply="${location.id}">シーンに反映</button>
-          <button type="button" class="edit-btn" data-location-edit="${location.id}">編集</button>
-          <button type="button" class="danger-btn" data-location-delete="${location.id}">削除</button>
-        </div>
-      </div>
-    `).join("");
-
-    locationList.querySelectorAll("[data-location-apply]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        sceneLocationSelect.value = btn.getAttribute("data-location-apply");
-        applyLocationToScene();
-        sceneFormSection.classList.remove("hidden");
-        updateOpenSceneButton();
-        window.scrollTo({ top: sceneFormSection.offsetTop - 20, behavior: "smooth" });
-      });
-    });
-
-    locationList.querySelectorAll("[data-location-edit]").forEach(btn => {
-      btn.addEventListener("click", () => editLocation(btn.getAttribute("data-location-edit")));
-    });
-
-    locationList.querySelectorAll("[data-location-delete]").forEach(btn => {
-      btn.addEventListener("click", () => deleteLocation(btn.getAttribute("data-location-delete")));
-    });
+  if(locations.length === 0){
+    locationList.innerHTML = `<div class="empty-text">ロケ地がまだありません</div>`;
+    return;
   }
+
+  const search = (locationSearchInput?.value || "").trim().toLowerCase();
+
+  const filtered = [...locations]
+    .filter(location => {
+      if(!search) return true;
+      const text = [
+        location.name,
+        location.address,
+        location.phone,
+        location.permitMemo,
+        location.parkingMemo,
+        location.powerMemo,
+        location.toiletMemo,
+        location.rainMemo
+      ].join(" ").toLowerCase();
+      return text.includes(search);
+    })
+    .sort((a, b) => a.name.localeCompare(b.name, "ja"));
+
+  if(filtered.length === 0){
+    locationList.innerHTML = `<div class="empty-text">該当するロケ地がありません</div>`;
+    return;
+  }
+
+  locationList.innerHTML = `
+    <div class="location-grid">
+      ${filtered.map(location => {
+        const useCount = scenes.filter(scene => {
+          if(scene.locationId && scene.locationId === location.id) return true;
+          return String(scene.location || "").trim() === String(location.name || "").trim();
+        }).length;
+
+        return `
+          <div class="location-mini-card">
+            <div class="location-mini-title">${escapeHtml(location.name)}</div>
+            <div class="location-mini-count">使用シーン数 ${useCount}</div>
+            <div class="location-mini-meta">住所：${escapeHtml(location.address || "-")}</div>
+            <div class="location-mini-meta">電話：${escapeHtml(location.phone || "-")}</div>
+
+            <div id="location_detail_${location.id}" class="location-detail-box hidden">
+              <div class="location-detail-row">GoogleマップURL：${escapeHtml(location.mapUrl || "-")}</div>
+              <div class="location-detail-row">ロケ許可：${escapeHtml(location.permitMemo || "-")}</div>
+              <div class="location-detail-row">駐車場：${escapeHtml(location.parkingMemo || "-")}</div>
+              <div class="location-detail-row">電源：${escapeHtml(location.powerMemo || "-")}</div>
+              <div class="location-detail-row">トイレ：${escapeHtml(location.toiletMemo || "-")}</div>
+              <div class="location-detail-row">雨天時：${escapeHtml(location.rainMemo || "-")}</div>
+            </div>
+
+            <div class="location-mini-actions">
+              <button type="button" class="detail-btn" data-location-detail="${location.id}">詳細</button>
+              <button type="button" class="select-btn" data-location-apply="${location.id}">シーンに反映</button>
+              <button type="button" class="copy-btn" data-location-address="${location.id}">住所コピー</button>
+              <button type="button" class="copy-btn" data-location-phone="${location.id}">電話コピー</button>
+              ${location.mapUrl ? `<button type="button" class="copy-btn" data-location-map="${location.id}">地図を開く</button>` : ``}
+              <button type="button" class="edit-btn" data-location-edit="${location.id}">編集</button>
+              <button type="button" class="danger-btn" data-location-delete="${location.id}">削除</button>
+            </div>
+          </div>
+        `;
+      }).join("")}
+    </div>
+  `;
+
+  locationList.querySelectorAll("[data-location-detail]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      toggleLocationDetail(btn.getAttribute("data-location-detail"));
+    });
+  });
+
+  locationList.querySelectorAll("[data-location-apply]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      sceneLocationSelect.value = btn.getAttribute("data-location-apply");
+      applyLocationToScene();
+      sceneFormSection.classList.remove("hidden");
+      switchTab("scene");
+      setSectionCollapsed("sceneFormSection", false);
+      updateOpenSceneButton();
+      window.scrollTo({ top: sceneFormSection.offsetTop - 20, behavior: "smooth" });
+    });
+  });
+
+  locationList.querySelectorAll("[data-location-address]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const location = locations.find(item => item.id === btn.getAttribute("data-location-address"));
+      if(location?.address) copyText(location.address, "住所をコピーしました");
+    });
+  });
+
+  locationList.querySelectorAll("[data-location-phone]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const location = locations.find(item => item.id === btn.getAttribute("data-location-phone"));
+      if(location?.phone) copyText(location.phone, "電話番号をコピーしました");
+    });
+  });
+
+  locationList.querySelectorAll("[data-location-map]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const location = locations.find(item => item.id === btn.getAttribute("data-location-map"));
+      if(location?.mapUrl) window.open(location.mapUrl, "_blank");
+    });
+  });
+
+  locationList.querySelectorAll("[data-location-edit]").forEach(btn => {
+    btn.addEventListener("click", () => editLocation(btn.getAttribute("data-location-edit")));
+  });
+
+  locationList.querySelectorAll("[data-location-delete]").forEach(btn => {
+    btn.addEventListener("click", () => deleteLocation(btn.getAttribute("data-location-delete")));
+  });
+}
 
   function renderLocationSelect(){
     if(locations.length === 0){
@@ -2384,34 +3007,53 @@ label{
     scenePowerMemo.value = location.powerMemo || "";
     sceneToiletMemo.value = location.toiletMemo || "";
     sceneRainMemo.value = location.rainMemo || "";
+    showToast("ロケ地情報を反映しました");
   }
+
+  function toggleLocationDetail(locationId){
+  const target = document.getElementById("location_detail_" + locationId);
+  if(!target) return;
+
+  const willOpen = target.classList.contains("hidden");
+
+  document.querySelectorAll('[id^="location_detail_"]').forEach(detail => {
+    detail.classList.add("hidden");
+  });
+
+  if(willOpen){
+    target.classList.remove("hidden");
+  }
+}
 
   function addActor(){
-    const actorObject = {
-      id: editingActorId || uid("actor"),
-      name: actorName.value.trim(),
-      imageUrl: actorImageUrl.value.trim(),
-      memo: actorMemo.value.trim()
-    };
+  const actorObject = {
+    id: editingActorId || uid("actor"),
+    name: actorName.value.trim(),
+    imageUrl: actorImageUrl.value.trim(),
+    memo: actorMemo.value.trim()
+  };
 
-    if(!actorObject.name){
-      alert("俳優名は必須です");
-      return;
-    }
-
-    if(editingActorId){
-      const index = actors.findIndex(actor => actor.id === editingActorId);
-      if(index >= 0) actors[index] = actorObject;
-    }else{
-      actors.push(actorObject);
-    }
-
-    saveActors();
-    clearActorForm();
-    renderActors();
-    renderActorSelect();
-    renderDebug();
+  if(!actorObject.name){
+    alert("俳優名は必須です");
+    return;
   }
+
+  const wasEditing = !!editingActorId;
+
+  if(editingActorId){
+    const index = actors.findIndex(actor => actor.id === editingActorId);
+    if(index >= 0) actors[index] = actorObject;
+  }else{
+    actors.push(actorObject);
+  }
+
+  saveActors();
+  clearActorForm();
+  renderActors();
+  renderActorSelect();
+  renderDebug();
+  showToast(wasEditing ? "俳優を更新しました" : "俳優を保存しました");
+}
 
   function editActor(actorId){
     const actor = actors.find(item => item.id === actorId);
@@ -2422,6 +3064,8 @@ label{
     actorImageUrl.value = actor.imageUrl || "";
     actorMemo.value = actor.memo || "";
 
+    switchTab("project");
+    setSectionCollapsed("actorMasterSection", false);
     window.scrollTo({ top: actorMasterSection.offsetTop - 20, behavior: "smooth" });
   }
 
@@ -2432,56 +3076,106 @@ label{
     renderActors();
     renderActorSelect();
     renderDebug();
+    showToast("俳優を削除しました");
   }
 
   function renderActors(){
-    if(actors.length === 0){
-      actorList.innerHTML = `<div class="empty-text">俳優がまだありません</div>`;
-      return;
-    }
+  if(actors.length === 0){
+    actorList.innerHTML = `<div class="empty-text">俳優がまだありません</div>`;
+    return;
+  }
 
-    const sorted = [...actors].sort((a, b) => a.name.localeCompare(b.name, "ja"));
+  const search = (actorSearchInput?.value || "").trim().toLowerCase();
 
-    actorList.innerHTML = sorted.map(actor => `
-      <div class="actor-card">
-        <div class="actor-card-inner">
-          ${
-            actor.imageUrl
-              ? `<img class="actor-thumb" src="${escapeHtml(actor.imageUrl)}" alt="${escapeHtml(actor.name)}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                 <div class="actor-thumb-placeholder" style="display:none;">画像なし</div>`
-              : `<div class="actor-thumb-placeholder">画像なし</div>`
-          }
-          <div>
-            <div class="item-title">${escapeHtml(actor.name)}</div>
-            <div class="item-meta">${escapeHtml(actor.memo || "-")}</div>
-            <div class="item-actions">
+  const filtered = [...actors]
+    .filter(actor => {
+      if(!search) return true;
+      const text = [actor.name, actor.memo].join(" ").toLowerCase();
+      return text.includes(search);
+    })
+    .sort((a, b) => a.name.localeCompare(b.name, "ja"));
+
+  if(filtered.length === 0){
+    actorList.innerHTML = `<div class="empty-text">該当する俳優がいません</div>`;
+    return;
+  }
+
+  actorList.innerHTML = `
+    <div class="actor-grid">
+      ${filtered.map(actor => {
+        const appearCount = scenes.filter(scene => {
+          const castText = String(scene.cast || "");
+          return castText.includes(actor.name);
+        }).length;
+
+        return `
+          <div class="actor-mini-card">
+            <div class="actor-mini-top">
+              ${
+                actor.imageUrl
+                  ? `
+                    <img
+                      class="actor-mini-thumb"
+                      src="${escapeHtml(actor.imageUrl)}"
+                      alt="${escapeHtml(actor.name)}"
+                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                    >
+                    <div class="actor-mini-thumb-placeholder" style="display:none;">画像なし</div>
+                  `
+                  : `<div class="actor-mini-thumb-placeholder">画像なし</div>`
+              }
+
+              <div class="actor-mini-name">${escapeHtml(actor.name)}</div>
+            </div>
+
+            <div class="actor-mini-count">出演シーン数 ${appearCount}</div>
+            <div class="actor-mini-memo">${escapeHtml(actor.memo || "メモなし")}</div>
+
+            <div id="actor_detail_${actor.id}" class="actor-detail-box hidden">
+              <div class="actor-detail-row">名前：${escapeHtml(actor.name)}</div>
+              <div class="actor-detail-row">写真URL：${escapeHtml(actor.imageUrl || "-")}</div>
+              <div class="actor-detail-row">メモ：${escapeHtml(actor.memo || "-")}</div>
+              <div class="actor-detail-row">出演シーン数：${appearCount}</div>
+            </div>
+
+            <div class="actor-mini-actions">
+              <button type="button" class="detail-btn" data-actor-detail="${actor.id}">詳細</button>
               <button type="button" class="select-btn" data-actor-apply="${actor.id}">シーンに追加</button>
               <button type="button" class="edit-btn" data-actor-edit="${actor.id}">編集</button>
               <button type="button" class="danger-btn" data-actor-delete="${actor.id}">削除</button>
             </div>
           </div>
-        </div>
-      </div>
-    `).join("");
+        `;
+      }).join("")}
+    </div>
+  `;
 
-    actorList.querySelectorAll("[data-actor-apply]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        sceneActorSelect.value = btn.getAttribute("data-actor-apply");
-        applyActorToScene();
-        sceneFormSection.classList.remove("hidden");
-        updateOpenSceneButton();
-        window.scrollTo({ top: sceneFormSection.offsetTop - 20, behavior: "smooth" });
-      });
+  actorList.querySelectorAll("[data-actor-detail]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      toggleActorDetail(btn.getAttribute("data-actor-detail"));
     });
+  });
 
-    actorList.querySelectorAll("[data-actor-edit]").forEach(btn => {
-      btn.addEventListener("click", () => editActor(btn.getAttribute("data-actor-edit")));
+  actorList.querySelectorAll("[data-actor-apply]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      sceneActorSelect.value = btn.getAttribute("data-actor-apply");
+      applyActorToScene();
+      sceneFormSection.classList.remove("hidden");
+      switchTab("scene");
+      setSectionCollapsed("sceneFormSection", false);
+      updateOpenSceneButton();
+      window.scrollTo({ top: sceneFormSection.offsetTop - 20, behavior: "smooth" });
     });
+  });
 
-    actorList.querySelectorAll("[data-actor-delete]").forEach(btn => {
-      btn.addEventListener("click", () => deleteActor(btn.getAttribute("data-actor-delete")));
-    });
-  }
+  actorList.querySelectorAll("[data-actor-edit]").forEach(btn => {
+    btn.addEventListener("click", () => editActor(btn.getAttribute("data-actor-edit")));
+  });
+
+  actorList.querySelectorAll("[data-actor-delete]").forEach(btn => {
+    btn.addEventListener("click", () => deleteActor(btn.getAttribute("data-actor-delete")));
+  });
+}
 
   function renderActorSelect(){
     if(actors.length === 0){
@@ -2511,34 +3205,52 @@ label{
     }
 
     sceneCast.value = current.join("\n");
+    showToast("出演者に追加しました");
   }
+  function toggleActorDetail(actorId){
+  const target = document.getElementById("actor_detail_" + actorId);
+  if(!target) return;
+
+  const willOpen = target.classList.contains("hidden");
+
+  document.querySelectorAll('[id^="actor_detail_"]').forEach(detail => {
+    detail.classList.add("hidden");
+  });
+
+  if(willOpen){
+    target.classList.remove("hidden");
+  }
+}
 
   function addProp(){
-    const propObject = {
-      id: editingPropId || uid("prop"),
-      name: propName.value.trim(),
-      storage: propStorage.value.trim(),
-      memo: propMemo.value.trim()
-    };
+  const propObject = {
+    id: editingPropId || uid("prop"),
+    name: propName.value.trim(),
+    storage: propStorage.value.trim(),
+    memo: propMemo.value.trim()
+  };
 
-    if(!propObject.name){
-      alert("小道具名は必須です");
-      return;
-    }
-
-    if(editingPropId){
-      const index = props.findIndex(prop => prop.id === editingPropId);
-      if(index >= 0) props[index] = propObject;
-    }else{
-      props.push(propObject);
-    }
-
-    saveProps();
-    clearPropForm();
-    renderProps();
-    renderPropSelect();
-    renderDebug();
+  if(!propObject.name){
+    alert("小道具名は必須です");
+    return;
   }
+
+  const wasEditing = !!editingPropId;
+
+  if(editingPropId){
+    const index = props.findIndex(prop => prop.id === editingPropId);
+    if(index >= 0) props[index] = propObject;
+  }else{
+    props.push(propObject);
+  }
+
+  saveProps();
+  clearPropForm();
+  renderProps();
+  renderPropSelect();
+  renderDebug();
+  showToast(wasEditing ? "小道具を更新しました" : "小道具を保存しました");
+}
 
   function editProp(propId){
     const prop = props.find(item => item.id === propId);
@@ -2549,6 +3261,8 @@ label{
     propStorage.value = prop.storage || "";
     propMemo.value = prop.memo || "";
 
+    switchTab("project");
+    setSectionCollapsed("propMasterSection", false);
     window.scrollTo({ top: propMasterSection.offsetTop - 20, behavior: "smooth" });
   }
 
@@ -2559,47 +3273,90 @@ label{
     renderProps();
     renderPropSelect();
     renderDebug();
+    showToast("小道具を削除しました");
   }
 
   function renderProps(){
-    if(props.length === 0){
-      propList.innerHTML = `<div class="empty-text">小道具がまだありません</div>`;
-      return;
-    }
-
-    const sorted = [...props].sort((a, b) => a.name.localeCompare(b.name, "ja"));
-
-    propList.innerHTML = sorted.map(prop => `
-      <div class="prop-card">
-        <div class="item-title">${escapeHtml(prop.name)}</div>
-        <div class="item-meta">保管場所：${escapeHtml(prop.storage || "-")}</div>
-        <div class="item-meta">${escapeHtml(prop.memo || "-")}</div>
-        <div class="item-actions">
-          <button type="button" class="select-btn" data-prop-apply="${prop.id}">シーンに追加</button>
-          <button type="button" class="edit-btn" data-prop-edit="${prop.id}">編集</button>
-          <button type="button" class="danger-btn" data-prop-delete="${prop.id}">削除</button>
-        </div>
-      </div>
-    `).join("");
-
-    propList.querySelectorAll("[data-prop-apply]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        scenePropSelect.value = btn.getAttribute("data-prop-apply");
-        applyPropToScene();
-        sceneFormSection.classList.remove("hidden");
-        updateOpenSceneButton();
-        window.scrollTo({ top: sceneFormSection.offsetTop - 20, behavior: "smooth" });
-      });
-    });
-
-    propList.querySelectorAll("[data-prop-edit]").forEach(btn => {
-      btn.addEventListener("click", () => editProp(btn.getAttribute("data-prop-edit")));
-    });
-
-    propList.querySelectorAll("[data-prop-delete]").forEach(btn => {
-      btn.addEventListener("click", () => deleteProp(btn.getAttribute("data-prop-delete")));
-    });
+  if(props.length === 0){
+    propList.innerHTML = `<div class="empty-text">小道具がまだありません</div>`;
+    return;
   }
+
+  const search = (propSearchInput?.value || "").trim().toLowerCase();
+
+  const filtered = [...props]
+    .filter(prop => {
+      if(!search) return true;
+      const text = [prop.name, prop.storage, prop.memo].join(" ").toLowerCase();
+      return text.includes(search);
+    })
+    .sort((a, b) => a.name.localeCompare(b.name, "ja"));
+
+  if(filtered.length === 0){
+    propList.innerHTML = `<div class="empty-text">該当する小道具がありません</div>`;
+    return;
+  }
+
+  propList.innerHTML = `
+    <div class="prop-grid">
+      ${filtered.map(prop => {
+        const useCount = scenes.filter(scene => {
+          const propText = String(scene.prop || "");
+          return propText.includes(prop.name);
+        }).length;
+
+        return `
+          <div class="prop-mini-card">
+            <div class="prop-mini-title">${escapeHtml(prop.name)}</div>
+            <div class="prop-mini-count">使用シーン数 ${useCount}</div>
+            <div class="prop-mini-storage">保管場所：${escapeHtml(prop.storage || "未登録")}</div>
+            <div class="prop-mini-memo">${escapeHtml(prop.memo || "メモなし")}</div>
+
+            <div id="prop_detail_${prop.id}" class="prop-detail-box hidden">
+              <div class="prop-detail-row">小道具名：${escapeHtml(prop.name)}</div>
+              <div class="prop-detail-row">保管場所：${escapeHtml(prop.storage || "-")}</div>
+              <div class="prop-detail-row">メモ：${escapeHtml(prop.memo || "-")}</div>
+              <div class="prop-detail-row">使用シーン数：${useCount}</div>
+            </div>
+
+            <div class="prop-mini-actions">
+              <button type="button" class="detail-btn" data-prop-detail="${prop.id}">詳細</button>
+              <button type="button" class="select-btn" data-prop-apply="${prop.id}">シーンに追加</button>
+              <button type="button" class="edit-btn" data-prop-edit="${prop.id}">編集</button>
+              <button type="button" class="danger-btn" data-prop-delete="${prop.id}">削除</button>
+            </div>
+          </div>
+        `;
+      }).join("")}
+    </div>
+  `;
+
+  propList.querySelectorAll("[data-prop-detail]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      togglePropDetail(btn.getAttribute("data-prop-detail"));
+    });
+  });
+
+  propList.querySelectorAll("[data-prop-apply]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      scenePropSelect.value = btn.getAttribute("data-prop-apply");
+      applyPropToScene();
+      sceneFormSection.classList.remove("hidden");
+      switchTab("scene");
+      setSectionCollapsed("sceneFormSection", false);
+      updateOpenSceneButton();
+      window.scrollTo({ top: sceneFormSection.offsetTop - 20, behavior: "smooth" });
+    });
+  });
+
+  propList.querySelectorAll("[data-prop-edit]").forEach(btn => {
+    btn.addEventListener("click", () => editProp(btn.getAttribute("data-prop-edit")));
+  });
+
+  propList.querySelectorAll("[data-prop-delete]").forEach(btn => {
+    btn.addEventListener("click", () => deleteProp(btn.getAttribute("data-prop-delete")));
+  });
+}
 
   function renderPropSelect(){
     if(props.length === 0){
@@ -2615,6 +3372,20 @@ label{
   }
 
   function applyPropToScene(){
+    function togglePropDetail(propId){
+  const target = document.getElementById("prop_detail_" + propId);
+  if(!target) return;
+
+  const willOpen = target.classList.contains("hidden");
+
+  document.querySelectorAll('[id^="prop_detail_"]').forEach(detail => {
+    detail.classList.add("hidden");
+  });
+
+  if(willOpen){
+    target.classList.remove("hidden");
+  }
+}
     const propId = scenePropSelect.value;
     const prop = props.find(item => item.id === propId);
     if(!prop) return;
@@ -2629,6 +3400,7 @@ label{
     }
 
     sceneProp.value = current.join("\n");
+    showToast("小道具に追加しました");
   }
 
   function areAllSceneChecksComplete(checks){
@@ -2677,7 +3449,6 @@ label{
       alert("プロジェクトを選択してください");
       return;
     }
-
     if(!title){
       alert("シーン名は必須です");
       return;
@@ -2699,6 +3470,7 @@ label{
     }, 0);
 
     const finalOrder = Number.isFinite(inputOrder) && inputOrder > 0 ? inputOrder : maxOrder + 1;
+    const existingShotDone = editingSceneId ? (scenes.find(scene => scene.id === editingSceneId)?.shotDone || false) : false;
 
     const sceneObject = {
       id: editingSceneId || uid("scene"),
@@ -2726,14 +3498,13 @@ label{
       productionNote,
       actorNote,
       checks: sceneChecks,
-      done: areAllSceneChecksComplete(sceneChecks)
+      done: areAllSceneChecksComplete(sceneChecks),
+      shotDone: existingShotDone
     };
 
     if(editingSceneId){
       const index = scenes.findIndex(scene => scene.id === editingSceneId);
-      if(index >= 0){
-        scenes[index] = sceneObject;
-      }
+      if(index >= 0) scenes[index] = sceneObject;
     }else{
       scenes.push(sceneObject);
     }
@@ -2745,6 +3516,7 @@ label{
     saveScenes();
 
     const savedId = sceneObject.id;
+    const wasEditing = !!editingSceneId;
 
     clearSceneForm();
 
@@ -2755,8 +3527,10 @@ label{
     renderProjects();
     renderScenes();
     renderDebug();
+    renderHomeDashboard();
     updateOpenSceneButton();
     scrollToScene(savedId);
+    showToast(wasEditing ? "シーンを更新しました" : "シーンを保存しました");
   }
 
   function getSceneCheckStatus(checks){
@@ -2792,6 +3566,26 @@ label{
     return Math.round((status.doneCount / status.total) * 100);
   }
 
+  function getProjectScenes(projectId){
+  return scenes.filter(scene => scene.projectId === projectId);
+}
+
+function getProjectProgress(projectId){
+  const projectScenes = getProjectScenes(projectId);
+  if(projectScenes.length === 0) return 0;
+
+  const doneCount = projectScenes.filter(scene => scene.shotDone).length;
+  return Math.round((doneCount / projectScenes.length) * 100);
+}
+
+function getNotReadyScenes(projectId){
+  const projectScenes = projectId
+    ? scenes.filter(scene => scene.projectId === projectId)
+    : [...scenes];
+
+  return projectScenes.filter(scene => !scene.done);
+}
+
   function duplicateScene(sceneId){
     const original = scenes.find(item => item.id === sceneId);
     if(!original) return;
@@ -2800,7 +3594,7 @@ label{
       ...original,
       id: uid("scene"),
       title: `${original.title || "シーン"} コピー`,
-      done: false,
+      shotDone: false,
       checks: {
         schedule:false,
         prop:false,
@@ -2808,7 +3602,8 @@ label{
         costume:false,
         camera:false,
         light:false
-      }
+      },
+      done: false
     };
 
     scenes.push(duplicated);
@@ -2817,7 +3612,9 @@ label{
     renderProjects();
     renderScenes();
     renderDebug();
+    renderHomeDashboard();
     scrollToScene(duplicated.id);
+    showToast("シーンを複製しました");
   }
 
   function normalizeProjectSceneOrders(projectId){
@@ -2828,7 +3625,7 @@ label{
         const orderB = Number(b.order) || 0;
         if(orderA !== orderB) return orderA - orderB;
         return String(a.no || "").localeCompare(String(b.no || ""), "ja");
-           });
+      });
 
     targetScenes.forEach((scene, index) => {
       scene.order = index + 1;
@@ -2861,6 +3658,7 @@ label{
     saveScenes();
     renderScenes();
     renderDebug();
+    renderHomeDashboard();
   }
 
   function editScene(sceneId){
@@ -2902,6 +3700,7 @@ label{
     sceneCheckCamera.checked = !!checks.camera;
     sceneCheckLight.checked = !!checks.light;
 
+    switchTab("scene");
     sceneFormSection.classList.remove("hidden");
     setSectionCollapsed("sceneFormSection", false);
     updateOpenSceneButton();
@@ -2920,10 +3719,12 @@ label{
     renderProjects();
     renderScenes();
     renderDebug();
+    renderHomeDashboard();
 
     if(editingSceneId === sceneId){
       clearSceneForm();
     }
+    showToast("シーンを削除しました");
   }
 
   function scrollToScene(sceneId){
@@ -2949,20 +3750,20 @@ label{
     const currentIndex = sameProjectScenes.findIndex(scene => scene.id === currentSceneId);
 
     for(let i = currentIndex + 1; i < sameProjectScenes.length; i++){
-      if(!sameProjectScenes[i].done){
+      if(!sameProjectScenes[i].shotDone){
         scrollToScene(sameProjectScenes[i].id);
         return;
       }
     }
 
     for(let i = 0; i < currentIndex; i++){
-      if(!sameProjectScenes[i].done){
+      if(!sameProjectScenes[i].shotDone){
         scrollToScene(sameProjectScenes[i].id);
         return;
       }
     }
 
-    alert("このプロジェクトのシーンはすべて完了しています");
+    alert("このプロジェクトのシーンはすべて撮影完了しています");
   }
 
   function moveToPrevUndoneScene(projectId, currentSceneId){
@@ -2973,27 +3774,24 @@ label{
     const currentIndex = sameProjectScenes.findIndex(scene => scene.id === currentSceneId);
 
     for(let i = currentIndex - 1; i >= 0; i--){
-      if(!sameProjectScenes[i].done){
+      if(!sameProjectScenes[i].shotDone){
         scrollToScene(sameProjectScenes[i].id);
         return;
       }
     }
 
     for(let i = sameProjectScenes.length - 1; i > currentIndex; i--){
-      if(!sameProjectScenes[i].done){
+      if(!sameProjectScenes[i].shotDone){
         scrollToScene(sameProjectScenes[i].id);
         return;
       }
     }
 
-    alert("未完了シーンがありません");
+    alert("未撮影シーンがありません");
   }
 
   function getCurrentVisibleSceneId(){
-    const cards = [...document.querySelectorAll("[data-scene-id]")].filter(card => {
-      return card.offsetParent !== null;
-    });
-
+    const cards = [...document.querySelectorAll("[data-scene-id]")].filter(card => card.offsetParent !== null);
     if(cards.length === 0) return "";
 
     let bestId = "";
@@ -3002,7 +3800,6 @@ label{
     cards.forEach(card => {
       const rect = card.getBoundingClientRect();
       const centerDistance = Math.abs((rect.top + rect.height / 2) - (window.innerHeight / 2));
-
       if(centerDistance < bestDistance){
         bestDistance = centerDistance;
         bestId = card.getAttribute("data-scene-id") || "";
@@ -3037,7 +3834,7 @@ label{
 
     try{
       await navigator.clipboard.writeText(text);
-      alert(successMessage);
+      showToast(successMessage);
     }catch(error){
       const temp = document.createElement("textarea");
       temp.value = text;
@@ -3045,31 +3842,7 @@ label{
       temp.select();
       document.execCommand("copy");
       document.body.removeChild(temp);
-      alert(successMessage);
-    }
-  }
-
-  function toggleDone(sceneId){
-    const scene = scenes.find(item => item.id === sceneId);
-    if(!scene) return;
-
-    const checkStatus = getSceneCheckStatus(scene.checks);
-
-    if(checkStatus.allDone){
-      alert("このシーンは6項目すべて完了しているため 自動で完了になっています");
-    }else{
-      alert(`まだチェックが残っています あと${checkStatus.remainingCount}項目です`);
-    }
-
-    scene.done = areAllSceneChecksComplete(scene.checks);
-    saveScenes();
-    renderScenes();
-    renderDebug();
-
-    if(scene.done){
-      moveToNextUndoneScene(scene.projectId, sceneId);
-    }else{
-      scrollToScene(sceneId);
+      showToast(successMessage);
     }
   }
 
@@ -3078,7 +3851,6 @@ label{
     if(!targetDetail) return;
 
     const willOpen = targetDetail.classList.contains("hidden");
-
     document.querySelectorAll('[id^="detail_"]').forEach(detail => {
       detail.classList.add("hidden");
     });
@@ -3100,47 +3872,61 @@ label{
     });
 
     currentSceneActions.querySelectorAll("[data-current-edit]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const sceneId = btn.getAttribute("data-current-edit");
-        editScene(sceneId);
-      });
+      btn.addEventListener("click", () => editScene(btn.getAttribute("data-current-edit")));
     });
 
     currentSceneActions.querySelectorAll("[data-current-map]").forEach(btn => {
       btn.addEventListener("click", () => {
-        const sceneId = btn.getAttribute("data-current-map");
-        const scene = scenes.find(item => item.id === sceneId);
-        if(!scene || !scene.mapUrl) return;
-        window.open(scene.mapUrl, "_blank");
+        const scene = scenes.find(item => item.id === btn.getAttribute("data-current-map"));
+        if(scene?.mapUrl) window.open(scene.mapUrl, "_blank");
       });
     });
 
     currentSceneActions.querySelectorAll("[data-current-address]").forEach(btn => {
       btn.addEventListener("click", () => {
-        const sceneId = btn.getAttribute("data-current-address");
-        const scene = scenes.find(item => item.id === sceneId);
-        if(!scene || !scene.address) return;
-        copyText(scene.address, "住所をコピーしました");
+        const scene = scenes.find(item => item.id === btn.getAttribute("data-current-address"));
+        if(scene?.address) copyText(scene.address, "住所をコピーしました");
       });
     });
 
     currentSceneActions.querySelectorAll("[data-current-phone]").forEach(btn => {
       btn.addEventListener("click", () => {
-        const sceneId = btn.getAttribute("data-current-phone");
-        const scene = scenes.find(item => item.id === sceneId);
-        if(!scene || !scene.phone) return;
-        copyText(scene.phone, "電話番号をコピーしました");
+        const scene = scenes.find(item => item.id === btn.getAttribute("data-current-phone"));
+        if(scene?.phone) copyText(scene.phone, "電話番号をコピーしました");
       });
     });
 
     currentSceneActions.querySelectorAll("[data-current-call]").forEach(btn => {
       btn.addEventListener("click", () => {
-        const sceneId = btn.getAttribute("data-current-call");
-        const scene = scenes.find(item => item.id === sceneId);
-        if(!scene || !scene.phone) return;
-
+        const scene = scenes.find(item => item.id === btn.getAttribute("data-current-call"));
+        if(!scene?.phone) return;
         const tel = scene.phone.replace(/[^\d+]/g, "");
         window.location.href = `tel:${tel}`;
+      });
+    });
+  }
+
+  function bindNextSceneActionEvents(){
+    if(!nextSceneActions) return;
+
+    nextSceneActions.querySelectorAll("[data-next-detail]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const sceneId = btn.getAttribute("data-next-detail");
+        toggleDetail(sceneId);
+        scrollToScene(sceneId);
+      });
+    });
+
+    nextSceneActions.querySelectorAll("[data-next-map]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const scene = scenes.find(item => item.id === btn.getAttribute("data-next-map"));
+        if(scene?.mapUrl) window.open(scene.mapUrl, "_blank");
+      });
+    });
+
+    nextSceneActions.querySelectorAll("[data-next-shot]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        toggleShotDone(btn.getAttribute("data-next-shot"));
       });
     });
   }
@@ -3174,19 +3960,19 @@ label{
     const checkStatus = getSceneCheckStatus(scene.checks);
 
     currentSceneMain.textContent = scene.title || "名称未設定";
-
     currentSceneMeta.innerHTML = `
       ${getProjectTitle(scene.projectId) ? `<span class="badge">${escapeHtml(getProjectTitle(scene.projectId))}</span>` : ``}
       ${scene.no ? `<span class="badge">シーン ${escapeHtml(scene.no)}</span>` : ``}
       ${scene.order ? `<span class="badge">撮影順 ${scene.order}</span>` : ``}
       ${scene.location ? `<span class="badge">${escapeHtml(scene.location)}</span>` : ``}
       ${scene.label ? `<span class="badge ${badgeClass(scene.label)}">${escapeHtml(scene.label)}</span>` : ``}
-      ${scene.done ? `<span class="badge done">完了</span>` : `<span class="badge">未完了</span>`}
-      <span class="badge">${checkStatus.doneCount}/6</span>
+      ${scene.shotDone ? `<span class="badge shot">撮影完了</span>` : `<span class="badge">未撮影</span>`}
+      ${scene.done ? `<span class="badge done">準備完了</span>` : `<span class="badge warn">準備 ${checkStatus.doneCount}/6</span>`}
     `;
 
     currentSceneActions.innerHTML = `
       <button type="button" class="detail-btn" data-current-detail="${scene.id}">詳細</button>
+      <button type="button" class="${scene.shotDone ? "unshot-btn" : "shot-btn"}" data-scene-shot="${scene.id}">${scene.shotDone ? "未撮影に戻す" : "撮影完了"}</button>
       <button type="button" class="edit-btn" data-current-edit="${scene.id}">編集</button>
       ${scene.mapUrl ? `<button type="button" class="copy-btn" data-current-map="${scene.id}">地図を開く</button>` : ``}
       ${scene.address ? `<button type="button" class="copy-btn" data-current-address="${scene.id}">住所コピー</button>` : ``}
@@ -3195,6 +3981,61 @@ label{
     `;
 
     bindCurrentSceneActionEvents();
+  }
+
+  function getNextUnshotScene(){
+    const filtered = scenes
+      .filter(scene => !scene.shotDone)
+      .sort((a, b) => {
+        if(activeProjectId){
+          const aPriority = a.projectId === activeProjectId ? 0 : 1;
+          const bPriority = b.projectId === activeProjectId ? 0 : 1;
+          if(aPriority !== bPriority) return aPriority - bPriority;
+        }
+        const orderDiff = (a.order || 0) - (b.order || 0);
+        if(orderDiff !== 0) return orderDiff;
+        return String(a.no || "").localeCompare(String(b.no || ""), "ja");
+      });
+
+    return filtered[0] || null;
+  }
+
+  function updateNextSceneBar(){
+    if(!nextSceneMain || !nextSceneMeta || !nextSceneActions) return;
+
+    if(mode !== "field"){
+      nextSceneMain.textContent = "未選択";
+      nextSceneMeta.innerHTML = "";
+      nextSceneActions.innerHTML = "";
+      return;
+    }
+
+    const scene = getNextUnshotScene();
+    if(!scene){
+      nextSceneMain.textContent = "すべて撮影完了";
+      nextSceneMeta.innerHTML = `<span class="badge shot">完了</span>`;
+      nextSceneActions.innerHTML = "";
+      return;
+    }
+
+    const checkStatus = getSceneCheckStatus(scene.checks);
+
+    nextSceneMain.textContent = scene.title || "名称未設定";
+    nextSceneMeta.innerHTML = `
+      ${getProjectTitle(scene.projectId) ? `<span class="badge">${escapeHtml(getProjectTitle(scene.projectId))}</span>` : ``}
+      ${scene.no ? `<span class="badge">シーン ${escapeHtml(scene.no)}</span>` : ``}
+      ${scene.order ? `<span class="badge">撮影順 ${scene.order}</span>` : ``}
+      ${scene.location ? `<span class="badge">${escapeHtml(scene.location)}</span>` : ``}
+      ${scene.done ? `<span class="badge done">準備完了</span>` : `<span class="badge warn">準備 ${checkStatus.doneCount}/6</span>`}
+    `;
+
+    nextSceneActions.innerHTML = `
+      <button type="button" class="detail-btn" data-next-detail="${scene.id}">詳細</button>
+      <button type="button" class="shot-btn" data-next-shot="${scene.id}">撮影完了</button>
+      ${scene.mapUrl ? `<button type="button" class="copy-btn" data-next-map="${scene.id}">地図</button>` : ``}
+    `;
+
+    bindNextSceneActionEvents();
   }
 
   function toggleSceneCheck(sceneId, checkKey){
@@ -3218,7 +4059,27 @@ label{
     saveScenes();
     renderScenes();
     renderDebug();
+    renderHomeDashboard();
     scrollToScene(sceneId);
+  }
+
+  function toggleShotDone(sceneId){
+    const scene = scenes.find(item => item.id === sceneId);
+    if(!scene) return;
+
+    scene.shotDone = !scene.shotDone;
+    saveScenes();
+    renderProjects();
+    renderScenes();
+    renderDebug();
+    renderHomeDashboard();
+    showToast(scene.shotDone ? "撮影完了にしました" : "未撮影に戻しました");
+
+    if(scene.shotDone){
+      moveToNextUndoneScene(scene.projectId, sceneId);
+    }else{
+      scrollToScene(sceneId);
+    }
   }
 
   function buildSceneCheckBadges(scene){
@@ -3261,9 +4122,9 @@ label{
     }
 
     if(statusFilter === "done"){
-      filtered = filtered.filter(scene => scene.done);
+      filtered = filtered.filter(scene => scene.shotDone);
     }else if(statusFilter === "undone"){
-      filtered = filtered.filter(scene => !scene.done);
+      filtered = filtered.filter(scene => !scene.shotDone);
     }
 
     if(search){
@@ -3305,8 +4166,14 @@ label{
         return String(a.title || "").localeCompare(String(b.title || ""), "ja");
       }
 
-      if(a.done !== b.done){
-        return a.done ? 1 : -1;
+      if(a.shotDone !== b.shotDone){
+        return a.shotDone ? 1 : -1;
+      }
+
+      if(activeProjectId){
+        const aPriority = a.projectId === activeProjectId ? 0 : 1;
+        const bPriority = b.projectId === activeProjectId ? 0 : 1;
+        if(aPriority !== bPriority) return aPriority - bPriority;
       }
 
       const orderDiff = (a.order || 0) - (b.order || 0);
@@ -3320,20 +4187,43 @@ label{
   function updateFieldSummary(filteredScenes){
     if(!fieldVisibleCount || !fieldRemainingCount || !fieldDoneCount) return;
     fieldVisibleCount.textContent = String(filteredScenes.length);
-    fieldRemainingCount.textContent = String(filteredScenes.filter(scene => !scene.done).length);
-    fieldDoneCount.textContent = String(filteredScenes.filter(scene => scene.done).length);
+    fieldRemainingCount.textContent = String(filteredScenes.filter(scene => !scene.shotDone).length);
+    fieldDoneCount.textContent = String(filteredScenes.filter(scene => scene.shotDone).length);
   }
 
   function renderSceneCard(scene, isFirst, isLast, isFieldMode, isNextTarget = false){
     const checkStatus = getSceneCheckStatus(scene.checks);
     const progressPercent = getSceneProgressPercent(scene.checks);
-    const doneCardClass = scene.done ? "scene-done-card" : "";
-    const undoneCardClass = scene.done ? "" : "scene-undone-card";
+    const readyCardClass = scene.done ? "ready-card" : "";
+    const shotDoneCardClass = scene.shotDone ? "shot-done-card compact-shot-card" : "";
+    const undoneCardClass = scene.shotDone ? "" : "scene-undone-card";
     const nextTargetClass = isNextTarget ? "next-target-card" : "";
+
+    const sharedDetail = `
+      <div id="detail_${scene.id}" class="detail-box hidden">
+        <div class="meta-grid">
+          <div class="item-meta">住所：${escapeHtml(scene.address || "-")}</div>
+          <div class="item-meta">電話番号：${escapeHtml(scene.phone || "-")}</div>
+          <div class="item-meta">GoogleマップURL：${escapeHtml(scene.mapUrl || "-")}</div>
+          <div class="item-meta">ロケ許可メモ：${escapeHtml(scene.permitMemo || "-")}</div>
+          <div class="item-meta">駐車場：${escapeHtml(scene.parkingMemo || "-")}</div>
+          <div class="item-meta">電源：${escapeHtml(scene.powerMemo || "-")}</div>
+          <div class="item-meta">トイレ：${escapeHtml(scene.toiletMemo || "-")}</div>
+          <div class="item-meta">雨天時：${escapeHtml(scene.rainMemo || "-")}</div>
+          <div class="item-meta">共通メモ：${escapeHtml(scene.memo || "-")}</div>
+          <div class="item-meta">演出部メモ：${escapeHtml(scene.directionNote || "-")}</div>
+          <div class="item-meta">撮影部メモ：${escapeHtml(scene.cameraNote || "-")}</div>
+          <div class="item-meta">照明部メモ：${escapeHtml(scene.lightNote || "-")}</div>
+          <div class="item-meta">制作部メモ：${escapeHtml(scene.productionNote || "-")}</div>
+          <div class="item-meta">俳優部メモ：${escapeHtml(scene.actorNote || "-")}</div>
+          <div class="item-meta">準備チェック：${checkStatus.doneCount}/6 ${checkStatus.allDone ? "完了" : `あと${checkStatus.remainingCount}項目`}</div>
+        </div>
+      </div>
+    `;
 
     if(isFieldMode){
       return `
-        <div class="scene-card field-scene-card ${labelClass(scene.label)} ${doneCardClass} ${undoneCardClass} ${nextTargetClass}" data-scene-id="${scene.id}">
+        <div class="scene-card field-scene-card ${labelClass(scene.label)} ${readyCardClass} ${shotDoneCardClass} ${undoneCardClass} ${nextTargetClass}" data-scene-id="${scene.id}">
           <div class="item-title">${escapeHtml(scene.title)}</div>
 
           <div class="badges">
@@ -3341,49 +4231,32 @@ label{
             ${scene.no ? `<span class="badge">シーン ${escapeHtml(scene.no)}</span>` : ``}
             ${scene.order ? `<span class="badge">撮影順 ${scene.order}</span>` : ``}
             ${scene.label ? `<span class="badge ${badgeClass(scene.label)}">${escapeHtml(scene.label)}</span>` : ``}
-            ${scene.done ? `<span class="badge done">完了</span>` : `<span class="badge">未完了</span>`}
-            ${checkStatus.allDone ? `<span class="badge done">チェック完了</span>` : `<span class="badge warn">あと${checkStatus.remainingCount}項目</span>`}
-            <span class="badge">${checkStatus.doneCount}/6</span>
+            ${scene.shotDone ? `<span class="badge shot">撮影完了</span>` : `<span class="badge">未撮影</span>`}
+            ${scene.done ? `<span class="badge done">準備完了</span>` : `<span class="badge warn">あと${checkStatus.remainingCount}項目</span>`}
             ${scene.location ? `<span class="badge">${escapeHtml(scene.location)}</span>` : ``}
           </div>
 
           <div class="item-meta">出演者：${escapeHtml(scene.cast || "-")}</div>
           <div class="item-meta">小道具：${escapeHtml(scene.prop || "-")}</div>
           <div class="item-meta">場所：${escapeHtml(scene.location || "-")}</div>
-          <div class="item-meta">共通メモ：${escapeHtml(scene.memo || "-")}</div>
-          ${buildSceneCheckBadges(scene)}
-          <div class="progress-wrap">
-            <div class="progress-label-row">
-              <span>シーン進行</span>
-              <span>${progressPercent}%</span>
+          ${!scene.shotDone ? `
+            ${buildSceneCheckBadges(scene)}
+            <div class="progress-wrap">
+              <div class="progress-label-row">
+                <span>準備進行</span>
+                <span>${progressPercent}%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-bar-fill" style="width:${progressPercent}%"></div>
+              </div>
             </div>
-            <div class="progress-bar">
-              <div class="progress-bar-fill" style="width:${progressPercent}%"></div>
-            </div>
-          </div>
+          ` : ``}
 
-          <div id="detail_${scene.id}" class="detail-box hidden">
-            <div class="meta-grid">
-              <div class="item-meta">住所：${escapeHtml(scene.address || "-")}</div>
-              <div class="item-meta">電話番号：${escapeHtml(scene.phone || "-")}</div>
-              <div class="item-meta">GoogleマップURL：${escapeHtml(scene.mapUrl || "-")}</div>
-              <div class="item-meta">ロケ許可メモ：${escapeHtml(scene.permitMemo || "-")}</div>
-              <div class="item-meta">駐車場：${escapeHtml(scene.parkingMemo || "-")}</div>
-              <div class="item-meta">電源：${escapeHtml(scene.powerMemo || "-")}</div>
-              <div class="item-meta">トイレ：${escapeHtml(scene.toiletMemo || "-")}</div>
-              <div class="item-meta">雨天時：${escapeHtml(scene.rainMemo || "-")}</div>
-              <div class="item-meta">演出部メモ：${escapeHtml(scene.directionNote || "-")}</div>
-              <div class="item-meta">撮影部メモ：${escapeHtml(scene.cameraNote || "-")}</div>
-              <div class="item-meta">照明部メモ：${escapeHtml(scene.lightNote || "-")}</div>
-              <div class="item-meta">制作部メモ：${escapeHtml(scene.productionNote || "-")}</div>
-              <div class="item-meta">俳優部メモ：${escapeHtml(scene.actorNote || "-")}</div>
-              <div class="item-meta">チェック状況：${checkStatus.doneCount}/6 ${checkStatus.allDone ? "完了" : `あと${checkStatus.remainingCount}項目`}</div>
-            </div>
-          </div>
+          ${sharedDetail}
 
           <div class="item-actions">
             <button type="button" class="detail-btn" data-scene-detail="${scene.id}">詳細</button>
-            <button type="button" class="select-btn" data-scene-done="${scene.id}">${scene.done ? "自動完了中" : "未完了"}</button>
+            <button type="button" class="${scene.shotDone ? "unshot-btn" : "shot-btn"}" data-scene-shot="${scene.id}">${scene.shotDone ? "未撮影に戻す" : "撮影完了"}</button>
             ${!isFirst ? `<button type="button" class="secondary-btn" data-scene-up="${scene.id}">↑上へ</button>` : ``}
             ${!isLast ? `<button type="button" class="secondary-btn" data-scene-down="${scene.id}">↓下へ</button>` : ``}
             <button type="button" class="secondary-btn" data-scene-duplicate="${scene.id}">複製</button>
@@ -3399,56 +4272,38 @@ label{
     }
 
     return `
-      <div class="scene-card ${labelClass(scene.label)} ${doneCardClass} ${undoneCardClass} ${nextTargetClass}" data-scene-id="${scene.id}">
+      <div class="scene-card ${labelClass(scene.label)} ${readyCardClass} ${shotDoneCardClass} ${undoneCardClass} ${nextTargetClass}" data-scene-id="${scene.id}">
         <div class="item-title">${escapeHtml(scene.title)}</div>
 
         <div class="badges">
           ${scene.no ? `<span class="badge">シーン ${escapeHtml(scene.no)}</span>` : ``}
           ${scene.order ? `<span class="badge">撮影順 ${scene.order}</span>` : ``}
           ${scene.label ? `<span class="badge ${badgeClass(scene.label)}">${escapeHtml(scene.label)}</span>` : ``}
-          ${scene.done ? `<span class="badge done">完了</span>` : `<span class="badge">未完了</span>`}
-          ${checkStatus.allDone ? `<span class="badge done">チェック完了</span>` : `<span class="badge warn">あと${checkStatus.remainingCount}項目</span>`}
-          <span class="badge">${checkStatus.doneCount}/6</span>
+          ${scene.shotDone ? `<span class="badge shot">撮影完了</span>` : `<span class="badge">未撮影</span>`}
+          ${scene.done ? `<span class="badge done">準備完了</span>` : `<span class="badge warn">あと${checkStatus.remainingCount}項目</span>`}
           ${scene.location ? `<span class="badge">${escapeHtml(scene.location)}</span>` : ``}
         </div>
 
         <div class="item-meta">出演者：${escapeHtml(scene.cast || "-")}</div>
         <div class="item-meta">小道具：${escapeHtml(scene.prop || "-")}</div>
         <div class="item-meta">場所：${escapeHtml(scene.location || "-")}</div>
-        <div class="progress-wrap">
-          <div class="progress-label-row">
-            <span>シーン進行</span>
-            <span>${progressPercent}%</span>
+        ${!scene.shotDone ? `
+          <div class="progress-wrap">
+            <div class="progress-label-row">
+              <span>準備進行</span>
+              <span>${progressPercent}%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-bar-fill" style="width:${progressPercent}%"></div>
+            </div>
           </div>
-          <div class="progress-bar">
-            <div class="progress-bar-fill" style="width:${progressPercent}%"></div>
-          </div>
-        </div>
+        ` : ``}
 
-        <div id="detail_${scene.id}" class="detail-box hidden">
-          <div class="meta-grid">
-            <div class="item-meta">住所：${escapeHtml(scene.address || "-")}</div>
-            <div class="item-meta">電話番号：${escapeHtml(scene.phone || "-")}</div>
-            <div class="item-meta">GoogleマップURL：${escapeHtml(scene.mapUrl || "-")}</div>
-            <div class="item-meta">ロケ許可メモ：${escapeHtml(scene.permitMemo || "-")}</div>
-            <div class="item-meta">駐車場：${escapeHtml(scene.parkingMemo || "-")}</div>
-            <div class="item-meta">電源：${escapeHtml(scene.powerMemo || "-")}</div>
-            <div class="item-meta">トイレ：${escapeHtml(scene.toiletMemo || "-")}</div>
-            <div class="item-meta">雨天時：${escapeHtml(scene.rainMemo || "-")}</div>
-            <div class="item-meta">小道具詳細：${escapeHtml(scene.prop || "-")}</div>
-            <div class="item-meta">チェック状況：${checkStatus.doneCount}/6 ${checkStatus.allDone ? "完了" : `あと${checkStatus.remainingCount}項目`}</div>
-          </div>
-          <div class="item-meta">共通メモ：${escapeHtml(scene.memo || "-")}</div>
-          <div class="item-meta">演出部メモ：${escapeHtml(scene.directionNote || "-")}</div>
-          <div class="item-meta">撮影部メモ：${escapeHtml(scene.cameraNote || "-")}</div>
-          <div class="item-meta">照明部メモ：${escapeHtml(scene.lightNote || "-")}</div>
-          <div class="item-meta">制作部メモ：${escapeHtml(scene.productionNote || "-")}</div>
-          <div class="item-meta">俳優部メモ：${escapeHtml(scene.actorNote || "-")}</div>
-        </div>
+        ${sharedDetail}
 
         <div class="item-actions">
           <button type="button" class="detail-btn" data-scene-detail="${scene.id}">詳細</button>
-          <button type="button" class="select-btn" data-scene-done="${scene.id}">${scene.done ? "自動完了中" : "未完了"}</button>
+          <button type="button" class="${scene.shotDone ? "unshot-btn" : "shot-btn"}" data-scene-shot="${scene.id}">${scene.shotDone ? "未撮影に戻す" : "撮影完了"}</button>
           ${!isFirst ? `<button type="button" class="secondary-btn" data-scene-up="${scene.id}">↑上へ</button>` : ``}
           ${!isLast ? `<button type="button" class="secondary-btn" data-scene-down="${scene.id}">↓下へ</button>` : ``}
           <button type="button" class="secondary-btn" data-scene-duplicate="${scene.id}">複製</button>
@@ -3464,8 +4319,8 @@ label{
       btn.addEventListener("click", () => toggleDetail(btn.getAttribute("data-scene-detail")));
     });
 
-    sceneList.querySelectorAll("[data-scene-done]").forEach(btn => {
-      btn.addEventListener("click", () => toggleDone(btn.getAttribute("data-scene-done")));
+    sceneList.querySelectorAll("[data-scene-shot]").forEach(btn => {
+      btn.addEventListener("click", () => toggleShotDone(btn.getAttribute("data-scene-shot")));
     });
 
     sceneList.querySelectorAll("[data-scene-duplicate]").forEach(btn => {
@@ -3490,37 +4345,29 @@ label{
 
     sceneList.querySelectorAll("[data-scene-map]").forEach(btn => {
       btn.addEventListener("click", () => {
-        const sceneId = btn.getAttribute("data-scene-map");
-        const scene = scenes.find(item => item.id === sceneId);
-        if(!scene || !scene.mapUrl) return;
-        window.open(scene.mapUrl, "_blank");
+        const scene = scenes.find(item => item.id === btn.getAttribute("data-scene-map"));
+        if(scene?.mapUrl) window.open(scene.mapUrl, "_blank");
       });
     });
 
     sceneList.querySelectorAll("[data-scene-address]").forEach(btn => {
       btn.addEventListener("click", () => {
-        const sceneId = btn.getAttribute("data-scene-address");
-        const scene = scenes.find(item => item.id === sceneId);
-        if(!scene || !scene.address) return;
-        copyText(scene.address, "住所をコピーしました");
+        const scene = scenes.find(item => item.id === btn.getAttribute("data-scene-address"));
+        if(scene?.address) copyText(scene.address, "住所をコピーしました");
       });
     });
 
     sceneList.querySelectorAll("[data-scene-phone]").forEach(btn => {
       btn.addEventListener("click", () => {
-        const sceneId = btn.getAttribute("data-scene-phone");
-        const scene = scenes.find(item => item.id === sceneId);
-        if(!scene || !scene.phone) return;
-        copyText(scene.phone, "電話番号をコピーしました");
+        const scene = scenes.find(item => item.id === btn.getAttribute("data-scene-phone"));
+        if(scene?.phone) copyText(scene.phone, "電話番号をコピーしました");
       });
     });
 
     sceneList.querySelectorAll("[data-scene-call]").forEach(btn => {
       btn.addEventListener("click", () => {
-        const sceneId = btn.getAttribute("data-scene-call");
-        const scene = scenes.find(item => item.id === sceneId);
-        if(!scene || !scene.phone) return;
-
+        const scene = scenes.find(item => item.id === btn.getAttribute("data-scene-call"));
+        if(!scene?.phone) return;
         const tel = scene.phone.replace(/[^\d+]/g, "");
         window.location.href = `tel:${tel}`;
       });
@@ -3528,10 +4375,7 @@ label{
 
     sceneList.querySelectorAll("[data-scene-check-toggle]").forEach(btn => {
       btn.addEventListener("click", () => {
-        toggleSceneCheck(
-          btn.getAttribute("data-scene-check-toggle"),
-          btn.getAttribute("data-check-key")
-        );
+        toggleSceneCheck(btn.getAttribute("data-scene-check-toggle"), btn.getAttribute("data-check-key"));
       });
     });
 
@@ -3550,11 +4394,12 @@ label{
       if(filteredScenes.length === 0){
         sceneList.innerHTML = `<div class="empty-text">該当するシーンがありません</div>`;
         updateCurrentSceneBar();
+        updateNextSceneBar();
         return;
       }
 
-      const undoneScenes = filteredScenes.filter(scene => !scene.done);
-      const doneScenes = filteredScenes.filter(scene => scene.done);
+      const undoneScenes = filteredScenes.filter(scene => !scene.shotDone);
+      const doneScenes = filteredScenes.filter(scene => scene.shotDone);
 
       const locationGroups = [];
       const groupMap = new Map();
@@ -3591,8 +4436,7 @@ label{
               const currentIndex = sameProjectScenes.findIndex(item => item.id === scene.id);
               const isFirst = currentIndex === 0;
               const isLast = currentIndex === sameProjectScenes.length - 1;
-              const isNextTarget = index === 0;
-
+              const isNextTarget = index === 0 && groupTitle.includes("未撮影");
               return renderSceneCard(scene, isFirst, isLast, true, isNextTarget);
             }).join("")}
           </div>
@@ -3601,13 +4445,11 @@ label{
 
       const activeProjectTitle = getProjectTitle(activeProjectId) || "選択中プロジェクト";
       const undoneHtml =
-        renderUndoneSceneGroup(`${activeProjectTitle} の未完了`, activeUndoneScenes) +
-        renderUndoneSceneGroup("その他の未完了シーン", otherUndoneScenes);
+        renderUndoneSceneGroup(`${activeProjectTitle} の未撮影`, activeUndoneScenes) +
+        renderUndoneSceneGroup("その他の未撮影シーン", otherUndoneScenes);
 
       const doneGroupsHtml = locationGroups.map(group => {
         const groupTotal = group.scenes.length;
-        const groupDone = group.scenes.filter(scene => scene.done).length;
-        const groupUndone = groupTotal - groupDone;
         const isOpen = isFieldGroupOpen(group.key);
 
         return `
@@ -3615,7 +4457,7 @@ label{
             <div class="location-group-header">
               <div class="location-group-header-left">
                 <div class="location-group-title">${escapeHtml(group.key)}</div>
-                <div class="location-group-meta">件数 ${groupTotal} / 完了 ${groupDone} / 未完了 ${groupUndone}</div>
+                <div class="location-group-meta">撮影完了 ${groupTotal}</div>
               </div>
               <button type="button" class="location-toggle-btn" data-location-group-toggle="${escapeHtml(group.key)}">
                 ${isOpen ? "閉じる" : "開く"}
@@ -3644,15 +4486,16 @@ label{
       }).join("");
 
       sceneList.innerHTML = undoneHtml + doneGroupsHtml;
-
       bindSceneListEvents();
       updateCurrentSceneBar();
+      updateNextSceneBar();
       return;
     }
 
     if(scenes.length === 0){
       sceneList.innerHTML = `<div class="empty-text">シーンがまだありません</div>`;
       updateCurrentSceneBar();
+      updateNextSceneBar();
       return;
     }
 
@@ -3667,7 +4510,6 @@ label{
             if(orderDiff !== 0) return orderDiff;
             return String(a.no || "").localeCompare(String(b.no || ""), "ja");
           });
-
         return { project, scenes: projectScenes };
       })
       .filter(group => group.scenes.length > 0);
@@ -3675,6 +4517,7 @@ label{
     if(groups.length === 0){
       sceneList.innerHTML = `<div class="empty-text">シーンがまだありません</div>`;
       updateCurrentSceneBar();
+      updateNextSceneBar();
       return;
     }
 
@@ -3689,7 +4532,105 @@ label{
 
     bindSceneListEvents();
     updateCurrentSceneBar();
+    updateNextSceneBar();
   }
+
+  function renderHomeDashboard(){
+  const currentProject = projects.find(project => project.id === activeProjectId);
+  const nextScene = getNextUnshotScene();
+
+  if(homeActiveProject) homeActiveProject.textContent = currentProject ? currentProject.title : "未選択";
+  if(homeNextScene) homeNextScene.textContent = nextScene ? (nextScene.title || "名称未設定") : "なし";
+  if(homeSceneTotal) homeSceneTotal.textContent = String(scenes.length);
+  if(homeSceneRemaining) homeSceneRemaining.textContent = String(scenes.filter(scene => !scene.shotDone).length);
+
+  const projectProgress = activeProjectId ? getProjectProgress(activeProjectId) : 0;
+  const notReadyScenes = getNotReadyScenes(activeProjectId);
+  const activeProjectScenes = activeProjectId ? getProjectScenes(activeProjectId) : [];
+  const shotDoneCount = activeProjectScenes.filter(scene => scene.shotDone).length;
+
+  if(homeProgressValue){
+    homeProgressValue.textContent = `${projectProgress}%`;
+  }
+  if(homeProgressBar){
+  homeProgressBar.style.width = `${projectProgress}%`;
+
+  if(projectProgress < 30){
+    homeProgressBar.style.background = "#ef4444"; // 赤
+  }else if(projectProgress < 70){
+    homeProgressBar.style.background = "#f59e0b"; // オレンジ
+  }else{
+    homeProgressBar.style.background = "#22c55e"; // 緑
+  }
+}
+
+  if(homeProgressSub){
+    if(!activeProjectId){
+      homeProgressSub.textContent = "プロジェクト未選択";
+    }else if(activeProjectScenes.length === 0){
+      homeProgressSub.textContent = "シーン未登録";
+    }else{
+      homeProgressSub.textContent = `${shotDoneCount}/${activeProjectScenes.length} シーン完了`;
+    }
+  }
+
+  if(homeNotReadyCount){
+    homeNotReadyCount.textContent = String(notReadyScenes.length);
+  }
+
+  if(homeTodayAction){
+    if(!activeProjectId){
+      homeTodayAction.textContent = "まずはプロジェクトを選択してください";
+    }else if(activeProjectScenes.length === 0){
+      homeTodayAction.textContent = "まずはシーンを登録してください";
+    }else if(notReadyScenes.length > 0){
+      const firstNotReady = [...notReadyScenes].sort((a, b) => {
+        const orderDiff = (a.order || 0) - (b.order || 0);
+        if(orderDiff !== 0) return orderDiff;
+        return String(a.no || "").localeCompare(String(b.no || ""), "ja");
+      })[0];
+
+      const checkStatus = getSceneCheckStatus(firstNotReady.checks);
+      homeTodayAction.textContent =
+        `まずは「${firstNotReady.title || "名称未設定"}」の準備を進めてください\n` +
+        `残り ${checkStatus.remainingCount} 項目あります`;
+    }else if(nextScene){
+      homeTodayAction.textContent =
+        `次に撮る候補は「${nextScene.title || "名称未設定"}」です\n` +
+        `${nextScene.location ? `場所：${nextScene.location}` : "場所未設定"}`;
+    }else{
+      homeTodayAction.textContent = "すべてのシーンが完了しています";
+    }
+  }
+
+  if(homeAlertSceneList){
+    const targetScenes = [...notReadyScenes]
+      .sort((a, b) => {
+        const orderDiff = (a.order || 0) - (b.order || 0);
+        if(orderDiff !== 0) return orderDiff;
+        return String(a.no || "").localeCompare(String(b.no || ""), "ja");
+      })
+      .slice(0, 5);
+
+    if(targetScenes.length === 0){
+      homeAlertSceneList.textContent = "要確認シーンはありません";
+    }else{
+      homeAlertSceneList.innerHTML = targetScenes.map(scene => {
+        const checkStatus = getSceneCheckStatus(scene.checks);
+        return `
+          <div class="dashboard-alert-item">
+            <div class="dashboard-alert-title">${escapeHtml(scene.title || "名称未設定")}</div>
+            <div class="dashboard-alert-sub">
+              ${scene.no ? `シーン ${escapeHtml(scene.no)} / ` : ``}
+              ${scene.location ? `${escapeHtml(scene.location)} / ` : ``}
+              準備残り ${checkStatus.remainingCount} 項目
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+  }
+}
 
   function renderDebug(){
     debugBox.textContent =
@@ -3701,6 +4642,8 @@ label{
       "actors: " + actors.length + "\n" +
       "props: " + props.length + "\n" +
       "scenes: " + scenes.length + "\n" +
+      "unshot: " + scenes.filter(scene => !scene.shotDone).length + "\n" +
+      "shotDone: " + scenes.filter(scene => scene.shotDone).length + "\n" +
       "editingProjectId: " + (editingProjectId || "なし") + "\n" +
       "editingLocationId: " + (editingLocationId || "なし") + "\n" +
       "editingActorId: " + (editingActorId || "なし") + "\n" +
@@ -3709,7 +4652,7 @@ label{
       "activeProjectId: " + (activeProjectId || "なし");
   }
 
-    function openSceneForm(){
+  function openSceneForm(){
     switchTab("scene");
     clearSceneForm();
     sceneFormSection.classList.remove("hidden");
@@ -3719,72 +4662,78 @@ label{
   }
 
   function goToSection(section){
-  if(!section) return;
+    if(!section) return;
 
-  if(
-    section.id === "dashboardSection"
-  ){
-    switchTab("home");
-  }else if(
-    section.id === "projectCreateSection" ||
-    section.id === "projectListSection" ||
-    section.id === "locationMasterSection" ||
-    section.id === "actorMasterSection" ||
-    section.id === "propMasterSection"
-  ){
-    switchTab("project");
-  }else if(
-    section.id === "sceneFormSection" ||
-    section.id === "sceneListSection"
-  ){
-    switchTab("scene");
-  }else if(
-    section.id === "fieldControlSection" ||
-    section.id === "backupSection" ||
-    section.id === "debugSection"
-  ){
-    switchTab("tool");
+    if(section.id === "dashboardSection"){
+      switchTab("home");
+    }else if(
+      section.id === "projectCreateSection" ||
+      section.id === "projectListSection" ||
+      section.id === "locationMasterSection" ||
+      section.id === "actorMasterSection" ||
+      section.id === "propMasterSection"
+    ){
+      switchTab("project");
+    }else if(
+      section.id === "sceneFormSection" ||
+      section.id === "sceneListSection"
+    ){
+      switchTab("scene");
+    }else if(
+      section.id === "fieldControlSection" ||
+      section.id === "backupSection" ||
+      section.id === "debugSection"
+    ){
+      switchTab("tool");
+    }
+
+    setSectionCollapsed(section.id, false);
+
+    setTimeout(() => {
+      window.scrollTo({ top: section.offsetTop - 20, behavior: "smooth" });
+    }, 50);
   }
 
-  setSectionCollapsed(section.id, false);
+  prepBtn.addEventListener("click", () => {
+  setMode("prep");
+  switchTab("home");
+});
 
-  setTimeout(() => {
-    window.scrollTo({ top: section.offsetTop - 20, behavior: "smooth" });
-  }, 50);
-}
-
-  prepBtn.addEventListener("click", () => setMode("prep"));
-  fieldBtn.addEventListener("click", () => setMode("field"));
+fieldBtn.addEventListener("click", () => {
+  setMode("field");
+  switchTab("tool");
+});
 
   document.querySelectorAll(".dept-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       setDept(btn.getAttribute("data-dept"));
     });
   });
-    document.querySelectorAll(".tab-btn").forEach(btn => {
+
+  document.querySelectorAll(".tab-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       switchTab(btn.getAttribute("data-tab"));
     });
   });
 
   document.querySelectorAll("[data-toggle-card]").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const sectionId = btn.getAttribute("data-toggle-card");
-    const section = $(sectionId);
-    if(!section) return;
+    btn.addEventListener("click", () => {
+      const sectionId = btn.getAttribute("data-toggle-card");
+      const section = $(sectionId);
+      if(!section) return;
 
-    const isCurrentlyClosed = section.classList.contains("collapsed");
+      const isCurrentlyClosed = section.classList.contains("collapsed");
 
-    document.querySelectorAll("[data-toggle-card]").forEach(otherBtn => {
-      const otherId = otherBtn.getAttribute("data-toggle-card");
-      setSectionCollapsed(otherId, true);
+      document.querySelectorAll("[data-toggle-card]").forEach(otherBtn => {
+        const otherId = otherBtn.getAttribute("data-toggle-card");
+        setSectionCollapsed(otherId, true);
+      });
+
+      if(isCurrentlyClosed){
+        setSectionCollapsed(sectionId, false);
+      }
     });
-
-    if(isCurrentlyClosed){
-      setSectionCollapsed(sectionId, false);
-    }
   });
-});
 
   saveProjectBtn.addEventListener("click", addProject);
   clearProjectBtn.addEventListener("click", clearProjectForm);
@@ -3793,13 +4742,22 @@ label{
   clearLocationBtn.addEventListener("click", clearLocationForm);
   applyLocationBtn.addEventListener("click", applyLocationToScene);
 
+  if(locationSearchInput){
+  locationSearchInput.addEventListener("input", renderLocations);
+}
   saveActorBtn.addEventListener("click", addActor);
   clearActorBtn.addEventListener("click", clearActorForm);
   applyActorBtn.addEventListener("click", applyActorToScene);
 
+  if(actorSearchInput){
+  actorSearchInput.addEventListener("input", renderActors);
+}
   savePropBtn.addEventListener("click", addProp);
   clearPropBtn.addEventListener("click", clearPropForm);
   applyPropBtn.addEventListener("click", applyPropToScene);
+  if(propSearchInput){
+  propSearchInput.addEventListener("input", renderProps);
+}
 
   saveSceneBtn.addEventListener("click", addScene);
   clearSceneBtn.addEventListener("click", clearSceneForm);
@@ -3812,68 +4770,51 @@ label{
   clearFieldFilterBtn.addEventListener("click", clearFieldFilters);
 
   if(expandAllGroupsBtn){
-    expandAllGroupsBtn.addEventListener("click", () => {
-      setAllFieldGroups(true);
-    });
+    expandAllGroupsBtn.addEventListener("click", () => setAllFieldGroups(true));
   }
-
   if(collapseAllGroupsBtn){
-    collapseAllGroupsBtn.addEventListener("click", () => {
-      setAllFieldGroups(false);
-    });
+    collapseAllGroupsBtn.addEventListener("click", () => setAllFieldGroups(false));
   }
 
   if(openNewSceneBtn){
-    openNewSceneBtn.addEventListener("click", () => {
-      if(!sceneFormSection.classList.contains("hidden")){
-        closeSceneForm();
-        return;
-      }
-      openSceneForm();
-    });
-  }
+  openNewSceneBtn.addEventListener("click", () => {
+    const isHidden = sceneFormSection.classList.contains("hidden");
+    const isCollapsed = sceneFormSection.classList.contains("collapsed");
+    const isOpen = !isHidden && !isCollapsed;
+
+    if(isOpen){
+      closeSceneForm();
+      return;
+    }
+    openSceneForm();
+  });
+}
 
   if(prevUndoneSceneBtn){
-    prevUndoneSceneBtn.addEventListener("click", () => {
-      moveFromCurrentScene("prev");
-    });
+    prevUndoneSceneBtn.addEventListener("click", () => moveFromCurrentScene("prev"));
   }
-
   if(nextUndoneSceneBtn){
-    nextUndoneSceneBtn.addEventListener("click", () => {
-      moveFromCurrentScene("next");
-    });
+    nextUndoneSceneBtn.addEventListener("click", () => moveFromCurrentScene("next"));
   }
 
   if(quickOpenSceneBtn){
-    quickOpenSceneBtn.addEventListener("click", () => {
-      openSceneForm();
-    });
+    quickOpenSceneBtn.addEventListener("click", () => openSceneForm());
   }
-
   if(quickGoFieldBtn){
     quickGoFieldBtn.addEventListener("click", () => {
       setMode("field");
       goToSection(fieldControlSection);
     });
   }
-
   if(quickGoProjectBtn){
-    quickGoProjectBtn.addEventListener("click", () => {
-      goToSection(projectListSection);
-    });
+    quickGoProjectBtn.addEventListener("click", () => goToSection(projectListSection));
   }
-
   if(quickGoBackupBtn){
-    quickGoBackupBtn.addEventListener("click", () => {
-      goToSection(backupSection);
-    });
+    quickGoBackupBtn.addEventListener("click", () => goToSection(backupSection));
   }
 
   if(mobileFab){
-    mobileFab.addEventListener("click", () => {
-      openSceneForm();
-    });
+    mobileFab.addEventListener("click", () => openSceneForm());
   }
 
   document.querySelectorAll(".quick-check-item input").forEach(input => {
@@ -3884,10 +4825,7 @@ label{
   });
 
   exportBackupBtn.addEventListener("click", exportBackup);
-
-  importBackupBtn.addEventListener("click", () => {
-    importBackupInput.click();
-  });
+  importBackupBtn.addEventListener("click", () => importBackupInput.click());
 
   importBackupInput.addEventListener("change", (event) => {
     const file = event.target.files && event.target.files[0];
@@ -3900,6 +4838,7 @@ label{
       updateCurrentSceneBar();
     }
   });
+
   switchTab("home");
   renderMode();
   setDept(currentDept);
@@ -3914,10 +4853,12 @@ label{
   renderPropSelect();
   renderScenes();
   renderDebug();
+  renderHomeDashboard();
   applyQuickCheck();
   applySectionCollapseState();
   updateOpenSceneButton();
   updateCurrentSceneBar();
+  updateNextSceneBar();
 })();
 </script>
 </body>
