@@ -147,9 +147,29 @@ textarea{
   letter-spacing:.08em;
   margin-top:3px;
 }
+.topbar-mini-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:10px;
+}
+
+.header-chip{
+  display:inline-flex;
+  align-items:center;
+  min-height:30px;
+  padding:0 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+  color:#dbeafe;
+  font-size:12px;
+  font-weight:700;
+  line-height:1;
+}
 
 .app{
-  padding:14px 14px calc(110px + var(--safe-bottom));
+  padding:18px 16px calc(120px + var(--safe-bottom));
 }
 
 .card{
@@ -254,10 +274,11 @@ textarea{
   margin-top:12px;
 }
 .status-tile{
-  background:rgba(255,255,255,.045);
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:16px;
-  padding:12px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:18px;
+  padding:14px;
+  box-shadow:0 8px 20px rgba(0,0,0,.18);
 }
 .status-label{
   color:var(--sub);
@@ -265,9 +286,10 @@ textarea{
   margin-bottom:6px;
 }
 .status-value{
-  font-size:18px;
+  font-size:20px;
   font-weight:900;
-  line-height:1.35;
+  line-height:1.3;
+  color:#ffffff;
 }
 
 .field{margin-bottom:12px;}
@@ -1155,20 +1177,22 @@ label{
   position:fixed;
   left:50%;
   transform:translateX(-50%);
-  bottom:calc(84px + env(safe-area-inset-bottom, 0px));
+  bottom:calc(92px + env(safe-area-inset-bottom, 0px));
   z-index:90;
-  min-width:220px;
-  height:54px;
-  padding:0 22px;
+  min-width:190px;
+  height:50px;
+  padding:0 20px;
   border-radius:999px;
   background:linear-gradient(180deg, #3b82f6, #2563eb);
   color:#fff;
-  font-size:16px;
+  font-size:15px;
   font-weight:900;
-  box-shadow:0 18px 40px rgba(37,99,235,.34);
+  letter-spacing:.01em;
+  box-shadow:0 12px 28px rgba(37,99,235,.28);
   display:flex;
   align-items:center;
   justify-content:center;
+  border:1px solid rgba(255,255,255,.10);
 }
 
 .desktop-note{display:none;}
@@ -1181,10 +1205,11 @@ label{
   width:100%;
   max-width:460px;
   z-index:80;
-  padding:10px 12px calc(env(safe-area-inset-bottom, 0px) + 10px);
-  background:rgba(7,11,20,.92);
-  backdrop-filter:blur(18px);
+  padding:10px 12px calc(env(safe-area-inset-bottom, 0px) + 12px);
+  background:rgba(7,11,20,.88);
+  backdrop-filter:blur(20px);
   border-top:1px solid rgba(255,255,255,.08);
+  box-shadow:0 -10px 30px rgba(0,0,0,.22);
 }
 .tabbar-inner{
   display:grid;
@@ -1192,8 +1217,8 @@ label{
   gap:8px;
 }
 .tab-btn{
-  min-height:60px;
-  border-radius:16px;
+  min-height:62px;
+  border-radius:18px;
   background:rgba(255,255,255,.04);
   border:1px solid rgba(255,255,255,.08);
   color:#9fb0c9;
@@ -1202,13 +1227,14 @@ label{
   align-items:center;
   justify-content:center;
   gap:5px;
-  padding:8px 6px;
+  padding:9px 6px;
+  transition:transform .16s ease, background .18s ease, border-color .18s ease;
 }
 .tab-btn.active{
   color:#fff;
-  background:linear-gradient(180deg, rgba(59,130,246,.38), rgba(59,130,246,.18));
-  border-color:rgba(96,165,250,.5);
-  box-shadow:0 0 0 1px rgba(96,165,250,.25) inset, 0 8px 20px rgba(37,99,235,.16);
+  background:linear-gradient(180deg, rgba(59,130,246,.34), rgba(59,130,246,.16));
+  border-color:rgba(96,165,250,.42);
+  box-shadow:0 0 0 1px rgba(96,165,250,.18) inset, 0 6px 16px rgba(37,99,235,.14);
 }
 .tab-icon{font-size:18px;line-height:1;}
 .tab-label{
@@ -1217,8 +1243,37 @@ label{
   line-height:1.1;
 }
 
-.tab-panel{display:none;}
-.tab-panel.active{display:block;}
+.tab-panel{
+  display:none;
+  width:100%;
+  opacity:0;
+  transform:translateY(8px);
+}
+
+.tab-panel.active{
+  display:block;
+  opacity:1;
+  transform:translateY(0);
+  animation:tabFadeIn .28s ease;
+}
+
+.tab-panel.exit-left{
+  opacity:0;
+  pointer-events:none;
+  transform:translateX(-18px);
+  z-index:1;
+}
+
+.tab-panel.exit-right{
+  opacity:0;
+  pointer-events:none;
+  transform:translateX(18px);
+  z-index:1;
+}
+.tab-panels-wrap{
+  position:relative;
+  padding-bottom:100px; /* ← 下のボタン分の余白 */
+}
 
 .toast{
   position:fixed;
@@ -1317,6 +1372,21 @@ label{
 .dashboard-panel:nth-child(2){animation-delay:0.1s;}
 .dashboard-panel:nth-child(3){animation-delay:0.15s;}
 .dashboard-panel:nth-child(4){animation-delay:0.2s;}
+
+.project-more-fields{
+  margin-bottom:12px;
+  padding:10px 12px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.03);
+}
+
+.project-more-fields summary{
+  cursor:pointer;
+  color:var(--sub);
+  font-size:13px;
+  font-weight:700;
+}
 </style>
 </head>
 <body>
@@ -1335,11 +1405,15 @@ label{
   <div class="brand-sub">Production Dashboard</div>
 </div>
       </div>
+      <div class="topbar-mini-row">
+  <div id="headerProjectChip" class="header-chip">案件 未選択</div>
+  <div id="headerModeChip" class="header-chip">準備モード</div>
+</div>
     </div>
   </header>
 
   <main class="app">
-
+<div class="tab-panels-wrap"></div>
     <div id="tabHome" class="tab-panel active">
       <section class="card hero-card">
 
@@ -1459,15 +1533,19 @@ label{
             <input id="projectTitle" placeholder="例：覚えてなくていい">
           </div>
 
-          <div class="field">
-            <label for="projectDirector">監督名</label>
-            <input id="projectDirector" placeholder="例：菅原昌規">
-          </div>
+          <details class="project-more-fields">
+  <summary>詳細を入れる</summary>
 
-          <div class="field">
-            <label for="projectMemo">プロジェクトメモ</label>
-            <textarea id="projectMemo" placeholder="例：短編 2日撮影 夜シーン多め"></textarea>
-          </div>
+  <div class="field" style="margin-top:10px;">
+    <label for="projectDirector">監督名</label>
+    <input id="projectDirector" placeholder="例：菅原昌規">
+  </div>
+
+  <div class="field">
+    <label for="projectMemo">プロジェクトメモ</label>
+    <textarea id="projectMemo" placeholder="例：短編 2日撮影 夜シーン多め"></textarea>
+  </div>
+</details>
 
           <div class="button-row">
             <button type="button" id="saveProjectBtn" class="primary-btn">プロジェクト保存</button>
@@ -1971,6 +2049,7 @@ label{
         </div>
       </section>
     </div>
+    </div>
   </main>
 </div>
 
@@ -2056,6 +2135,9 @@ label{
   const fieldBtn = $("fieldBtn");
   const projectFormTitle = $("projectFormTitle");
   const toast = $("toast");
+
+  const headerProjectChip = $("headerProjectChip");
+  const headerModeChip = $("headerModeChip");
 
   const saveProjectBtn = $("saveProjectBtn");
   const clearProjectBtn = $("clearProjectBtn");
@@ -2234,23 +2316,49 @@ label{
     }, 1800);
   }
 
-  function switchTab(tabName){
-    const panels = {
-      home: tabHome,
-      project: tabProject,
-      scene: tabScene,
-      tool: tabTool
-    };
+ let currentTabName = "home";
 
-    Object.entries(panels).forEach(([key, panel]) => {
-      if(!panel) return;
-      panel.classList.toggle("active", key === tabName);
-    });
+function switchTab(tabName){
+  const panels = {
+    home: tabHome,
+    project: tabProject,
+    scene: tabScene,
+    tool: tabTool
+  };
 
+  const nextPanel = panels[tabName];
+  const currentPanel = panels[currentTabName];
+
+  if(!nextPanel) return;
+  if(tabName === currentTabName){
     document.querySelectorAll(".tab-btn").forEach(btn => {
       btn.classList.toggle("active", btn.getAttribute("data-tab") === tabName);
     });
+    return;
   }
+
+  const order = ["home","project","scene","tool"];
+  const currentIndex = order.indexOf(currentTabName);
+  const nextIndex = order.indexOf(tabName);
+  const isForward = nextIndex > currentIndex;
+
+  Object.values(panels).forEach(panel => {
+    if(!panel) return;
+    panel.classList.remove("active", "exit-left", "exit-right");
+  });
+
+  if(currentPanel){
+    currentPanel.classList.add(isForward ? "exit-left" : "exit-right");
+  }
+
+  nextPanel.classList.add("active");
+
+  document.querySelectorAll(".tab-btn").forEach(btn => {
+    btn.classList.toggle("active", btn.getAttribute("data-tab") === tabName);
+  });
+
+  currentTabName = tabName;
+}
 
   function saveProjects(){ localStorage.setItem(PROJECT_KEY, JSON.stringify(projects)); }
   function saveScenes(){ localStorage.setItem(SCENE_KEY, JSON.stringify(scenes)); }
@@ -2545,11 +2653,26 @@ label{
     renderDebug();
     updateOpenSceneButton();
   }
+function renderHeaderStatus(){
+  const currentProject = projects.find(project => project.id === activeProjectId);
 
+  if(headerProjectChip){
+    headerProjectChip.textContent = currentProject
+      ? `案件 ${currentProject.title}`
+      : "案件 未選択";
+  }
+
+  if(headerModeChip){
+    headerModeChip.textContent = mode === "field"
+      ? "現場モード"
+      : "準備モード";
+  }
+}
  function renderMode(){
   prepBtn.className = mode === "prep" ? "segment-btn active-prep" : "segment-btn";
   fieldBtn.className = mode === "field" ? "segment-btn active-field" : "segment-btn";
   renderDepartmentSections();
+  renderHeaderStatus();
 }
 
   function updateOpenSceneButton(){
@@ -2693,7 +2816,34 @@ label{
     if(fieldSortFilter) fieldSortFilter.value = "default";
     renderScenes();
   }
+function createProjectQuick(title){
+  const cleanTitle = String(title || "").trim();
+  if(!cleanTitle) return "";
 
+  const projectObject = {
+    id: uid("project"),
+    title: cleanTitle,
+    director: "",
+    memo: ""
+  };
+
+  projects.push(projectObject);
+  activeProjectId = projectObject.id;
+
+  saveProjects();
+  saveActiveProject();
+
+  renderProjects();
+  renderProjectSelect();
+  renderFieldProjectFilter();
+  renderScenes();
+  renderDebug();
+  renderHomeDashboard();
+  renderHeaderStatus();
+
+  showToast("案件を作成しました");
+  return projectObject.id;
+}
   function addProject(){
   const title = projectTitle.value.trim();
   const director = projectDirector.value.trim();
@@ -2727,14 +2877,19 @@ label{
     saveActiveProject();
   }
 
-  clearProjectForm();
+   clearProjectForm();
   renderProjects();
   renderProjectSelect();
   renderFieldProjectFilter();
   renderScenes();
   renderDebug();
   renderHomeDashboard();
+
   showToast(wasEditing ? "プロジェクトを更新しました" : "プロジェクトを保存しました");
+
+  if(!wasEditing){
+    openSceneForm();
+  }
 }
 
   function editProject(projectId){
@@ -4482,6 +4637,7 @@ function getNotReadyScenes(projectId){
         sceneList.innerHTML = `<div class="empty-text">該当するシーンがありません</div>`;
         updateCurrentSceneBar();
         updateNextSceneBar();
+        renderHeaderStatus();
         return;
       }
 
@@ -4740,13 +4896,21 @@ function getNotReadyScenes(projectId){
   }
 
   function openSceneForm(){
-    switchTab("scene");
-    clearSceneForm();
-    sceneFormSection.classList.remove("hidden");
-    setSectionCollapsed("sceneFormSection", false);
-    updateOpenSceneButton();
-    window.scrollTo({ top: sceneFormSection.offsetTop - 20, behavior: "smooth" });
+  if(projects.length === 0){
+    const title = window.prompt("最初の案件名を入れてください");
+    if(!title) return;
+
+    const createdId = createProjectQuick(title);
+    if(!createdId) return;
   }
+
+  switchTab("scene");
+  clearSceneForm();
+  sceneFormSection.classList.remove("hidden");
+  setSectionCollapsed("sceneFormSection", false);
+  updateOpenSceneButton();
+  window.scrollTo({ top: sceneFormSection.offsetTop - 20, behavior: "smooth" });
+}
 
   function goToSection(section){
     if(!section) return;
@@ -4816,6 +4980,12 @@ fieldBtn.addEventListener("click", () => {
 
   saveProjectBtn.addEventListener("click", addProject);
   clearProjectBtn.addEventListener("click", clearProjectForm);
+  projectTitle.addEventListener("keydown", (event) => {
+  if(event.key === "Enter"){
+    event.preventDefault();
+    addProject();
+  }
+});
 
   saveLocationBtn.addEventListener("click", addLocation);
   clearLocationBtn.addEventListener("click", clearLocationForm);
