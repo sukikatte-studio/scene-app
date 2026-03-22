@@ -16,7 +16,6 @@
   --line-soft:rgba(255,255,255,.08);
   --text:#f8fbff;
   --sub:#b2bfd4;
-  --muted:#7f8ba3;;
   --muted:#6f7b91;
   --green:#22c55e;
   --blue:#3b82f6;
@@ -64,9 +63,9 @@ input,textarea,select{
   border:1px solid var(--line);
   background:rgba(255,255,255,.04);
   color:var(--text);
-  border-radius:14px;
-  padding:13px 14px;
-  font-size:16px;
+  border-radius:12px;
+  padding:10px 12px;
+  font-size:14px;
   outline:none;
   appearance:none;
 }
@@ -75,7 +74,7 @@ input:focus,textarea:focus,select:focus{
   box-shadow:0 0 0 3px rgba(96,165,250,.14);
 }
 textarea{
-  min-height:104px;
+  min-height:72px;
   resize:vertical;
 }
 
@@ -169,6 +168,7 @@ textarea{
 }
 
 .app{
+  
   padding:18px 16px calc(120px + var(--safe-bottom));
 }
 
@@ -292,17 +292,19 @@ textarea{
   color:#ffffff;
 }
 
-.field{margin-bottom:12px;}
+.field{margin-bottom:10px;}
+
 label{
   display:block;
-  margin-bottom:6px;
+  margin-bottom:5px;
   color:var(--sub);
-  font-size:13px;
+  font-size:12px;
 }
+
 .two-col{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:10px;
+  gap:8px;
 }
 .button-row{
   display:flex;
@@ -1138,33 +1140,50 @@ label{
   grid-template-columns:1fr;
   gap:10px;
 }
+
+.quick-check-box{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;
+  padding:12px;
+}
+
 .quick-check-title{
   font-size:14px;
   font-weight:900;
   margin-bottom:8px;
+  color:#dbeafe;
 }
+
 .quick-check-list{
   display:grid;
   gap:8px;
 }
+
 .quick-check-item{
   display:flex;
   gap:8px;
   align-items:flex-start;
   color:var(--text);
-  font-size:14px;
+  font-size:13px;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.05);
+  border-radius:12px;
+  padding:9px 10px;
 }
 
 .form-block{
-  margin-bottom:12px;
-  padding:12px;
-}
-.form-block-title{
-  font-size:14px;
-  font-weight:900;
   margin-bottom:10px;
+  padding:10px;
+}
+
+.form-block-title{
+  font-size:13px;
+  font-weight:900;
+  margin-bottom:8px;
   color:#dbeafe;
 }
+
 .form-block.compact .field:last-child{margin-bottom:0;}
 
 .empty-text{
@@ -1175,8 +1194,6 @@ label{
 
 .mobile-fab{
   position:fixed;
-  left:50%;
-  transform:translateX(-50%);
   bottom:calc(92px + env(safe-area-inset-bottom, 0px));
   z-index:90;
   min-width:190px;
@@ -1193,15 +1210,82 @@ label{
   align-items:center;
   justify-content:center;
   border:1px solid rgba(255,255,255,.10);
+  transform:none;
+  max-width:calc(100vw - 32px);
+  white-space:nowrap;
+}
+
+.mobile-fab.fab-left{
+  left:16px;
+  right:auto;
+}
+
+.mobile-fab.fab-center{
+  left:50%;
+  right:auto;
+  transform:translateX(-50%);
+}
+
+.mobile-fab.fab-right{
+  right:16px;
+  left:auto;
+}
+
+.fab-position-btn{
+  position:fixed;
+  bottom:calc(152px + env(safe-area-inset-bottom, 0px));
+  z-index:91;
+  width:38px;
+  height:38px;
+  border-radius:999px;
+  background:rgba(7,11,20,.92);
+  color:#dbeafe;
+  border:1px solid rgba(255,255,255,.12);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:16px;
+  font-weight:900;
+  box-shadow:0 8px 18px rgba(0,0,0,.25);
+}
+
+.fab-position-btn.fab-left{
+  left:16px;
+  right:auto;
+}
+
+.fab-position-btn.fab-center{
+  left:50%;
+  right:auto;
+  transform:translateX(-50%);
+}
+
+.fab-position-btn.fab-right{
+  right:16px;
+  left:auto;
+}
+
+@media (max-width:420px){
+  .mobile-fab{
+    min-width:170px;
+    height:46px;
+    padding:0 16px;
+    font-size:14px;
+  }
+
+  .fab-position-btn{
+    bottom:calc(146px + env(safe-area-inset-bottom, 0px));
+  }
 }
 
 .desktop-note{display:none;}
 
 .tabbar{
   position:fixed;
-  left:50%;
+  left:0;
+  right:0;
   bottom:0;
-  transform:translateX(-50%);
+  margin:0 auto;
   width:100%;
   max-width:460px;
   z-index:80;
@@ -1210,6 +1294,7 @@ label{
   backdrop-filter:blur(20px);
   border-top:1px solid rgba(255,255,255,.08);
   box-shadow:0 -10px 30px rgba(0,0,0,.22);
+  transform:none;
 }
 .tabbar-inner{
   display:grid;
@@ -1229,6 +1314,8 @@ label{
   gap:5px;
   padding:9px 6px;
   transition:transform .16s ease, background .18s ease, border-color .18s ease;
+  position:relative;
+  z-index:1;
 }
 .tab-btn.active{
   color:#fff;
@@ -1255,6 +1342,16 @@ label{
   opacity:1;
   transform:translateY(0);
   animation:tabFadeIn .28s ease;
+}
+@keyframes tabFadeIn {
+  from {
+    opacity:0;
+    transform:translateY(8px);
+  }
+  to {
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 .tab-panel.exit-left{
@@ -1307,6 +1404,41 @@ label{
     overflow:hidden;
     box-shadow:0 30px 80px rgba(0,0,0,.38);
   }
+  .shoot-timer-card{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:18px;
+  padding:14px;
+  margin-bottom:14px;
+  box-shadow:0 10px 24px rgba(0,0,0,.18);
+}
+
+.shoot-timer-label{
+  color:var(--sub);
+  font-size:12px;
+  margin-bottom:6px;
+}
+
+.shoot-timer-time{
+  font-size:30px;
+  font-weight:900;
+  line-height:1.1;
+  letter-spacing:.04em;
+  color:#ffffff;
+  margin-bottom:12px;
+}
+
+.shoot-timer-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:8px;
+}
+
+.shoot-timer-actions button{
+  min-height:42px;
+  border-radius:12px;
+  font-weight:800;
+}
   .desktop-note{
     display:block;
     max-width:460px;
@@ -1387,6 +1519,274 @@ label{
   font-size:13px;
   font-weight:700;
 }
+
+.current-scene-strip{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:10px 14px;
+  background:rgba(255,255,255,.04);
+  border-top:1px solid rgba(255,255,255,.05);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  backdrop-filter:blur(12px);
+}
+
+.current-scene-strip-info{
+  min-width:0;
+  flex:1;
+}
+
+.current-scene-strip-title{
+  font-size:14px;
+  font-weight:900;
+  color:#fff;
+  line-height:1.35;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.current-scene-strip-sub{
+  margin-top:3px;
+  font-size:12px;
+  color:var(--sub);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.current-scene-strip-actions{
+  display:flex;
+  gap:8px;
+  flex-shrink:0;
+}
+
+.current-scene-strip-actions button{
+  min-height:36px;
+  padding:0 12px;
+  border-radius:10px;
+  font-size:12px;
+  font-weight:800;
+}
+#sceneFormSection textarea{
+  min-height:60px;
+}
+.compact-form-card{
+  padding:12px;
+}
+
+.compact-form-card .card-body{
+  padding-top:2px;
+}
+
+.compact-form-card .button-row button{
+  min-height:40px;
+}
+.scene-form-group{
+  margin-bottom:10px;
+  padding:10px 12px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.03);
+}
+
+.scene-form-group summary{
+  cursor:pointer;
+  list-style:none;
+  font-size:13px;
+  font-weight:900;
+  color:#dbeafe;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.scene-form-group summary::-webkit-details-marker{
+  display:none;
+}
+
+.scene-form-group summary::after{
+  content:"開く";
+  font-size:11px;
+  color:var(--sub);
+  font-weight:700;
+}
+
+.scene-form-group[open] summary::after{
+  content:"閉じる";
+}
+
+.scene-form-group-body{
+  margin-top:10px;
+}
+
+#sceneFormSection textarea{
+  min-height:52px;
+}
+
+#sceneFormSection .field{
+  margin-bottom:8px;
+}
+.scene-form-group{
+  margin-bottom:10px;
+  padding:10px 12px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.03);
+}
+
+.scene-form-group summary{
+  cursor:pointer;
+  list-style:none;
+  font-size:13px;
+  font-weight:900;
+  color:#dbeafe;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.scene-form-group summary::-webkit-details-marker{
+  display:none;
+}
+
+.scene-form-group summary::after{
+  content:"開く";
+  font-size:11px;
+  color:var(--sub);
+  font-weight:700;
+}
+
+.scene-form-group[open] summary::after{
+  content:"閉じる";
+}
+
+.scene-form-group-body{
+  margin-top:10px;
+}
+
+#sceneFormSection textarea{
+  min-height:52px;
+}
+
+#sceneFormSection .field{
+  margin-bottom:8px;
+}
+.scene-form-group{
+  margin-bottom:10px;
+  padding:10px 12px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.03);
+}
+
+.scene-form-group summary{
+  cursor:pointer;
+  list-style:none;
+  font-size:13px;
+  font-weight:900;
+  color:#dbeafe;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.scene-form-group summary::-webkit-details-marker{
+  display:none;
+}
+
+.scene-form-group summary::after{
+  content:"開く";
+  font-size:11px;
+  color:var(--sub);
+  font-weight:700;
+}
+
+.scene-form-group[open] summary::after{
+  content:"閉じる";
+}
+
+.scene-form-group-body{
+  margin-top:10px;
+}
+
+#sceneFormSection textarea{
+  min-height:52px;
+}
+
+#sceneFormSection .field{
+  margin-bottom:8px;
+}
+.call-sheet-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.call-sheet-card{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  padding:12px;
+  border-radius:16px;
+}
+
+.call-sheet-title{
+  font-size:15px;
+  font-weight:900;
+  color:#fff;
+}
+
+.call-sheet-meta{
+  font-size:12px;
+  color:var(--sub);
+  margin-top:4px;
+  line-height:1.6;
+}
+
+.call-sheet-table{
+  width:100%;
+  overflow-x:auto;
+  margin-top:10px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;
+}
+
+.call-sheet-row{
+  display:grid;
+  grid-template-columns:80px 120px 80px 120px 140px 140px 1fr;
+  min-width:760px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.call-sheet-row:last-child{
+  border-bottom:none;
+}
+
+.call-sheet-cell{
+  padding:8px 10px;
+  font-size:12px;
+  line-height:1.5;
+  border-right:1px solid rgba(255,255,255,.05);
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+.call-sheet-cell:last-child{
+  border-right:none;
+}
+
+.call-sheet-header{
+  background:rgba(255,255,255,.06);
+  font-weight:900;
+  color:#fff;
+}
+
+.time-cell{ color:#93c5fd; }
+.cast-cell{ color:#ddd6fe; }
+.location-cell{ color:#86efac; }
+.prop-cell{ color:#fcd34d; }
+.note-cell{ color:#fca5a5; }
 </style>
 </head>
 <body>
@@ -1406,20 +1806,30 @@ label{
 </div>
       </div>
       <div class="topbar-mini-row">
-  <div id="headerProjectChip" class="header-chip">案件 未選択</div>
+  <div id="headerProjectChip" class="header-chip">脚本 未選択</div>
   <div id="headerModeChip" class="header-chip">準備モード</div>
 </div>
     </div>
   </header>
+<div class="current-scene-strip">
+  <div class="current-scene-strip-info">
+    <div id="currentSceneStripTitle" class="current-scene-strip-title">現在のシーン 未選択</div>
+    <div id="currentSceneStripSub" class="current-scene-strip-sub">次のシーン なし</div>
+  </div>
 
+  <div class="current-scene-strip-actions">
+    <button type="button" id="currentSceneDetailBtn" class="detail-btn">詳細</button>
+    <button type="button" id="currentSceneDoneBtn" class="shot-btn">完了</button>
+    <button type="button" id="currentSceneNextBtn" class="select-btn">次へ</button>
+  </div>
+</div>
   <main class="app">
-<div class="tab-panels-wrap"></div>
     <div id="tabHome" class="tab-panel active">
       <section class="card hero-card">
 
   <div class="status-grid">
     <div class="status-tile">
-      <div class="status-label">選択中案件</div>
+      <div class="status-label">選択中脚本</div>
       <div id="homeActiveProject" class="status-value">未選択</div>
     </div>
     <div class="status-tile">
@@ -1482,7 +1892,7 @@ label{
         <div class="quick-btn-sub">未撮影を確認</div>
       </button>
       <button type="button" class="quick-btn" id="quickGoProjectBtn">
-        <div class="quick-btn-title">プロジェクト</div>
+        <div class="quick-btn-title">脚本</div>
         <div class="quick-btn-sub">選択中を切り替え</div>
       </button>
       <button type="button" class="quick-btn" id="quickGoBackupBtn">
@@ -1510,7 +1920,7 @@ label{
 
     <div class="dashboard-panel" style="margin-top:12px;">
       <div class="dashboard-panel-title">今日やること</div>
-      <div id="homeTodayAction" class="dashboard-panel-body">まだデータがありません</div>
+      <div id="homeTodayAction" class="dashboard-panel-body" style="cursor:pointer;">まだデータがありません</div>
     </div>
 
         <div class="dashboard-panel" style="margin-top:12px;">
@@ -1529,7 +1939,7 @@ label{
         </div>
         <div class="card-body">
           <div class="field">
-            <label for="projectTitle">プロジェクト名</label>
+            <label for="projectTitle">脚本名</label>
             <input id="projectTitle" placeholder="例：覚えてなくていい">
           </div>
 
@@ -1542,7 +1952,7 @@ label{
   </div>
 
   <div class="field">
-    <label for="projectMemo">プロジェクトメモ</label>
+    <label for="projectMemo">脚本メモ</label>
     <textarea id="projectMemo" placeholder="例：短編 2日撮影 夜シーン多め"></textarea>
   </div>
 </details>
@@ -1556,12 +1966,12 @@ label{
 
       <section class="card" id="projectListSection">
         <div class="card-title-row">
-          <h2 class="card-title">プロジェクト一覧</h2>
+          <h2 class="card-title">脚本一覧</h2>
           <button type="button" class="section-toggle" data-toggle-card="projectListSection">閉じる</button>
         </div>
         <div class="card-body">
           <div class="current-project-box">
-            <div class="current-project-label">選択中プロジェクト</div>
+            <div class="current-project-label">選択中脚本</div>
             <div id="currentProjectLabel" class="current-project-value">未選択</div>
           </div>
           <div id="projectList"></div>
@@ -1699,199 +2109,235 @@ label{
     </div>
 
     <div id="tabScene" class="tab-panel">
-      <section class="card hidden" id="sceneFormSection">
+      <section class="card hidden compact-form-card" id="sceneFormSection">
         <div class="card-title-row">
           <h2 id="sceneFormTitle" class="card-title">シーン入力</h2>
           <button type="button" class="section-toggle" data-toggle-card="sceneFormSection">閉じる</button>
         </div>
         <div class="card-body">
 
-          <div class="form-block compact">
-            <div class="form-block-title">基本</div>
+<details class="scene-form-group" open>
+  <summary>基本</summary>
+  <div class="scene-form-group-body">
 
-            <div class="field">
-              <label for="sceneProjectSelect">プロジェクト</label>
-              <select id="sceneProjectSelect"></select>
-            </div>
+    <div class="field">
+      <label for="sceneProjectSelect">プロジェクト</label>
+      <select id="sceneProjectSelect"></select>
+    </div>
 
-            <div class="two-col">
-              <div class="field">
-                <label for="sceneNo">シーン番号</label>
-                <input id="sceneNo" placeholder="例：1">
-              </div>
+    <div class="two-col">
+      <div class="field">
+        <label for="sceneNo">シーン番号</label>
+        <input id="sceneNo" placeholder="例：1">
+      </div>
 
-              <div class="field">
-                <label for="sceneOrder">撮影順</label>
-                <input id="sceneOrder" type="number" placeholder="例：1">
-              </div>
-            </div>
+      <div class="field">
+        <label for="sceneOrder">撮影順</label>
+        <input id="sceneOrder" type="number" placeholder="例：1">
+      </div>
+    </div>
 
-            <div class="field">
-              <label for="sceneTitle">シーン名</label>
-              <input id="sceneTitle" placeholder="例：店内 会話シーン">
-            </div>
+    <div class="field">
+      <label for="sceneTitle">シーン名</label>
+      <input id="sceneTitle" placeholder="例：店内 会話シーン">
+    </div>
 
-            <div class="field">
-              <label for="sceneLabel">色分けラベル</label>
-              <select id="sceneLabel">
-                <option value="">なし</option>
-                <option value="赤">赤</option>
-                <option value="青">青</option>
-                <option value="緑">緑</option>
-                <option value="黄">黄</option>
-                <option value="紫">紫</option>
-                <option value="ピンク">ピンク</option>
-              </select>
-            </div>
-          </div>
+    <div class="field">
+      <label for="sceneLabel">色分けラベル</label>
+      <select id="sceneLabel">
+        <option value="">なし</option>
+        <option value="赤">赤</option>
+        <option value="青">青</option>
+        <option value="緑">緑</option>
+        <option value="黄">黄</option>
+        <option value="紫">紫</option>
+        <option value="ピンク">ピンク</option>
+      </select>
+    </div>
 
-          <div class="form-block compact">
-            <div class="form-block-title">人</div>
+  </div>
+</details>
 
-            <div class="field">
-              <label for="sceneActorSelect">俳優一覧から追加</label>
-              <select id="sceneActorSelect"></select>
-            </div>
+<details class="scene-form-group">
+  <summary>人</summary>
+  <div class="scene-form-group-body">
 
-            <div class="button-row">
-              <button type="button" id="applyActorBtn" class="select-btn">出演者に追加</button>
-            </div>
+    <div class="field">
+      <label for="sceneActorSelect">俳優一覧から追加</label>
+      <select id="sceneActorSelect"></select>
+    </div>
 
-            <div class="field">
-              <label for="sceneCast">出演者</label>
-              <textarea id="sceneCast" placeholder="例：長島琢磨&#10;岡本尚子"></textarea>
-            </div>
-          </div>
+    <div class="button-row">
+      <button type="button" id="applyActorBtn" class="select-btn">出演者に追加</button>
+    </div>
 
-          <div class="form-block compact">
-            <div class="form-block-title">場所</div>
+    <div class="field">
+      <label for="sceneCast">出演者</label>
+      <textarea id="sceneCast" placeholder="例：長島琢磨&#10;岡本尚子"></textarea>
+    </div>
 
-            <div class="field">
-              <label for="sceneLocationSelect">ロケ地マスタ選択</label>
-              <select id="sceneLocationSelect"></select>
-            </div>
+  </div>
+</details>
 
-            <div class="button-row">
-              <button type="button" id="applyLocationBtn" class="select-btn">ロケ地情報を反映</button>
-            </div>
+<details class="scene-form-group">
+  <summary>場所</summary>
+  <div class="scene-form-group-body">
 
-            <div class="field">
-              <label for="sceneLocation">ロケ場所</label>
-              <input id="sceneLocation" placeholder="例：居酒屋かつら">
-            </div>
+    <div class="field">
+      <label for="sceneLocationSelect">ロケ地マスタ選択</label>
+      <select id="sceneLocationSelect"></select>
+    </div>
 
-            <div class="two-col">
-              <div class="field">
-                <label for="sceneAddress">住所</label>
-                <input id="sceneAddress" placeholder="例：東京都渋谷区○○1-2-3">
-              </div>
-              <div class="field">
-                <label for="scenePhone">電話番号</label>
-                <input id="scenePhone" placeholder="例：03-1234-5678">
-              </div>
-            </div>
+    <div class="button-row">
+      <button type="button" id="applyLocationBtn" class="select-btn">ロケ地情報を反映</button>
+    </div>
 
-            <div class="field">
-              <label for="sceneMapUrl">GoogleマップURL</label>
-              <input id="sceneMapUrl" placeholder="https://maps.google.com/...">
-            </div>
-          </div>
+    <div class="field">
+      <label for="sceneLocation">ロケ場所</label>
+      <input id="sceneLocation" placeholder="例：居酒屋かつら">
+    </div>
 
-          <div class="form-block compact">
-            <div class="form-block-title">物</div>
+    <div class="two-col">
+      <div class="field">
+        <label for="sceneAddress">住所</label>
+        <input id="sceneAddress" placeholder="例：東京都渋谷区○○1-2-3">
+      </div>
+      <div class="field">
+        <label for="scenePhone">電話番号</label>
+        <input id="scenePhone" placeholder="例：03-1234-5678">
+      </div>
+    </div>
 
-            <div class="field">
-              <label for="scenePropSelect">小道具一覧から追加</label>
-              <select id="scenePropSelect"></select>
-            </div>
+    <div class="field">
+      <label for="sceneMapUrl">GoogleマップURL</label>
+      <input id="sceneMapUrl" placeholder="https://maps.google.com/...">
+    </div>
 
-            <div class="button-row">
-              <button type="button" id="applyPropBtn" class="select-btn">小道具に追加</button>
-            </div>
+  </div>
+</details>
 
-            <div class="field">
-              <label for="sceneProp">小道具</label>
-              <textarea id="sceneProp" placeholder="例：グラス&#10;メニュー表&#10;財布"></textarea>
-            </div>
-          </div>
+<details class="scene-form-group">
+  <summary>物</summary>
+  <div class="scene-form-group-body">
 
-          <div class="form-block">
-            <div class="form-block-title">詳細メモ</div>
+    <div class="field">
+      <label for="scenePropSelect">小道具一覧から追加</label>
+      <select id="scenePropSelect"></select>
+    </div>
 
-            <div class="field">
-              <label for="scenePermitMemo">ロケ許可メモ</label>
-              <textarea id="scenePermitMemo" placeholder="例：店長確認済み 申請書送付済み"></textarea>
-            </div>
+    <div class="button-row">
+      <button type="button" id="applyPropBtn" class="select-btn">小道具に追加</button>
+    </div>
 
-            <div class="field">
-              <label for="sceneParkingMemo">駐車場メモ</label>
-              <textarea id="sceneParkingMemo" placeholder="例：近隣コインPあり"></textarea>
-            </div>
+    <div class="field">
+      <label for="sceneProp">小道具</label>
+      <textarea id="sceneProp" placeholder="例：グラス&#10;メニュー表&#10;財布"></textarea>
+    </div>
 
-            <div class="field">
-              <label for="scenePowerMemo">電源メモ</label>
-              <textarea id="scenePowerMemo" placeholder="例：店内コンセント使用可"></textarea>
-            </div>
+  </div>
+</details>
 
-            <div class="field">
-              <label for="sceneToiletMemo">トイレメモ</label>
-              <textarea id="sceneToiletMemo" placeholder="例：店内あり"></textarea>
-            </div>
+<details class="scene-form-group">
+  <summary>詳細メモ</summary>
+  <div class="scene-form-group-body">
 
-            <div class="field">
-              <label for="sceneRainMemo">雨天時メモ</label>
-              <textarea id="sceneRainMemo" placeholder="例：雨天時は店内寄りで対応"></textarea>
-            </div>
+    <div class="field">
+      <label for="scenePermitMemo">ロケ許可メモ</label>
+      <textarea id="scenePermitMemo" placeholder="例：店長確認済み 申請書送付済み"></textarea>
+    </div>
 
-            <div class="field">
-              <label for="sceneMemo">共通メモ</label>
-              <textarea id="sceneMemo" placeholder="例：重要シーン 先に撮る"></textarea>
-            </div>
-          </div>
+    <div class="field">
+      <label for="sceneParkingMemo">駐車場メモ</label>
+      <textarea id="sceneParkingMemo" placeholder="例：近隣コインPあり"></textarea>
+    </div>
 
-          <div class="form-block">
-            <div class="form-block-title">シーンチェック</div>
+    <div class="field">
+      <label for="scenePowerMemo">電源メモ</label>
+      <textarea id="scenePowerMemo" placeholder="例：店内コンセント使用可"></textarea>
+    </div>
 
-            <div class="field">
-              <div class="scene-check-grid">
-                <label class="scene-check-item"><input type="checkbox" id="sceneCheckSchedule"> 香盤確認</label>
-                <label class="scene-check-item"><input type="checkbox" id="sceneCheckProp"> 小道具OK</label>
-                <label class="scene-check-item"><input type="checkbox" id="sceneCheckCast"> 出演者OK</label>
-                <label class="scene-check-item"><input type="checkbox" id="sceneCheckCostume"> 衣装メイクOK</label>
-                <label class="scene-check-item"><input type="checkbox" id="sceneCheckCamera"> カメラOK</label>
-                <label class="scene-check-item"><input type="checkbox" id="sceneCheckLight"> 照明OK</label>
-              </div>
-            </div>
-          </div>
+    <div class="field">
+      <label for="sceneToiletMemo">トイレメモ</label>
+      <textarea id="sceneToiletMemo" placeholder="例：店内あり"></textarea>
+    </div>
 
-          <div class="form-block">
-            <div class="form-block-title">部署別メモ</div>
+    <div class="field">
+      <label for="sceneRainMemo">雨天時メモ</label>
+      <textarea id="sceneRainMemo" placeholder="例：雨天時は店内寄りで対応"></textarea>
+    </div>
 
-            <div class="field" id="directionNoteField">
-              <label for="sceneDirectionNote">演出部メモ</label>
-              <textarea id="sceneDirectionNote" placeholder="例：感情を抑えめに 目線は右奥"></textarea>
-            </div>
+    <div class="field">
+      <label for="sceneMemo">共通メモ</label>
+      <textarea id="sceneMemo" placeholder="例：重要シーン 先に撮る"></textarea>
+    </div>
 
-            <div class="field" id="cameraNoteField">
-              <label for="sceneCameraNote">撮影部メモ</label>
-              <textarea id="sceneCameraNote" placeholder="例：Aカメ70-200 Bカメ24-70 縦寄り"></textarea>
-            </div>
+  </div>
+</details>
 
-            <div class="field" id="lightNoteField">
-              <label for="sceneLightNote">照明部メモ</label>
-              <textarea id="sceneLightNote" placeholder="例：キー右45度 室内電球色に合わせる"></textarea>
-            </div>
+<details class="scene-form-group">
+  <summary>シーンチェック</summary>
+  <div class="scene-form-group-body">
 
-            <div class="field" id="productionNoteField">
-              <label for="sceneProductionNote">制作部メモ</label>
-              <textarea id="sceneProductionNote" placeholder="例：19時入館 20時完全撤収 近隣配慮あり"></textarea>
-            </div>
+    <div class="field">
+      <div class="scene-check-grid">
+        <label class="scene-check-item"><input type="checkbox" id="sceneCheckSchedule"> 香盤確認</label>
+        <label class="scene-check-item"><input type="checkbox" id="sceneCheckProp"> 小道具OK</label>
+        <label class="scene-check-item"><input type="checkbox" id="sceneCheckCast"> 出演者OK</label>
+        <label class="scene-check-item"><input type="checkbox" id="sceneCheckCostume"> 衣装メイクOK</label>
+        <label class="scene-check-item"><input type="checkbox" id="sceneCheckCamera"> カメラOK</label>
+        <label class="scene-check-item"><input type="checkbox" id="sceneCheckLight"> 照明OK</label>
+      </div>
+    </div>
 
-            <div class="field" id="actorNoteField">
-              <label for="sceneActorNote">俳優部メモ</label>
-              <textarea id="sceneActorNote" placeholder="例：衣装替えあり 小道具は右手持ち"></textarea>
-            </div>
-          </div>
+  </div>
+</details>
+
+<details id="deptMemoDetails" class="scene-form-group">
+  <summary id="deptMemoSummary">部署別メモを開く</summary>
+  <div class="scene-form-group-body">
+
+    <div class="field" id="directionNoteField">
+      <label for="sceneDirectionNote">演出部メモ</label>
+      <textarea id="sceneDirectionNote" placeholder="例：感情を抑えめに 目線は右奥"></textarea>
+    </div>
+
+    <div class="field" id="cameraNoteField">
+      <label for="sceneCameraNote">撮影部メモ</label>
+      <textarea id="sceneCameraNote" placeholder="例：Aカメ70-200 Bカメ24-70 縦寄り"></textarea>
+    </div>
+
+    <div class="field" id="lightNoteField">
+      <label for="sceneLightNote">照明部メモ</label>
+      <textarea id="sceneLightNote" placeholder="例：キー右45度 室内電球色に合わせる"></textarea>
+    </div>
+
+    <div class="field" id="makeNoteField">
+      <label for="sceneMakeNote">メイク部メモ</label>
+      <textarea id="sceneMakeNote" placeholder="例：涙メイクあり テカリ注意"></textarea>
+    </div>
+
+    <div class="field" id="costumeNoteField">
+      <label for="sceneCostumeNote">衣装部メモ</label>
+      <textarea id="sceneCostumeNote" placeholder="例：上着あり 2パターン持参"></textarea>
+    </div>
+
+    <div class="field" id="artNoteField">
+      <label for="sceneArtNote">美術部メモ</label>
+      <textarea id="sceneArtNote" placeholder="例：机上に小物追加 生活感を出す"></textarea>
+    </div>
+
+    <div class="field" id="productionNoteField">
+      <label for="sceneProductionNote">制作部メモ</label>
+      <textarea id="sceneProductionNote" placeholder="例：19時入館 20時完全撤収 近隣配慮あり"></textarea>
+    </div>
+
+    <div class="field" id="actorNoteField">
+      <label for="sceneActorNote">俳優部メモ</label>
+      <textarea id="sceneActorNote" placeholder="例：衣装替えあり 小道具は右手持ち"></textarea>
+    </div>
+
+  </div>
+</details>
 
           <div class="button-row">
             <button type="button" id="saveSceneBtn" class="primary-btn">シーン保存</button>
@@ -1918,9 +2364,54 @@ label{
           <h2 class="card-title">現場モード操作</h2>
           <button type="button" class="section-toggle" data-toggle-card="fieldControlSection">閉じる</button>
         </div>
-        <div class="card-body">
+        <div id="tabCallsheet" class="tab-panel">
+  <section class="card" id="callSheetSection">
+    <div class="card-title-row">
+      <h2 class="card-title">香盤</h2>
+      <button type="button" class="section-toggle" data-toggle-card="callSheetSection">閉じる</button>
+    </div>
+    <div class="card-body">
+      <div id="callSheetList" class="call-sheet-list"></div>
 
-          <div class="next-scene-box" style="margin-bottom:10px;">
+      <div class="button-row" style="margin-top:10px;">
+        <button type="button" id="createCallSheetBtn" class="primary-btn">＋ 香盤を作成</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card hidden" id="callSheetDetailSection">
+    <div class="card-title-row">
+      <h2 id="callSheetDetailTitle" class="card-title">香盤詳細</h2>
+      <button type="button" class="section-toggle" data-toggle-card="callSheetDetailSection">閉じる</button>
+    </div>
+    <div class="card-body" id="callSheetDetail"></div>
+  </section>
+</div>
+       <div class="card-body">
+
+  <div class="quick-check-wrap" style="margin-bottom:12px;">
+    <div class="quick-check-box">
+      <div class="quick-check-title">現場クイックチェック</div>
+      <div class="quick-check-list">
+        <label class="quick-check-item"><input type="checkbox" id="qcBattery"> バッテリー確認</label>
+        <label class="quick-check-item"><input type="checkbox" id="qcMedia"> メディア残量確認</label>
+        <label class="quick-check-item"><input type="checkbox" id="qcProp"> 小道具確認</label>
+        <label class="quick-check-item"><input type="checkbox" id="qcCast"> 出演者到着確認</label>
+      </div>
+    </div>
+
+    <div class="quick-check-box">
+      <div class="quick-check-title">撤収クイックチェック</div>
+      <div class="quick-check-list">
+        <label class="quick-check-item"><input type="checkbox" id="qcGearBack"> 機材積み忘れなし</label>
+        <label class="quick-check-item"><input type="checkbox" id="qcPropBack"> 小道具回収確認</label>
+        <label class="quick-check-item"><input type="checkbox" id="qcLocationClean"> 原状復帰確認</label>
+        <label class="quick-check-item"><input type="checkbox" id="qcDataBack"> データ退避確認</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-scene-box" style="margin-bottom:10px;">
             <div class="next-scene-label">次に撮るシーン</div>
             <div id="nextSceneMain" class="next-scene-main">未選択</div>
             <div id="nextSceneMeta" class="next-scene-meta"></div>
@@ -1965,7 +2456,7 @@ label{
             </div>
 
             <div class="field">
-              <label for="fieldProjectFilter">プロジェクト絞り込み</label>
+              <label for="fieldProjectFilter">脚本絞り込み</label>
               <select id="fieldProjectFilter"></select>
             </div>
           </div>
@@ -1996,28 +2487,7 @@ label{
             <button type="button" id="expandAllGroupsBtn" class="select-btn">ロケ地を全部開く</button>
             <button type="button" id="collapseAllGroupsBtn" class="secondary-btn">ロケ地を全部閉じる</button>
           </div>
-
-          <div class="quick-check-wrap" style="margin-top:12px;">
-            <div class="quick-check-box">
-              <div class="quick-check-title">現場クイックチェック</div>
-              <div class="quick-check-list">
-                <label class="quick-check-item"><input type="checkbox" id="qcBattery"> バッテリー確認</label>
-                <label class="quick-check-item"><input type="checkbox" id="qcMedia"> メディア残量確認</label>
-                <label class="quick-check-item"><input type="checkbox" id="qcProp"> 小道具確認</label>
-                <label class="quick-check-item"><input type="checkbox" id="qcCast"> 出演者到着確認</label>
-              </div>
-            </div>
-
-            <div class="quick-check-box">
-              <div class="quick-check-title">撤収クイックチェック</div>
-              <div class="quick-check-list">
-                <label class="quick-check-item"><input type="checkbox" id="qcGearBack"> 機材積み忘れなし</label>
-                <label class="quick-check-item"><input type="checkbox" id="qcPropBack"> 小道具回収確認</label>
-                <label class="quick-check-item"><input type="checkbox" id="qcLocationClean"> 原状復帰確認</label>
-                <label class="quick-check-item"><input type="checkbox" id="qcDataBack"> データ退避確認</label>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </section>
 
@@ -2062,7 +2532,7 @@ label{
 
     <button type="button" class="tab-btn" data-tab="project">
       <div class="tab-icon">📁</div>
-      <div class="tab-label">案件</div>
+      <div class="tab-label">脚本</div>
     </button>
 
     <button type="button" class="tab-btn" data-tab="scene">
@@ -2074,17 +2544,25 @@ label{
       <div class="tab-icon">🛠</div>
       <div class="tab-label">現場</div>
     </button>
+
+    <button type="button" class="tab-btn" data-tab="callsheet">
+      <div class="tab-icon">🗓</div>
+      <div class="tab-label">香盤</div>
+    </button>
   </div>
 </nav>
 
 <button type="button" id="mobileFab" class="mobile-fab" aria-label="新規シーン入力を開く">＋ 新規シーン作成</button>
+<button type="button" id="fabPositionBtn" class="fab-position-btn" aria-label="新規シーンボタン位置切替">↔</button>
 <div id="toast" class="toast"></div>
 
 <script>
 (function(){
   const PROJECT_KEY = "scene_projects_restore_v6";
   const SCENE_KEY = "scene_scenes_restore_v6";
+  const CALLSHEET_KEY = "scene_callsheets_restore_v1";
   const MODE_KEY = "scene_mode_restore_v6";
+  const FAB_POSITION_KEY = "scene_fab_position_restore_v1";
   const ACTIVE_PROJECT_KEY = "scene_active_project_restore_v6";
   const LOCATION_KEY = "scene_locations_restore_v6";
   const ACTOR_KEY = "scene_actors_restore_v6";
@@ -2104,19 +2582,22 @@ label{
   fieldControlSection:true,
   sceneListSection:false,
   backupSection:true,
-  debugSection:true
+  debugSection:true,
+  callSheetSection:false,
+  callSheetDetailSection:true
 };
   const $ = (id) => document.getElementById(id);
 
   let mode = localStorage.getItem(MODE_KEY) || "prep";
   let activeProjectId = localStorage.getItem(ACTIVE_PROJECT_KEY) || "";
   let currentDept = localStorage.getItem(DEPT_KEY) || "all";
-
+  let fabPosition = localStorage.getItem(FAB_POSITION_KEY) || "center";
   let projects = readJson(PROJECT_KEY, []);
   let scenes = migrateScenes(readJson(SCENE_KEY, []));
   let locations = readJson(LOCATION_KEY, []);
   let actors = readJson(ACTOR_KEY, []);
   let props = readJson(PROP_KEY, []);
+  let callSheets = readJson(CALLSHEET_KEY, []);
   let quickCheck = readJson(QC_KEY, {});
   let fieldGroupOpenState = readJson(FIELD_GROUP_OPEN_KEY, {});
   let sectionCollapseState = {
@@ -2208,8 +2689,14 @@ label{
   const sceneDirectionNote = $("sceneDirectionNote");
   const sceneCameraNote = $("sceneCameraNote");
   const sceneLightNote = $("sceneLightNote");
+  const sceneMakeNote = $("sceneMakeNote");
+  const sceneCostumeNote = $("sceneCostumeNote");
+  const sceneArtNote = $("sceneArtNote");
   const sceneProductionNote = $("sceneProductionNote");
   const sceneActorNote = $("sceneActorNote");
+
+  const deptMemoDetails = $("deptMemoDetails");
+  const deptMemoSummary = $("deptMemoSummary");
   const sceneCheckSchedule = $("sceneCheckSchedule");
   const sceneCheckProp = $("sceneCheckProp");
   const sceneCheckCast = $("sceneCheckCast");
@@ -2265,6 +2752,17 @@ label{
   const tabProject = $("tabProject");
   const tabScene = $("tabScene");
   const tabTool = $("tabTool");
+  const tabCallsheet = $("tabCallsheet");
+  const createCallSheetBtn = $("createCallSheetBtn");
+  const callSheetList = $("callSheetList");
+  const callSheetDetail = $("callSheetDetail");
+  const callSheetDetailTitle = $("callSheetDetailTitle");
+  const callSheetDetailSection = $("callSheetDetailSection");
+
+  const timerDisplay = $("timerDisplay");
+  const timerStartBtn = $("timerStartBtn");
+  const timerStopBtn = $("timerStopBtn");
+  const timerResetBtn = $("timerResetBtn");
 
   const homeActiveProject = $("homeActiveProject");
   const homeNextScene = $("homeNextScene");
@@ -2277,6 +2775,12 @@ label{
   const homeTodayAction = $("homeTodayAction");
   const homeAlertSceneList = $("homeAlertSceneList");
 
+  const currentSceneStripTitle = $("currentSceneStripTitle");
+  const currentSceneStripSub = $("currentSceneStripSub");
+  const currentSceneDetailBtn = $("currentSceneDetailBtn");
+  const currentSceneDoneBtn = $("currentSceneDoneBtn");
+  const currentSceneNextBtn = $("currentSceneNextBtn");
+
   function readJson(key, fallback){
     try{
       const raw = localStorage.getItem(key);
@@ -2286,6 +2790,36 @@ label{
     }
   }
 
+  let timerInterval = null;
+let timerSeconds = 0;
+
+function updateTimerDisplay(){
+  if(!timerDisplay) return;
+  const min = String(Math.floor(timerSeconds / 60)).padStart(2, "0");
+  const sec = String(timerSeconds % 60).padStart(2, "0");
+  timerDisplay.textContent = `${min}:${sec}`;
+}
+
+function startTimer(){
+  if(timerInterval) return;
+  timerInterval = setInterval(() => {
+    timerSeconds += 1;
+    updateTimerDisplay();
+  }, 1000);
+}
+
+function stopTimer(){
+  if(timerInterval){
+    clearInterval(timerInterval);
+    timerInterval = null;
+  }
+}
+
+function resetTimer(){
+  stopTimer();
+  timerSeconds = 0;
+  updateTimerDisplay();
+}
   function migrateScenes(rawScenes){
     if(!Array.isArray(rawScenes)) return [];
     return rawScenes.map(scene => {
@@ -2320,11 +2854,12 @@ label{
 
 function switchTab(tabName){
   const panels = {
-    home: tabHome,
-    project: tabProject,
-    scene: tabScene,
-    tool: tabTool
-  };
+  home: tabHome,
+  project: tabProject,
+  scene: tabScene,
+  tool: tabTool,
+  callsheet: tabCallsheet
+};
 
   const nextPanel = panels[tabName];
   const currentPanel = panels[currentTabName];
@@ -2337,7 +2872,7 @@ function switchTab(tabName){
     return;
   }
 
-  const order = ["home","project","scene","tool"];
+  const order = ["home","project","scene","tool","callsheet"];
   const currentIndex = order.indexOf(currentTabName);
   const nextIndex = order.indexOf(tabName);
   const isForward = nextIndex > currentIndex;
@@ -2363,6 +2898,7 @@ function switchTab(tabName){
   function saveProjects(){ localStorage.setItem(PROJECT_KEY, JSON.stringify(projects)); }
   function saveScenes(){ localStorage.setItem(SCENE_KEY, JSON.stringify(scenes)); }
   function saveMode(){ localStorage.setItem(MODE_KEY, mode); }
+  function saveCallSheets(){ localStorage.setItem(CALLSHEET_KEY, JSON.stringify(callSheets)); }
   function saveActiveProject(){ localStorage.setItem(ACTIVE_PROJECT_KEY, activeProjectId); }
   function saveLocations(){ localStorage.setItem(LOCATION_KEY, JSON.stringify(locations)); }
   function saveActors(){ localStorage.setItem(ACTOR_KEY, JSON.stringify(actors)); }
@@ -2576,90 +3112,99 @@ function switchTab(tabName){
 }
 
   function renderDepartmentSections(){
-    if(mode === "field"){
-      if(projectCreateSection) projectCreateSection.classList.add("hidden");
-      if(projectListSection) projectListSection.classList.add("hidden");
-      if(locationMasterSection) locationMasterSection.classList.add("hidden");
-      if(actorMasterSection) actorMasterSection.classList.add("hidden");
-      if(propMasterSection) propMasterSection.classList.add("hidden");
-      if(sceneFormSection) sceneFormSection.classList.add("hidden");
-      if(fieldControlSection) fieldControlSection.classList.remove("hidden");
-      if(sceneListSection) sceneListSection.classList.remove("hidden");
+  const directionNoteField = $("directionNoteField");
+  const cameraNoteField = $("cameraNoteField");
+  const lightNoteField = $("lightNoteField");
+  const makeNoteField = $("makeNoteField");
+  const costumeNoteField = $("costumeNoteField");
+  const artNoteField = $("artNoteField");
+  const productionNoteField = $("productionNoteField");
+  const actorNoteField = $("actorNoteField");
 
-      const directionNoteField = $("directionNoteField");
-      const cameraNoteField = $("cameraNoteField");
-      const lightNoteField = $("lightNoteField");
-      const productionNoteField = $("productionNoteField");
-      const actorNoteField = $("actorNoteField");
+  if(mode === "field"){
+    if(projectCreateSection) projectCreateSection.classList.add("hidden");
+    if(projectListSection) projectListSection.classList.add("hidden");
+    if(locationMasterSection) locationMasterSection.classList.add("hidden");
+    if(actorMasterSection) actorMasterSection.classList.add("hidden");
+    if(propMasterSection) propMasterSection.classList.add("hidden");
+    if(sceneFormSection) sceneFormSection.classList.add("hidden");
+    if(fieldControlSection) fieldControlSection.classList.remove("hidden");
+    if(sceneListSection) sceneListSection.classList.remove("hidden");
 
-      if(directionNoteField) directionNoteField.classList.add("hidden");
-      if(cameraNoteField) cameraNoteField.classList.add("hidden");
-      if(lightNoteField) lightNoteField.classList.add("hidden");
-      if(productionNoteField) productionNoteField.classList.add("hidden");
-      if(actorNoteField) actorNoteField.classList.add("hidden");
-      return;
-    }
-
-    if(fieldControlSection) fieldControlSection.classList.add("hidden");
-
-    const showAll = currentDept === "all";
-
-    const directionNoteField = $("directionNoteField");
-    const cameraNoteField = $("cameraNoteField");
-    const lightNoteField = $("lightNoteField");
-    const productionNoteField = $("productionNoteField");
-    const actorNoteField = $("actorNoteField");
-
-    if(projectCreateSection){
-      projectCreateSection.classList.toggle("hidden", !(showAll || currentDept === "direction"));
-    }
-    if(projectListSection){
-      projectListSection.classList.toggle("hidden", !(showAll || currentDept === "direction"));
-    }
-    if(locationMasterSection){
-      locationMasterSection.classList.toggle("hidden", !(showAll || currentDept === "production"));
-    }
-    if(actorMasterSection){
-      actorMasterSection.classList.toggle("hidden", !(showAll || currentDept === "actor"));
-    }
-    if(propMasterSection){
-      propMasterSection.classList.toggle("hidden", !(showAll || currentDept === "production"));
-    }
-    if(sceneFormSection){
-      sceneFormSection.classList.toggle(
-        "hidden",
-        !(showAll || currentDept === "direction" || currentDept === "camera" || currentDept === "light" || currentDept === "make" || currentDept === "costume" || currentDept === "art" || currentDept === "production" || currentDept === "actor")
-      );
-    }
-    if(sceneListSection){
-      sceneListSection.classList.toggle(
-        "hidden",
-        !(showAll || currentDept === "direction" || currentDept === "camera" || currentDept === "light" || currentDept === "make" || currentDept === "costume" || currentDept === "art" || currentDept === "production" || currentDept === "actor")
-      );
-    }
-
-    if(directionNoteField) directionNoteField.classList.toggle("hidden", !(showAll || currentDept === "direction"));
-    if(cameraNoteField) cameraNoteField.classList.toggle("hidden", !(showAll || currentDept === "camera"));
-    if(lightNoteField) lightNoteField.classList.toggle("hidden", !(showAll || currentDept === "light"));
-    if(productionNoteField) productionNoteField.classList.toggle("hidden", !(showAll || currentDept === "production"));
-    if(actorNoteField) actorNoteField.classList.toggle("hidden", !(showAll || currentDept === "actor"));
+    if(directionNoteField) directionNoteField.classList.add("hidden");
+    if(cameraNoteField) cameraNoteField.classList.add("hidden");
+    if(lightNoteField) lightNoteField.classList.add("hidden");
+    if(makeNoteField) makeNoteField.classList.add("hidden");
+    if(costumeNoteField) costumeNoteField.classList.add("hidden");
+    if(artNoteField) artNoteField.classList.add("hidden");
+    if(productionNoteField) productionNoteField.classList.add("hidden");
+    if(actorNoteField) actorNoteField.classList.add("hidden");
+    return;
   }
+
+  if(fieldControlSection) fieldControlSection.classList.add("hidden");
+
+  const showAll = currentDept === "all";
+
+  if(projectCreateSection){
+    projectCreateSection.classList.toggle("hidden", !(showAll || currentDept === "direction"));
+  }
+  if(projectListSection){
+    projectListSection.classList.toggle("hidden", !(showAll || currentDept === "direction"));
+  }
+  if(locationMasterSection){
+    locationMasterSection.classList.toggle("hidden", !(showAll || currentDept === "production"));
+  }
+  if(actorMasterSection){
+    actorMasterSection.classList.toggle("hidden", !(showAll || currentDept === "actor"));
+  }
+  if(propMasterSection){
+    propMasterSection.classList.toggle("hidden", !(showAll || currentDept === "production" || currentDept === "art"));
+  }
+  if(sceneFormSection){
+    sceneFormSection.classList.toggle(
+      "hidden",
+      !(showAll || currentDept === "direction" || currentDept === "camera" || currentDept === "light" || currentDept === "make" || currentDept === "costume" || currentDept === "art" || currentDept === "production" || currentDept === "actor")
+    );
+  }
+  if(sceneListSection){
+    sceneListSection.classList.toggle(
+      "hidden",
+      !(showAll || currentDept === "direction" || currentDept === "camera" || currentDept === "light" || currentDept === "make" || currentDept === "costume" || currentDept === "art" || currentDept === "production" || currentDept === "actor")
+    );
+  }
+
+  if(directionNoteField) directionNoteField.classList.toggle("hidden", !(showAll || currentDept === "direction"));
+  if(cameraNoteField) cameraNoteField.classList.toggle("hidden", !(showAll || currentDept === "camera"));
+  if(lightNoteField) lightNoteField.classList.toggle("hidden", !(showAll || currentDept === "light"));
+  if(makeNoteField) makeNoteField.classList.toggle("hidden", !(showAll || currentDept === "make"));
+  if(costumeNoteField) costumeNoteField.classList.toggle("hidden", !(showAll || currentDept === "costume"));
+  if(artNoteField) artNoteField.classList.toggle("hidden", !(showAll || currentDept === "art"));
+  if(productionNoteField) productionNoteField.classList.toggle("hidden", !(showAll || currentDept === "production"));
+  if(actorNoteField) actorNoteField.classList.toggle("hidden", !(showAll || currentDept === "actor"));
+}
 
   function setMode(nextMode){
-    mode = nextMode;
-    saveMode();
-    renderMode();
-    renderScenes();
-    renderDebug();
-    updateOpenSceneButton();
+  mode = nextMode;
+
+  if(mode === "field" && fieldStatusFilter){
+    fieldStatusFilter.value = "undone";
   }
+
+  saveMode();
+  renderMode();
+  renderScenes();
+  renderDebug();
+  updateOpenSceneButton();
+  updateCurrentSceneStrip();
+}
 function renderHeaderStatus(){
   const currentProject = projects.find(project => project.id === activeProjectId);
 
   if(headerProjectChip){
     headerProjectChip.textContent = currentProject
-      ? `案件 ${currentProject.title}`
-      : "案件 未選択";
+      ? `脚本 ${currentProject.title}`
+      : "脚本 未選択";
   }
 
   if(headerModeChip){
@@ -2753,18 +3298,52 @@ function renderHeaderStatus(){
     propMemo.value = "";
   }
 
-  function clearSceneForm(){
-    editingSceneId = "";
-    sceneFormTitle.textContent = "シーン入力";
-    saveSceneBtn.textContent = "シーン保存";
-    sceneNo.value = "";
-    sceneOrder.value = "";
-    sceneTitle.value = "";
-    sceneLabel.value = "";
-    sceneCast.value = "";
+  function clearSceneForm(keepContext = false){
+  const keepLocationId = keepContext ? sceneLocationSelect.value : "";
+  const keepLocationValue = keepContext ? sceneLocation.value : "";
+  const keepAddressValue = keepContext ? sceneAddress.value : "";
+  const keepPhoneValue = keepContext ? scenePhone.value : "";
+  const keepMapUrlValue = keepContext ? sceneMapUrl.value : "";
+  const keepPermitMemoValue = keepContext ? scenePermitMemo.value : "";
+  const keepParkingMemoValue = keepContext ? sceneParkingMemo.value : "";
+  const keepPowerMemoValue = keepContext ? scenePowerMemo.value : "";
+  const keepToiletMemoValue = keepContext ? sceneToiletMemo.value : "";
+  const keepRainMemoValue = keepContext ? sceneRainMemo.value : "";
+
+  editingSceneId = "";
+  sceneFormTitle.textContent = "シーン入力";
+  saveSceneBtn.textContent = "シーン保存";
+  sceneNo.value = "";
+  sceneOrder.value = "";
+  sceneTitle.value = "";
+  sceneLabel.value = "";
+  sceneCast.value = "";
+  sceneActorSelect.value = "";
+  scenePropSelect.value = "";
+  sceneProp.value = "";
+  sceneMemo.value = "";
+  sceneDirectionNote.value = "";
+  sceneCameraNote.value = "";
+  sceneLightNote.value = "";
+  sceneMakeNote.value = "";
+  sceneCostumeNote.value = "";
+  sceneArtNote.value = "";
+  sceneProductionNote.value = "";
+  sceneActorNote.value = "";
+
+  if(keepContext){
+    sceneLocationSelect.value = keepLocationId;
+    sceneLocation.value = keepLocationValue;
+    sceneAddress.value = keepAddressValue;
+    scenePhone.value = keepPhoneValue;
+    sceneMapUrl.value = keepMapUrlValue;
+    scenePermitMemo.value = keepPermitMemoValue;
+    sceneParkingMemo.value = keepParkingMemoValue;
+    scenePowerMemo.value = keepPowerMemoValue;
+    sceneToiletMemo.value = keepToiletMemoValue;
+    sceneRainMemo.value = keepRainMemoValue;
+  }else{
     sceneLocationSelect.value = "";
-    sceneActorSelect.value = "";
-    scenePropSelect.value = "";
     sceneLocation.value = "";
     sceneAddress.value = "";
     scenePhone.value = "";
@@ -2774,27 +3353,21 @@ function renderHeaderStatus(){
     scenePowerMemo.value = "";
     sceneToiletMemo.value = "";
     sceneRainMemo.value = "";
-    sceneProp.value = "";
-    sceneMemo.value = "";
-    sceneDirectionNote.value = "";
-    sceneCameraNote.value = "";
-    sceneLightNote.value = "";
-    sceneProductionNote.value = "";
-    sceneActorNote.value = "";
-
-    sceneCheckSchedule.checked = false;
-    sceneCheckProp.checked = false;
-    sceneCheckCast.checked = false;
-    sceneCheckCostume.checked = false;
-    sceneCheckCamera.checked = false;
-    sceneCheckLight.checked = false;
-
-    if(activeProjectId && projects.some(project => project.id === activeProjectId)){
-      sceneProjectSelect.value = activeProjectId;
-    }
-
-    updateOpenSceneButton();
   }
+
+  sceneCheckSchedule.checked = false;
+  sceneCheckProp.checked = false;
+  sceneCheckCast.checked = false;
+  sceneCheckCostume.checked = false;
+  sceneCheckCamera.checked = false;
+  sceneCheckLight.checked = false;
+
+  if(activeProjectId && projects.some(project => project.id === activeProjectId)){
+    sceneProjectSelect.value = activeProjectId;
+  }
+
+  updateOpenSceneButton();
+}
 
   function closeSceneForm(){
   clearSceneForm();
@@ -2939,15 +3512,16 @@ function createProjectQuick(title){
   }
 
   function selectProject(projectId){
-    activeProjectId = projectId;
-    saveActiveProject();
-    renderProjects();
-    renderProjectSelect();
-    renderScenes();
-    renderDebug();
-    renderHomeDashboard();
-    showToast("プロジェクトを切り替えました");
-  }
+  activeProjectId = projectId;
+  saveActiveProject();
+  renderProjects();
+  renderProjectSelect();
+  renderScenes();
+  renderDebug();
+  renderHomeDashboard();
+  renderHeaderStatus();
+  showToast("プロジェクトを切り替えました");
+}
 
   function renderProjects(){
     if(projects.length === 0){
@@ -3678,11 +4252,14 @@ function applyPropToScene(){
     const directionNote = sceneDirectionNote.value.trim();
     const cameraNote = sceneCameraNote.value.trim();
     const lightNote = sceneLightNote.value.trim();
+    const makeNote = sceneMakeNote.value.trim();
+    const costumeNote = sceneCostumeNote.value.trim();
+    const artNote = sceneArtNote.value.trim();
     const productionNote = sceneProductionNote.value.trim();
     const actorNote = sceneActorNote.value.trim();
 
     if(!projectId){
-      alert("プロジェクトを選択してください");
+      alert("脚本を選択してください");
       return;
     }
     if(!title){
@@ -3709,34 +4286,37 @@ function applyPropToScene(){
     const existingShotDone = editingSceneId ? (scenes.find(scene => scene.id === editingSceneId)?.shotDone || false) : false;
 
     const sceneObject = {
-      id: editingSceneId || uid("scene"),
-      projectId,
-      no,
-      order: finalOrder,
-      title,
-      label,
-      cast,
-      locationId,
-      location,
-      address,
-      phone,
-      mapUrl,
-      permitMemo,
-      parkingMemo,
-      powerMemo,
-      toiletMemo,
-      rainMemo,
-      prop,
-      memo,
-      directionNote,
-      cameraNote,
-      lightNote,
-      productionNote,
-      actorNote,
-      checks: sceneChecks,
-      done: areAllSceneChecksComplete(sceneChecks),
-      shotDone: existingShotDone
-    };
+  id: editingSceneId || uid("scene"),
+  projectId,
+  no,
+  order: finalOrder,
+  title,
+  label,
+  cast,
+  locationId,
+  location,
+  address,
+  phone,
+  mapUrl,
+  permitMemo,
+  parkingMemo,
+  powerMemo,
+  toiletMemo,
+  rainMemo,
+  prop,
+  memo,
+  directionNote,
+  cameraNote,
+  lightNote,
+  makeNote,
+  costumeNote,
+  artNote,
+  productionNote,
+  actorNote,
+  checks: sceneChecks,
+  done: areAllSceneChecksComplete(sceneChecks),
+  shotDone: existingShotDone
+};
 
     if(editingSceneId){
       const index = scenes.findIndex(scene => scene.id === editingSceneId);
@@ -3748,17 +4328,17 @@ function applyPropToScene(){
     normalizeProjectSceneOrders(projectId);
 
     activeProjectId = projectId;
-    saveActiveProject();
-    saveScenes();
+saveActiveProject();
+saveScenes();
 
-    const savedId = sceneObject.id;
-    const wasEditing = !!editingSceneId;
+const savedId = sceneObject.id;
+const wasEditing = !!editingSceneId;
 
-    clearSceneForm();
+clearSceneForm(!wasEditing);
 
-    if(mode === "field"){
-      sceneFormSection.classList.add("hidden");
-    }
+if(mode === "field"){
+  sceneFormSection.classList.add("hidden");
+}
 
     renderProjects();
     renderScenes();
@@ -3925,6 +4505,9 @@ function getNotReadyScenes(projectId){
     sceneDirectionNote.value = scene.directionNote || "";
     sceneCameraNote.value = scene.cameraNote || "";
     sceneLightNote.value = scene.lightNote || "";
+    sceneMakeNote.value = scene.makeNote || "";
+    sceneCostumeNote.value = scene.costumeNote || "";
+    sceneArtNote.value = scene.artNote || "";
     sceneProductionNote.value = scene.productionNote || "";
     sceneActorNote.value = scene.actorNote || "";
 
@@ -3978,53 +4561,69 @@ function getNotReadyScenes(projectId){
     }, 50);
   }
 
-  function moveToNextUndoneScene(projectId, currentSceneId){
-    const sameProjectScenes = scenes
-      .filter(scene => scene.projectId === projectId)
-      .sort((a, b) => (a.order || 0) - (b.order || 0));
+ function moveToNextUndoneScene(projectId, currentSceneId){
+  const sameProjectScenes = scenes
+    .filter(scene => scene.projectId === projectId)
+    .sort((a, b) => (a.order || 0) - (b.order || 0));
 
-    const currentIndex = sameProjectScenes.findIndex(scene => scene.id === currentSceneId);
+  const currentIndex = sameProjectScenes.findIndex(scene => scene.id === currentSceneId);
 
-    for(let i = currentIndex + 1; i < sameProjectScenes.length; i++){
-      if(!sameProjectScenes[i].shotDone){
-        scrollToScene(sameProjectScenes[i].id);
-        return;
-      }
+  for(let i = currentIndex + 1; i < sameProjectScenes.length; i++){
+    if(!sameProjectScenes[i].shotDone){
+      scrollToScene(sameProjectScenes[i].id);
+      setTimeout(() => {
+        toggleDetail(sameProjectScenes[i].id);
+        updateCurrentSceneStrip();
+      }, 120);
+      return;
     }
-
-    for(let i = 0; i < currentIndex; i++){
-      if(!sameProjectScenes[i].shotDone){
-        scrollToScene(sameProjectScenes[i].id);
-        return;
-      }
-    }
-
-    alert("このプロジェクトのシーンはすべて撮影完了しています");
   }
+
+  for(let i = 0; i < currentIndex; i++){
+    if(!sameProjectScenes[i].shotDone){
+      scrollToScene(sameProjectScenes[i].id);
+      setTimeout(() => {
+        toggleDetail(sameProjectScenes[i].id);
+        updateCurrentSceneStrip();
+      }, 120);
+      return;
+    }
+  }
+
+  alert("このプロジェクトのシーンはすべて撮影完了しています");
+}
 
   function moveToPrevUndoneScene(projectId, currentSceneId){
-    const sameProjectScenes = scenes
-      .filter(scene => scene.projectId === projectId)
-      .sort((a, b) => (a.order || 0) - (b.order || 0));
+  const sameProjectScenes = scenes
+    .filter(scene => scene.projectId === projectId)
+    .sort((a, b) => (a.order || 0) - (b.order || 0));
 
-    const currentIndex = sameProjectScenes.findIndex(scene => scene.id === currentSceneId);
+  const currentIndex = sameProjectScenes.findIndex(scene => scene.id === currentSceneId);
 
-    for(let i = currentIndex - 1; i >= 0; i--){
-      if(!sameProjectScenes[i].shotDone){
-        scrollToScene(sameProjectScenes[i].id);
-        return;
-      }
+  for(let i = currentIndex - 1; i >= 0; i--){
+    if(!sameProjectScenes[i].shotDone){
+      scrollToScene(sameProjectScenes[i].id);
+      setTimeout(() => {
+        toggleDetail(sameProjectScenes[i].id);
+        updateCurrentSceneStrip();
+      }, 120);
+      return;
     }
-
-    for(let i = sameProjectScenes.length - 1; i > currentIndex; i--){
-      if(!sameProjectScenes[i].shotDone){
-        scrollToScene(sameProjectScenes[i].id);
-        return;
-      }
-    }
-
-    alert("未撮影シーンがありません");
   }
+
+  for(let i = sameProjectScenes.length - 1; i > currentIndex; i--){
+    if(!sameProjectScenes[i].shotDone){
+      scrollToScene(sameProjectScenes[i].id);
+      setTimeout(() => {
+        toggleDetail(sameProjectScenes[i].id);
+        updateCurrentSceneStrip();
+      }, 120);
+      return;
+    }
+  }
+
+  alert("未撮影シーンがありません");
+}
 
   function getCurrentVisibleSceneId(){
     const cards = [...document.querySelectorAll("[data-scene-id]")].filter(card => card.offsetParent !== null);
@@ -4213,14 +4812,14 @@ function getNotReadyScenes(projectId){
     `;
 
     currentSceneActions.innerHTML = `
-      <button type="button" class="detail-btn" data-current-detail="${scene.id}">詳細</button>
-      <button type="button" class="${scene.shotDone ? "unshot-btn" : "shot-btn"}" data-scene-shot="${scene.id}">${scene.shotDone ? "未撮影に戻す" : "撮影完了"}</button>
-      <button type="button" class="edit-btn" data-current-edit="${scene.id}">編集</button>
-      ${scene.mapUrl ? `<button type="button" class="copy-btn" data-current-map="${scene.id}">地図を開く</button>` : ``}
-      ${scene.address ? `<button type="button" class="copy-btn" data-current-address="${scene.id}">住所コピー</button>` : ``}
-      ${scene.phone ? `<button type="button" class="copy-btn" data-current-phone="${scene.id}">電話コピー</button>` : ``}
-      ${scene.phone ? `<button type="button" class="select-btn" data-current-call="${scene.id}">電話する</button>` : ``}
-    `;
+  <button type="button" class="detail-btn" data-current-detail="${scene.id}">詳細</button>
+  <button type="button" class="${scene.shotDone ? "unshot-btn" : "shot-btn"}" data-scene-shot="${scene.id}">${scene.shotDone ? "戻す" : "完了"}</button>
+  <button type="button" class="edit-btn" data-current-edit="${scene.id}">編集</button>
+  ${scene.mapUrl ? `<button type="button" class="copy-btn" data-current-map="${scene.id}">地図</button>` : ``}
+  ${scene.address ? `<button type="button" class="copy-btn" data-current-address="${scene.id}">住所</button>` : ``}
+  ${scene.phone ? `<button type="button" class="copy-btn" data-current-phone="${scene.id}">電話</button>` : ``}
+  ${scene.phone ? `<button type="button" class="select-btn" data-current-call="${scene.id}">発信</button>` : ``}
+`;
 
     bindCurrentSceneActionEvents();
   }
@@ -4272,14 +4871,33 @@ function getNotReadyScenes(projectId){
     `;
 
     nextSceneActions.innerHTML = `
-      <button type="button" class="detail-btn" data-next-detail="${scene.id}">詳細</button>
-      <button type="button" class="shot-btn" data-next-shot="${scene.id}">撮影完了</button>
-      ${scene.mapUrl ? `<button type="button" class="copy-btn" data-next-map="${scene.id}">地図</button>` : ``}
-    `;
+  <button type="button" class="detail-btn" data-next-detail="${scene.id}">詳細</button>
+  <button type="button" class="shot-btn" data-next-shot="${scene.id}">完了</button>
+  ${scene.mapUrl ? `<button type="button" class="copy-btn" data-next-map="${scene.id}">地図</button>` : ``}
+`;
 
     bindNextSceneActionEvents();
   }
 
+  function updateCurrentSceneStrip(){
+  if(!currentSceneStripTitle || !currentSceneStripSub) return;
+
+  const currentSceneId = getCurrentVisibleSceneId();
+  const currentScene = scenes.find(scene => scene.id === currentSceneId) || null;
+  const nextScene = getNextUnshotScene();
+
+  if(currentScene){
+    currentSceneStripTitle.textContent = `現在 ${currentScene.title || "名称未設定"}`;
+  }else{
+    currentSceneStripTitle.textContent = "現在のシーン 未選択";
+  }
+
+  if(nextScene){
+    currentSceneStripSub.textContent = `次 ${nextScene.title || "名称未設定"}`;
+  }else{
+    currentSceneStripSub.textContent = "次のシーン なし";
+  }
+}
   function toggleSceneCheck(sceneId, checkKey){
     const scene = scenes.find(item => item.id === sceneId);
     if(!scene) return;
@@ -4323,114 +4941,39 @@ function getNotReadyScenes(projectId){
       scrollToScene(sceneId);
     }
   }
+    function buildCombinedMemo(scene){
+    const memoLines = [];
 
-  function buildSceneCheckBadges(scene){
-    const checks = scene.checks || {};
-    const items = [
-      { key:"schedule", label:"香盤" },
-      { key:"prop", label:"小道具" },
-      { key:"cast", label:"出演者" },
-      { key:"costume", label:"衣装メイク" },
-      { key:"camera", label:"カメラ" },
-      { key:"light", label:"照明" }
-    ];
+    if(scene.memo) memoLines.push(`共通：${scene.memo}`);
+    if(scene.directionNote) memoLines.push(`演出：${scene.directionNote}`);
+    if(scene.cameraNote) memoLines.push(`撮影：${scene.cameraNote}`);
+    if(scene.lightNote) memoLines.push(`照明：${scene.lightNote}`);
+    if(scene.makeNote) memoLines.push(`メイク：${scene.makeNote}`);
+    if(scene.costumeNote) memoLines.push(`衣装：${scene.costumeNote}`);
+    if(scene.artNote) memoLines.push(`美術：${scene.artNote}`);
+    if(scene.productionNote) memoLines.push(`制作：${scene.productionNote}`);
+    if(scene.actorNote) memoLines.push(`俳優：${scene.actorNote}`);
 
-    return `
-      <div class="scene-check-badges">
-        ${items.map(item => `
-          <button
-            type="button"
-            class="scene-check-badge ${checks[item.key] ? "on" : ""}"
-            data-scene-check-toggle="${scene.id}"
-            data-check-key="${item.key}"
-          >
-            ${item.label}${checks[item.key] ? "済" : ""}
-          </button>
-        `).join("")}
-      </div>
-    `;
+    return memoLines.join("\n");
   }
 
-  function getFilteredScenesForField(){
-    const search = fieldSearchInput.value.trim().toLowerCase();
-    const projectFilter = fieldProjectFilter.value || "all";
-    const statusFilter = fieldStatusFilter.value || "all";
-    const sortFilter = fieldSortFilter ? fieldSortFilter.value : "default";
+  function buildSceneDetailRows(scene, checkStatus){
+    const combinedMemo = buildCombinedMemo(scene);
 
-    let filtered = [...scenes];
-
-    if(projectFilter !== "all"){
-      filtered = filtered.filter(scene => scene.projectId === projectFilter);
-    }
-
-    if(statusFilter === "done"){
-      filtered = filtered.filter(scene => scene.shotDone);
-    }else if(statusFilter === "undone"){
-      filtered = filtered.filter(scene => !scene.shotDone);
-    }
-
-    if(search){
-      filtered = filtered.filter(scene => {
-        const text = [
-          scene.title,
-          scene.no,
-          scene.cast,
-          scene.location,
-          scene.address,
-          scene.phone,
-          scene.prop,
-          scene.memo,
-          scene.directionNote,
-          scene.cameraNote,
-          scene.lightNote,
-          scene.productionNote,
-          scene.actorNote,
-          getProjectTitle(scene.projectId)
-        ].join(" ").toLowerCase();
-        return text.includes(search);
-      });
-    }
-
-    filtered.sort((a, b) => {
-      if(sortFilter === "orderAsc"){
-        const orderDiff = (a.order || 0) - (b.order || 0);
-        if(orderDiff !== 0) return orderDiff;
-        return String(a.no || "").localeCompare(String(b.no || ""), "ja");
-      }
-
-      if(sortFilter === "orderDesc"){
-        const orderDiff = (b.order || 0) - (a.order || 0);
-        if(orderDiff !== 0) return orderDiff;
-        return String(a.no || "").localeCompare(String(b.no || ""), "ja");
-      }
-
-      if(sortFilter === "titleAsc"){
-        return String(a.title || "").localeCompare(String(b.title || ""), "ja");
-      }
-
-      if(a.shotDone !== b.shotDone){
-        return a.shotDone ? 1 : -1;
-      }
-
-      if(activeProjectId){
-        const aPriority = a.projectId === activeProjectId ? 0 : 1;
-        const bPriority = b.projectId === activeProjectId ? 0 : 1;
-        if(aPriority !== bPriority) return aPriority - bPriority;
-      }
-
-      const orderDiff = (a.order || 0) - (b.order || 0);
-      if(orderDiff !== 0) return orderDiff;
-      return String(a.no || "").localeCompare(String(b.no || ""), "ja");
-    });
-
-    return filtered;
-  }
-
-  function updateFieldSummary(filteredScenes){
-    if(!fieldVisibleCount || !fieldRemainingCount || !fieldDoneCount) return;
-    fieldVisibleCount.textContent = String(filteredScenes.length);
-    fieldRemainingCount.textContent = String(filteredScenes.filter(scene => !scene.shotDone).length);
-    fieldDoneCount.textContent = String(filteredScenes.filter(scene => scene.shotDone).length);
+    return [
+      scene.cast ? `<div class="item-meta">出演者：${escapeHtml(scene.cast)}</div>` : "",
+      scene.prop ? `<div class="item-meta">小道具：${escapeHtml(scene.prop)}</div>` : "",
+      scene.address ? `<div class="item-meta">住所：${escapeHtml(scene.address)}</div>` : "",
+      scene.phone ? `<div class="item-meta">電話番号：${escapeHtml(scene.phone)}</div>` : "",
+      scene.mapUrl ? `<div class="item-meta">GoogleマップURL：${escapeHtml(scene.mapUrl)}</div>` : "",
+      scene.permitMemo ? `<div class="item-meta">ロケ許可メモ：${escapeHtml(scene.permitMemo)}</div>` : "",
+      scene.parkingMemo ? `<div class="item-meta">駐車場：${escapeHtml(scene.parkingMemo)}</div>` : "",
+      scene.powerMemo ? `<div class="item-meta">電源：${escapeHtml(scene.powerMemo)}</div>` : "",
+      scene.toiletMemo ? `<div class="item-meta">トイレ：${escapeHtml(scene.toiletMemo)}</div>` : "",
+      scene.rainMemo ? `<div class="item-meta">雨天時：${escapeHtml(scene.rainMemo)}</div>` : "",
+      combinedMemo ? `<div class="item-meta">メモ：${escapeHtml(combinedMemo)}</div>` : "",
+      `<div class="item-meta">準備チェック：${checkStatus.doneCount}/6 ${checkStatus.allDone ? "完了" : `あと${checkStatus.remainingCount}項目`}</div>`
+    ].filter(Boolean).join("");
   }
 
   function renderSceneCard(scene, isFirst, isLast, isFieldMode, isNextTarget = false){
@@ -4441,24 +4984,12 @@ function getNotReadyScenes(projectId){
     const undoneCardClass = scene.shotDone ? "" : "scene-undone-card";
     const nextTargetClass = isNextTarget ? "next-target-card" : "";
 
+    const detailRows = buildSceneDetailRows(scene, checkStatus);
+
     const sharedDetail = `
       <div id="detail_${scene.id}" class="detail-box hidden">
         <div class="meta-grid">
-          <div class="item-meta">住所：${escapeHtml(scene.address || "-")}</div>
-          <div class="item-meta">電話番号：${escapeHtml(scene.phone || "-")}</div>
-          <div class="item-meta">GoogleマップURL：${escapeHtml(scene.mapUrl || "-")}</div>
-          <div class="item-meta">ロケ許可メモ：${escapeHtml(scene.permitMemo || "-")}</div>
-          <div class="item-meta">駐車場：${escapeHtml(scene.parkingMemo || "-")}</div>
-          <div class="item-meta">電源：${escapeHtml(scene.powerMemo || "-")}</div>
-          <div class="item-meta">トイレ：${escapeHtml(scene.toiletMemo || "-")}</div>
-          <div class="item-meta">雨天時：${escapeHtml(scene.rainMemo || "-")}</div>
-          <div class="item-meta">共通メモ：${escapeHtml(scene.memo || "-")}</div>
-          <div class="item-meta">演出部メモ：${escapeHtml(scene.directionNote || "-")}</div>
-          <div class="item-meta">撮影部メモ：${escapeHtml(scene.cameraNote || "-")}</div>
-          <div class="item-meta">照明部メモ：${escapeHtml(scene.lightNote || "-")}</div>
-          <div class="item-meta">制作部メモ：${escapeHtml(scene.productionNote || "-")}</div>
-          <div class="item-meta">俳優部メモ：${escapeHtml(scene.actorNote || "-")}</div>
-          <div class="item-meta">準備チェック：${checkStatus.doneCount}/6 ${checkStatus.allDone ? "完了" : `あと${checkStatus.remainingCount}項目`}</div>
+          ${detailRows}
         </div>
       </div>
     `;
@@ -4478,14 +5009,13 @@ function getNotReadyScenes(projectId){
             ${scene.location ? `<span class="badge">${escapeHtml(scene.location)}</span>` : ``}
           </div>
 
-          <div class="item-meta">出演者：${escapeHtml(scene.cast || "-")}</div>
-          <div class="item-meta">小道具：${escapeHtml(scene.prop || "-")}</div>
-          <div class="item-meta">場所：${escapeHtml(scene.location || "-")}</div>
+          <div class="item-meta">${scene.location ? `場所：${escapeHtml(scene.location)}` : "場所：未設定"}</div>
+
           ${!scene.shotDone ? `
             ${buildSceneCheckBadges(scene)}
             <div class="progress-wrap">
               <div class="progress-label-row">
-                <span>準備進行</span>
+                <span>準備</span>
                 <span>${progressPercent}%</span>
               </div>
               <div class="progress-bar">
@@ -4498,14 +5028,14 @@ function getNotReadyScenes(projectId){
 
           <div class="item-actions">
             <button type="button" class="detail-btn" data-scene-detail="${scene.id}">詳細</button>
-            <button type="button" class="${scene.shotDone ? "unshot-btn" : "shot-btn"}" data-scene-shot="${scene.id}">${scene.shotDone ? "未撮影に戻す" : "撮影完了"}</button>
-            ${!isFirst ? `<button type="button" class="secondary-btn" data-scene-up="${scene.id}">↑上へ</button>` : ``}
-            ${!isLast ? `<button type="button" class="secondary-btn" data-scene-down="${scene.id}">↓下へ</button>` : ``}
+            <button type="button" class="${scene.shotDone ? "unshot-btn" : "shot-btn"}" data-scene-shot="${scene.id}">${scene.shotDone ? "戻す" : "完了"}</button>
+            ${!isFirst ? `<button type="button" class="secondary-btn" data-scene-up="${scene.id}">↑</button>` : ``}
+            ${!isLast ? `<button type="button" class="secondary-btn" data-scene-down="${scene.id}">↓</button>` : ``}
             <button type="button" class="secondary-btn" data-scene-duplicate="${scene.id}">複製</button>
-            ${scene.mapUrl ? `<button type="button" class="copy-btn" data-scene-map="${scene.id}">地図を開く</button>` : ``}
-            ${scene.address ? `<button type="button" class="copy-btn" data-scene-address="${scene.id}">住所コピー</button>` : ``}
-            ${scene.phone ? `<button type="button" class="copy-btn" data-scene-phone="${scene.id}">電話コピー</button>` : ``}
-            ${scene.phone ? `<button type="button" class="select-btn" data-scene-call="${scene.id}">電話する</button>` : ``}
+            ${scene.mapUrl ? `<button type="button" class="copy-btn" data-scene-map="${scene.id}">地図</button>` : ``}
+            ${scene.address ? `<button type="button" class="copy-btn" data-scene-address="${scene.id}">住所</button>` : ``}
+            ${scene.phone ? `<button type="button" class="copy-btn" data-scene-phone="${scene.id}">電話</button>` : ``}
+            ${scene.phone ? `<button type="button" class="select-btn" data-scene-call="${scene.id}">発信</button>` : ``}
             <button type="button" class="edit-btn" data-scene-edit="${scene.id}">編集</button>
             <button type="button" class="danger-btn" data-scene-delete="${scene.id}">削除</button>
           </div>
@@ -4529,6 +5059,7 @@ function getNotReadyScenes(projectId){
         <div class="item-meta">出演者：${escapeHtml(scene.cast || "-")}</div>
         <div class="item-meta">小道具：${escapeHtml(scene.prop || "-")}</div>
         <div class="item-meta">場所：${escapeHtml(scene.location || "-")}</div>
+
         ${!scene.shotDone ? `
           <div class="progress-wrap">
             <div class="progress-label-row">
@@ -4557,6 +5088,8 @@ function getNotReadyScenes(projectId){
   }
 
   function bindSceneListEvents(){
+    if(!sceneList) return;
+
     sceneList.querySelectorAll("[data-scene-detail]").forEach(btn => {
       btn.addEventListener("click", () => toggleDetail(btn.getAttribute("data-scene-detail")));
     });
@@ -4617,7 +5150,10 @@ function getNotReadyScenes(projectId){
 
     sceneList.querySelectorAll("[data-scene-check-toggle]").forEach(btn => {
       btn.addEventListener("click", () => {
-        toggleSceneCheck(btn.getAttribute("data-scene-check-toggle"), btn.getAttribute("data-check-key"));
+        toggleSceneCheck(
+          btn.getAttribute("data-scene-check-toggle"),
+          btn.getAttribute("data-check-key")
+        );
       });
     });
 
@@ -4628,18 +5164,117 @@ function getNotReadyScenes(projectId){
     });
   }
 
+  function getFilteredScenesForField(){
+    let filtered = [...scenes];
+
+  const search = (fieldSearchInput?.value || "").trim().toLowerCase();
+  const projectId = fieldProjectFilter?.value || "all";
+  const status = fieldStatusFilter?.value || "all";
+  const sort = fieldSortFilter?.value || "default";
+
+  if(projectId !== "all"){
+    filtered = filtered.filter(scene => scene.projectId === projectId);
+  }
+
+  if(status === "undone"){
+    filtered = filtered.filter(scene => !scene.shotDone);
+  }else if(status === "done"){
+    filtered = filtered.filter(scene => scene.shotDone);
+  }
+
+  if(search){
+    filtered = filtered.filter(scene => {
+      const text = [
+        scene.title,
+        scene.no,
+        scene.cast,
+        scene.location,
+        scene.address,
+        scene.prop,
+        scene.memo,
+        scene.directionNote,
+        scene.cameraNote,
+        scene.lightNote,
+        scene.makeNote,
+        scene.costumeNote,
+        scene.artNote,
+        scene.productionNote,
+        scene.actorNote
+      ].join(" ").toLowerCase();
+
+      return text.includes(search);
+    });
+  }
+
+  filtered.sort((a, b) => {
+    if(sort === "orderAsc"){
+      return (a.order || 0) - (b.order || 0);
+    }
+    if(sort === "orderDesc"){
+      return (b.order || 0) - (a.order || 0);
+    }
+    if(sort === "titleAsc"){
+      return String(a.title || "").localeCompare(String(b.title || ""), "ja");
+    }
+
+    if((a.shotDone ? 1 : 0) !== (b.shotDone ? 1 : 0)){
+      return (a.shotDone ? 1 : 0) - (b.shotDone ? 1 : 0);
+    }
+
+    const orderDiff = (a.order || 0) - (b.order || 0);
+    if(orderDiff !== 0) return orderDiff;
+
+    return String(a.no || "").localeCompare(String(b.no || ""), "ja");
+  });
+
+  return filtered;
+}
+
+function updateFieldSummary(filteredScenes){
+  if(fieldVisibleCount) fieldVisibleCount.textContent = String(filteredScenes.length);
+  if(fieldRemainingCount) fieldRemainingCount.textContent = String(filteredScenes.filter(scene => !scene.shotDone).length);
+  if(fieldDoneCount) fieldDoneCount.textContent = String(filteredScenes.filter(scene => scene.shotDone).length);
+}
+
+function buildSceneCheckBadges(scene){
+  const checks = scene.checks || {};
+  const items = [
+    { key:"schedule", label:"香盤" },
+    { key:"prop", label:"小道具" },
+    { key:"cast", label:"出演者" },
+    { key:"costume", label:"衣装メイク" },
+    { key:"camera", label:"カメラ" },
+    { key:"light", label:"照明" }
+  ];
+
+  return `
+    <div class="scene-check-badges">
+      ${items.map(item => `
+        <button
+          type="button"
+          class="scene-check-badge ${checks[item.key] ? "on" : ""}"
+          data-scene-check-toggle="${scene.id}"
+          data-check-key="${item.key}"
+        >
+          ${item.label}
+        </button>
+      `).join("")}
+    </div>
+  `;
+}
   function renderScenes(){
     if(mode === "field"){
       const filteredScenes = getFilteredScenesForField();
       updateFieldSummary(filteredScenes);
 
       if(filteredScenes.length === 0){
-        sceneList.innerHTML = `<div class="empty-text">該当するシーンがありません</div>`;
-        updateCurrentSceneBar();
-        updateNextSceneBar();
-        renderHeaderStatus();
-        return;
-      }
+  sceneList.innerHTML = `<div class="empty-text">該当するシーンがありません</div>`;
+  updateCurrentSceneBar();
+  updateNextSceneBar();
+  updateCurrentSceneStrip();
+  renderHeaderStatus();
+  return;
+}
 
       const undoneScenes = filteredScenes.filter(scene => !scene.shotDone);
       const doneScenes = filteredScenes.filter(scene => scene.shotDone);
@@ -4732,15 +5367,17 @@ function getNotReadyScenes(projectId){
       bindSceneListEvents();
       updateCurrentSceneBar();
       updateNextSceneBar();
+      updateCurrentSceneStrip();
       return;
     }
 
     if(scenes.length === 0){
-      sceneList.innerHTML = `<div class="empty-text">シーンがまだありません</div>`;
-      updateCurrentSceneBar();
-      updateNextSceneBar();
-      return;
-    }
+  sceneList.innerHTML = `<div class="empty-text">シーンがまだありません</div>`;
+  updateCurrentSceneBar();
+  updateNextSceneBar();
+  updateCurrentSceneStrip();
+  return;
+}
 
     const sortedProjects = [...projects].sort((a, b) => a.title.localeCompare(b.title, "ja"));
 
@@ -4758,11 +5395,12 @@ function getNotReadyScenes(projectId){
       .filter(group => group.scenes.length > 0);
 
     if(groups.length === 0){
-      sceneList.innerHTML = `<div class="empty-text">シーンがまだありません</div>`;
-      updateCurrentSceneBar();
-      updateNextSceneBar();
-      return;
-    }
+  sceneList.innerHTML = `<div class="empty-text">シーンがまだありません</div>`;
+  updateCurrentSceneBar();
+  updateNextSceneBar();
+  updateCurrentSceneStrip();
+  return;
+}
 
     sceneList.innerHTML = groups.map(group => `
       <div class="group-title">${escapeHtml(group.project.title)}</div>
@@ -4774,8 +5412,9 @@ function getNotReadyScenes(projectId){
     `).join("");
 
     bindSceneListEvents();
-    updateCurrentSceneBar();
-    updateNextSceneBar();
+updateCurrentSceneBar();
+updateNextSceneBar();
+updateCurrentSceneStrip();
   }
 
   function renderHomeDashboard(){
@@ -4822,29 +5461,35 @@ function getNotReadyScenes(projectId){
   }
 
   if(homeTodayAction){
-    if(!activeProjectId){
-      homeTodayAction.textContent = "まずはプロジェクトを選択してください";
-    }else if(activeProjectScenes.length === 0){
-      homeTodayAction.textContent = "まずはシーンを登録してください";
-    }else if(notReadyScenes.length > 0){
-      const firstNotReady = [...notReadyScenes].sort((a, b) => {
-        const orderDiff = (a.order || 0) - (b.order || 0);
-        if(orderDiff !== 0) return orderDiff;
-        return String(a.no || "").localeCompare(String(b.no || ""), "ja");
-      })[0];
+  homeTodayAction.removeAttribute("data-scene-jump-id");
 
-      const checkStatus = getSceneCheckStatus(firstNotReady.checks);
-      homeTodayAction.textContent =
-        `まずは「${firstNotReady.title || "名称未設定"}」の準備を進めてください\n` +
-        `残り ${checkStatus.remainingCount} 項目あります`;
-    }else if(nextScene){
-      homeTodayAction.textContent =
-        `次に撮る候補は「${nextScene.title || "名称未設定"}」です\n` +
-        `${nextScene.location ? `場所：${nextScene.location}` : "場所未設定"}`;
-    }else{
-      homeTodayAction.textContent = "すべてのシーンが完了しています";
-    }
+  if(!activeProjectId){
+    homeTodayAction.textContent = "まずはプロジェクトを選択してください";
+  }else if(activeProjectScenes.length === 0){
+    homeTodayAction.textContent = "まずはシーンを登録してください";
+  }else if(notReadyScenes.length > 0){
+    const firstNotReady = [...notReadyScenes].sort((a, b) => {
+      const orderDiff = (a.order || 0) - (b.order || 0);
+      if(orderDiff !== 0) return orderDiff;
+      return String(a.no || "").localeCompare(String(b.no || ""), "ja");
+    })[0];
+
+    const checkStatus = getSceneCheckStatus(firstNotReady.checks);
+    homeTodayAction.textContent =
+      `まずは「${firstNotReady.title || "名称未設定"}」の準備を進めてください\n` +
+      `残り ${checkStatus.remainingCount} 項目あります`;
+
+    homeTodayAction.setAttribute("data-scene-jump-id", firstNotReady.id);
+  }else if(nextScene){
+    homeTodayAction.textContent =
+      `次に撮る候補は「${nextScene.title || "名称未設定"}」です\n` +
+      `${nextScene.location ? `場所：${nextScene.location}` : "場所未設定"}`;
+
+    homeTodayAction.setAttribute("data-scene-jump-id", nextScene.id);
+  }else{
+    homeTodayAction.textContent = "すべてのシーンが完了しています";
   }
+}
 
   if(homeAlertSceneList){
     const targetScenes = [...notReadyScenes]
@@ -4897,7 +5542,7 @@ function getNotReadyScenes(projectId){
 
   function openSceneForm(){
   if(projects.length === 0){
-    const title = window.prompt("最初の案件名を入れてください");
+    const title = window.prompt("最初の脚本名を入れてください");
     if(!title) return;
 
     const createdId = createProjectQuick(title);
@@ -4980,6 +5625,11 @@ fieldBtn.addEventListener("click", () => {
 
   saveProjectBtn.addEventListener("click", addProject);
   clearProjectBtn.addEventListener("click", clearProjectForm);
+
+  if(timerStartBtn) timerStartBtn.addEventListener("click", startTimer);
+if(timerStopBtn) timerStopBtn.addEventListener("click", stopTimer);
+if(timerResetBtn) timerResetBtn.addEventListener("click", resetTimer);
+
   projectTitle.addEventListener("keydown", (event) => {
   if(event.key === "Enter"){
     event.preventDefault();
@@ -5046,9 +5696,48 @@ fieldBtn.addEventListener("click", () => {
     nextUndoneSceneBtn.addEventListener("click", () => moveFromCurrentScene("next"));
   }
 
+  if(currentSceneDetailBtn){
+  currentSceneDetailBtn.addEventListener("click", () => {
+    const currentSceneId = getCurrentVisibleSceneId();
+    if(!currentSceneId) return;
+    toggleDetail(currentSceneId);
+    scrollToScene(currentSceneId);
+  });
+}
+
+if(currentSceneDoneBtn){
+  currentSceneDoneBtn.addEventListener("click", () => {
+    const currentSceneId = getCurrentVisibleSceneId();
+    if(!currentSceneId) return;
+    toggleShotDone(currentSceneId);
+    updateCurrentSceneStrip();
+  });
+}
+
+if(currentSceneNextBtn){
+  currentSceneNextBtn.addEventListener("click", () => {
+    moveFromCurrentScene("next");
+    setTimeout(() => {
+      updateCurrentSceneStrip();
+    }, 120);
+  });
+}
   if(quickOpenSceneBtn){
     quickOpenSceneBtn.addEventListener("click", () => openSceneForm());
   }
+  if(homeTodayAction){
+  homeTodayAction.addEventListener("click", () => {
+    const sceneId = homeTodayAction.getAttribute("data-scene-jump-id");
+    if(!sceneId) return;
+
+    switchTab("scene");
+
+    setTimeout(() => {
+      scrollToScene(sceneId);
+      toggleDetail(sceneId);
+    }, 120);
+  });
+}
   if(quickGoFieldBtn){
     quickGoFieldBtn.addEventListener("click", () => {
       setMode("field");
@@ -5065,7 +5754,9 @@ fieldBtn.addEventListener("click", () => {
   if(mobileFab){
     mobileFab.addEventListener("click", () => openSceneForm());
   }
-
+  if(createCallSheetBtn){
+  createCallSheetBtn.addEventListener("click", createCallSheet);
+}
   document.querySelectorAll(".quick-check-item input").forEach(input => {
     input.addEventListener("change", () => {
       quickCheck[input.id] = input.checked;
@@ -5083,10 +5774,11 @@ fieldBtn.addEventListener("click", () => {
   });
 
   window.addEventListener("scroll", () => {
-    if(mode === "field"){
-      updateCurrentSceneBar();
-    }
-  });
+  if(mode === "field"){
+    updateCurrentSceneBar();
+    updateCurrentSceneStrip();
+  }
+});
 
   switchTab("home");
   renderMode();
@@ -5101,6 +5793,18 @@ fieldBtn.addEventListener("click", () => {
   renderProps();
   renderPropSelect();
   renderScenes();
+  renderCallSheetList();
+
+  function updateDeptMemoSummary(){
+  if(!deptMemoDetails || !deptMemoSummary) return;
+  deptMemoSummary.textContent = deptMemoDetails.open ? "部署別メモを閉じる" : "部署別メモを開く";
+}
+
+if(deptMemoDetails){
+  deptMemoDetails.addEventListener("toggle", updateDeptMemoSummary);
+  updateDeptMemoSummary();
+}
+
   renderDebug();
   renderHomeDashboard();
   applyQuickCheck();
@@ -5108,6 +5812,8 @@ fieldBtn.addEventListener("click", () => {
   updateOpenSceneButton();
   updateCurrentSceneBar();
   updateNextSceneBar();
+  updateCurrentSceneStrip();
+  updateTimerDisplay();
 })();
 </script>
 </body>
