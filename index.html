@@ -167,6 +167,38 @@ textarea{
   line-height:1;
 }
 
+.header-mode-switch{
+  display:inline-flex;
+  gap:6px;
+  padding:4px;
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.header-mode-btn{
+  min-height:30px;
+  padding:0 12px;
+  border-radius:999px;
+  background:transparent;
+  color:var(--sub);
+  font-size:12px;
+  font-weight:800;
+  border:1px solid transparent;
+}
+
+.header-mode-btn.active-prep{
+  background:linear-gradient(180deg, rgba(34,197,94,.28), rgba(34,197,94,.16));
+  border-color:rgba(34,197,94,.42);
+  color:#fff;
+}
+
+.header-mode-btn.active-field{
+  background:linear-gradient(180deg, rgba(59,130,246,.28), rgba(59,130,246,.16));
+  border-color:rgba(59,130,246,.42);
+  color:#fff;
+}
+
 .app{
   
   padding:18px 16px calc(120px + var(--safe-bottom));
@@ -579,6 +611,7 @@ label{
 .badge.purple{ background:rgba(139,92,246,.16); color:#ede9fe; border-color:rgba(139,92,246,.34); }
 .badge.pink{ background:rgba(236,72,153,.16); color:#fbcfe8; border-color:rgba(236,72,153,.34); }
 .badge.warn{ background:rgba(245,158,11,.16); color:#fde68a; border-color:rgba(245,158,11,.34); }
+.badge.placeholder{ background:rgba(148,163,184,.16); color:#e2e8f0; border-color:rgba(148,163,184,.34); }
 
 .scene-card{
   position:relative;
@@ -626,6 +659,10 @@ label{
 .scene-card.flash-focus{
   box-shadow:0 0 0 2px rgba(59,130,246,.9), 0 0 18px rgba(59,130,246,.45);
   border-color:#60a5fa;
+}
+.scene-card.placeholder-card{
+  border-style:dashed;
+  opacity:.92;
 }
 .field-scene-card .item-title{font-size:19px;}
 
@@ -1213,6 +1250,7 @@ label{
   transform:none;
   max-width:calc(100vw - 32px);
   white-space:nowrap;
+  pointer-events:auto;
 }
 
 .mobile-fab.fab-left{
@@ -1298,7 +1336,7 @@ label{
 }
 .tabbar-inner{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(5,1fr);
   gap:8px;
 }
 .tab-btn{
@@ -1521,15 +1559,61 @@ label{
 }
 
 .current-scene-strip{
+  position:sticky;
+  top:0;
+  z-index:39;
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:10px;
   padding:10px 14px;
-  background:rgba(255,255,255,.04);
+  background:rgba(7,11,20,.96);
   border-top:1px solid rgba(255,255,255,.05);
   border-bottom:1px solid rgba(255,255,255,.08);
   backdrop-filter:blur(12px);
+}
+
+.current-scene-strip-info{
+  min-width:0;
+  flex:1;
+}
+
+.current-scene-strip-title{
+  font-size:14px;
+  font-weight:900;
+  color:#fff;
+  line-height:1.35;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.current-scene-strip-sub{
+  margin-top:3px;
+  font-size:12px;
+  color:var(--sub);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.current-scene-strip-actions{
+  display:flex;
+  gap:8px;
+  flex-shrink:0;
+  position:relative;
+  z-index:40;
+}
+
+.current-scene-strip-actions button{
+  min-height:36px;
+  padding:0 12px;
+  border-radius:10px;
+  font-size:12px;
+  font-weight:800;
+  position:relative;
+  z-index:41;
+  pointer-events:auto;
 }
 
 .current-scene-strip-info{
@@ -1619,6 +1703,91 @@ label{
 
 .scene-form-group-body{
   margin-top:10px;
+}
+
+.scene-form-tools{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:8px 0 10px;
+}
+
+.mini-btn{
+  min-height:34px;
+  padding:7px 10px;
+  border-radius:10px;
+  font-size:12px;
+  font-weight:800;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+  color:#dbeafe;
+}
+
+.scene-draft-status{
+  margin-top:8px;
+  padding:8px 10px;
+  border-radius:12px;
+  background:rgba(20,184,166,.08);
+  border:1px solid rgba(20,184,166,.18);
+  color:#c8fff4;
+  font-size:12px;
+  line-height:1.6;
+}
+
+.scene-draft-status.is-empty{
+  background:rgba(255,255,255,.04);
+  border-color:rgba(255,255,255,.08);
+  color:var(--sub);
+}
+
+.missing-scene-box{
+  margin-bottom:10px;
+}
+
+.missing-scene-chip-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:10px;
+}
+
+.missing-scene-chip{
+  min-height:34px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(239,68,68,.12);
+  border:1px solid rgba(239,68,68,.28);
+  color:#fecaca;
+  font-size:12px;
+  font-weight:800;
+}
+
+.scene-manage-grid{
+  display:grid;
+  gap:10px;
+  margin-bottom:10px;
+}
+
+.missing-checklist-box{
+  margin-bottom:10px;
+}
+
+.missing-checklist-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:8px 0;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.missing-checklist-row:last-child{
+  border-bottom:none;
+}
+
+.missing-checklist-meta{
+  color:var(--sub);
+  font-size:12px;
 }
 
 #sceneFormSection textarea{
@@ -1721,41 +1890,47 @@ label{
 .call-sheet-list{
   display:flex;
   flex-direction:column;
-  gap:10px;
+  gap:12px;
 }
 
 .call-sheet-card{
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.08);
-  padding:12px;
-  border-radius:16px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.10);
+  padding:14px;
+  border-radius:18px;
+  box-shadow:0 12px 30px rgba(0,0,0,.22);
 }
 
 .call-sheet-title{
-  font-size:15px;
+  font-size:16px;
   font-weight:900;
   color:#fff;
+  line-height:1.4;
+  letter-spacing:.01em;
 }
 
 .call-sheet-meta{
   font-size:12px;
   color:var(--sub);
-  margin-top:4px;
-  line-height:1.6;
+  margin-top:6px;
+  line-height:1.7;
 }
 
 .call-sheet-table{
   width:100%;
   overflow-x:auto;
-  margin-top:10px;
+  margin-top:12px;
   border:1px solid rgba(255,255,255,.08);
-  border-radius:14px;
+  border-radius:16px;
+  background:rgba(7,11,20,.34);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.03);
 }
 
 .call-sheet-row{
   display:grid;
-  grid-template-columns:80px 120px 80px 120px 140px 140px 1fr;
-  min-width:760px;
+  grid-template-columns:90px 90px 150px 130px 150px 130px minmax(180px,1fr);
+  min-width:920px;
   border-bottom:1px solid rgba(255,255,255,.06);
 }
 
@@ -1764,12 +1939,14 @@ label{
 }
 
 .call-sheet-cell{
-  padding:8px 10px;
+  padding:12px 10px;
   font-size:12px;
-  line-height:1.5;
+  line-height:1.65;
   border-right:1px solid rgba(255,255,255,.05);
   white-space:pre-wrap;
   word-break:break-word;
+  display:flex;
+  align-items:flex-start;
 }
 
 .call-sheet-cell:last-child{
@@ -1777,16 +1954,199 @@ label{
 }
 
 .call-sheet-header{
-  background:rgba(255,255,255,.06);
+  position:sticky;
+  top:0;
+  z-index:1;
+  background:linear-gradient(180deg, rgba(59,130,246,.22), rgba(59,130,246,.10));
   font-weight:900;
-  color:#fff;
+  color:#eff6ff;
+  backdrop-filter:blur(8px);
 }
 
-.time-cell{ color:#93c5fd; }
-.cast-cell{ color:#ddd6fe; }
-.location-cell{ color:#86efac; }
-.prop-cell{ color:#fcd34d; }
-.note-cell{ color:#fca5a5; }
+.call-sheet-row:not(.call-sheet-header):nth-child(even){
+  background:rgba(255,255,255,.02);
+}
+
+.time-cell{
+  color:#dbeafe;
+  font-weight:800;
+}
+
+.cast-cell{
+  color:#ede9fe;
+}
+
+.location-cell{
+  color:#bbf7d0;
+}
+
+.prop-cell{
+  color:#fde68a;
+}
+
+.note-cell{
+  color:#fecdd3;
+}
+
+.call-sheet-row.is-done{
+  background:rgba(34,197,94,.08);
+}
+
+.call-sheet-row.is-done .time-cell{
+  color:#86efac;
+}
+
+.call-sheet-row.is-done .call-sheet-cell{
+  opacity:.82;
+}
+
+@media (max-width:520px){
+  .call-sheet-title{
+    font-size:15px;
+  }
+
+  .call-sheet-meta{
+    font-size:11px;
+  }
+
+  .call-sheet-cell{
+    padding:10px 8px;
+    font-size:11px;
+  }
+}
+
+/* 脚本一覧 */
+#projectListSection .project-card{
+  margin-top:8px;
+  padding:10px 12px;
+  border-radius:14px;
+}
+
+#projectListSection .item-title{
+  font-size:15px;
+  line-height:1.3;
+  margin-bottom:4px;
+}
+
+#projectListSection .item-meta{
+  font-size:11px;
+  line-height:1.35;
+}
+
+#projectListSection .item-actions{
+  gap:6px;
+  margin-top:8px;
+}
+
+#projectListSection .item-actions button{
+  min-height:36px;
+  border-radius:10px;
+  font-size:12px;
+  padding:8px 10px;
+}
+
+/* 選択中脚本 */
+#projectListSection .current-project-box{
+  padding:8px 12px;
+  border-radius:14px;
+  margin-bottom:10px;
+  min-height:auto;
+  white-space:normal;
+}
+
+#projectListSection .current-project-label{
+  font-size:11px;
+  line-height:1.2;
+  margin-bottom:4px;
+}
+
+#projectListSection .current-project-value{
+  font-size:15px;
+  line-height:1.25;
+  margin:0;
+}
+
+/* 進行表示 */
+#projectListSection .project-status{
+  margin-top:6px;
+  font-size:12px;
+  display:flex;
+  gap:8px;
+}
+
+#projectListSection .status-remaining{
+  color:#f87171;
+  font-weight:800;
+}
+
+#projectListSection .status-done{
+  color:#4ade80;
+  font-weight:800;
+}
+
+#projectListSection .project-progress{
+  margin-top:8px;
+}
+
+#projectListSection .project-progress-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  margin-bottom:4px;
+  font-size:11px;
+  color:var(--sub);
+}
+
+#projectListSection .project-progress-bar{
+  width:100%;
+  height:8px;
+  border-radius:999px;
+  background:#09111e;
+  border:1px solid rgba(255,255,255,.06);
+  overflow:hidden;
+}
+
+#projectListSection .project-progress-fill{
+  height:100%;
+  border-radius:999px;
+  transition:width .25s ease;
+}
+
+#projectListSection .project-progress-fill.low{
+  background:linear-gradient(90deg,#ef4444,#f87171);
+}
+
+#projectListSection .project-progress-fill.mid{
+  background:linear-gradient(90deg,#f59e0b,#fbbf24);
+}
+
+#projectListSection .project-progress-fill.high{
+  background:linear-gradient(90deg,#22c55e,#16a34a);
+}
+
+/* 上の固定バーはボタン以外クリックを通す */
+.current-scene-strip{
+  pointer-events:none;
+}
+
+.current-scene-strip-actions,
+.current-scene-strip-actions button{
+  pointer-events:auto;
+}
+#projectListSection .project-extra-actions{
+  display:flex;
+  gap:6px;
+  margin-top:8px;
+}
+
+#projectListSection .project-extra-actions button{
+  flex:1;
+  min-height:36px;
+  border-radius:10px;
+  font-size:12px;
+  padding:8px 10px;
+}
 </style>
 </head>
 <body>
@@ -1808,6 +2168,10 @@ label{
       <div class="topbar-mini-row">
   <div id="headerProjectChip" class="header-chip">脚本 未選択</div>
   <div id="headerModeChip" class="header-chip">準備モード</div>
+  <div class="header-mode-switch" aria-label="モード切替">
+    <button type="button" id="headerPrepBtn" class="header-mode-btn">準備</button>
+    <button type="button" id="headerFieldBtn" class="header-mode-btn">現場</button>
+  </div>
 </div>
     </div>
   </header>
@@ -1922,6 +2286,16 @@ label{
       <div class="dashboard-panel-title">今日やること</div>
       <div id="homeTodayAction" class="dashboard-panel-body" style="cursor:pointer;">まだデータがありません</div>
     </div>
+    <div class="dashboard-panel" style="margin-top:12px;">
+  <div class="dashboard-panel-title">選択中脚本の進行</div>
+  <div id="homeProjectProgressSummary" class="dashboard-panel-body">まだデータがありません</div>
+  <div class="progress-bar" style="margin-top:8px;">
+    <div id="homeProjectProgressBarLarge" class="progress-bar-fill"></div>
+  </div>
+</div>
+    <div class="button-row" style="margin-top:10px;">
+  <button type="button" id="homeJumpUndoneBtn" class="primary-btn">未撮影へ</button>
+</div>
 
         <div class="dashboard-panel" style="margin-top:12px;">
       <div class="dashboard-panel-title">要確認シーン</div>
@@ -1949,6 +2323,11 @@ label{
   <div class="field" style="margin-top:10px;">
     <label for="projectDirector">監督名</label>
     <input id="projectDirector" placeholder="例：菅原昌規">
+  </div>
+
+  <div class="field">
+    <label for="projectPlannedSceneCount">脚本全シーン数</label>
+    <input id="projectPlannedSceneCount" type="number" min="0" placeholder="例：42">
   </div>
 
   <div class="field">
@@ -2124,6 +2503,22 @@ label{
       <label for="sceneProjectSelect">プロジェクト</label>
       <select id="sceneProjectSelect"></select>
     </div>
+    <div id="sceneCountSummary" class="summary-box" style="margin-bottom:10px;">
+  総シーン数 0
+  次のシーン番号候補 1
+  次の撮影順候補 1
+</div>
+    <div class="scene-form-tools">
+      <button type="button" id="restoreSceneDraftBtn" class="mini-btn">下書き復元</button>
+      <button type="button" id="saveSceneDraftBtn" class="mini-btn">今すぐ下書き保存</button>
+      <button type="button" id="duplicatePrevSceneBtn" class="mini-btn">前シーン流用</button>
+      <button type="button" id="copySceneSummaryBtn" class="mini-btn">要点コピー</button>
+      <button type="button" id="fillNextMissingSceneBtn" class="mini-btn">次の欠番を入れる</button>
+    </div>
+    <div class="field">
+      <label class="scene-check-item"><input type="checkbox" id="sceneContinuousMode"> 連続入力モード 保存後に次のシーンへ進む</label>
+    </div>
+    <div id="sceneDraftStatus" class="scene-draft-status is-empty">下書きはまだありません</div>
 
     <div class="two-col">
       <div class="field">
@@ -2270,6 +2665,25 @@ label{
       <label for="sceneMemo">共通メモ</label>
       <textarea id="sceneMemo" placeholder="例：重要シーン 先に撮る"></textarea>
     </div>
+    <div class="form-block">
+  <div class="form-block-title">カット（簡易）</div>
+
+  <div class="field">
+    <label>カット1</label>
+    <input id="sceneCut1" placeholder="例：CU 主人公アップ">
+  </div>
+
+  <div class="field">
+    <label>カット2</label>
+    <input id="sceneCut2" placeholder="例：2ショット">
+  </div>
+
+  <div class="field">
+    <label>カット3</label>
+    <input id="sceneCut3" placeholder="例：引き">
+  </div>
+</div>
+    
 
   </div>
 </details>
@@ -2277,6 +2691,11 @@ label{
 <details class="scene-form-group">
   <summary>シーンチェック</summary>
   <div class="scene-form-group-body">
+
+    <div class="scene-form-tools">
+      <button type="button" id="checkAllSceneBtn" class="mini-btn">チェック全部ON</button>
+      <button type="button" id="clearAllSceneChecksBtn" class="mini-btn">チェッククリア</button>
+    </div>
 
     <div class="field">
       <div class="scene-check-grid">
@@ -2353,173 +2772,210 @@ label{
           <button type="button" class="section-toggle" data-toggle-card="sceneListSection">閉じる</button>
         </div>
         <div class="card-body">
+          <div id="sceneProjectLinkBox" class="summary-box" style="margin-bottom:10px;">選択中脚本の情報を表示します</div>
+          <div class="button-row" style="margin-bottom:10px;">
+            <button type="button" id="importScenesCsvBtn" class="primary-btn">CSVでシーン取込</button>
+            <button type="button" id="copyScenesCsvTemplateBtn" class="secondary-btn">CSV見本コピー</button>
+            <button type="button" id="generateMissingScenesBtn" class="select-btn">未登録を仮作成</button>
+          </div>
+          <input type="file" id="importScenesCsvInput" accept=".csv,text/csv" class="hidden">
+          <div id="missingSceneInsightBox" class="summary-box missing-scene-box">脚本を選ぶと欠番や未登録が表示されます</div>
+          <div class="scene-manage-grid">
+            <div class="field">
+              <label for="sceneListTypeFilter">シーン表示</label>
+              <select id="sceneListTypeFilter">
+                <option value="all">全部表示</option>
+                <option value="normal">通常シーンのみ</option>
+                <option value="placeholder">仮シーンのみ</option>
+              </select>
+            </div>
+          </div>
+          <div id="missingSceneChecklistBox" class="summary-box missing-checklist-box">欠番チェックリストはここに表示されます</div>
           <div id="sceneList"></div>
         </div>
       </section>
     </div>
 
-    <div id="tabTool" class="tab-panel">
-      <section class="card hidden" id="fieldControlSection">
-        <div class="card-title-row">
-          <h2 class="card-title">現場モード操作</h2>
-          <button type="button" class="section-toggle" data-toggle-card="fieldControlSection">閉じる</button>
+   <div id="tabTool" class="tab-panel">
+
+  <div id="tabCallsheet" class="tab-panel">
+    <section class="card" id="callSheetSection">
+      <div class="card-title-row">
+        <h2 class="card-title">香盤</h2>
+        <button type="button" class="section-toggle" data-toggle-card="callSheetSection">閉じる</button>
+      </div>
+      <div class="card-body">
+        <div id="callSheetList" class="call-sheet-list"></div>
+
+        <div class="two-col" style="margin-top:10px;">
+          <div class="field">
+            <label for="callSheetDateInput">撮影日</label>
+            <input id="callSheetDateInput" type="date">
+          </div>
+          <div class="field">
+            <label for="callSheetTitleInput">香盤タイトル</label>
+            <input id="callSheetTitleInput" placeholder="未入力なら自動作成">
+          </div>
         </div>
-        <div id="tabCallsheet" class="tab-panel">
-  <section class="card" id="callSheetSection">
-    <div class="card-title-row">
-      <h2 class="card-title">香盤</h2>
-      <button type="button" class="section-toggle" data-toggle-card="callSheetSection">閉じる</button>
-    </div>
-    <div class="card-body">
-      <div id="callSheetList" class="call-sheet-list"></div>
 
-      <div class="button-row" style="margin-top:10px;">
-        <button type="button" id="createCallSheetBtn" class="primary-btn">＋ 香盤を作成</button>
+        <div class="field">
+          <label class="scene-check-item"><input type="checkbox" id="callSheetUndoneOnly" checked> 未撮影シーンのみで作成</label>
+        </div>
+
+        <div class="button-row" style="margin-top:10px;">
+          <button type="button" id="createCallSheetBtn" class="primary-btn">＋ 香盤を作成</button>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="card hidden" id="callSheetDetailSection">
-    <div class="card-title-row">
-      <h2 id="callSheetDetailTitle" class="card-title">香盤詳細</h2>
-      <button type="button" class="section-toggle" data-toggle-card="callSheetDetailSection">閉じる</button>
-    </div>
-    <div class="card-body" id="callSheetDetail"></div>
-  </section>
-</div>
-       <div class="card-body">
-
-  <div class="quick-check-wrap" style="margin-bottom:12px;">
-    <div class="quick-check-box">
-      <div class="quick-check-title">現場クイックチェック</div>
-      <div class="quick-check-list">
-        <label class="quick-check-item"><input type="checkbox" id="qcBattery"> バッテリー確認</label>
-        <label class="quick-check-item"><input type="checkbox" id="qcMedia"> メディア残量確認</label>
-        <label class="quick-check-item"><input type="checkbox" id="qcProp"> 小道具確認</label>
-        <label class="quick-check-item"><input type="checkbox" id="qcCast"> 出演者到着確認</label>
+    <section class="card hidden" id="callSheetDetailSection">
+      <div class="card-title-row">
+        <h2 id="callSheetDetailTitle" class="card-title">香盤詳細</h2>
+        <button type="button" class="section-toggle" data-toggle-card="callSheetDetailSection">閉じる</button>
       </div>
-    </div>
-
-    <div class="quick-check-box">
-      <div class="quick-check-title">撤収クイックチェック</div>
-      <div class="quick-check-list">
-        <label class="quick-check-item"><input type="checkbox" id="qcGearBack"> 機材積み忘れなし</label>
-        <label class="quick-check-item"><input type="checkbox" id="qcPropBack"> 小道具回収確認</label>
-        <label class="quick-check-item"><input type="checkbox" id="qcLocationClean"> 原状復帰確認</label>
-        <label class="quick-check-item"><input type="checkbox" id="qcDataBack"> データ退避確認</label>
-      </div>
-    </div>
+      <div class="card-body" id="callSheetDetail"></div>
+    </section>
   </div>
 
-  <div class="next-scene-box" style="margin-bottom:10px;">
-            <div class="next-scene-label">次に撮るシーン</div>
-            <div id="nextSceneMain" class="next-scene-main">未選択</div>
-            <div id="nextSceneMeta" class="next-scene-meta"></div>
-            <div id="nextSceneActions" class="next-scene-actions" style="margin-top:10px;"></div>
-          </div>
-
-          <div class="current-scene-bar">
-            <div class="current-scene-label">現在見ているシーン</div>
-            <div id="currentSceneMain" class="current-scene-main">未選択</div>
-            <div id="currentSceneMeta" class="current-scene-meta"></div>
-            <div id="currentSceneActions" class="current-scene-actions" style="margin-top:10px;"></div>
-          </div>
-
-          <div class="button-row" style="margin-top:10px;">
-            <button type="button" id="prevUndoneSceneBtn" class="secondary-btn">前の未撮影</button>
-            <button type="button" id="nextUndoneSceneBtn" class="primary-btn">次の未撮影</button>
-          </div>
-
-          <div class="summary-grid" style="margin-top:10px;">
-            <div class="summary-item">
-              <div class="summary-label">表示件数</div>
-              <div id="fieldVisibleCount" class="summary-value">0</div>
-            </div>
-            <div class="summary-item">
-              <div class="summary-label">未撮影</div>
-              <div id="fieldRemainingCount" class="summary-value">0</div>
-            </div>
-            <div class="summary-item">
-              <div class="summary-label">撮影完了</div>
-              <div id="fieldDoneCount" class="summary-value">0</div>
-            </div>
-          </div>
-
-          <div class="button-row" style="margin-top:10px;">
-            <button type="button" id="openNewSceneBtn" class="primary-btn">新規シーン入力を開く</button>
-          </div>
-
-          <div class="two-col" style="margin-top:10px;">
-            <div class="field">
-              <label for="fieldSearchInput">検索</label>
-              <input id="fieldSearchInput" placeholder="シーン名 出演者 場所 小道具など">
-            </div>
-
-            <div class="field">
-              <label for="fieldProjectFilter">脚本絞り込み</label>
-              <select id="fieldProjectFilter"></select>
-            </div>
-          </div>
-
-          <div class="two-col">
-            <div class="field">
-              <label for="fieldStatusFilter">進行状況</label>
-              <select id="fieldStatusFilter">
-                <option value="all">すべて</option>
-                <option value="undone">未撮影のみ</option>
-                <option value="done">撮影完了のみ</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="fieldSortFilter">並び順</label>
-              <select id="fieldSortFilter">
-                <option value="default">未撮影優先 ＋ 撮影順</option>
-                <option value="orderAsc">撮影順 昇順</option>
-                <option value="orderDesc">撮影順 降順</option>
-                <option value="titleAsc">シーン名 A-Z</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="button-row">
-            <button type="button" id="clearFieldFilterBtn" class="secondary-btn">現場フィルターをクリア</button>
-            <button type="button" id="expandAllGroupsBtn" class="select-btn">ロケ地を全部開く</button>
-            <button type="button" id="collapseAllGroupsBtn" class="secondary-btn">ロケ地を全部閉じる</button>
-          </div>
-          
-        </div>
-      </section>
-
-      <section class="card" id="backupSection">
-        <div class="card-title-row">
-          <h2 class="card-title">バックアップ</h2>
-          <button type="button" class="section-toggle" data-toggle-card="backupSection">閉じる</button>
-        </div>
-        <div class="card-body">
-          <div class="item-meta">現在のデータをJSONで保存したり 保存済みJSONから復元できます</div>
-
-          <div class="button-row" style="margin-top:10px;">
-            <button type="button" id="exportBackupBtn" class="primary-btn">バックアップを書き出し</button>
-            <button type="button" id="importBackupBtn" class="select-btn">バックアップを読み込む</button>
-          </div>
-
-          <input type="file" id="importBackupInput" accept=".json,application/json" class="hidden">
-          <div id="backupStatusBox" class="box" style="margin-top:10px;">バックアップ未実行</div>
-        </div>
-      </section>
-
-      <section class="card collapsed" id="debugSection">
-        <div class="card-title-row">
-          <h2 class="card-title">動作確認</h2>
-          <button type="button" class="section-toggle" data-toggle-card="debugSection">開く</button>
-        </div>
-        <div class="card-body">
-          <div id="debugBox" class="box">読み込み中...</div>
-        </div>
-      </section>
+  <section class="card hidden" id="fieldControlSection">
+    <div class="card-title-row">
+      <h2 class="card-title">現場モード操作</h2>
+      <button type="button" class="section-toggle" data-toggle-card="fieldControlSection">閉じる</button>
     </div>
+    <div class="card-body">
+
+      <div class="quick-check-wrap" style="margin-bottom:12px;">
+        <div class="quick-check-box">
+          <div class="quick-check-title">現場クイックチェック</div>
+          <div class="quick-check-list">
+            <label class="quick-check-item"><input type="checkbox" id="qcBattery"> バッテリー確認</label>
+            <label class="quick-check-item"><input type="checkbox" id="qcMedia"> メディア残量確認</label>
+            <label class="quick-check-item"><input type="checkbox" id="qcProp"> 小道具確認</label>
+            <label class="quick-check-item"><input type="checkbox" id="qcCast"> 出演者到着確認</label>
+          </div>
+        </div>
+
+        <div class="quick-check-box">
+          <div class="quick-check-title">撤収クイックチェック</div>
+          <div class="quick-check-list">
+            <label class="quick-check-item"><input type="checkbox" id="qcGearBack"> 機材積み忘れなし</label>
+            <label class="quick-check-item"><input type="checkbox" id="qcPropBack"> 小道具回収確認</label>
+            <label class="quick-check-item"><input type="checkbox" id="qcLocationClean"> 原状復帰確認</label>
+            <label class="quick-check-item"><input type="checkbox" id="qcDataBack"> データ退避確認</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="next-scene-box" style="margin-bottom:10px;">
+        <div class="next-scene-label">次に撮るシーン</div>
+        <div id="nextSceneMain" class="next-scene-main">未選択</div>
+        <div id="nextSceneMeta" class="next-scene-meta"></div>
+        <div id="nextSceneActions" class="next-scene-actions" style="margin-top:10px;"></div>
+      </div>
+
+      <div class="current-scene-bar">
+        <div class="current-scene-label">現在見ているシーン</div>
+        <div id="currentSceneMain" class="current-scene-main">未選択</div>
+        <div id="currentSceneMeta" class="current-scene-meta"></div>
+        <div id="currentSceneActions" class="current-scene-actions" style="margin-top:10px;"></div>
+      </div>
+
+      <div class="button-row" style="margin-top:10px;">
+        <button type="button" id="prevUndoneSceneBtn" class="secondary-btn">前の未撮影</button>
+        <button type="button" id="nextUndoneSceneBtn" class="primary-btn">次の未撮影</button>
+      </div>
+
+      <div class="summary-grid" style="margin-top:10px;">
+        <div class="summary-item">
+          <div class="summary-label">表示件数</div>
+          <div id="fieldVisibleCount" class="summary-value">0</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-label">未撮影</div>
+          <div id="fieldRemainingCount" class="summary-value">0</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-label">撮影完了</div>
+          <div id="fieldDoneCount" class="summary-value">0</div>
+        </div>
+      </div>
+
+      <div class="button-row" style="margin-top:10px;">
+        <button type="button" id="openNewSceneBtn" class="primary-btn">新規シーン入力を開く</button>
+      </div>
+      <div id="fieldProjectLinkBox" class="summary-box" style="margin-top:10px;">選択中脚本の情報を表示します</div>
+
+      <div class="two-col" style="margin-top:10px;">
+        <div class="field">
+          <label for="fieldSearchInput">検索</label>
+          <input id="fieldSearchInput" placeholder="シーン名 出演者 場所 小道具など">
+        </div>
+
+        <div class="field">
+          <label for="fieldProjectFilter">脚本絞り込み</label>
+          <select id="fieldProjectFilter"></select>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="field">
+          <label for="fieldStatusFilter">進行状況</label>
+          <select id="fieldStatusFilter">
+            <option value="all">すべて</option>
+            <option value="undone">未撮影のみ</option>
+            <option value="done">撮影完了のみ</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="fieldSortFilter">並び順</label>
+          <select id="fieldSortFilter">
+            <option value="default">未撮影優先 ＋ 撮影順</option>
+            <option value="orderAsc">撮影順 昇順</option>
+            <option value="orderDesc">撮影順 降順</option>
+            <option value="titleAsc">シーン名 A-Z</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="button-row">
+        <button type="button" id="clearFieldFilterBtn" class="secondary-btn">現場フィルターをクリア</button>
+        <button type="button" id="expandAllGroupsBtn" class="select-btn">ロケ地を全部開く</button>
+        <button type="button" id="collapseAllGroupsBtn" class="secondary-btn">ロケ地を全部閉じる</button>
+      </div>
+
     </div>
+  </section>
+
+  <section class="card" id="backupSection">
+    <div class="card-title-row">
+      <h2 class="card-title">バックアップ</h2>
+      <button type="button" class="section-toggle" data-toggle-card="backupSection">閉じる</button>
+    </div>
+    <div class="card-body">
+      <div class="item-meta">現在のデータをJSONで保存したり 保存済みJSONから復元できます</div>
+
+      <div class="button-row" style="margin-top:10px;">
+        <button type="button" id="exportBackupBtn" class="primary-btn">バックアップを書き出し</button>
+        <button type="button" id="importBackupBtn" class="select-btn">バックアップを読み込む</button>
+      </div>
+
+      <input type="file" id="importBackupInput" accept=".json,application/json" class="hidden">
+      <div id="backupStatusBox" class="box" style="margin-top:10px;">バックアップ未実行</div>
+    </div>
+  </section>
+
+  <section class="card collapsed" id="debugSection">
+    <div class="card-title-row">
+      <h2 class="card-title">動作確認</h2>
+      <button type="button" class="section-toggle" data-toggle-card="debugSection">開く</button>
+    </div>
+    <div class="card-body">
+      <div id="debugBox" class="box">読み込み中...</div>
+    </div>
+  </section>
+
+</div>
   </main>
 </div>
 
@@ -2561,6 +3017,8 @@ label{
   const PROJECT_KEY = "scene_projects_restore_v6";
   const SCENE_KEY = "scene_scenes_restore_v6";
   const CALLSHEET_KEY = "scene_callsheets_restore_v1";
+  const SCENE_DRAFT_KEY = "scene_form_draft_restore_v1";
+  const SCENE_CONTINUOUS_MODE_KEY = "scene_continuous_mode_restore_v1";
   const MODE_KEY = "scene_mode_restore_v6";
   const FAB_POSITION_KEY = "scene_fab_position_restore_v1";
   const ACTIVE_PROJECT_KEY = "scene_active_project_restore_v6";
@@ -2592,7 +3050,7 @@ label{
   let activeProjectId = localStorage.getItem(ACTIVE_PROJECT_KEY) || "";
   let currentDept = localStorage.getItem(DEPT_KEY) || "all";
   let fabPosition = localStorage.getItem(FAB_POSITION_KEY) || "center";
-  let projects = readJson(PROJECT_KEY, []);
+  let projects = readJson(PROJECT_KEY, []).map(project => normalizeProject(project));
   let scenes = migrateScenes(readJson(SCENE_KEY, []));
   let locations = readJson(LOCATION_KEY, []);
   let actors = readJson(ACTOR_KEY, []);
@@ -2604,6 +3062,9 @@ label{
   ...DEFAULT_COLLAPSE_STATE,
   ...readJson(COLLAPSE_KEY, {})
 };
+  let continuousSceneMode = localStorage.getItem(SCENE_CONTINUOUS_MODE_KEY) === "true";
+  let currentSceneActorIds = [];
+  let currentScenePropIds = [];
 
   let editingProjectId = "";
   let editingSceneId = "";
@@ -2619,6 +3080,8 @@ label{
 
   const headerProjectChip = $("headerProjectChip");
   const headerModeChip = $("headerModeChip");
+  const headerPrepBtn = $("headerPrepBtn");
+  const headerFieldBtn = $("headerFieldBtn");
 
   const saveProjectBtn = $("saveProjectBtn");
   const clearProjectBtn = $("clearProjectBtn");
@@ -2637,6 +3100,7 @@ label{
 
   const projectTitle = $("projectTitle");
   const projectDirector = $("projectDirector");
+  const projectPlannedSceneCount = $("projectPlannedSceneCount");
   const projectMemo = $("projectMemo");
   const currentProjectLabel = $("currentProjectLabel");
   const projectList = $("projectList");
@@ -2667,6 +3131,14 @@ label{
 
   const sceneFormTitle = $("sceneFormTitle");
   const sceneProjectSelect = $("sceneProjectSelect");
+  const sceneCountSummary = $("sceneCountSummary");
+  const sceneDraftStatus = $("sceneDraftStatus");
+  const saveSceneDraftBtn = $("saveSceneDraftBtn");
+  const restoreSceneDraftBtn = $("restoreSceneDraftBtn");
+  const duplicatePrevSceneBtn = $("duplicatePrevSceneBtn");
+  const copySceneSummaryBtn = $("copySceneSummaryBtn");
+  const fillNextMissingSceneBtn = $("fillNextMissingSceneBtn");
+  const sceneContinuousMode = $("sceneContinuousMode");
   const sceneLocationSelect = $("sceneLocationSelect");
   const sceneActorSelect = $("sceneActorSelect");
   const scenePropSelect = $("scenePropSelect");
@@ -2686,6 +3158,9 @@ label{
   const sceneRainMemo = $("sceneRainMemo");
   const sceneProp = $("sceneProp");
   const sceneMemo = $("sceneMemo");
+  const sceneCut1 = $("sceneCut1");
+  const sceneCut2 = $("sceneCut2");
+  const sceneCut3 = $("sceneCut3");
   const sceneDirectionNote = $("sceneDirectionNote");
   const sceneCameraNote = $("sceneCameraNote");
   const sceneLightNote = $("sceneLightNote");
@@ -2703,7 +3178,12 @@ label{
   const sceneCheckCostume = $("sceneCheckCostume");
   const sceneCheckCamera = $("sceneCheckCamera");
   const sceneCheckLight = $("sceneCheckLight");
+  const checkAllSceneBtn = $("checkAllSceneBtn");
+  const clearAllSceneChecksBtn = $("clearAllSceneChecksBtn");
   const sceneList = $("sceneList");
+  const sceneListTypeFilter = $("sceneListTypeFilter");
+  const missingSceneChecklistBox = $("missingSceneChecklistBox");
+  const sceneProjectLinkBox = $("sceneProjectLinkBox");
 
   const projectCreateSection = $("projectCreateSection");
   const projectListSection = $("projectListSection");
@@ -2734,6 +3214,7 @@ label{
   const fieldRemainingCount = $("fieldRemainingCount");
   const fieldDoneCount = $("fieldDoneCount");
   const openNewSceneBtn = $("openNewSceneBtn");
+  const fieldProjectLinkBox = $("fieldProjectLinkBox");
   const prevUndoneSceneBtn = $("prevUndoneSceneBtn");
   const nextUndoneSceneBtn = $("nextUndoneSceneBtn");
   const currentSceneMain = $("currentSceneMain");
@@ -2748,16 +3229,25 @@ label{
   const quickGoProjectBtn = $("quickGoProjectBtn");
   const quickGoBackupBtn = $("quickGoBackupBtn");
   const mobileFab = $("mobileFab");
+  const fabPositionBtn = $("fabPositionBtn");
   const tabHome = $("tabHome");
   const tabProject = $("tabProject");
   const tabScene = $("tabScene");
   const tabTool = $("tabTool");
   const tabCallsheet = $("tabCallsheet");
   const createCallSheetBtn = $("createCallSheetBtn");
+  const callSheetDateInput = $("callSheetDateInput");
+  const callSheetTitleInput = $("callSheetTitleInput");
+  const callSheetUndoneOnly = $("callSheetUndoneOnly");
   const callSheetList = $("callSheetList");
   const callSheetDetail = $("callSheetDetail");
   const callSheetDetailTitle = $("callSheetDetailTitle");
   const callSheetDetailSection = $("callSheetDetailSection");
+  const importScenesCsvBtn = $("importScenesCsvBtn");
+  const importScenesCsvInput = $("importScenesCsvInput");
+  const copyScenesCsvTemplateBtn = $("copyScenesCsvTemplateBtn");
+  const generateMissingScenesBtn = $("generateMissingScenesBtn");
+  const missingSceneInsightBox = $("missingSceneInsightBox");
 
   const timerDisplay = $("timerDisplay");
   const timerStartBtn = $("timerStartBtn");
@@ -2774,6 +3264,9 @@ label{
   const homeNotReadyCount = $("homeNotReadyCount");
   const homeTodayAction = $("homeTodayAction");
   const homeAlertSceneList = $("homeAlertSceneList");
+  const homeProjectProgressSummary = $("homeProjectProgressSummary");
+  const homeProjectProgressBarLarge = $("homeProjectProgressBarLarge");
+  const homeJumpUndoneBtn = $("homeJumpUndoneBtn");
 
   const currentSceneStripTitle = $("currentSceneStripTitle");
   const currentSceneStripSub = $("currentSceneStripSub");
@@ -2820,24 +3313,47 @@ function resetTimer(){
   timerSeconds = 0;
   updateTimerDisplay();
 }
+  function normalizeSceneChecks(checks){
+    return {
+      schedule: !!checks?.schedule,
+      prop: !!checks?.prop,
+      cast: !!checks?.cast,
+      costume: !!checks?.costume,
+      camera: !!checks?.camera,
+      light: !!checks?.light
+    };
+  }
+
+  function normalizeSceneCuts(cuts){
+    if(!Array.isArray(cuts)) return [];
+    return cuts
+      .map(value => String(value || "").trim())
+      .filter(Boolean)
+      .slice(0, 3);
+  }
+
+  function normalizeScene(scene){
+    const checks = normalizeSceneChecks(scene?.checks);
+    return {
+      ...scene,
+      isPlaceholder: !!scene?.isPlaceholder,
+      cuts: normalizeSceneCuts(scene?.cuts),
+      checks,
+      done: areAllSceneChecksComplete(checks),
+      shotDone: !!scene?.shotDone
+    };
+  }
+
+  function normalizeProject(project){
+    return {
+      ...project,
+      plannedSceneCount: Math.max(0, Number(project?.plannedSceneCount) || 0)
+    };
+  }
+
   function migrateScenes(rawScenes){
     if(!Array.isArray(rawScenes)) return [];
-    return rawScenes.map(scene => {
-      const checks = scene && scene.checks ? scene.checks : {
-        schedule:false,
-        prop:false,
-        cast:false,
-        costume:false,
-        camera:false,
-        light:false
-      };
-      return {
-        ...scene,
-        checks,
-        done: areAllSceneChecksComplete(checks),
-        shotDone: !!scene.shotDone
-      };
-    });
+    return rawScenes.map(scene => normalizeScene(scene));
   }
 
   function showToast(message){
@@ -2849,38 +3365,116 @@ function resetTimer(){
       toast.classList.remove("show");
     }, 1800);
   }
+function applyFabPosition(){
+  if(mobileFab){
+    mobileFab.classList.remove("fab-left", "fab-center", "fab-right");
 
- let currentTabName = "home";
+    if(fabPosition === "left"){
+      mobileFab.classList.add("fab-left");
+    }else if(fabPosition === "right"){
+      mobileFab.classList.add("fab-right");
+    }else{
+      mobileFab.classList.add("fab-center");
+    }
+  }
+
+  if(fabPositionBtn){
+    fabPositionBtn.classList.remove("fab-left", "fab-center", "fab-right");
+
+    if(fabPosition === "left"){
+      fabPositionBtn.classList.add("fab-left");
+    }else if(fabPosition === "right"){
+      fabPositionBtn.classList.add("fab-right");
+    }else{
+      fabPositionBtn.classList.add("fab-center");
+    }
+  }
+}
+
+function cycleFabPosition(){
+  if(fabPosition === "center"){
+    fabPosition = "right";
+  }else if(fabPosition === "right"){
+    fabPosition = "left";
+  }else{
+    fabPosition = "center";
+  }
+
+  localStorage.setItem(FAB_POSITION_KEY, fabPosition);
+  applyFabPosition();
+  showToast(`新規シーンボタン位置 ${fabPosition === "left" ? "左" : fabPosition === "center" ? "中央" : "右"}`);
+}
+
+function bindEvent(element, eventName, handler){
+  if(!element) return false;
+  element.addEventListener(eventName, handler);
+  return true;
+}
+
+function bindQueryAll(selector, eventName, handler){
+  document.querySelectorAll(selector).forEach(element => {
+    element.addEventListener(eventName, (event) => handler(element, event));
+  });
+}
+
+let currentTabName = "home";
+
+function updateToolSubTab(tabName){
+  const isCallsheet = tabName === "callsheet";
+
+  if(tabCallsheet){
+    tabCallsheet.classList.toggle("active", isCallsheet);
+  }
+
+  if(fieldControlSection){
+    fieldControlSection.classList.toggle("hidden", isCallsheet);
+  }
+
+  if(backupSection){
+    backupSection.classList.toggle("hidden", isCallsheet);
+  }
+
+  if(debugSection){
+    debugSection.classList.toggle("hidden", isCallsheet);
+  }
+}
 
 function switchTab(tabName){
-  const panels = {
-  home: tabHome,
-  project: tabProject,
-  scene: tabScene,
-  tool: tabTool,
-  callsheet: tabCallsheet
-};
+  const panelName = tabName === "callsheet" ? "tool" : tabName;
 
-  const nextPanel = panels[tabName];
-  const currentPanel = panels[currentTabName];
+  const panels = {
+    home: tabHome,
+    project: tabProject,
+    scene: tabScene,
+    tool: tabTool
+  };
+
+  const nextPanel = panels[panelName];
+  const currentPanel = panels[currentTabName === "callsheet" ? "tool" : currentTabName];
 
   if(!nextPanel) return;
+
   if(tabName === currentTabName){
     document.querySelectorAll(".tab-btn").forEach(btn => {
       btn.classList.toggle("active", btn.getAttribute("data-tab") === tabName);
     });
+    updateToolSubTab(tabName);
     return;
   }
 
-  const order = ["home","project","scene","tool","callsheet"];
-  const currentIndex = order.indexOf(currentTabName);
-  const nextIndex = order.indexOf(tabName);
+  const order = ["home","project","scene","tool"];
+  const currentIndex = order.indexOf(currentTabName === "callsheet" ? "tool" : currentTabName);
+  const nextIndex = order.indexOf(panelName);
   const isForward = nextIndex > currentIndex;
 
   Object.values(panels).forEach(panel => {
     if(!panel) return;
     panel.classList.remove("active", "exit-left", "exit-right");
   });
+
+  if(tabCallsheet){
+    tabCallsheet.classList.remove("active", "exit-left", "exit-right");
+  }
 
   if(currentPanel){
     currentPanel.classList.add(isForward ? "exit-left" : "exit-right");
@@ -2893,6 +3487,11 @@ function switchTab(tabName){
   });
 
   currentTabName = tabName;
+  updateToolSubTab(tabName);
+
+  if(tabName === "project"){
+  renderProjects();
+}
 }
 
   function saveProjects(){ localStorage.setItem(PROJECT_KEY, JSON.stringify(projects)); }
@@ -2914,21 +3513,22 @@ function switchTab(tabName){
 
   function exportBackup(){
     try{
-      const backupData = {
-        exportedAt: new Date().toISOString(),
-        version: 2,
-        mode,
-        activeProjectId,
-        currentDept,
-        projects,
-        scenes,
-        locations,
-        actors,
-        props,
-        quickCheck,
-        fieldGroupOpenState,
-        sectionCollapseState
-      };
+     const backupData = {
+  exportedAt: new Date().toISOString(),
+  version: 2,
+  mode,
+  activeProjectId,
+  currentDept,
+  projects,
+  scenes,
+  locations,
+  actors,
+  props,
+  callSheets,
+  quickCheck,
+  fieldGroupOpenState,
+  sectionCollapseState
+};
 
       const blob = new Blob([JSON.stringify(backupData, null, 2)], { type: "application/json" });
       const url = URL.createObjectURL(blob);
@@ -2962,11 +3562,12 @@ function switchTab(tabName){
         const data = JSON.parse(raw);
         if(!data || typeof data !== "object") throw new Error("invalid backup");
 
-        projects = Array.isArray(data.projects) ? data.projects : [];
+        projects = Array.isArray(data.projects) ? data.projects.map(project => normalizeProject(project)) : [];
         scenes = migrateScenes(Array.isArray(data.scenes) ? data.scenes : []);
         locations = Array.isArray(data.locations) ? data.locations : [];
         actors = Array.isArray(data.actors) ? data.actors : [];
         props = Array.isArray(data.props) ? data.props : [];
+        callSheets = Array.isArray(data.callSheets) ? data.callSheets : [];
         quickCheck = data.quickCheck && typeof data.quickCheck === "object" ? data.quickCheck : {};
         fieldGroupOpenState = data.fieldGroupOpenState && typeof data.fieldGroupOpenState === "object" ? data.fieldGroupOpenState : {};
        sectionCollapseState =
@@ -2982,6 +3583,7 @@ function switchTab(tabName){
         saveLocations();
         saveActors();
         saveProps();
+        saveCallSheets();
         saveMode();
         saveActiveProject();
         saveQuickCheck();
@@ -3011,6 +3613,7 @@ function switchTab(tabName){
         applyQuickCheck();
         applySectionCollapseState();
         renderHomeDashboard();
+        updateSceneDraftStatus();
 
         setBackupStatus("バックアップを読み込みました");
         showToast("バックアップを読み込みました");
@@ -3065,6 +3668,333 @@ function switchTab(tabName){
   function getProjectTitle(projectId){
   return projects.find(project => project.id === projectId)?.title || "";
 }
+
+  function getProjectPlannedSceneCount(projectId){
+    return Math.max(0, Number(projects.find(project => project.id === projectId)?.plannedSceneCount) || 0);
+  }
+
+  function getProjectNumericSceneNos(projectId){
+    return scenes
+      .filter(scene => scene.projectId === projectId)
+      .map(scene => String(scene.no || "").trim())
+      .filter(value => /^\d+$/.test(value))
+      .map(value => Number(value))
+      .sort((a, b) => a - b);
+  }
+
+  function getProjectMissingSceneNos(projectId){
+    const numericSceneNos = getProjectNumericSceneNos(projectId);
+    const plannedCount = getProjectPlannedSceneCount(projectId);
+    const maxExisting = numericSceneNos.length ? numericSceneNos[numericSceneNos.length - 1] : 0;
+    const maxSceneNo = plannedCount > 0 ? plannedCount : maxExisting;
+    if(maxSceneNo === 0) return [];
+
+    const existing = new Set(numericSceneNos);
+    const missing = [];
+
+    for(let i = 1; i <= maxSceneNo; i += 1){
+      if(!existing.has(i)){
+        missing.push(i);
+      }
+    }
+
+    return missing;
+  }
+
+  function getProjectUnregisteredCount(projectId){
+    const plannedCount = getProjectPlannedSceneCount(projectId);
+    if(plannedCount <= 0) return 0;
+    return Math.max(0, plannedCount - getProjectScenes(projectId).length);
+  }
+
+  function getSceneListTypeFilterValue(){
+    return sceneListTypeFilter?.value || "all";
+  }
+
+  function filterScenesByType(sceneItems){
+    const filterValue = getSceneListTypeFilterValue();
+    if(filterValue === "placeholder"){
+      return sceneItems.filter(scene => scene.isPlaceholder);
+    }
+    if(filterValue === "normal"){
+      return sceneItems.filter(scene => !scene.isPlaceholder);
+    }
+    return sceneItems;
+  }
+
+  function syncActiveProject(projectId, options = {}){
+    if(!projectId || !projects.some(project => project.id === projectId)){
+      return;
+    }
+
+    activeProjectId = projectId;
+    saveActiveProject();
+
+    if(!options.skipSceneProjectSelect && sceneProjectSelect){
+      sceneProjectSelect.value = projectId;
+    }
+    if(!options.skipFieldProjectFilter && fieldProjectFilter){
+      fieldProjectFilter.value = projectId;
+    }
+
+    renderProjects();
+    renderProjectSelect();
+    renderFieldProjectFilter();
+    renderHeaderStatus();
+    renderHomeDashboard();
+    renderMissingSceneInsights();
+    renderMissingSceneChecklist();
+  }
+
+  function renderProjectLinkBoxes(){
+    const project = projects.find(item => item.id === activeProjectId);
+    const projectScenes = activeProjectId ? getProjectScenes(activeProjectId) : [];
+    const plannedCount = activeProjectId ? getProjectPlannedSceneCount(activeProjectId) : 0;
+    const missingNos = activeProjectId ? getProjectMissingSceneNos(activeProjectId) : [];
+    const remainingCount = projectScenes.filter(scene => !scene.shotDone).length;
+
+    const content = project
+      ? `
+        <div>${escapeHtml(project.title)} / 登録 ${projectScenes.length}${plannedCount ? ` / 脚本全体 ${plannedCount}` : ""} / 未撮影 ${remainingCount}${missingNos.length ? ` / 欠番 ${escapeHtml(missingNos.slice(0, 6).join(", "))}${missingNos.length > 6 ? " ..." : ""}` : ""}</div>
+        <div class="button-row" style="margin-top:8px;">
+          <button type="button" class="secondary-btn" data-link-go-project="${project.id}">脚本へ</button>
+          <button type="button" class="select-btn" data-link-go-scene="${project.id}">シーンへ</button>
+          <button type="button" class="primary-btn" data-link-go-field="${project.id}">現場へ</button>
+        </div>
+      `
+      : "脚本を選ぶと、シーンと現場に同じ脚本が連動します";
+
+    [sceneProjectLinkBox, fieldProjectLinkBox].forEach(box => {
+      if(!box) return;
+      if(project){
+        box.innerHTML = content;
+        box.querySelectorAll("[data-link-go-project]").forEach(btn => {
+          btn.addEventListener("click", () => {
+            syncActiveProject(btn.getAttribute("data-link-go-project"));
+            switchTab("project");
+            goToSection(projectListSection);
+          });
+        });
+        box.querySelectorAll("[data-link-go-scene]").forEach(btn => {
+          btn.addEventListener("click", () => {
+            syncActiveProject(btn.getAttribute("data-link-go-scene"));
+            switchTab("scene");
+            goToSection(sceneListSection);
+          });
+        });
+        box.querySelectorAll("[data-link-go-field]").forEach(btn => {
+          btn.addEventListener("click", () => {
+            syncActiveProject(btn.getAttribute("data-link-go-field"));
+            setMode("field");
+            switchTab("tool");
+            goToSection(fieldControlSection);
+          });
+        });
+      }else{
+        box.textContent = content;
+      }
+    });
+  }
+
+  function openSceneFormForSceneNo(projectId, sceneNoValue){
+    if(!projectId) return;
+
+    syncActiveProject(projectId);
+    updateSceneCountSummary();
+
+    switchTab("scene");
+    clearSceneForm();
+    sceneFormSection.classList.remove("hidden");
+    setSectionCollapsed("sceneFormSection", false);
+
+    if(sceneProjectSelect) sceneProjectSelect.value = projectId;
+    if(sceneNo) sceneNo.value = String(sceneNoValue || "");
+    if(sceneOrder) sceneOrder.value = getNextSceneOrderCandidate();
+
+    updateSceneCountSummary();
+    updateOpenSceneButton();
+    saveSceneDraft();
+    setTimeout(() => {
+      if(sceneTitle) sceneTitle.focus();
+      window.scrollTo({ top: sceneFormSection.offsetTop - 20, behavior: "smooth" });
+    }, 50);
+  }
+
+  function fillNextMissingSceneNo(){
+    const projectId = sceneProjectSelect?.value || activeProjectId;
+    if(!projectId){
+      showToast("先に脚本を選択してください");
+      return;
+    }
+
+    const missingNos = getProjectMissingSceneNos(projectId);
+    if(missingNos.length === 0){
+      showToast("欠番シーン番号はありません");
+      return;
+    }
+
+    openSceneFormForSceneNo(projectId, missingNos[0]);
+    showToast(`欠番シーン ${missingNos[0]} を入力欄に入れました`);
+  }
+
+  function generatePlaceholderScenesForMissing(projectId = activeProjectId, specificNos = null){
+    if(!projectId){
+      showToast("先に脚本を選択してください");
+      return;
+    }
+
+    const missingNos = Array.isArray(specificNos) && specificNos.length > 0
+      ? specificNos.map(value => Number(value)).filter(value => Number.isFinite(value) && value > 0)
+      : getProjectMissingSceneNos(projectId);
+    if(missingNos.length === 0){
+      showToast("未登録シーンはありません");
+      return;
+    }
+
+    const targetNos = missingNos.slice(0, 50);
+    const sameProjectScenes = getSortedProjectScenes(projectId);
+    let nextOrder = sameProjectScenes.reduce((max, scene) => Math.max(max, Number(scene.order) || 0), 0);
+
+    targetNos.forEach(noValue => {
+      nextOrder += 1;
+      scenes.push(normalizeScene({
+        id: uid("scene"),
+        projectId,
+        no: String(noValue),
+        order: nextOrder,
+        title: `シーン ${noValue}`,
+        label: "",
+        cast: "",
+        locationId: "",
+        location: "",
+        address: "",
+        phone: "",
+        mapUrl: "",
+        permitMemo: "",
+        parkingMemo: "",
+        powerMemo: "",
+        toiletMemo: "",
+        rainMemo: "",
+        prop: "",
+        memo: "",
+        directionNote: "",
+        cameraNote: "",
+        lightNote: "",
+        makeNote: "",
+        costumeNote: "",
+        artNote: "",
+        productionNote: "",
+        actorNote: "",
+        isPlaceholder: true,
+        cuts: [],
+        checks: {},
+        shotDone: false
+      }));
+    });
+
+    saveScenes();
+    renderProjects();
+    renderProjectSelect();
+    renderFieldProjectFilter();
+    renderScenes();
+    renderDebug();
+    renderHomeDashboard();
+    updateSceneCountSummary();
+    showToast(`${targetNos.length}件の仮シーンを作成しました`);
+  }
+
+  function renderMissingSceneInsights(){
+    if(!missingSceneInsightBox){
+      return;
+    }
+
+    if(!activeProjectId){
+      missingSceneInsightBox.textContent = "脚本を選ぶと欠番や未登録が表示されます";
+      return;
+    }
+
+    const project = projects.find(item => item.id === activeProjectId);
+    if(!project){
+      missingSceneInsightBox.textContent = "脚本を選ぶと欠番や未登録が表示されます";
+      return;
+    }
+
+    const missingNos = getProjectMissingSceneNos(activeProjectId);
+    const unregisteredCount = getProjectUnregisteredCount(activeProjectId);
+
+    if(missingNos.length === 0){
+      missingSceneInsightBox.innerHTML = `${escapeHtml(project.title)} は欠番なし${unregisteredCount > 0 ? ` / 未登録 ${unregisteredCount}` : ""}`;
+      return;
+    }
+
+    missingSceneInsightBox.innerHTML = `
+      <div>${escapeHtml(project.title)} の欠番 ${missingNos.length}件${unregisteredCount > 0 ? ` / 未登録 ${unregisteredCount}` : ""}</div>
+      <div class="missing-scene-chip-row">
+        ${missingNos.slice(0, 20).map(noValue => `
+          <button type="button" class="missing-scene-chip" data-missing-scene-open="${noValue}">
+            シーン ${escapeHtml(noValue)}
+          </button>
+        `).join("")}
+      </div>
+    `;
+
+    missingSceneInsightBox.querySelectorAll("[data-missing-scene-open]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        openSceneFormForSceneNo(activeProjectId, btn.getAttribute("data-missing-scene-open"));
+      });
+    });
+  }
+
+  function renderMissingSceneChecklist(){
+    if(!missingSceneChecklistBox){
+      return;
+    }
+
+    if(!activeProjectId){
+      missingSceneChecklistBox.textContent = "脚本を選ぶと欠番チェックリストが表示されます";
+      return;
+    }
+
+    const project = projects.find(item => item.id === activeProjectId);
+    if(!project){
+      missingSceneChecklistBox.textContent = "脚本を選ぶと欠番チェックリストが表示されます";
+      return;
+    }
+
+    const missingNos = getProjectMissingSceneNos(activeProjectId);
+    if(missingNos.length === 0){
+      missingSceneChecklistBox.textContent = `${project.title} の欠番はありません`;
+      return;
+    }
+
+    missingSceneChecklistBox.innerHTML = `
+      <div>${escapeHtml(project.title)} の欠番チェックリスト</div>
+      ${missingNos.slice(0, 30).map(noValue => `
+        <div class="missing-checklist-row">
+          <div>
+            <div>シーン ${escapeHtml(noValue)}</div>
+            <div class="missing-checklist-meta">未登録</div>
+          </div>
+          <div class="button-row" style="min-width:180px;">
+            <button type="button" class="select-btn" data-missing-check-open="${noValue}">入力する</button>
+            <button type="button" class="secondary-btn" data-missing-check-placeholder="${noValue}">仮作成</button>
+          </div>
+        </div>
+      `).join("")}
+    `;
+
+    missingSceneChecklistBox.querySelectorAll("[data-missing-check-open]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        openSceneFormForSceneNo(activeProjectId, btn.getAttribute("data-missing-check-open"));
+      });
+    });
+
+    missingSceneChecklistBox.querySelectorAll("[data-missing-check-placeholder]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        generatePlaceholderScenesForMissing(activeProjectId, [btn.getAttribute("data-missing-check-placeholder")]);
+      });
+    });
+  }
 
   function getSceneLocationGroupKey(scene){
     const value = String(scene.location || "").trim();
@@ -3214,8 +4144,18 @@ function renderHeaderStatus(){
   }
 }
  function renderMode(){
-  prepBtn.className = mode === "prep" ? "segment-btn active-prep" : "segment-btn";
-  fieldBtn.className = mode === "field" ? "segment-btn active-field" : "segment-btn";
+  if(prepBtn){
+    prepBtn.className = mode === "prep" ? "segment-btn active-prep" : "segment-btn";
+  }
+  if(fieldBtn){
+    fieldBtn.className = mode === "field" ? "segment-btn active-field" : "segment-btn";
+  }
+  if(headerPrepBtn){
+    headerPrepBtn.className = mode === "prep" ? "header-mode-btn active-prep" : "header-mode-btn";
+  }
+  if(headerFieldBtn){
+    headerFieldBtn.className = mode === "field" ? "header-mode-btn active-field" : "header-mode-btn";
+  }
   renderDepartmentSections();
   renderHeaderStatus();
 }
@@ -3268,6 +4208,7 @@ function renderHeaderStatus(){
     projectFormTitle.textContent = "プロジェクト作成";
     projectTitle.value = "";
     projectDirector.value = "";
+    if(projectPlannedSceneCount) projectPlannedSceneCount.value = "";
     projectMemo.value = "";
   }
 
@@ -3298,6 +4239,326 @@ function renderHeaderStatus(){
     propMemo.value = "";
   }
 
+  function getSceneCutValues(){
+    return [sceneCut1, sceneCut2, sceneCut3]
+      .map(input => input ? input.value.trim() : "")
+      .filter(Boolean);
+  }
+
+  function setSceneCutValues(cuts){
+    const safeCuts = normalizeSceneCuts(cuts);
+    if(sceneCut1) sceneCut1.value = safeCuts[0] || "";
+    if(sceneCut2) sceneCut2.value = safeCuts[1] || "";
+    if(sceneCut3) sceneCut3.value = safeCuts[2] || "";
+  }
+
+  function setContinuousSceneMode(enabled){
+    continuousSceneMode = !!enabled;
+    localStorage.setItem(SCENE_CONTINUOUS_MODE_KEY, String(continuousSceneMode));
+    if(sceneContinuousMode){
+      sceneContinuousMode.checked = continuousSceneMode;
+    }
+  }
+
+  function getNextSuggestedSceneNo(projectId){
+    const missingNos = getProjectMissingSceneNos(projectId);
+    if(missingNos.length > 0){
+      return String(missingNos[0]);
+    }
+
+    const numericSceneNos = getProjectNumericSceneNos(projectId);
+    const maxSceneNo = numericSceneNos.length ? numericSceneNos[numericSceneNos.length - 1] : 0;
+    return String(maxSceneNo + 1 || 1);
+  }
+
+  function getSceneLines(text){
+    return String(text || "")
+      .split(/\r?\n/)
+      .map(line => line.trim())
+      .filter(Boolean);
+  }
+
+  function syncSceneCastWithActorIds(scene, previousActorNames = []){
+    if(!scene || !Array.isArray(scene.actorIds)) return;
+
+    const actorMap = new Map(actors.map(actor => [actor.id, actor]));
+    const linkedNames = scene.actorIds
+      .map(actorId => actorMap.get(actorId)?.name || "")
+      .filter(Boolean);
+    const oldLinkedNameSet = new Set(previousActorNames.filter(Boolean));
+    const manualNames = getSceneLines(scene.cast).filter(name => !oldLinkedNameSet.has(name));
+    scene.cast = [...linkedNames, ...manualNames].filter(Boolean).join("\n");
+  }
+
+  function syncScenePropWithPropIds(scene, previousPropNames = []){
+    if(!scene || !Array.isArray(scene.propIds)) return;
+
+    const propMap = new Map(props.map(prop => [prop.id, prop]));
+    const linkedNames = scene.propIds
+      .map(propId => propMap.get(propId)?.name || "")
+      .filter(Boolean);
+    const oldLinkedNameSet = new Set(previousPropNames.filter(Boolean));
+    const manualNames = getSceneLines(scene.prop).filter(name => !oldLinkedNameSet.has(name));
+    scene.prop = [...linkedNames, ...manualNames].filter(Boolean).join("\n");
+  }
+
+  function getSceneCheckValues(){
+    return normalizeSceneChecks({
+      schedule: sceneCheckSchedule?.checked,
+      prop: sceneCheckProp?.checked,
+      cast: sceneCheckCast?.checked,
+      costume: sceneCheckCostume?.checked,
+      camera: sceneCheckCamera?.checked,
+      light: sceneCheckLight?.checked
+    });
+  }
+
+  function setSceneCheckValues(checks){
+    const safeChecks = normalizeSceneChecks(checks);
+    if(sceneCheckSchedule) sceneCheckSchedule.checked = safeChecks.schedule;
+    if(sceneCheckProp) sceneCheckProp.checked = safeChecks.prop;
+    if(sceneCheckCast) sceneCheckCast.checked = safeChecks.cast;
+    if(sceneCheckCostume) sceneCheckCostume.checked = safeChecks.costume;
+    if(sceneCheckCamera) sceneCheckCamera.checked = safeChecks.camera;
+    if(sceneCheckLight) sceneCheckLight.checked = safeChecks.light;
+  }
+
+  function buildSceneDraftPayload(){
+    return {
+      savedAt: new Date().toISOString(),
+      editingSceneId,
+      projectId: sceneProjectSelect?.value || "",
+      no: sceneNo?.value || "",
+      order: sceneOrder?.value || "",
+      title: sceneTitle?.value || "",
+      label: sceneLabel?.value || "",
+      cast: sceneCast?.value || "",
+      locationId: sceneLocationSelect?.value || "",
+      location: sceneLocation?.value || "",
+      address: sceneAddress?.value || "",
+      phone: scenePhone?.value || "",
+      mapUrl: sceneMapUrl?.value || "",
+      permitMemo: scenePermitMemo?.value || "",
+      parkingMemo: sceneParkingMemo?.value || "",
+      powerMemo: scenePowerMemo?.value || "",
+      toiletMemo: sceneToiletMemo?.value || "",
+      rainMemo: sceneRainMemo?.value || "",
+      prop: sceneProp?.value || "",
+      memo: sceneMemo?.value || "",
+      directionNote: sceneDirectionNote?.value || "",
+      cameraNote: sceneCameraNote?.value || "",
+      lightNote: sceneLightNote?.value || "",
+      makeNote: sceneMakeNote?.value || "",
+      costumeNote: sceneCostumeNote?.value || "",
+      artNote: sceneArtNote?.value || "",
+      productionNote: sceneProductionNote?.value || "",
+      actorNote: sceneActorNote?.value || "",
+      cuts: getSceneCutValues(),
+      checks: getSceneCheckValues()
+    };
+  }
+
+  function saveSceneDraft(showMessage = false){
+    const payload = buildSceneDraftPayload();
+    localStorage.setItem(SCENE_DRAFT_KEY, JSON.stringify(payload));
+    updateSceneDraftStatus(payload);
+    if(showMessage){
+      showToast("シーン下書きを保存しました");
+    }
+  }
+
+  function clearSceneDraft(showMessage = false){
+    localStorage.removeItem(SCENE_DRAFT_KEY);
+    updateSceneDraftStatus(null);
+    if(showMessage){
+      showToast("シーン下書きを削除しました");
+    }
+  }
+
+  function readSceneDraft(){
+    return readJson(SCENE_DRAFT_KEY, null);
+  }
+
+  function updateSceneDraftStatus(draft = readSceneDraft()){
+    if(!sceneDraftStatus) return;
+
+    if(!draft || typeof draft !== "object"){
+      sceneDraftStatus.textContent = "下書きはまだありません";
+      sceneDraftStatus.classList.add("is-empty");
+      return;
+    }
+
+    const savedAt = draft.savedAt
+      ? new Date(draft.savedAt).toLocaleString("ja-JP", { month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" })
+      : "日時不明";
+    const title = String(draft.title || "").trim() || "無題";
+    const projectTitle = getProjectTitle(draft.projectId) || "脚本未選択";
+
+    sceneDraftStatus.textContent = `下書きあり ${savedAt} / ${projectTitle} / ${title}`;
+    sceneDraftStatus.classList.remove("is-empty");
+  }
+
+  function applySceneDraft(draft){
+    if(!draft || typeof draft !== "object") return false;
+
+    if(sceneProjectSelect) sceneProjectSelect.value = draft.projectId || sceneProjectSelect.value;
+    if(sceneLocationSelect) sceneLocationSelect.value = draft.locationId || "";
+    if(sceneNo) sceneNo.value = draft.no || "";
+    if(sceneOrder) sceneOrder.value = draft.order || "";
+    if(sceneTitle) sceneTitle.value = draft.title || "";
+    if(sceneLabel) sceneLabel.value = draft.label || "";
+    if(sceneCast) sceneCast.value = draft.cast || "";
+    if(sceneLocation) sceneLocation.value = draft.location || "";
+    if(sceneAddress) sceneAddress.value = draft.address || "";
+    if(scenePhone) scenePhone.value = draft.phone || "";
+    if(sceneMapUrl) sceneMapUrl.value = draft.mapUrl || "";
+    if(scenePermitMemo) scenePermitMemo.value = draft.permitMemo || "";
+    if(sceneParkingMemo) sceneParkingMemo.value = draft.parkingMemo || "";
+    if(scenePowerMemo) scenePowerMemo.value = draft.powerMemo || "";
+    if(sceneToiletMemo) sceneToiletMemo.value = draft.toiletMemo || "";
+    if(sceneRainMemo) sceneRainMemo.value = draft.rainMemo || "";
+    if(sceneProp) sceneProp.value = draft.prop || "";
+    if(sceneMemo) sceneMemo.value = draft.memo || "";
+    if(sceneDirectionNote) sceneDirectionNote.value = draft.directionNote || "";
+    if(sceneCameraNote) sceneCameraNote.value = draft.cameraNote || "";
+    if(sceneLightNote) sceneLightNote.value = draft.lightNote || "";
+    if(sceneMakeNote) sceneMakeNote.value = draft.makeNote || "";
+    if(sceneCostumeNote) sceneCostumeNote.value = draft.costumeNote || "";
+    if(sceneArtNote) sceneArtNote.value = draft.artNote || "";
+    if(sceneProductionNote) sceneProductionNote.value = draft.productionNote || "";
+    if(sceneActorNote) sceneActorNote.value = draft.actorNote || "";
+    setSceneCutValues(draft.cuts);
+    setSceneCheckValues(draft.checks);
+    updateSceneCountSummary();
+    updateOpenSceneButton();
+    return true;
+  }
+
+  function restoreSceneDraft(){
+    const draft = readSceneDraft();
+    if(!draft){
+      showToast("復元できる下書きがありません");
+      return;
+    }
+    applySceneDraft(draft);
+    showToast("シーン下書きを復元しました");
+  }
+
+  function copySceneFormSummary(){
+    const lines = [
+      sceneTitle?.value?.trim() ? `シーン名：${sceneTitle.value.trim()}` : "",
+      sceneNo?.value?.trim() ? `シーン番号：${sceneNo.value.trim()}` : "",
+      sceneOrder?.value?.trim() ? `撮影順：${sceneOrder.value.trim()}` : "",
+      sceneLocation?.value?.trim() ? `場所：${sceneLocation.value.trim()}` : "",
+      sceneCast?.value?.trim() ? `出演者：${sceneCast.value.trim().replaceAll("\n", " / ")}` : "",
+      sceneProp?.value?.trim() ? `小道具：${sceneProp.value.trim().replaceAll("\n", " / ")}` : "",
+      getSceneCutValues().length ? `カット：${getSceneCutValues().join(" / ")}` : "",
+      sceneMemo?.value?.trim() ? `メモ：${sceneMemo.value.trim().replaceAll("\n", " ")}` : ""
+    ].filter(Boolean);
+
+    if(lines.length === 0){
+      showToast("コピーできる内容がまだありません");
+      return;
+    }
+
+    copyText(lines.join("\n"), "シーン要点をコピーしました");
+  }
+
+  function fillSceneFromPreviousScene(){
+    const projectId = sceneProjectSelect?.value;
+    if(!projectId){
+      showToast("先に脚本を選択してください");
+      return;
+    }
+
+    const baseScene = [...scenes]
+      .filter(scene => scene.projectId === projectId && scene.id !== editingSceneId)
+      .sort((a, b) => (Number(b.order) || 0) - (Number(a.order) || 0))[0];
+
+    if(!baseScene){
+      showToast("流用できる前シーンがありません");
+      return;
+    }
+
+    if(sceneLabel) sceneLabel.value = baseScene.label || "";
+    if(sceneCast) sceneCast.value = baseScene.cast || "";
+    if(sceneLocationSelect) sceneLocationSelect.value = baseScene.locationId || "";
+    if(sceneLocation) sceneLocation.value = baseScene.location || "";
+    if(sceneAddress) sceneAddress.value = baseScene.address || "";
+    if(scenePhone) scenePhone.value = baseScene.phone || "";
+    if(sceneMapUrl) sceneMapUrl.value = baseScene.mapUrl || "";
+    if(scenePermitMemo) scenePermitMemo.value = baseScene.permitMemo || "";
+    if(sceneParkingMemo) sceneParkingMemo.value = baseScene.parkingMemo || "";
+    if(scenePowerMemo) scenePowerMemo.value = baseScene.powerMemo || "";
+    if(sceneToiletMemo) sceneToiletMemo.value = baseScene.toiletMemo || "";
+    if(sceneRainMemo) sceneRainMemo.value = baseScene.rainMemo || "";
+    if(sceneProp) sceneProp.value = baseScene.prop || "";
+    if(sceneMemo) sceneMemo.value = baseScene.memo || "";
+    if(sceneDirectionNote) sceneDirectionNote.value = baseScene.directionNote || "";
+    if(sceneCameraNote) sceneCameraNote.value = baseScene.cameraNote || "";
+    if(sceneLightNote) sceneLightNote.value = baseScene.lightNote || "";
+    if(sceneMakeNote) sceneMakeNote.value = baseScene.makeNote || "";
+    if(sceneCostumeNote) sceneCostumeNote.value = baseScene.costumeNote || "";
+    if(sceneArtNote) sceneArtNote.value = baseScene.artNote || "";
+    if(sceneProductionNote) sceneProductionNote.value = baseScene.productionNote || "";
+    if(sceneActorNote) sceneActorNote.value = baseScene.actorNote || "";
+    setSceneCutValues(baseScene.cuts);
+    setSceneCheckValues(baseScene.checks);
+    saveSceneDraft();
+    showToast("前シーンの内容を流用しました");
+  }
+
+  function getNextSceneOrderCandidate(){
+    if(!sceneProjectSelect) return "";
+
+    const projectId = sceneProjectSelect.value;
+    if(!projectId) return "";
+
+    const projectScenes = scenes.filter(scene => scene.projectId === projectId);
+    const maxOrder = projectScenes.reduce((max, scene) => {
+      const order = Number(scene.order) || 0;
+      return Math.max(max, order);
+    }, 0);
+
+    return String(maxOrder + 1);
+  }
+
+  function updateSceneCountSummary(){
+    if(!sceneCountSummary || !sceneProjectSelect) return;
+
+    const projectId = sceneProjectSelect.value;
+    if(!projectId){
+      sceneCountSummary.textContent = "総シーン数 0\n次のシーン番号候補 1\n次の撮影順候補 1";
+      return;
+    }
+
+    const projectScenes = scenes.filter(scene => scene.projectId === projectId);
+    const totalCount = projectScenes.length;
+    const plannedCount = getProjectPlannedSceneCount(projectId);
+    const unregisteredCount = getProjectUnregisteredCount(projectId);
+    const missingNos = getProjectMissingSceneNos(projectId);
+
+    const numericSceneNos = projectScenes
+      .map(scene => String(scene.no || "").trim())
+      .filter(value => /^\d+$/.test(value))
+      .map(value => Number(value));
+
+    const maxSceneNo = numericSceneNos.length ? Math.max(...numericSceneNos) : 0;
+    const nextSceneNo = maxSceneNo + 1;
+
+    const maxOrder = projectScenes.reduce((max, scene) => {
+      const order = Number(scene.order) || 0;
+      return Math.max(max, order);
+    }, 0);
+    const nextOrder = maxOrder + 1;
+
+    sceneCountSummary.textContent =
+      `登録済みシーン数 ${totalCount}${plannedCount ? ` / 脚本全体 ${plannedCount}` : ""}${plannedCount ? ` / 未登録 ${unregisteredCount}` : ""}\n` +
+      `次のシーン番号候補 ${nextSceneNo}\n` +
+      `次の撮影順候補 ${nextOrder}\n` +
+      `${missingNos.length ? `欠番シーン番号 ${missingNos.slice(0, 8).join(", ")}${missingNos.length > 8 ? " ..." : ""}` : "欠番シーン番号 なし"}`;
+  }
+
   function clearSceneForm(keepContext = false){
   const keepLocationId = keepContext ? sceneLocationSelect.value : "";
   const keepLocationValue = keepContext ? sceneLocation.value : "";
@@ -3309,12 +4570,16 @@ function renderHeaderStatus(){
   const keepPowerMemoValue = keepContext ? scenePowerMemo.value : "";
   const keepToiletMemoValue = keepContext ? sceneToiletMemo.value : "";
   const keepRainMemoValue = keepContext ? sceneRainMemo.value : "";
+  updateSceneCountSummary();
+  setSceneCutValues([]);
 
   editingSceneId = "";
+  currentSceneActorIds = [];
+  currentScenePropIds = [];
   sceneFormTitle.textContent = "シーン入力";
   saveSceneBtn.textContent = "シーン保存";
   sceneNo.value = "";
-  sceneOrder.value = "";
+  sceneOrder.value = getNextSceneOrderCandidate();
   sceneTitle.value = "";
   sceneLabel.value = "";
   sceneCast.value = "";
@@ -3361,11 +4626,13 @@ function renderHeaderStatus(){
   sceneCheckCostume.checked = false;
   sceneCheckCamera.checked = false;
   sceneCheckLight.checked = false;
+  if(sceneContinuousMode) sceneContinuousMode.checked = continuousSceneMode;
 
   if(activeProjectId && projects.some(project => project.id === activeProjectId)){
     sceneProjectSelect.value = activeProjectId;
   }
 
+  updateSceneDraftStatus();
   updateOpenSceneButton();
 }
 
@@ -3393,12 +4660,13 @@ function createProjectQuick(title){
   const cleanTitle = String(title || "").trim();
   if(!cleanTitle) return "";
 
-  const projectObject = {
+  const projectObject = normalizeProject({
     id: uid("project"),
     title: cleanTitle,
     director: "",
+    plannedSceneCount: 0,
     memo: ""
-  };
+  });
 
   projects.push(projectObject);
   activeProjectId = projectObject.id;
@@ -3413,6 +4681,8 @@ function createProjectQuick(title){
   renderDebug();
   renderHomeDashboard();
   renderHeaderStatus();
+  renderMissingSceneInsights();
+  renderProjectLinkBoxes();
 
   showToast("案件を作成しました");
   return projectObject.id;
@@ -3420,6 +4690,7 @@ function createProjectQuick(title){
   function addProject(){
   const title = projectTitle.value.trim();
   const director = projectDirector.value.trim();
+  const plannedSceneCount = Math.max(0, Number(projectPlannedSceneCount?.value) || 0);
   const memo = projectMemo.value.trim();
 
   if(!title){
@@ -3429,12 +4700,13 @@ function createProjectQuick(title){
 
   const wasEditing = !!editingProjectId;
 
-  const projectObject = {
+  const projectObject = normalizeProject({
     id: editingProjectId || uid("project"),
     title,
     director,
+    plannedSceneCount,
     memo
-  };
+  });
 
   if(editingProjectId){
     const index = projects.findIndex(project => project.id === editingProjectId);
@@ -3457,12 +4729,10 @@ function createProjectQuick(title){
   renderScenes();
   renderDebug();
   renderHomeDashboard();
+  renderMissingSceneInsights();
+  renderProjectLinkBoxes();
 
   showToast(wasEditing ? "プロジェクトを更新しました" : "プロジェクトを保存しました");
-
-  if(!wasEditing){
-    openSceneForm();
-  }
 }
 
   function editProject(projectId){
@@ -3473,6 +4743,7 @@ function createProjectQuick(title){
     projectFormTitle.textContent = "プロジェクト編集中";
     projectTitle.value = project.title || "";
     projectDirector.value = project.director || "";
+    if(projectPlannedSceneCount) projectPlannedSceneCount.value = project.plannedSceneCount || "";
     projectMemo.value = project.memo || "";
 
     switchTab("project");
@@ -3508,18 +4779,17 @@ function createProjectQuick(title){
     renderScenes();
     renderDebug();
     renderHomeDashboard();
+    renderMissingSceneInsights();
+    renderProjectLinkBoxes();
     showToast("プロジェクトを削除しました");
   }
 
   function selectProject(projectId){
-  activeProjectId = projectId;
-  saveActiveProject();
-  renderProjects();
-  renderProjectSelect();
+  syncActiveProject(projectId);
   renderScenes();
   renderDebug();
-  renderHomeDashboard();
-  renderHeaderStatus();
+  renderMissingSceneChecklist();
+  renderProjectLinkBoxes();
   showToast("プロジェクトを切り替えました");
 }
 
@@ -3535,21 +4805,50 @@ function createProjectQuick(title){
     projectList.innerHTML = sorted.map(project => {
       const projectScenes = scenes.filter(scene => scene.projectId === project.id);
       const remaining = projectScenes.filter(scene => !scene.shotDone).length;
+      const doneCount = projectScenes.filter(scene => scene.shotDone).length;
+      const plannedCount = Math.max(0, Number(project.plannedSceneCount) || 0);
+      const unregisteredCount = Math.max(0, plannedCount - projectScenes.length);
+      const missingNos = getProjectMissingSceneNos(project.id);
+      const progressBase = plannedCount > 0 ? plannedCount : projectScenes.length;
+      const progress = progressBase ? Math.min(100, Math.round((doneCount / progressBase) * 100)) : 0;
+      let progressClass = "low";
+if(progress >= 70) progressClass = "high";
+else if(progress >= 30) progressClass = "mid";
       return `
         <div class="project-card ${project.id === activeProjectId ? "active" : ""}">
           <div class="item-title">${escapeHtml(project.title)}</div>
           <div class="item-meta">監督：${escapeHtml(project.director || "-")}</div>
-          <div class="item-meta">シーン数：${projectScenes.length}</div>
-          <div class="item-meta">未撮影：${remaining}</div>
+          <div class="item-meta">シーン数：登録 ${projectScenes.length}${plannedCount > 0 ? ` / 脚本全体 ${plannedCount} / 未登録 ${unregisteredCount}` : ""}</div>
+          <div class="item-meta">${missingNos.length ? `欠番：${escapeHtml(missingNos.slice(0, 6).join(", "))}${missingNos.length > 6 ? " ..." : ""}` : "欠番：なし"}</div>
+          <div class="project-status">
+  <span class="status-remaining">未撮影 ${remaining}</span>
+  <span class="status-done">完了 ${doneCount}</span>
+</div>
+          <div class="project-progress">  
+            <div class="project-progress-row">
+    <span>進行率</span>
+    <span>${progress}%</span>
+  </div>
+  <div class="project-progress-bar">
+    <div class="project-progress-fill ${progressClass}" style="width:${progress}%"></div>
+  </div>
+</div>
           <div class="item-meta">${escapeHtml(project.memo || "-")}</div>
           <div class="item-actions">
             <button type="button" class="select-btn" data-project-select="${project.id}">使う</button>
             <button type="button" class="edit-btn" data-project-edit="${project.id}">編集</button>
             <button type="button" class="danger-btn" data-project-delete="${project.id}">削除</button>
+            <div class="project-extra-actions">
+            <button type="button" class="primary-btn" data-project-jump-undone="${project.id}">未撮影へ</button>
+            <button type="button" class="select-btn" data-project-fill-missing="${project.id}">欠番入力</button>
+            <button type="button" class="secondary-btn" data-project-generate-missing="${project.id}">仮シーン作成</button>
+</div>
           </div>
         </div>
       `;
     }).join("");
+projectList.style.display = "block";
+projectList.style.minHeight = "120px";
 
     const current = projects.find(project => project.id === activeProjectId);
     currentProjectLabel.textContent = current ? current.title : "未選択";
@@ -3562,6 +4861,67 @@ function createProjectQuick(title){
     });
     projectList.querySelectorAll("[data-project-delete]").forEach(btn => {
       btn.addEventListener("click", () => deleteProject(btn.getAttribute("data-project-delete")));
+    });
+    projectList.querySelectorAll("[data-project-jump-undone]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const projectId = btn.getAttribute("data-project-jump-undone");
+    if(!projectId) return;
+
+    activeProjectId = projectId;
+    saveActiveProject();
+
+    if(fieldProjectFilter){
+      fieldProjectFilter.value = projectId;
+    }
+    if(fieldStatusFilter){
+      fieldStatusFilter.value = "undone";
+    }
+
+    setMode("field");
+    switchTab("tool");
+
+    setTimeout(() => {
+      renderProjects();
+      renderScenes();
+
+      const targetScene = scenes
+        .filter(scene => scene.projectId === projectId && !scene.shotDone)
+        .sort((a, b) => {
+          const orderDiff = (a.order || 0) - (b.order || 0);
+          if(orderDiff !== 0) return orderDiff;
+          return String(a.no || "").localeCompare(String(b.no || ""), "ja");
+        })[0];
+
+      if(targetScene){
+        scrollToScene(targetScene.id);
+        setTimeout(() => {
+          toggleDetail(targetScene.id);
+          updateCurrentSceneStrip();
+        }, 120);
+      }else{
+        showToast("未撮影シーンはありません");
+      }
+    }, 120);
+  });
+});
+    projectList.querySelectorAll("[data-project-fill-missing]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const projectId = btn.getAttribute("data-project-fill-missing");
+        if(!projectId) return;
+        const missingNos = getProjectMissingSceneNos(projectId);
+        if(missingNos.length === 0){
+          showToast("欠番シーン番号はありません");
+          return;
+        }
+        openSceneFormForSceneNo(projectId, missingNos[0]);
+      });
+    });
+    projectList.querySelectorAll("[data-project-generate-missing]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const projectId = btn.getAttribute("data-project-generate-missing");
+        if(!projectId) return;
+        generatePlaceholderScenesForMissing(projectId);
+      });
     });
   }
 
@@ -3582,6 +4942,7 @@ function createProjectQuick(title){
     }else{
       sceneProjectSelect.value = sorted[0].id;
     }
+    updateSceneCountSummary();
   }
 
   function renderFieldProjectFilter(){
@@ -4014,6 +5375,10 @@ function createProjectQuick(title){
     }
 
     sceneCast.value = current.join("\n");
+    if(!currentSceneActorIds.includes(actor.id)){
+      currentSceneActorIds.push(actor.id);
+    }
+    saveSceneDraft();
     showToast("出演者に追加しました");
   }
   function toggleActorDetail(actorId){
@@ -4195,23 +5560,27 @@ function createProjectQuick(title){
   }
 }
 
-function applyPropToScene(){
-  const propId = scenePropSelect.value;
-  const prop = props.find(item => item.id === propId);
-  if(!prop) return;
+  function applyPropToScene(){
+    const propId = scenePropSelect.value;
+    const prop = props.find(item => item.id === propId);
+    if(!prop) return;
 
   const current = sceneProp.value
     .split(/\r?\n|,|、/)
     .map(v => v.trim())
     .filter(Boolean);
 
-  if(!current.includes(prop.name)){
-    current.push(prop.name);
-  }
+    if(!current.includes(prop.name)){
+      current.push(prop.name);
+    }
 
-  sceneProp.value = current.join("\n");
-  showToast("小道具に追加しました");
-}
+    sceneProp.value = current.join("\n");
+    if(!currentScenePropIds.includes(prop.id)){
+      currentScenePropIds.push(prop.id);
+    }
+    saveSceneDraft();
+    showToast("小道具に追加しました");
+  }
 
   function areAllSceneChecksComplete(checks){
     return !!(
@@ -4267,14 +5636,14 @@ function applyPropToScene(){
       return;
     }
 
-    const sceneChecks = {
+    const sceneChecks = normalizeSceneChecks({
       schedule: sceneCheckSchedule.checked,
       prop: sceneCheckProp.checked,
       cast: sceneCheckCast.checked,
       costume: sceneCheckCostume.checked,
       camera: sceneCheckCamera.checked,
       light: sceneCheckLight.checked
-    };
+    });
 
     const sameProjectScenes = scenes.filter(scene => scene.projectId === projectId);
     const maxOrder = sameProjectScenes.reduce((max, scene) => {
@@ -4285,38 +5654,39 @@ function applyPropToScene(){
     const finalOrder = Number.isFinite(inputOrder) && inputOrder > 0 ? inputOrder : maxOrder + 1;
     const existingShotDone = editingSceneId ? (scenes.find(scene => scene.id === editingSceneId)?.shotDone || false) : false;
 
-    const sceneObject = {
-  id: editingSceneId || uid("scene"),
-  projectId,
-  no,
-  order: finalOrder,
-  title,
-  label,
-  cast,
-  locationId,
-  location,
-  address,
-  phone,
-  mapUrl,
-  permitMemo,
-  parkingMemo,
-  powerMemo,
-  toiletMemo,
-  rainMemo,
-  prop,
-  memo,
-  directionNote,
-  cameraNote,
-  lightNote,
-  makeNote,
-  costumeNote,
-  artNote,
-  productionNote,
-  actorNote,
-  checks: sceneChecks,
-  done: areAllSceneChecksComplete(sceneChecks),
-  shotDone: existingShotDone
-};
+    const sceneObject = normalizeScene({
+      id: editingSceneId || uid("scene"),
+      projectId,
+      no,
+      order: finalOrder,
+      title,
+      label,
+      cast,
+      locationId,
+      location,
+      address,
+      phone,
+      mapUrl,
+      permitMemo,
+      parkingMemo,
+      powerMemo,
+      toiletMemo,
+      rainMemo,
+      prop,
+      memo,
+      directionNote,
+      cameraNote,
+      lightNote,
+      makeNote,
+      costumeNote,
+      artNote,
+      productionNote,
+      actorNote,
+      isPlaceholder: false,
+      cuts: getSceneCutValues(),
+      checks: sceneChecks,
+      shotDone: existingShotDone
+    });
 
     if(editingSceneId){
       const index = scenes.findIndex(scene => scene.id === editingSceneId);
@@ -4335,6 +5705,7 @@ const savedId = sceneObject.id;
 const wasEditing = !!editingSceneId;
 
 clearSceneForm(!wasEditing);
+clearSceneDraft();
 
 if(mode === "field"){
   sceneFormSection.classList.add("hidden");
@@ -4344,6 +5715,7 @@ if(mode === "field"){
     renderScenes();
     renderDebug();
     renderHomeDashboard();
+    renderMissingSceneInsights();
     updateOpenSceneButton();
     scrollToScene(savedId);
     showToast(wasEditing ? "シーンを更新しました" : "シーンを保存しました");
@@ -4388,10 +5760,12 @@ if(mode === "field"){
 
 function getProjectProgress(projectId){
   const projectScenes = getProjectScenes(projectId);
-  if(projectScenes.length === 0) return 0;
+  const plannedCount = getProjectPlannedSceneCount(projectId);
+  const denominator = plannedCount > 0 ? plannedCount : projectScenes.length;
+  if(denominator === 0) return 0;
 
   const doneCount = projectScenes.filter(scene => scene.shotDone).length;
-  return Math.round((doneCount / projectScenes.length) * 100);
+  return Math.min(100, Math.round((doneCount / denominator) * 100));
 }
 
 function getNotReadyScenes(projectId){
@@ -4406,7 +5780,7 @@ function getNotReadyScenes(projectId){
     const original = scenes.find(item => item.id === sceneId);
     if(!original) return;
 
-    const duplicated = {
+    const duplicated = normalizeScene({
       ...original,
       id: uid("scene"),
       title: `${original.title || "シーン"} コピー`,
@@ -4418,9 +5792,8 @@ function getNotReadyScenes(projectId){
         costume:false,
         camera:false,
         light:false
-      },
-      done: false
-    };
+      }
+    });
 
     scenes.push(duplicated);
     normalizeProjectSceneOrders(duplicated.projectId);
@@ -4429,6 +5802,7 @@ function getNotReadyScenes(projectId){
     renderScenes();
     renderDebug();
     renderHomeDashboard();
+    renderMissingSceneInsights();
     scrollToScene(duplicated.id);
     showToast("シーンを複製しました");
   }
@@ -4480,6 +5854,9 @@ function getNotReadyScenes(projectId){
   function editScene(sceneId){
     const scene = scenes.find(item => item.id === sceneId);
     if(!scene) return;
+    if(scene.projectId){
+      syncActiveProject(scene.projectId, { skipSceneProjectSelect: true });
+    }
 
     editingSceneId = scene.id;
     sceneFormTitle.textContent = "シーン編集中";
@@ -4510,6 +5887,7 @@ function getNotReadyScenes(projectId){
     sceneArtNote.value = scene.artNote || "";
     sceneProductionNote.value = scene.productionNote || "";
     sceneActorNote.value = scene.actorNote || "";
+    setSceneCutValues(scene.cuts);
 
     const checks = scene.checks || {};
     sceneCheckSchedule.checked = !!checks.schedule;
@@ -4539,6 +5917,7 @@ function getNotReadyScenes(projectId){
     renderScenes();
     renderDebug();
     renderHomeDashboard();
+    renderMissingSceneInsights();
 
     if(editingSceneId === sceneId){
       clearSceneForm();
@@ -4882,18 +6261,22 @@ function getNotReadyScenes(projectId){
   function updateCurrentSceneStrip(){
   if(!currentSceneStripTitle || !currentSceneStripSub) return;
 
-  const currentSceneId = getCurrentVisibleSceneId();
+  const currentSceneId = currentSceneStripSceneId || getCurrentVisibleSceneId();
   const currentScene = scenes.find(scene => scene.id === currentSceneId) || null;
   const nextScene = getNextUnshotScene();
 
+  currentSceneStripSceneId = currentScene ? currentScene.id : "";
+
   if(currentScene){
-    currentSceneStripTitle.textContent = `現在 ${currentScene.title || "名称未設定"}`;
+    const sceneNoText = currentScene.no ? `シーン ${currentScene.no} ` : "";
+    currentSceneStripTitle.textContent = `現在 ${sceneNoText}${currentScene.title || "名称未設定"}`;
   }else{
     currentSceneStripTitle.textContent = "現在のシーン 未選択";
   }
 
   if(nextScene){
-    currentSceneStripSub.textContent = `次 ${nextScene.title || "名称未設定"}`;
+    const nextNoText = nextScene.no ? `シーン ${nextScene.no} ` : "";
+    currentSceneStripSub.textContent = `次 ${nextNoText}${nextScene.title || "名称未設定"}`;
   }else{
     currentSceneStripSub.textContent = "次のシーン なし";
   }
@@ -4959,7 +6342,6 @@ function getNotReadyScenes(projectId){
 
   function buildSceneDetailRows(scene, checkStatus){
     const combinedMemo = buildCombinedMemo(scene);
-
     return [
       scene.cast ? `<div class="item-meta">出演者：${escapeHtml(scene.cast)}</div>` : "",
       scene.prop ? `<div class="item-meta">小道具：${escapeHtml(scene.prop)}</div>` : "",
@@ -4971,6 +6353,7 @@ function getNotReadyScenes(projectId){
       scene.powerMemo ? `<div class="item-meta">電源：${escapeHtml(scene.powerMemo)}</div>` : "",
       scene.toiletMemo ? `<div class="item-meta">トイレ：${escapeHtml(scene.toiletMemo)}</div>` : "",
       scene.rainMemo ? `<div class="item-meta">雨天時：${escapeHtml(scene.rainMemo)}</div>` : "",
+      scene.cuts && scene.cuts.length ? `<div class="item-meta">カット：${escapeHtml(scene.cuts.join(" / "))}</div>` : "",
       combinedMemo ? `<div class="item-meta">メモ：${escapeHtml(combinedMemo)}</div>` : "",
       `<div class="item-meta">準備チェック：${checkStatus.doneCount}/6 ${checkStatus.allDone ? "完了" : `あと${checkStatus.remainingCount}項目`}</div>`
     ].filter(Boolean).join("");
@@ -4983,6 +6366,7 @@ function getNotReadyScenes(projectId){
     const shotDoneCardClass = scene.shotDone ? "shot-done-card compact-shot-card" : "";
     const undoneCardClass = scene.shotDone ? "" : "scene-undone-card";
     const nextTargetClass = isNextTarget ? "next-target-card" : "";
+    const placeholderCardClass = scene.isPlaceholder ? "placeholder-card" : "";
 
     const detailRows = buildSceneDetailRows(scene, checkStatus);
 
@@ -4996,13 +6380,14 @@ function getNotReadyScenes(projectId){
 
     if(isFieldMode){
       return `
-        <div class="scene-card field-scene-card ${labelClass(scene.label)} ${readyCardClass} ${shotDoneCardClass} ${undoneCardClass} ${nextTargetClass}" data-scene-id="${scene.id}">
+        <div class="scene-card field-scene-card ${labelClass(scene.label)} ${readyCardClass} ${shotDoneCardClass} ${undoneCardClass} ${nextTargetClass} ${placeholderCardClass}" data-scene-id="${scene.id}">
           <div class="item-title">${escapeHtml(scene.title)}</div>
 
           <div class="badges">
             ${getProjectTitle(scene.projectId) ? `<span class="badge">${escapeHtml(getProjectTitle(scene.projectId))}</span>` : ``}
             ${scene.no ? `<span class="badge">シーン ${escapeHtml(scene.no)}</span>` : ``}
             ${scene.order ? `<span class="badge">撮影順 ${scene.order}</span>` : ``}
+            ${scene.isPlaceholder ? `<span class="badge placeholder">仮シーン</span>` : ``}
             ${scene.label ? `<span class="badge ${badgeClass(scene.label)}">${escapeHtml(scene.label)}</span>` : ``}
             ${scene.shotDone ? `<span class="badge shot">撮影完了</span>` : `<span class="badge">未撮影</span>`}
             ${scene.done ? `<span class="badge done">準備完了</span>` : `<span class="badge warn">あと${checkStatus.remainingCount}項目</span>`}
@@ -5044,12 +6429,13 @@ function getNotReadyScenes(projectId){
     }
 
     return `
-      <div class="scene-card ${labelClass(scene.label)} ${readyCardClass} ${shotDoneCardClass} ${undoneCardClass} ${nextTargetClass}" data-scene-id="${scene.id}">
+      <div class="scene-card ${labelClass(scene.label)} ${readyCardClass} ${shotDoneCardClass} ${undoneCardClass} ${nextTargetClass} ${placeholderCardClass}" data-scene-id="${scene.id}">
         <div class="item-title">${escapeHtml(scene.title)}</div>
 
         <div class="badges">
           ${scene.no ? `<span class="badge">シーン ${escapeHtml(scene.no)}</span>` : ``}
           ${scene.order ? `<span class="badge">撮影順 ${scene.order}</span>` : ``}
+          ${scene.isPlaceholder ? `<span class="badge placeholder">仮シーン</span>` : ``}
           ${scene.label ? `<span class="badge ${badgeClass(scene.label)}">${escapeHtml(scene.label)}</span>` : ``}
           ${scene.shotDone ? `<span class="badge shot">撮影完了</span>` : `<span class="badge">未撮影</span>`}
           ${scene.done ? `<span class="badge done">準備完了</span>` : `<span class="badge warn">あと${checkStatus.remainingCount}項目</span>`}
@@ -5264,8 +6650,10 @@ function buildSceneCheckBadges(scene){
 }
   function renderScenes(){
     if(mode === "field"){
-      const filteredScenes = getFilteredScenesForField();
+      const filteredScenes = filterScenesByType(getFilteredScenesForField());
       updateFieldSummary(filteredScenes);
+      renderMissingSceneInsights();
+      renderMissingSceneChecklist();
 
       if(filteredScenes.length === 0){
   sceneList.innerHTML = `<div class="empty-text">該当するシーンがありません</div>`;
@@ -5273,6 +6661,7 @@ function buildSceneCheckBadges(scene){
   updateNextSceneBar();
   updateCurrentSceneStrip();
   renderHeaderStatus();
+  renderCallSheetList();
   return;
 }
 
@@ -5368,14 +6757,20 @@ function buildSceneCheckBadges(scene){
       updateCurrentSceneBar();
       updateNextSceneBar();
       updateCurrentSceneStrip();
+      renderCallSheetList();
+      renderProjectLinkBoxes();
       return;
     }
 
     if(scenes.length === 0){
   sceneList.innerHTML = `<div class="empty-text">シーンがまだありません</div>`;
+  renderMissingSceneInsights();
+  renderMissingSceneChecklist();
   updateCurrentSceneBar();
   updateNextSceneBar();
   updateCurrentSceneStrip();
+  renderCallSheetList();
+  renderProjectLinkBoxes();
   return;
 }
 
@@ -5383,22 +6778,26 @@ function buildSceneCheckBadges(scene){
 
     const groups = sortedProjects
       .map(project => {
-        const projectScenes = scenes
+        const projectScenes = filterScenesByType(scenes
           .filter(scene => scene.projectId === project.id)
           .sort((a, b) => {
             const orderDiff = (a.order || 0) - (b.order || 0);
             if(orderDiff !== 0) return orderDiff;
             return String(a.no || "").localeCompare(String(b.no || ""), "ja");
-          });
+          }));
         return { project, scenes: projectScenes };
       })
       .filter(group => group.scenes.length > 0);
 
     if(groups.length === 0){
   sceneList.innerHTML = `<div class="empty-text">シーンがまだありません</div>`;
+  renderMissingSceneInsights();
+  renderMissingSceneChecklist();
   updateCurrentSceneBar();
   updateNextSceneBar();
   updateCurrentSceneStrip();
+  renderCallSheetList();
+  renderProjectLinkBoxes();
   return;
 }
 
@@ -5412,9 +6811,13 @@ function buildSceneCheckBadges(scene){
     `).join("");
 
     bindSceneListEvents();
+renderMissingSceneInsights();
+renderMissingSceneChecklist();
+renderProjectLinkBoxes();
 updateCurrentSceneBar();
 updateNextSceneBar();
 updateCurrentSceneStrip();
+renderCallSheetList();
   }
 
   function renderHomeDashboard(){
@@ -5429,7 +6832,10 @@ updateCurrentSceneStrip();
   const projectProgress = activeProjectId ? getProjectProgress(activeProjectId) : 0;
   const notReadyScenes = getNotReadyScenes(activeProjectId);
   const activeProjectScenes = activeProjectId ? getProjectScenes(activeProjectId) : [];
+  const unregisteredCount = activeProjectId ? getProjectUnregisteredCount(activeProjectId) : 0;
+  const missingNos = activeProjectId ? getProjectMissingSceneNos(activeProjectId) : [];
   const shotDoneCount = activeProjectScenes.filter(scene => scene.shotDone).length;
+  const remainingCount = activeProjectScenes.filter(scene => !scene.shotDone).length;
 
   if(homeProgressValue){
     homeProgressValue.textContent = `${projectProgress}%`;
@@ -5452,9 +6858,40 @@ updateCurrentSceneStrip();
     }else if(activeProjectScenes.length === 0){
       homeProgressSub.textContent = "シーン未登録";
     }else{
-      homeProgressSub.textContent = `${shotDoneCount}/${activeProjectScenes.length} シーン完了`;
+      const plannedCount = getProjectPlannedSceneCount(activeProjectId);
+      homeProgressSub.textContent = plannedCount > 0
+        ? `${shotDoneCount}/${plannedCount} シーン完了（脚本全体ベース）`
+        : `${shotDoneCount}/${activeProjectScenes.length} シーン完了`;
     }
   }
+  if(homeProjectProgressSummary){
+  if(!activeProjectId){
+    homeProjectProgressSummary.textContent = "脚本を選択すると進行状況が表示されます";
+  }else if(activeProjectScenes.length === 0){
+    homeProjectProgressSummary.textContent = "この脚本にはシーンがまだありません";
+  }else{
+    const plannedCount = getProjectPlannedSceneCount(activeProjectId);
+    homeProjectProgressSummary.textContent =
+      plannedCount > 0
+        ? `完了 ${shotDoneCount} / 未撮影 ${remainingCount} / 登録 ${activeProjectScenes.length} / 脚本全体 ${plannedCount} / 未登録 ${unregisteredCount}${missingNos.length ? ` / 欠番 ${missingNos.slice(0, 5).join(", ")}${missingNos.length > 5 ? " ..." : ""}` : ""}`
+        : `完了 ${shotDoneCount} / 未撮影 ${remainingCount} / 合計 ${activeProjectScenes.length}${missingNos.length ? ` / 欠番 ${missingNos.slice(0, 5).join(", ")}${missingNos.length > 5 ? " ..." : ""}` : ""}`;
+  }
+}
+
+if(homeProjectProgressBarLarge){
+  homeProjectProgressBarLarge.style.width = `${projectProgress}%`;
+
+  if(projectProgress < 30){
+    homeProjectProgressBarLarge.className = "progress-bar-fill low";
+    homeProjectProgressBarLarge.style.background = "#ef4444";
+  }else if(projectProgress < 70){
+    homeProjectProgressBarLarge.className = "progress-bar-fill mid";
+    homeProjectProgressBarLarge.style.background = "#f59e0b";
+  }else{
+    homeProjectProgressBarLarge.className = "progress-bar-fill high";
+    homeProjectProgressBarLarge.style.background = "#22c55e";
+  }
+}
 
   if(homeNotReadyCount){
     homeNotReadyCount.textContent = String(notReadyScenes.length);
@@ -5467,6 +6904,10 @@ updateCurrentSceneStrip();
     homeTodayAction.textContent = "まずはプロジェクトを選択してください";
   }else if(activeProjectScenes.length === 0){
     homeTodayAction.textContent = "まずはシーンを登録してください";
+  }else if(missingNos.length > 0){
+    homeTodayAction.textContent =
+      `脚本全体に対して未登録シーンがあります\n` +
+      `先頭の欠番は ${missingNos[0]} です`;
   }else if(notReadyScenes.length > 0){
     const firstNotReady = [...notReadyScenes].sort((a, b) => {
       const orderDiff = (a.order || 0) - (b.order || 0);
@@ -5491,6 +6932,7 @@ updateCurrentSceneStrip();
   }
 }
 
+
   if(homeAlertSceneList){
     const targetScenes = [...notReadyScenes]
       .sort((a, b) => {
@@ -5501,9 +6943,11 @@ updateCurrentSceneStrip();
       .slice(0, 5);
 
     if(targetScenes.length === 0){
-      homeAlertSceneList.textContent = "要確認シーンはありません";
+      homeAlertSceneList.textContent = missingNos.length > 0
+        ? `要確認シーンはありません / 欠番 ${missingNos.slice(0, 8).join(", ")}`
+        : "要確認シーンはありません";
     }else{
-      homeAlertSceneList.innerHTML = targetScenes.map(scene => {
+      const alertHtml = targetScenes.map(scene => {
         const checkStatus = getSceneCheckStatus(scene.checks);
         return `
           <div class="dashboard-alert-item">
@@ -5516,10 +6960,441 @@ updateCurrentSceneStrip();
           </div>
         `;
       }).join("");
+
+      const missingHtml = missingNos.length > 0 ? `
+        <div class="dashboard-alert-item">
+          <div class="dashboard-alert-title">未登録シーンあり</div>
+          <div class="dashboard-alert-sub">欠番 ${escapeHtml(missingNos.slice(0, 8).join(", "))}${missingNos.length > 8 ? " ..." : ""}</div>
+        </div>
+      ` : "";
+
+      homeAlertSceneList.innerHTML = missingHtml + alertHtml;
     }
   }
 }
+function formatDateTimeJP(value){
+  if(!value) return "-";
+  const date = new Date(value);
+  if(Number.isNaN(date.getTime())) return "-";
 
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  const h = String(date.getHours()).padStart(2, "0");
+  const min = String(date.getMinutes()).padStart(2, "0");
+
+  return `${y}/${m}/${d} ${h}:${min}`;
+}
+
+  function getSortedProjectScenes(projectId){
+  return scenes
+    .filter(scene => scene.projectId === projectId)
+    .sort((a, b) => {
+      const orderDiff = (Number(a.order) || 0) - (Number(b.order) || 0);
+      if(orderDiff !== 0) return orderDiff;
+      return String(a.no || "").localeCompare(String(b.no || ""), "ja");
+    });
+}
+
+function parseCsvLine(line){
+  const result = [];
+  let current = "";
+  let inQuotes = false;
+
+  for(let i = 0; i < line.length; i += 1){
+    const char = line[i];
+    const next = line[i + 1];
+
+    if(char === '"'){
+      if(inQuotes && next === '"'){
+        current += '"';
+        i += 1;
+      }else{
+        inQuotes = !inQuotes;
+      }
+      continue;
+    }
+
+    if(char === "," && !inQuotes){
+      result.push(current);
+      current = "";
+      continue;
+    }
+
+    current += char;
+  }
+
+  result.push(current);
+  return result.map(value => value.trim());
+}
+
+function parseCsv(text){
+  const lines = String(text || "")
+    .replace(/^\uFEFF/, "")
+    .split(/\r?\n/)
+    .filter(line => line.trim() !== "");
+
+  if(lines.length === 0){
+    return [];
+  }
+
+  const headers = parseCsvLine(lines[0]).map(header => header.trim());
+  return lines.slice(1).map(line => {
+    const values = parseCsvLine(line);
+    const row = {};
+    headers.forEach((header, index) => {
+      row[header] = values[index] ?? "";
+    });
+    return row;
+  });
+}
+
+function splitMultiValue(value){
+  return String(value || "")
+    .split(/[\/|、]/)
+    .map(item => item.trim())
+    .filter(Boolean);
+}
+
+function getSceneCsvTemplate(){
+  return [
+    "no,title,order,location,cast,prop,label,memo,cuts",
+    "1,店内 会話シーン,1,居酒屋かつら,長島琢磨/岡本尚子,グラス/メニュー表,赤,重要シーン,CU 主人公アップ/2ショット/引き"
+  ].join("\n");
+}
+
+function importScenesFromCsvText(text){
+  if(!activeProjectId){
+    alert("先に脚本を選択してください");
+    return;
+  }
+
+  const rows = parseCsv(text);
+  if(rows.length === 0){
+    alert("CSVに取り込める行がありません");
+    return;
+  }
+
+  const baseOrder = getSortedProjectScenes(activeProjectId)
+    .reduce((max, scene) => Math.max(max, Number(scene.order) || 0), 0);
+
+  const importedScenes = rows
+    .map((row, index) => {
+      const title = String(row.title || row["シーン名"] || "").trim();
+      if(!title) return null;
+
+      const checks = normalizeSceneChecks({});
+      const inputOrder = Number(row.order || row["撮影順"] || "");
+      return normalizeScene({
+        id: uid("scene"),
+        projectId: activeProjectId,
+        no: String(row.no || row["シーン番号"] || "").trim(),
+        order: Number.isFinite(inputOrder) && inputOrder > 0 ? inputOrder : baseOrder + index + 1,
+        title,
+        label: String(row.label || row["色分けラベル"] || "").trim(),
+        cast: splitMultiValue(row.cast || row["出演者"]).join("\n"),
+        locationId: "",
+        location: String(row.location || row["場所"] || "").trim(),
+        address: "",
+        phone: "",
+        mapUrl: "",
+        permitMemo: "",
+        parkingMemo: "",
+        powerMemo: "",
+        toiletMemo: "",
+        rainMemo: "",
+        prop: splitMultiValue(row.prop || row["小道具"]).join("\n"),
+        memo: String(row.memo || row["メモ"] || "").trim(),
+        directionNote: "",
+        cameraNote: "",
+        lightNote: "",
+        makeNote: "",
+        costumeNote: "",
+        artNote: "",
+        productionNote: "",
+        actorNote: "",
+        cuts: splitMultiValue(row.cuts || row["カット"]),
+        checks,
+        shotDone: false
+      });
+    })
+    .filter(Boolean);
+
+  if(importedScenes.length === 0){
+    alert("シーン名が入った行がありません");
+    return;
+  }
+
+  scenes.push(...importedScenes);
+  normalizeProjectSceneOrders(activeProjectId);
+  saveScenes();
+  renderProjects();
+  renderProjectSelect();
+  renderFieldProjectFilter();
+  renderScenes();
+  renderDebug();
+  renderHomeDashboard();
+  updateSceneCountSummary();
+  renderProjectLinkBoxes();
+  showToast(`${importedScenes.length}シーンをCSVから取り込みました`);
+}
+
+function getCallSheetRows(sheet){
+  const ids = Array.isArray(sheet.sceneIds) ? sheet.sceneIds : [];
+
+  return ids.map((sceneId, index) => {
+    const scene = scenes.find(item => item.id === sceneId);
+
+    if(!scene){
+      return {
+        id: sceneId,
+        missing: true,
+        rowNo: index + 1,
+        order: "-",
+        no: "-",
+        title: "削除されたシーン",
+        location: "-",
+        cast: "-",
+        prop: "-",
+        memo: "-",
+        shotDone: false
+      };
+    }
+
+    return {
+      id: scene.id,
+      missing: false,
+      rowNo: index + 1,
+      order: scene.order || "-",
+      no: scene.no || "-",
+      title: scene.title || "名称未設定",
+      location: scene.location || "-",
+      cast: scene.cast || "-",
+      prop: scene.prop || "-",
+      memo: buildCombinedMemo(scene) || "-",
+      shotDone: !!scene.shotDone
+    };
+  });
+}
+
+function buildCallSheetTable(rows){
+  return `
+    <div class="call-sheet-table">
+      <div class="call-sheet-row call-sheet-header">
+        <div class="call-sheet-cell">状態</div>
+        <div class="call-sheet-cell">撮影順</div>
+        <div class="call-sheet-cell">シーン</div>
+        <div class="call-sheet-cell">場所</div>
+        <div class="call-sheet-cell">出演者</div>
+        <div class="call-sheet-cell">小道具</div>
+        <div class="call-sheet-cell">メモ</div>
+      </div>
+
+      ${rows.map(row => `
+        <div class="call-sheet-row ${row.shotDone ? "is-done" : ""}">
+          <div class="call-sheet-cell time-cell">${row.shotDone ? "✓ 完了" : "未完"}</div>
+          <div class="call-sheet-cell">${escapeHtml(row.order)}</div>
+          <div class="call-sheet-cell">
+            ${escapeHtml(row.no)}<br>
+            ${escapeHtml(row.title)}
+          </div>
+          <div class="call-sheet-cell location-cell">${escapeHtml(row.location)}</div>
+          <div class="call-sheet-cell cast-cell">${escapeHtml(row.cast)}</div>
+          <div class="call-sheet-cell prop-cell">${escapeHtml(row.prop)}</div>
+          <div class="call-sheet-cell note-cell">
+            ${escapeHtml(row.memo)}
+            ${!row.missing ? `
+              <div style="margin-top:8px;">
+                <button type="button" class="detail-btn" data-callsheet-scene="${row.id}">シーンへ</button>
+              </div>
+            ` : ``}
+          </div>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function bindCallSheetDetailEvents(){
+  if(!callSheetDetail) return;
+
+  callSheetDetail.querySelectorAll("[data-callsheet-scene]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const sceneId = btn.getAttribute("data-callsheet-scene");
+      if(!sceneId) return;
+      const scene = scenes.find(item => item.id === sceneId);
+      if(scene?.projectId){
+        syncActiveProject(scene.projectId);
+      }
+
+      switchTab("scene");
+      setTimeout(() => {
+        scrollToScene(sceneId);
+        toggleDetail(sceneId);
+      }, 120);
+    });
+  });
+
+  callSheetDetail.querySelectorAll("[data-callsheet-delete]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      deleteCallSheet(btn.getAttribute("data-callsheet-delete"));
+    });
+  });
+}
+
+function openCallSheetDetail(callSheetId){
+  const sheet = callSheets.find(item => item.id === callSheetId);
+  if(!sheet) return;
+  if(sheet.projectId){
+    syncActiveProject(sheet.projectId);
+  }
+
+  const rows = getCallSheetRows(sheet);
+  const doneCount = rows.filter(row => row.shotDone).length;
+  const totalCount = rows.length;
+  const projectTitle = getProjectTitle(sheet.projectId) || "未選択";
+
+  if(callSheetDetailTitle){
+    callSheetDetailTitle.textContent = sheet.title || "香盤詳細";
+  }
+
+  if(callSheetDetail){
+    callSheetDetail.innerHTML = `
+      <div class="item-meta">脚本：${escapeHtml(projectTitle)}</div>
+      <div class="item-meta">作成日：${escapeHtml(formatDateTimeJP(sheet.createdAt))}</div>
+      <div class="item-meta">進行：${doneCount}/${totalCount} 完了</div>
+
+      ${buildCallSheetTable(rows)}
+
+      <div class="button-row" style="margin-top:12px;">
+        <button type="button" class="danger-btn" data-callsheet-delete="${sheet.id}">この香盤を削除</button>
+      </div>
+    `;
+
+    bindCallSheetDetailEvents();
+  }
+
+  if(callSheetDetailSection){
+    callSheetDetailSection.classList.remove("hidden");
+    setSectionCollapsed("callSheetDetailSection", false);
+  }
+
+  switchTab("callsheet");
+
+  setTimeout(() => {
+    if(callSheetDetailSection){
+      window.scrollTo({ top: callSheetDetailSection.offsetTop - 20, behavior: "smooth" });
+    }
+  }, 80);
+}
+
+function deleteCallSheet(callSheetId){
+  const target = callSheets.find(item => item.id === callSheetId);
+  if(!target) return;
+
+  if(!confirm("この香盤を削除する？")) return;
+
+  callSheets = callSheets.filter(item => item.id !== callSheetId);
+  saveCallSheets();
+  renderCallSheetList();
+
+  if(callSheetDetailSection){
+    callSheetDetailSection.classList.add("hidden");
+  }
+
+  showToast("香盤を削除しました");
+}
+
+function renderCallSheetList(){
+  if(!callSheetList) return;
+
+  if(callSheets.length === 0){
+    callSheetList.innerHTML = `<div class="empty-text">香盤はまだありません</div>`;
+    return;
+  }
+
+  const sortedSheets = [...callSheets].sort((a, b) => {
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+  });
+
+  callSheetList.innerHTML = sortedSheets.map(sheet => {
+    const rows = getCallSheetRows(sheet);
+    const doneCount = rows.filter(row => row.shotDone).length;
+    const totalCount = rows.length;
+    const projectTitle = getProjectTitle(sheet.projectId) || "未選択";
+
+    return `
+      <div class="call-sheet-card">
+        <div class="call-sheet-title">${escapeHtml(sheet.title || "香盤")}</div>
+        <div class="call-sheet-meta">脚本：${escapeHtml(projectTitle)}</div>
+        ${sheet.scheduledDate ? `<div class="call-sheet-meta">撮影日：${escapeHtml(sheet.scheduledDate)}</div>` : ``}
+        <div class="call-sheet-meta">作成日：${escapeHtml(formatDateTimeJP(sheet.createdAt))}</div>
+        <div class="call-sheet-meta">対象：${sheet.undoneOnly ? "未撮影のみ" : "全シーン"}</div>
+        <div class="call-sheet-meta">進行：${doneCount}/${totalCount} 完了</div>
+
+        <div class="button-row" style="margin-top:10px;">
+          <button type="button" class="detail-btn" data-callsheet-open="${sheet.id}">詳細</button>
+          <button type="button" class="danger-btn" data-callsheet-delete="${sheet.id}">削除</button>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  callSheetList.querySelectorAll("[data-callsheet-open]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      openCallSheetDetail(btn.getAttribute("data-callsheet-open"));
+    });
+  });
+
+  callSheetList.querySelectorAll("[data-callsheet-delete]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      deleteCallSheet(btn.getAttribute("data-callsheet-delete"));
+    });
+  });
+}
+
+function createCallSheet(){
+  if(!activeProjectId){
+    alert("先に脚本を選択してください");
+    return;
+  }
+
+  const project = projects.find(item => item.id === activeProjectId);
+  if(!project){
+    alert("選択中脚本が見つかりません");
+    return;
+  }
+
+  const includeUndoneOnly = !!callSheetUndoneOnly?.checked;
+  const targetScenes = getSortedProjectScenes(activeProjectId)
+    .filter(scene => includeUndoneOnly ? !scene.shotDone : true);
+  if(targetScenes.length === 0){
+    alert(includeUndoneOnly ? "この脚本に未撮影シーンがありません" : "この脚本にはシーンがありません");
+    return;
+  }
+
+  const now = new Date();
+  const selectedDate = callSheetDateInput?.value || "";
+  const dateLabel = selectedDate || `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+  const defaultTitle = `${project.title} 香盤 ${dateLabel}`;
+  const title = callSheetTitleInput?.value?.trim() || defaultTitle;
+
+  const sheet = {
+    id: uid("callsheet"),
+    projectId: activeProjectId,
+    title,
+    createdAt: new Date().toISOString(),
+    scheduledDate: selectedDate,
+    undoneOnly: includeUndoneOnly,
+    sceneIds: targetScenes.map(scene => scene.id)
+  };
+
+  callSheets.unshift(sheet);
+  saveCallSheets();
+  renderCallSheetList();
+  openCallSheetDetail(sheet.id);
+  showToast("香盤を作成しました");
+}
   function renderDebug(){
     debugBox.textContent =
       "script: OK\n" +
@@ -5551,6 +7426,7 @@ updateCurrentSceneStrip();
 
   switchTab("scene");
   clearSceneForm();
+  updateSceneDraftStatus();
   sceneFormSection.classList.remove("hidden");
   setSectionCollapsed("sceneFormSection", false);
   updateOpenSceneButton();
@@ -5576,12 +7452,17 @@ updateCurrentSceneStrip();
     ){
       switchTab("scene");
     }else if(
-      section.id === "fieldControlSection" ||
-      section.id === "backupSection" ||
-      section.id === "debugSection"
-    ){
-      switchTab("tool");
-    }
+  section.id === "fieldControlSection" ||
+  section.id === "backupSection" ||
+  section.id === "debugSection"
+){
+  switchTab("tool");
+}else if(
+  section.id === "callSheetSection" ||
+  section.id === "callSheetDetailSection"
+){
+  switchTab("callsheet");
+}
 
     setSectionCollapsed(section.id, false);
 
@@ -5590,30 +7471,34 @@ updateCurrentSceneStrip();
     }, 50);
   }
 
-  prepBtn.addEventListener("click", () => {
-  setMode("prep");
+  bindEvent(prepBtn, "click", () => {
+    setMode("prep");
   switchTab("home");
-});
+  });
 
-fieldBtn.addEventListener("click", () => {
-  setMode("field");
+  bindEvent(fieldBtn, "click", () => {
+    setMode("field");
   switchTab("tool");
-});
-
-  document.querySelectorAll(".dept-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      setDept(btn.getAttribute("data-dept"));
-    });
+  });
+  bindEvent(headerPrepBtn, "click", () => {
+    setMode("prep");
+  });
+  bindEvent(headerFieldBtn, "click", () => {
+    setMode("field");
+    if(currentTabName === "home"){
+      switchTab("tool");
+    }
   });
 
-  document.querySelectorAll(".tab-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      switchTab(btn.getAttribute("data-tab"));
-    });
+  bindQueryAll(".dept-btn", "click", (btn) => {
+    setDept(btn.getAttribute("data-dept"));
   });
 
-  document.querySelectorAll("[data-toggle-card]").forEach(btn => {
-  btn.addEventListener("click", () => {
+  bindQueryAll(".tab-btn", "click", (btn) => {
+    switchTab(btn.getAttribute("data-tab"));
+  });
+
+  bindQueryAll("[data-toggle-card]", "click", (btn) => {
     const sectionId = btn.getAttribute("data-toggle-card");
     const section = $(sectionId);
     if(!section) return;
@@ -5621,62 +7506,111 @@ fieldBtn.addEventListener("click", () => {
     const isCollapsed = section.classList.contains("collapsed");
     setSectionCollapsed(sectionId, !isCollapsed);
   });
-});
 
-  saveProjectBtn.addEventListener("click", addProject);
-  clearProjectBtn.addEventListener("click", clearProjectForm);
+  bindEvent(saveProjectBtn, "click", addProject);
+  bindEvent(clearProjectBtn, "click", clearProjectForm);
+  bindEvent(timerStartBtn, "click", startTimer);
+  bindEvent(timerStopBtn, "click", stopTimer);
+  bindEvent(timerResetBtn, "click", resetTimer);
 
-  if(timerStartBtn) timerStartBtn.addEventListener("click", startTimer);
-if(timerStopBtn) timerStopBtn.addEventListener("click", stopTimer);
-if(timerResetBtn) timerResetBtn.addEventListener("click", resetTimer);
+  bindEvent(projectTitle, "keydown", (event) => {
+    if(event.key === "Enter"){
+      event.preventDefault();
+      addProject();
+    }
+  });
 
-  projectTitle.addEventListener("keydown", (event) => {
-  if(event.key === "Enter"){
-    event.preventDefault();
-    addProject();
-  }
-});
+  bindEvent(saveLocationBtn, "click", addLocation);
+  bindEvent(clearLocationBtn, "click", clearLocationForm);
+  bindEvent(applyLocationBtn, "click", applyLocationToScene);
+  bindEvent(locationSearchInput, "input", renderLocations);
 
-  saveLocationBtn.addEventListener("click", addLocation);
-  clearLocationBtn.addEventListener("click", clearLocationForm);
-  applyLocationBtn.addEventListener("click", applyLocationToScene);
+  bindEvent(saveActorBtn, "click", addActor);
+  bindEvent(clearActorBtn, "click", clearActorForm);
+  bindEvent(applyActorBtn, "click", applyActorToScene);
+  bindEvent(actorSearchInput, "input", renderActors);
 
-  if(locationSearchInput){
-  locationSearchInput.addEventListener("input", renderLocations);
-}
-  saveActorBtn.addEventListener("click", addActor);
-  clearActorBtn.addEventListener("click", clearActorForm);
-  applyActorBtn.addEventListener("click", applyActorToScene);
+  bindEvent(savePropBtn, "click", addProp);
+  bindEvent(clearPropBtn, "click", clearPropForm);
+  bindEvent(applyPropBtn, "click", applyPropToScene);
+  bindEvent(propSearchInput, "input", renderProps);
 
-  if(actorSearchInput){
-  actorSearchInput.addEventListener("input", renderActors);
-}
-  savePropBtn.addEventListener("click", addProp);
-  clearPropBtn.addEventListener("click", clearPropForm);
-  applyPropBtn.addEventListener("click", applyPropToScene);
-  if(propSearchInput){
-  propSearchInput.addEventListener("input", renderProps);
-}
+  bindEvent(saveSceneBtn, "click", addScene);
+  bindEvent(saveSceneDraftBtn, "click", () => saveSceneDraft(true));
+  bindEvent(restoreSceneDraftBtn, "click", restoreSceneDraft);
+  bindEvent(duplicatePrevSceneBtn, "click", fillSceneFromPreviousScene);
+  bindEvent(copySceneSummaryBtn, "click", copySceneFormSummary);
+  bindEvent(fillNextMissingSceneBtn, "click", fillNextMissingSceneNo);
+  bindEvent(sceneProjectSelect, "change", () => {
+    if(sceneProjectSelect?.value){
+      activeProjectId = sceneProjectSelect.value;
+      saveActiveProject();
+      if(fieldProjectFilter){
+        fieldProjectFilter.value = sceneProjectSelect.value;
+      }
+      renderProjects();
+      renderHeaderStatus();
+      renderHomeDashboard();
+      renderMissingSceneInsights();
+      renderMissingSceneChecklist();
+    }
+    updateSceneCountSummary();
 
-  saveSceneBtn.addEventListener("click", addScene);
-  clearSceneBtn.addEventListener("click", clearSceneForm);
-  closeSceneBtn.addEventListener("click", closeSceneForm);
+    if(!editingSceneId){
+      sceneOrder.value = getNextSceneOrderCandidate();
+    }
+    saveSceneDraft();
+    renderProjectLinkBoxes();
+  });
+  bindEvent(clearSceneBtn, "click", clearSceneForm);
+  bindEvent(closeSceneBtn, "click", closeSceneForm);
+  bindEvent(checkAllSceneBtn, "click", () => {
+    setSceneCheckValues({
+      schedule: true,
+      prop: true,
+      cast: true,
+      costume: true,
+      camera: true,
+      light: true
+    });
+    saveSceneDraft();
+  });
+  bindEvent(clearAllSceneChecksBtn, "click", () => {
+    setSceneCheckValues({});
+    saveSceneDraft();
+  });
+  bindQueryAll("#sceneFormSection input, #sceneFormSection textarea, #sceneFormSection select", "input", () => {
+    saveSceneDraft();
+  });
+  bindQueryAll("#sceneFormSection input[type='checkbox']", "change", () => {
+    saveSceneDraft();
+  });
 
-  fieldSearchInput.addEventListener("input", renderScenes);
-  fieldProjectFilter.addEventListener("change", renderScenes);
-  fieldStatusFilter.addEventListener("change", renderScenes);
-  fieldSortFilter.addEventListener("change", renderScenes);
-  clearFieldFilterBtn.addEventListener("click", clearFieldFilters);
+  bindEvent(fieldSearchInput, "input", renderScenes);
+  bindEvent(fieldProjectFilter, "change", () => {
+    if(fieldProjectFilter?.value && fieldProjectFilter.value !== "all"){
+      activeProjectId = fieldProjectFilter.value;
+      saveActiveProject();
+      if(sceneProjectSelect){
+        sceneProjectSelect.value = fieldProjectFilter.value;
+      }
+      renderProjects();
+      renderHeaderStatus();
+      renderHomeDashboard();
+      renderMissingSceneInsights();
+      renderMissingSceneChecklist();
+    }
+    renderScenes();
+    renderProjectLinkBoxes();
+  });
+  bindEvent(fieldStatusFilter, "change", renderScenes);
+  bindEvent(fieldSortFilter, "change", renderScenes);
+  bindEvent(clearFieldFilterBtn, "click", clearFieldFilters);
+  bindEvent(expandAllGroupsBtn, "click", () => setAllFieldGroups(true));
+  bindEvent(collapseAllGroupsBtn, "click", () => setAllFieldGroups(false));
+  bindEvent(sceneListTypeFilter, "change", renderScenes);
 
-  if(expandAllGroupsBtn){
-    expandAllGroupsBtn.addEventListener("click", () => setAllFieldGroups(true));
-  }
-  if(collapseAllGroupsBtn){
-    collapseAllGroupsBtn.addEventListener("click", () => setAllFieldGroups(false));
-  }
-
-  if(openNewSceneBtn){
-  openNewSceneBtn.addEventListener("click", () => {
+  bindEvent(openNewSceneBtn, "click", () => {
     const isHidden = sceneFormSection.classList.contains("hidden");
     const isCollapsed = sceneFormSection.classList.contains("collapsed");
     const isOpen = !isHidden && !isCollapsed;
@@ -5687,46 +7621,33 @@ if(timerResetBtn) timerResetBtn.addEventListener("click", resetTimer);
     }
     openSceneForm();
   });
-}
 
-  if(prevUndoneSceneBtn){
-    prevUndoneSceneBtn.addEventListener("click", () => moveFromCurrentScene("prev"));
-  }
-  if(nextUndoneSceneBtn){
-    nextUndoneSceneBtn.addEventListener("click", () => moveFromCurrentScene("next"));
-  }
+  bindEvent(prevUndoneSceneBtn, "click", () => moveFromCurrentScene("prev"));
+  bindEvent(nextUndoneSceneBtn, "click", () => moveFromCurrentScene("next"));
 
-  if(currentSceneDetailBtn){
-  currentSceneDetailBtn.addEventListener("click", () => {
+  bindEvent(currentSceneDetailBtn, "click", () => {
     const currentSceneId = getCurrentVisibleSceneId();
     if(!currentSceneId) return;
     toggleDetail(currentSceneId);
     scrollToScene(currentSceneId);
   });
-}
 
-if(currentSceneDoneBtn){
-  currentSceneDoneBtn.addEventListener("click", () => {
+  bindEvent(currentSceneDoneBtn, "click", () => {
     const currentSceneId = getCurrentVisibleSceneId();
     if(!currentSceneId) return;
     toggleShotDone(currentSceneId);
     updateCurrentSceneStrip();
   });
-}
 
-if(currentSceneNextBtn){
-  currentSceneNextBtn.addEventListener("click", () => {
+  bindEvent(currentSceneNextBtn, "click", () => {
     moveFromCurrentScene("next");
     setTimeout(() => {
       updateCurrentSceneStrip();
     }, 120);
   });
-}
-  if(quickOpenSceneBtn){
-    quickOpenSceneBtn.addEventListener("click", () => openSceneForm());
-  }
-  if(homeTodayAction){
-  homeTodayAction.addEventListener("click", () => {
+
+  bindEvent(quickOpenSceneBtn, "click", () => openSceneForm());
+  bindEvent(homeTodayAction, "click", () => {
     const sceneId = homeTodayAction.getAttribute("data-scene-jump-id");
     if(!sceneId) return;
 
@@ -5737,48 +7658,108 @@ if(currentSceneNextBtn){
       toggleDetail(sceneId);
     }, 120);
   });
-}
-  if(quickGoFieldBtn){
-    quickGoFieldBtn.addEventListener("click", () => {
-      setMode("field");
-      goToSection(fieldControlSection);
-    });
-  }
-  if(quickGoProjectBtn){
-    quickGoProjectBtn.addEventListener("click", () => goToSection(projectListSection));
-  }
-  if(quickGoBackupBtn){
-    quickGoBackupBtn.addEventListener("click", () => goToSection(backupSection));
-  }
 
-  if(mobileFab){
-    mobileFab.addEventListener("click", () => openSceneForm());
-  }
-  if(createCallSheetBtn){
-  createCallSheetBtn.addEventListener("click", createCallSheet);
-}
-  document.querySelectorAll(".quick-check-item input").forEach(input => {
-    input.addEventListener("change", () => {
-      quickCheck[input.id] = input.checked;
-      saveQuickCheck();
-    });
+  bindEvent(quickGoFieldBtn, "click", () => {
+    setMode("field");
+    goToSection(fieldControlSection);
+  });
+  bindEvent(quickGoProjectBtn, "click", () => goToSection(projectListSection));
+  bindEvent(homeJumpUndoneBtn, "click", () => {
+    if(!activeProjectId){
+      showToast("脚本を選択してください");
+      return;
+    }
+
+    if(fieldProjectFilter){
+      fieldProjectFilter.value = activeProjectId;
+    }
+    if(fieldStatusFilter){
+      fieldStatusFilter.value = "undone";
+    }
+
+    setMode("field");
+    switchTab("tool");
+
+    setTimeout(() => {
+      renderScenes();
+
+      const targetScene = scenes
+        .filter(scene => scene.projectId === activeProjectId && !scene.shotDone)
+        .sort((a, b) => {
+          const orderDiff = (a.order || 0) - (b.order || 0);
+          if(orderDiff !== 0) return orderDiff;
+          return String(a.no || "").localeCompare(String(b.no || ""), "ja");
+        })[0];
+
+      if(targetScene){
+        scrollToScene(targetScene.id);
+        setTimeout(() => {
+          toggleDetail(targetScene.id);
+          updateCurrentSceneStrip();
+        }, 120);
+      }else{
+        showToast("未撮影シーンはありません");
+      }
+    }, 120);
+  });
+  bindEvent(quickGoBackupBtn, "click", () => goToSection(backupSection));
+
+  bindEvent(mobileFab, "click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    openSceneForm();
   });
 
-  exportBackupBtn.addEventListener("click", exportBackup);
-  importBackupBtn.addEventListener("click", () => importBackupInput.click());
+  bindEvent(fabPositionBtn, "click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    cycleFabPosition();
+  });
 
-  importBackupInput.addEventListener("change", (event) => {
+  bindEvent(createCallSheetBtn, "click", createCallSheet);
+  bindQueryAll(".quick-check-item input", "change", (input) => {
+    quickCheck[input.id] = input.checked;
+    saveQuickCheck();
+  });
+
+  bindEvent(exportBackupBtn, "click", exportBackup);
+  bindEvent(importBackupBtn, "click", () => importBackupInput.click());
+  bindEvent(importBackupInput, "change", (event) => {
     const file = event.target.files && event.target.files[0];
     importBackupFile(file);
     event.target.value = "";
   });
+  bindEvent(importScenesCsvBtn, "click", () => {
+    if(!activeProjectId){
+      showToast("先に脚本を選択してください");
+      return;
+    }
+    importScenesCsvInput.click();
+  });
+  bindEvent(copyScenesCsvTemplateBtn, "click", () => {
+    copyText(getSceneCsvTemplate(), "CSV見本をコピーしました");
+  });
+  bindEvent(generateMissingScenesBtn, "click", () => {
+    generatePlaceholderScenesForMissing(activeProjectId);
+  });
+  bindEvent(importScenesCsvInput, "change", (event) => {
+    const file = event.target.files && event.target.files[0];
+    if(!file) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      importScenesFromCsvText(String(reader.result || ""));
+    };
+    reader.readAsText(file);
+    event.target.value = "";
+  });
 
   window.addEventListener("scroll", () => {
-  if(mode === "field"){
-    updateCurrentSceneBar();
-    updateCurrentSceneStrip();
-  }
-});
+    if(mode === "field"){
+      updateCurrentSceneBar();
+      updateCurrentSceneStrip();
+    }
+  });
 
   switchTab("home");
   renderMode();
@@ -5800,20 +7781,26 @@ if(currentSceneNextBtn){
   deptMemoSummary.textContent = deptMemoDetails.open ? "部署別メモを閉じる" : "部署別メモを開く";
 }
 
-if(deptMemoDetails){
-  deptMemoDetails.addEventListener("toggle", updateDeptMemoSummary);
-  updateDeptMemoSummary();
-}
+  bindEvent(deptMemoDetails, "toggle", updateDeptMemoSummary);
+  if(deptMemoDetails){
+    updateDeptMemoSummary();
+  }
 
-  renderDebug();
-  renderHomeDashboard();
-  applyQuickCheck();
-  applySectionCollapseState();
-  updateOpenSceneButton();
-  updateCurrentSceneBar();
-  updateNextSceneBar();
-  updateCurrentSceneStrip();
-  updateTimerDisplay();
+renderDebug();
+renderHomeDashboard();
+applyQuickCheck();
+applySectionCollapseState();
+updateOpenSceneButton();
+renderMissingSceneInsights();
+renderProjectLinkBoxes();
+updateCurrentSceneBar();
+updateNextSceneBar();
+updateCurrentSceneStrip();
+updateTimerDisplay();
+applyFabPosition();
+if(callSheetDateInput && !callSheetDateInput.value){
+  callSheetDateInput.value = new Date().toISOString().slice(0, 10);
+}
 })();
 </script>
 </body>
