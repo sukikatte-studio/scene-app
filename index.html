@@ -34,7 +34,10 @@
 }
 
 *{box-sizing:border-box;}
-html,body{height:100%;}
+html,body{
+  height:100%;
+  -webkit-text-size-adjust:100%;
+}
 body{
   margin:0;
   background:
@@ -344,6 +347,19 @@ label{
   gap:8px;
 }
 .button-row button{flex:1 1 140px;}
+
+.sticky-mobile-actions{
+  position:sticky;
+  bottom:calc(74px + env(safe-area-inset-bottom, 0px));
+  z-index:12;
+  padding:10px;
+  margin-top:12px;
+  border-radius:16px;
+  background:rgba(7,11,20,.94);
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 10px 24px rgba(0,0,0,.24);
+  backdrop-filter:blur(14px);
+}
 
 .primary-btn{ background:linear-gradient(180deg, #22c55e, #16a34a); }
 .secondary-btn{ background:linear-gradient(180deg, #475569, #334155); }
@@ -2000,18 +2016,1362 @@ label{
   opacity:.82;
 }
 
+.call-sheet-meta-form{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:10px;
+  margin-top:14px;
+}
+
+.call-sheet-meta-form .field{
+  margin-bottom:0;
+}
+
+.call-sheet-summary-grid{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:8px;
+  margin-top:12px;
+}
+
+.call-sheet-view-switch{
+  display:flex;
+  gap:8px;
+  margin-top:12px;
+}
+
+.call-sheet-view-btn{
+  flex:1 1 0;
+  min-height:38px;
+  border-radius:12px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  color:var(--sub);
+  font-size:12px;
+  font-weight:800;
+}
+
+.call-sheet-view-btn.is-active{
+  background:linear-gradient(180deg, rgba(59,130,246,.28), rgba(59,130,246,.14));
+  border-color:rgba(59,130,246,.38);
+  color:#fff;
+}
+
+.call-sheet-toggle-chip{
+  min-height:38px;
+  padding:0 12px;
+  border-radius:12px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  color:var(--sub);
+  font-size:12px;
+  font-weight:800;
+}
+
+.call-sheet-toggle-chip.is-active{
+  background:linear-gradient(180deg, rgba(34,197,94,.24), rgba(34,197,94,.12));
+  border-color:rgba(34,197,94,.32);
+  color:#fff;
+}
+
+.call-sheet-summary-chip{
+  padding:10px 12px;
+  border-radius:14px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.call-sheet-summary-label{
+  color:var(--sub);
+  font-size:11px;
+  font-weight:700;
+}
+
+.call-sheet-summary-value{
+  margin-top:4px;
+  color:#fff;
+  font-size:15px;
+  font-weight:900;
+}
+
+.call-sheet-mobile-list{
+  display:none;
+  margin-top:12px;
+  gap:10px;
+}
+
+.call-sheet-mobile-card{
+  padding:12px;
+  border-radius:16px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.call-sheet-mobile-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:8px;
+}
+
+.call-sheet-mobile-scene{
+  font-size:15px;
+  font-weight:900;
+  color:#fff;
+  line-height:1.35;
+}
+
+.call-sheet-mobile-order{
+  color:#dbeafe;
+  font-size:12px;
+  font-weight:800;
+  white-space:nowrap;
+}
+
+.call-sheet-mobile-meta{
+  margin-top:8px;
+  color:var(--sub);
+  font-size:12px;
+  line-height:1.7;
+  white-space:pre-wrap;
+}
+
+.call-sheet-mobile-time{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:10px;
+}
+
+.call-sheet-mobile-time .field{
+  margin-bottom:0;
+}
+
+.call-sheet-mobile-time input{
+  min-height:40px;
+  padding:8px 10px;
+  font-size:14px;
+}
+
+.call-sheet-mobile-checks{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:10px;
+}
+
+.call-sheet-mobile-check{
+  min-height:28px;
+  padding:4px 8px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:800;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.04);
+  color:var(--sub);
+}
+
+.call-sheet-mobile-check.on{
+  color:#dcfce7;
+  border-color:rgba(34,197,94,.34);
+  background:rgba(34,197,94,.12);
+}
+
+.call-sheet-route-box{
+  margin-top:12px;
+  padding:12px;
+  border-radius:16px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.call-sheet-route-title{
+  color:#dbeafe;
+  font-size:12px;
+  font-weight:900;
+}
+
+.call-sheet-route-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:10px;
+}
+
+.call-sheet-route-chip{
+  min-height:30px;
+  padding:5px 10px;
+  border-radius:999px;
+  background:rgba(59,130,246,.10);
+  border:1px solid rgba(59,130,246,.26);
+  color:#dbeafe;
+  font-size:11px;
+  font-weight:800;
+}
+
+.call-sheet-project-picker{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  max-height:220px;
+  overflow:auto;
+  margin-top:8px;
+  padding-right:2px;
+}
+
+.call-sheet-project-selected{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:8px;
+}
+
+.call-sheet-project-chip{
+  display:inline-flex;
+  align-items:center;
+  min-height:28px;
+  padding:4px 10px;
+  border-radius:999px;
+  background:rgba(59,130,246,.12);
+  border:1px solid rgba(59,130,246,.28);
+  color:#dbeafe;
+  font-size:11px;
+  font-weight:800;
+}
+
+.call-sheet-project-option{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  min-height:40px;
+  padding:8px 10px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.04);
+  color:#e5eefc;
+  font-size:12px;
+  font-weight:800;
+  margin-bottom:0;
+  cursor:pointer;
+  white-space:normal;
+}
+
+.call-sheet-project-option input{
+  margin:0;
+  width:16px;
+  min-width:16px;
+  height:16px;
+  padding:0;
+  border-radius:999px;
+  border:1px solid #8ca0ba;
+  background:#fff;
+  appearance:auto;
+  -webkit-appearance:auto;
+  accent-color:#3b82f6;
+  flex:0 0 auto;
+  box-shadow:none;
+}
+
+.call-sheet-project-option span{
+  display:block;
+  color:#eef4ff;
+  line-height:1.2;
+  white-space:normal;
+}
+
+.call-sheet-project-option small{
+  display:block;
+  margin-top:2px;
+  color:#9fb0c9;
+  font-size:10px;
+  font-weight:700;
+}
+
+.call-sheet-project-empty{
+  color:var(--sub);
+  font-size:12px;
+}
+
+.call-sheet-live-box{
+  margin-top:12px;
+  padding:12px;
+  border-radius:16px;
+  background:linear-gradient(180deg, rgba(34,197,94,.10), rgba(59,130,246,.08));
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.call-sheet-live-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:10px;
+}
+
+.call-sheet-live-card{
+  padding:12px;
+  border-radius:14px;
+  background:rgba(7,11,20,.28);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.call-sheet-live-label{
+  color:#bfdbfe;
+  font-size:11px;
+  font-weight:800;
+}
+
+.call-sheet-live-title{
+  margin-top:6px;
+  color:#fff;
+  font-size:15px;
+  font-weight:900;
+  line-height:1.35;
+}
+
+.call-sheet-live-meta{
+  margin-top:6px;
+  color:var(--sub);
+  font-size:12px;
+  line-height:1.65;
+}
+
+.call-sheet-inline-note{
+  margin-top:8px;
+  padding:8px 10px;
+  border-radius:12px;
+  background:rgba(245,158,11,.10);
+  border:1px solid rgba(245,158,11,.20);
+  color:#fde68a;
+  font-size:11px;
+  font-weight:800;
+}
+
+.call-sheet-move-row{
+  display:flex;
+  gap:6px;
+  margin-top:8px;
+}
+
+.call-sheet-mini-action{
+  min-height:30px;
+  min-width:30px;
+  padding:0 8px;
+  border-radius:10px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+  color:#dbeafe;
+  font-size:12px;
+  font-weight:900;
+}
+
+.live-focus-overlay{
+  position:fixed;
+  inset:0;
+  z-index:120;
+  background:linear-gradient(180deg, rgba(3,7,18,.96), rgba(10,16,32,.98));
+  padding:calc(env(safe-area-inset-top, 0px) + 14px) 14px calc(env(safe-area-inset-bottom, 0px) + 18px);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.live-focus-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.live-focus-title{
+  color:#fff;
+  font-size:18px;
+  font-weight:900;
+}
+
+.live-focus-panel{
+  border-radius:20px;
+  padding:16px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.live-focus-label{
+  color:#93c5fd;
+  font-size:11px;
+  font-weight:800;
+}
+
+.live-focus-scene{
+  margin-top:8px;
+  color:#fff;
+  font-size:28px;
+  font-weight:900;
+  line-height:1.25;
+}
+
+.live-focus-meta{
+  margin-top:10px;
+  color:#dbeafe;
+  font-size:14px;
+  line-height:1.8;
+  white-space:pre-wrap;
+}
+
+.live-focus-chip-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:12px;
+}
+
+.live-focus-chip{
+  min-height:32px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+  color:#dbeafe;
+  font-size:11px;
+  font-weight:800;
+}
+
+.live-focus-actions{
+  margin-top:auto;
+}
+
+.call-sheet-print-preview{
+  margin-top:16px;
+  background:#fff;
+  color:#1f2937;
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.10);
+}
+
+.call-sheet-preview-block{
+  margin-top:14px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.03);
+  overflow:hidden;
+}
+
+.call-sheet-preview-block summary{
+  list-style:none;
+  cursor:pointer;
+  padding:12px 14px;
+  font-size:13px;
+  font-weight:900;
+  color:#dbeafe;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.call-sheet-preview-block summary::-webkit-details-marker{
+  display:none;
+}
+
+.call-sheet-preview-block summary::after{
+  content:"開く";
+  font-size:11px;
+  color:var(--sub);
+}
+
+.call-sheet-preview-block[open] summary::after{
+  content:"閉じる";
+}
+
+.call-sheet-preview-inner{
+  padding:0 10px 10px;
+}
+
+.sheet-print-stage{
+  width:100%;
+  overflow:hidden;
+  background:#fff;
+}
+
+.sheet-print-page{
+  --sheet-print-scale:1;
+  background:#fff;
+  color:#24324b;
+  padding:20px 22px 18px;
+  font-family:"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;
+  width:calc(100% / var(--sheet-print-scale));
+  transform:scale(var(--sheet-print-scale));
+  transform-origin:top left;
+  box-sizing:border-box;
+}
+
+.sheet-print-rule{
+  height:8px;
+  border-radius:999px;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.18), rgba(255,255,255,0) 24%, rgba(170,196,226,.22) 50%, rgba(255,255,255,0) 76%, rgba(255,255,255,.14)),
+    linear-gradient(90deg, #091425 0%, #0f2139 22%, #16304f 48%, #29486b 54%, #16304f 70%, #0d1c31 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.16),
+    inset 0 -1px 0 rgba(2,6,12,.55),
+    0 1px 0 rgba(120,150,184,.12);
+  margin:8px 0 10px;
+}
+
+.sheet-print-film{
+  height:14px;
+  border-radius:999px;
+  background:
+    radial-gradient(circle at center, rgba(226,235,245,.92) 0 1.7px, transparent 2px) center/22px 14px repeat-x,
+    linear-gradient(180deg, #132843 0%, #0a1629 40%, #06101f 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(196,214,234,.18),
+    inset 0 -1px 0 rgba(0,0,0,.55),
+    0 0 0 1px rgba(73,100,133,.16);
+  position:relative;
+}
+
+.sheet-print-film::before{
+  content:"";
+  position:absolute;
+  inset:2px 10px;
+  border-radius:999px;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.10), rgba(255,255,255,0) 20%, rgba(160,186,214,.16) 50%, rgba(255,255,255,0) 80%),
+    linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0));
+  pointer-events:none;
+}
+
+.sheet-print-head{
+  display:grid;
+  grid-template-columns:102px 1fr 198px;
+  gap:10px;
+  align-items:stretch;
+  margin:6px 0 4px;
+}
+
+.sheet-print-day{
+  color:#b91c1c;
+  font-weight:900;
+  line-height:1;
+  text-shadow:0 1px 0 rgba(255,255,255,.46);
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  padding:10px 0 6px 10px;
+  border-left:4px solid #ec7f63;
+}
+
+.sheet-print-day .num{
+  font-size:48px;
+}
+
+.sheet-print-day .sub{
+  font-size:12px;
+  color:#56657a;
+  margin-top:8px;
+}
+
+.sheet-print-title{
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  padding-top:4px;
+}
+
+.sheet-print-title h3{
+  margin:0;
+  font-size:26px;
+  line-height:1.08;
+  color:#1f2b44;
+  letter-spacing:.01em;
+}
+
+.sheet-print-title .meta{
+  display:none;
+}
+
+.sheet-print-page-no{
+  margin-top:2px;
+  font-size:9px;
+  color:#738aa6;
+  text-align:center;
+}
+
+.sheet-print-chip-row{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:6px;
+  flex-wrap:wrap;
+  margin:2px 0 8px;
+}
+
+.sheet-print-chip{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  min-height:20px;
+  padding:0 8px;
+  border-radius:999px;
+  background:#f4f6f8;
+  color:#4f5f77;
+  font-size:8px;
+  font-weight:800;
+  border:1px solid #e1e6ec;
+}
+
+.sheet-print-chip b{
+  color:#31435e;
+  font-size:9px;
+}
+
+.sheet-print-alert{
+  border:1px solid #f1c4c4;
+  color:#e11d48;
+  border-radius:8px;
+  min-height:40px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:10px;
+  font-weight:800;
+  padding:6px;
+  background:#fff8f8;
+}
+
+.sheet-print-grid{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  border-top:2px solid #5f738f;
+  border-left:2px solid #5f738f;
+}
+
+.sheet-print-submeta{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr 1fr;
+  border-top:2px solid #5f738f;
+  border-left:2px solid #5f738f;
+  margin-top:0;
+}
+
+.sheet-print-submeta.staff{
+  grid-template-columns:1fr 1fr 1fr .9fr .9fr;
+}
+
+.sheet-print-dept-grid{
+  display:grid;
+  grid-template-columns:repeat(6, minmax(0, 1fr));
+  border-top:2px solid #5f738f;
+  border-left:2px solid #5f738f;
+  margin-top:6px;
+}
+
+.sheet-print-box{
+  border-right:1px solid #8ca0ba;
+  border-bottom:1px solid #8ca0ba;
+  min-height:36px;
+  padding:2px 5px;
+  background:#fff;
+}
+
+.sheet-print-box.wide{
+  grid-column:span 2;
+}
+
+.sheet-print-box.tall{
+  min-height:38px;
+}
+
+.sheet-print-box.micro{
+  min-height:38px;
+}
+
+.sheet-print-box.dept{
+  min-height:46px;
+  background:#fff;
+}
+
+.sheet-print-label{
+  font-size:7.2px;
+  color:#5e6f86;
+  font-weight:700;
+  text-align:center;
+  letter-spacing:0;
+  word-break:keep-all;
+}
+
+.sheet-print-value{
+  margin-top:2px;
+  font-size:8.4px;
+  line-height:1.08;
+  white-space:pre-wrap;
+  word-break:break-word;
+  text-align:center;
+}
+
+.sheet-print-value.center{
+  text-align:center;
+}
+
+.sheet-print-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:4px;
+  font-size:7px;
+  table-layout:fixed;
+}
+
+.sheet-print-table th,
+.sheet-print-table td{
+  border:1px solid #8ca0ba;
+  padding:1px 2px;
+  vertical-align:middle;
+  overflow:hidden;
+}
+
+.sheet-print-table thead th{
+  background:#f8fafc;
+  color:#24344b;
+  font-weight:900;
+  border-top:2px solid #5f738f;
+  border-bottom:1px solid #8ca0ba;
+  text-align:center;
+  line-height:1;
+  font-size:6.6px;
+  padding-top:1px;
+  padding-bottom:1px;
+}
+
+.sheet-print-table thead tr:nth-child(2) th{
+  height:16px;
+}
+
+.sheet-print-table thead tr:nth-child(3) th{
+  height:148px;
+  vertical-align:top;
+}
+
+.sheet-print-table tbody tr:nth-child(even){
+  background:#fff;
+}
+
+.sheet-print-table tbody td{
+  line-height:1.05;
+  height:18px;
+}
+
+.sheet-print-table tbody tr.is-done{
+  background:#eaf6ea;
+}
+
+.sheet-print-table tbody tr.color-a{
+  background:#dff0ff;
+}
+
+.sheet-print-table tbody tr.color-b{
+  background:#fff4c7;
+}
+
+.sheet-print-table tbody tr.color-c{
+  background:#dff8e9;
+}
+
+.sheet-print-table tbody tr.color-d{
+  background:#fff4c7;
+}
+
+.sheet-print-table tbody tr.location-change td{
+  border-top:2px solid #5f738f;
+}
+
+.sheet-print-table .time-col{
+  white-space:nowrap;
+  font-weight:800;
+  text-align:center;
+}
+
+.sheet-print-table .time-split-col{
+  white-space:nowrap;
+  text-align:center;
+  font-weight:800;
+  font-size:7.2px;
+  letter-spacing:-.01em;
+}
+
+.sheet-print-table .duration-col{
+  text-align:center;
+  font-weight:800;
+  font-size:7px;
+}
+
+.sheet-print-table .mini-col{
+  width:22px;
+  text-align:center;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+.sheet-print-table .scene-col{
+  min-width:48px;
+  text-align:center;
+  font-weight:800;
+}
+
+.sheet-print-table .location-col{
+  min-width:120px;
+  font-size:6.9px;
+}
+
+.sheet-print-table .location-shift-badge{
+  display:inline-block;
+  margin-right:4px;
+  padding:1px 4px;
+  border-radius:999px;
+  background:#f8dede;
+  color:#b42318;
+  font-size:6px;
+  font-weight:900;
+  line-height:1.1;
+  vertical-align:middle;
+}
+
+.sheet-print-table .cast-col,
+.sheet-print-table .prop-col{
+  min-width:72px;
+}
+
+.sheet-print-table .cut-col{
+  min-width:64px;
+}
+
+.sheet-print-table .memo-col{
+  min-width:220px;
+  font-size:6.8px;
+}
+
+.sheet-print-table .cast-mark-col{
+  text-align:center;
+  font-weight:800;
+  font-size:7px;
+}
+
+.sheet-print-table .vertical-head{
+  height:148px;
+  padding:0;
+  vertical-align:top;
+}
+
+.sheet-print-table .subhead{
+  background:#fff;
+  color:#20324a;
+  font-size:6px;
+  height:18px;
+}
+
+.sheet-print-table .vertical-split{
+  display:grid;
+  grid-template-rows:1fr 1.2fr;
+  height:144px;
+}
+
+.sheet-print-table .vertical-role,
+.sheet-print-table .vertical-actor{
+  writing-mode:vertical-rl;
+  text-orientation:mixed;
+  white-space:nowrap;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  margin:0 auto;
+  line-height:1.02;
+  letter-spacing:-.02em;
+  font-size:7px;
+  font-weight:800;
+  align-items:center;
+}
+
+.sheet-print-table .vertical-role{
+  padding:0;
+  justify-content:center;
+  line-height:.96;
+}
+
+.sheet-print-table .vertical-actor{
+  border-top:1px solid #8ca0ba;
+  padding:1px 0;
+  color:#42536d;
+}
+
+.sheet-print-note{
+  margin-top:4px;
+  color:#ff2d2d;
+  font-size:9px;
+  font-weight:800;
+  text-align:center;
+  letter-spacing:.03em;
+}
+
+.sheet-print-subnote{
+  margin-top:5px;
+  color:#ff2d2d;
+  font-size:7.6px;
+  font-weight:700;
+  text-align:right;
+  letter-spacing:.01em;
+}
+
+.sheet-print-timeline-note{
+  margin-top:6px;
+  padding:5px 7px;
+  border-radius:8px;
+  background:#fff;
+  border:1px solid #d5deea;
+  color:#5b6b80;
+  font-size:9px;
+  font-weight:800;
+}
+
+.sheet-print-schedule{
+  display:grid;
+  grid-template-columns:repeat(6, minmax(0, 1fr));
+  gap:0;
+  margin-top:6px;
+  border-top:2px solid #5f738f;
+  border-left:2px solid #5f738f;
+}
+
+.sheet-print-schedule-box{
+  border-right:1px solid #8ca0ba;
+  border-bottom:1px solid #8ca0ba;
+  padding:4px 6px;
+  min-height:38px;
+  background:#fff;
+}
+
+.sheet-print-lower-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:6px;
+  margin-top:6px;
+}
+
+.sheet-print-contact-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:0;
+  font-size:8.4px;
+  table-layout:fixed;
+}
+
+.sheet-print-contact-table th,
+.sheet-print-contact-table td{
+  border:1px solid #8ca0ba;
+  padding:4px 5px;
+  vertical-align:middle;
+  line-height:1.18;
+}
+
+.sheet-print-contact-table thead th{
+  background:#fff;
+  color:#24344b;
+  font-weight:900;
+}
+
+.sheet-print-table-wrap{
+  border-left:2px solid #5f738f;
+  border-right:2px solid #5f738f;
+  border-bottom:2px solid #5f738f;
+}
+
+.sheet-print-address-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:0;
+  font-size:8.4px;
+  table-layout:fixed;
+}
+
+.sheet-print-address-table th,
+.sheet-print-address-table td{
+  border:1px solid #8ca0ba;
+  padding:4px 5px;
+  vertical-align:middle;
+  line-height:1.18;
+}
+
+.sheet-print-address-table thead th{
+  background:#fff;
+  color:#24344b;
+  font-weight:900;
+  text-align:center;
+}
+
+.sheet-print-section-title{
+  display:none;
+}
+
+.sheet-print-top-panel{
+  margin-top:6px;
+}
+
+.sheet-print-call-grid{
+  display:grid;
+  grid-template-columns:120px .82fr 120px 1.18fr;
+  border-top:2px solid #5f738f;
+  border-left:2px solid #5f738f;
+}
+
+.sheet-print-call-cell{
+  border-right:1px solid #8ca0ba;
+  border-bottom:1px solid #8ca0ba;
+  padding:3px 6px;
+  min-height:26px;
+  font-size:8px;
+  line-height:1.05;
+  background:#fff;
+}
+
+.sheet-print-call-cell.head{
+  background:#fff;
+  font-weight:900;
+  color:#24344b;
+  text-align:center;
+}
+
+.sheet-print-top-panel > .sheet-print-dept-grid,
+.sheet-print-top-panel > .sheet-print-submeta,
+.sheet-print-top-panel > .sheet-print-grid{
+  margin-top:0;
+}
+
+.sheet-print-top-panel > .sheet-print-submeta,
+.sheet-print-top-panel > .sheet-print-grid{
+  border-top:none;
+}
+
+.sheet-print-top-panel .sheet-print-box,
+.sheet-print-top-panel .sheet-print-schedule-box{
+  background:#fff;
+}
+
+.sheet-print-top-panel .sheet-print-dept-grid .sheet-print-box.dept{
+  background:linear-gradient(180deg, #f7f9fc, #eef3f8);
+}
+
+.sheet-print-page.is-compact{
+  padding:16px 18px 14px;
+}
+
+.sheet-print-page.is-compact .sheet-print-film{
+  height:12px;
+}
+
+.sheet-print-page.is-compact .sheet-print-rule{
+  height:6px;
+  margin:6px 0 8px;
+}
+
+.sheet-print-page.is-compact .sheet-print-head{
+  grid-template-columns:78px 1fr 160px;
+  gap:7px;
+  margin:4px 0;
+}
+
+.sheet-print-page.is-compact .sheet-print-day .num{
+  font-size:35px;
+}
+
+.sheet-print-page.is-compact .sheet-print-title h3{
+  font-size:22px;
+}
+
+.sheet-print-page.is-compact .sheet-print-title .meta,
+.sheet-print-page.is-compact .sheet-print-value,
+.sheet-print-page.is-compact .sheet-print-contact-table,
+.sheet-print-page.is-compact .sheet-print-address-table{
+  font-size:8.8px;
+}
+
+.sheet-print-page.is-compact .sheet-print-label,
+.sheet-print-page.is-compact .sheet-print-section-title,
+.sheet-print-page.is-compact .sheet-print-timeline-note,
+.sheet-print-page.is-compact .sheet-print-note{
+  font-size:8px;
+}
+
+.sheet-print-page.is-compact .sheet-print-box,
+.sheet-print-page.is-compact .sheet-print-schedule-box,
+.sheet-print-page.is-compact .sheet-print-call-cell{
+  min-height:30px;
+  padding:3px 5px;
+}
+
+.sheet-print-page.is-compact .sheet-print-box.tall{
+  min-height:42px;
+}
+
+.sheet-print-page.is-compact .sheet-print-box.dept{
+  min-height:38px;
+}
+
+.sheet-print-page.is-compact .sheet-print-table{
+  font-size:7.2px;
+  margin-top:5px;
+}
+
+.sheet-print-page.is-compact .sheet-print-table th,
+.sheet-print-page.is-compact .sheet-print-table td{
+  padding:1px 2px;
+}
+
+.sheet-print-page.is-compact .sheet-print-address-table{
+  font-size:7.4px;
+}
+
+.sheet-print-page.is-compact .sheet-print-contact-table th,
+.sheet-print-page.is-compact .sheet-print-contact-table td,
+.sheet-print-page.is-compact .sheet-print-address-table th,
+.sheet-print-page.is-compact .sheet-print-address-table td{
+  padding:4px 5px;
+}
+
+.sheet-print-page.is-dense .sheet-print-title h3{
+  letter-spacing:.01em;
+}
+
+.sheet-print-contact-table{
+  table-layout:fixed;
+}
+
+.sheet-print-contact-table th{
+  text-align:center;
+}
+
+.sheet-print-footer,
+.sheet-print-contact-table,
+.sheet-print-address-table{
+  border-top:2px solid #304763;
+}
+
 @media (max-width:520px){
+  input,
+  select,
+  textarea{
+    font-size:16px;
+    min-height:44px;
+  }
+
+  textarea{
+    min-height:96px;
+  }
+
+  .card{
+    padding:14px;
+    border-radius:18px;
+  }
+
+  .card-title{
+    font-size:18px;
+  }
+
+  .two-col{
+    grid-template-columns:1fr;
+  }
+
+  .button-row{
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    padding-bottom:2px;
+    margin-right:-2px;
+    -webkit-overflow-scrolling:touch;
+    scroll-snap-type:x proximity;
+  }
+
+  .button-row button{
+    flex:0 0 auto;
+    min-width:140px;
+    min-height:44px;
+    scroll-snap-align:start;
+  }
+
+  .scene-form-tools{
+    overflow-x:auto;
+    flex-wrap:nowrap;
+    padding-bottom:2px;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .mini-btn{
+    flex:0 0 auto;
+    min-height:38px;
+    padding:8px 12px;
+  }
+
   .call-sheet-title{
     font-size:15px;
+  }
+
+  .call-sheet-summary-grid{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+
+  .call-sheet-view-switch{
+    position:sticky;
+    top:calc(78px + env(safe-area-inset-top, 0px));
+    z-index:10;
+    padding:8px;
+    border-radius:14px;
+    background:rgba(7,11,20,.92);
+    border:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(12px);
   }
 
   .call-sheet-meta{
     font-size:11px;
   }
 
+  .call-sheet-table{
+    border-radius:14px;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .call-sheet-row{
+    min-width:860px;
+  }
+
   .call-sheet-cell{
     padding:10px 8px;
     font-size:11px;
+  }
+
+  .call-sheet-mobile-list{
+    display:grid;
+  }
+
+  .call-sheet-detail-shell.view-table .call-sheet-mobile-list{
+    display:none;
+  }
+
+  .call-sheet-detail-shell.view-cards .call-sheet-table{
+    display:none;
+  }
+
+  .call-sheet-live-grid{
+    grid-template-columns:1fr;
+  }
+
+  .call-sheet-meta-form{
+    grid-template-columns:1fr;
+  }
+
+  .sheet-print-head{
+    grid-template-columns:1fr;
+  }
+
+  .sheet-print-grid{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+
+  .sheet-print-submeta{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+
+  .sheet-print-dept-grid{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+
+  .sheet-print-box.wide{
+    grid-column:span 2;
+  }
+
+  .sheet-print-schedule{
+    grid-template-columns:1fr;
+  }
+
+  .sheet-print-footer{
+    grid-template-columns:1fr;
+  }
+
+  .sheet-print-lower-grid{
+    grid-template-columns:1fr;
+  }
+
+  .sticky-mobile-actions{
+    margin-left:-4px;
+    margin-right:-4px;
+    border-radius:14px;
+  }
+}
+
+@media (max-width:390px){
+  .topbar-inner{
+    padding-left:12px;
+    padding-right:12px;
+  }
+
+  .app{
+    padding-left:12px;
+    padding-right:12px;
+  }
+
+  .header-chip,
+  .header-mode-btn{
+    font-size:11px;
+  }
+
+  .tab-btn{
+    min-height:58px;
+    border-radius:16px;
+    padding:8px 4px;
+  }
+}
+
+@media print{
+  body{
+    background:#fff !important;
+  }
+
+  .app-header,
+  .tab-bar,
+  .mobile-fab,
+  #callSheetSection,
+  #fieldControlSection,
+  #backupSection,
+  #debugSection,
+  .button-row,
+  .section-toggle{
+    display:none !important;
+  }
+
+  #callSheetDetailSection{
+    display:block !important;
+    border:none !important;
+    box-shadow:none !important;
+    background:#fff !important;
+  }
+
+  #callSheetDetailSection .card-title-row,
+  #callSheetDetail .item-meta,
+  #callSheetDetail .call-sheet-table,
+  #callSheetDetail .call-sheet-meta-form{
+    display:none !important;
+  }
+
+  .call-sheet-print-preview{
+    margin-top:0;
+    border:none;
+    box-shadow:none;
+  }
+
+  .sheet-print-page{
+    padding:0;
+  }
+
+  @page{
+    size:A4 landscape;
+    margin:5mm;
   }
 }
 
@@ -2207,14 +3567,6 @@ label{
     <div class="status-tile">
       <div class="status-label">未撮影</div>
       <div id="homeSceneRemaining" class="status-value">0</div>
-    </div>
-  </div>
-
-  <div style="margin-top:14px;">
-    <div class="segment-label">モード</div>
-    <div class="segment two">
-      <button type="button" id="prepBtn" class="segment-btn">準備</button>
-      <button type="button" id="fieldBtn" class="segment-btn">現場</button>
     </div>
   </div>
 
@@ -2777,6 +4129,7 @@ label{
             <button type="button" id="importScenesCsvBtn" class="primary-btn">CSVでシーン取込</button>
             <button type="button" id="copyScenesCsvTemplateBtn" class="secondary-btn">CSV見本コピー</button>
             <button type="button" id="generateMissingScenesBtn" class="select-btn">未登録を仮作成</button>
+            <button type="button" id="deletePlaceholderScenesBtn" class="danger-btn">仮シーン一括削除</button>
           </div>
           <input type="file" id="importScenesCsvInput" accept=".csv,text/csv" class="hidden">
           <div id="missingSceneInsightBox" class="summary-box missing-scene-box">脚本を選ぶと欠番や未登録が表示されます</div>
@@ -2805,21 +4158,36 @@ label{
         <button type="button" class="section-toggle" data-toggle-card="callSheetSection">閉じる</button>
       </div>
       <div class="card-body">
-        <div id="callSheetList" class="call-sheet-list"></div>
-
-        <div class="two-col" style="margin-top:10px;">
-          <div class="field">
-            <label for="callSheetDateInput">撮影日</label>
-            <input id="callSheetDateInput" type="date">
-          </div>
-          <div class="field">
-            <label for="callSheetTitleInput">香盤タイトル</label>
-            <input id="callSheetTitleInput" placeholder="未入力なら自動作成">
-          </div>
+        <div class="field">
+          <label for="existingCallSheetSelect">既存香盤を開く</label>
+          <select id="existingCallSheetSelect"></select>
         </div>
 
-        <div class="field">
-          <label class="scene-check-item"><input type="checkbox" id="callSheetUndoneOnly" checked> 未撮影シーンのみで作成</label>
+        <div class="button-row" style="margin-bottom:10px;">
+          <button type="button" id="openSelectedCallSheetBtn" class="detail-btn">選択した香盤を開く</button>
+          <button type="button" id="openLatestCallSheetBtn" class="secondary-btn">最新を開く</button>
+        </div>
+
+        <div id="callSheetList" class="call-sheet-list"></div>
+
+        <div class="field" style="margin-top:10px;">
+          <label for="callSheetDateInput">撮影日</label>
+          <input id="callSheetDateInput" type="date">
+        </div>
+
+        <div class="field" style="margin-top:10px;">
+          <label for="callSheetFormatSelect">香盤の種類</label>
+          <select id="callSheetFormatSelect">
+            <option value="film">映画</option>
+            <option value="short_drama">ショートドラマ</option>
+          </select>
+        </div>
+
+        <div class="field" style="margin-top:10px;">
+          <label>香盤に入れる脚本</label>
+          <input id="callSheetProjectSearch" placeholder="脚本名で検索">
+          <div id="callSheetProjectSelected" class="call-sheet-project-selected"></div>
+          <div id="callSheetProjectPicker" class="call-sheet-project-picker"></div>
         </div>
 
         <div class="button-row" style="margin-top:10px;">
@@ -2904,6 +4272,12 @@ label{
         <button type="button" id="openNewSceneBtn" class="primary-btn">新規シーン入力を開く</button>
       </div>
       <div id="fieldProjectLinkBox" class="summary-box" style="margin-top:10px;">選択中脚本の情報を表示します</div>
+      <div class="field" style="margin-top:10px;">
+        <label class="scene-check-item"><input type="checkbox" id="fieldLockActiveProject"> 選択中脚本だけに固定</label>
+      </div>
+      <div class="field">
+        <label class="scene-check-item"><input type="checkbox" id="fieldPlaceholderOnly"> 仮シーンだけ表示</label>
+      </div>
 
       <div class="two-col" style="margin-top:10px;">
         <div class="field">
@@ -2979,6 +4353,32 @@ label{
   </main>
 </div>
 
+<div id="liveFocusOverlay" class="live-focus-overlay hidden">
+  <div class="live-focus-head">
+    <div id="liveFocusTitle" class="live-focus-title">現場フォーカス</div>
+    <button type="button" id="liveFocusCloseBtn" class="section-toggle">閉じる</button>
+  </div>
+
+  <div class="live-focus-panel">
+    <div class="live-focus-label">今のシーン</div>
+    <div id="liveFocusScene" class="live-focus-scene">-</div>
+    <div id="liveFocusMeta" class="live-focus-meta">-</div>
+    <div id="liveFocusChecks" class="live-focus-chip-row"></div>
+  </div>
+
+  <div class="live-focus-panel">
+    <div class="live-focus-label">次のシーン</div>
+    <div id="liveFocusNext" class="live-focus-scene">-</div>
+    <div id="liveFocusNextMeta" class="live-focus-meta">-</div>
+  </div>
+
+  <div class="button-row live-focus-actions">
+    <button type="button" id="liveFocusDoneBtn" class="shot-btn">今を完了</button>
+    <button type="button" id="liveFocusSceneBtn" class="detail-btn">シーンへ</button>
+    <button type="button" id="liveFocusNextBtn" class="select-btn">次を表示</button>
+  </div>
+</div>
+
 <nav class="tabbar">
   <div class="tabbar-inner">
     <button type="button" class="tab-btn active" data-tab="home">
@@ -3017,8 +4417,12 @@ label{
   const PROJECT_KEY = "scene_projects_restore_v6";
   const SCENE_KEY = "scene_scenes_restore_v6";
   const CALLSHEET_KEY = "scene_callsheets_restore_v1";
+  const CALLSHEET_VIEW_MODE_KEY = "scene_callsheet_view_mode_restore_v1";
+  const CALLSHEET_HIDE_DONE_KEY = "scene_callsheet_hide_done_restore_v1";
+  const CALLSHEET_FOCUS_LIVE_KEY = "scene_callsheet_focus_live_restore_v1";
   const SCENE_DRAFT_KEY = "scene_form_draft_restore_v1";
   const SCENE_CONTINUOUS_MODE_KEY = "scene_continuous_mode_restore_v1";
+  const FIELD_LOCK_ACTIVE_PROJECT_KEY = "scene_field_lock_active_project_restore_v1";
   const MODE_KEY = "scene_mode_restore_v6";
   const FAB_POSITION_KEY = "scene_fab_position_restore_v1";
   const ACTIVE_PROJECT_KEY = "scene_active_project_restore_v6";
@@ -3055,7 +4459,7 @@ label{
   let locations = readJson(LOCATION_KEY, []);
   let actors = readJson(ACTOR_KEY, []);
   let props = readJson(PROP_KEY, []);
-  let callSheets = readJson(CALLSHEET_KEY, []);
+  let callSheets = readJson(CALLSHEET_KEY, []).map(sheet => normalizeCallSheet(sheet));
   let quickCheck = readJson(QC_KEY, {});
   let fieldGroupOpenState = readJson(FIELD_GROUP_OPEN_KEY, {});
   let sectionCollapseState = {
@@ -3063,6 +4467,12 @@ label{
   ...readJson(COLLAPSE_KEY, {})
 };
   let continuousSceneMode = localStorage.getItem(SCENE_CONTINUOUS_MODE_KEY) === "true";
+  let fieldLockActiveProjectMode = localStorage.getItem(FIELD_LOCK_ACTIVE_PROJECT_KEY) === "true";
+  let callSheetViewMode = localStorage.getItem(CALLSHEET_VIEW_MODE_KEY) === "table" ? "table" : "cards";
+  let callSheetHideDoneMode = localStorage.getItem(CALLSHEET_HIDE_DONE_KEY) === "true";
+  let callSheetFocusLiveMode = localStorage.getItem(CALLSHEET_FOCUS_LIVE_KEY) === "true";
+  let callSheetSelectedProjectIds = [];
+  let callSheetProjectSearchText = "";
   let currentSceneActorIds = [];
   let currentScenePropIds = [];
 
@@ -3082,6 +4492,10 @@ label{
   const headerModeChip = $("headerModeChip");
   const headerPrepBtn = $("headerPrepBtn");
   const headerFieldBtn = $("headerFieldBtn");
+  const callSheetProjectPicker = $("callSheetProjectPicker");
+  const callSheetFormatSelect = $("callSheetFormatSelect");
+  const callSheetProjectSearch = $("callSheetProjectSearch");
+  const callSheetProjectSelected = $("callSheetProjectSelected");
 
   const saveProjectBtn = $("saveProjectBtn");
   const clearProjectBtn = $("clearProjectBtn");
@@ -3215,6 +4629,8 @@ label{
   const fieldDoneCount = $("fieldDoneCount");
   const openNewSceneBtn = $("openNewSceneBtn");
   const fieldProjectLinkBox = $("fieldProjectLinkBox");
+  const fieldLockActiveProject = $("fieldLockActiveProject");
+  const fieldPlaceholderOnly = $("fieldPlaceholderOnly");
   const prevUndoneSceneBtn = $("prevUndoneSceneBtn");
   const nextUndoneSceneBtn = $("nextUndoneSceneBtn");
   const currentSceneMain = $("currentSceneMain");
@@ -3236,6 +4652,9 @@ label{
   const tabTool = $("tabTool");
   const tabCallsheet = $("tabCallsheet");
   const createCallSheetBtn = $("createCallSheetBtn");
+  const existingCallSheetSelect = $("existingCallSheetSelect");
+  const openSelectedCallSheetBtn = $("openSelectedCallSheetBtn");
+  const openLatestCallSheetBtn = $("openLatestCallSheetBtn");
   const callSheetDateInput = $("callSheetDateInput");
   const callSheetTitleInput = $("callSheetTitleInput");
   const callSheetUndoneOnly = $("callSheetUndoneOnly");
@@ -3247,6 +4666,7 @@ label{
   const importScenesCsvInput = $("importScenesCsvInput");
   const copyScenesCsvTemplateBtn = $("copyScenesCsvTemplateBtn");
   const generateMissingScenesBtn = $("generateMissingScenesBtn");
+  const deletePlaceholderScenesBtn = $("deletePlaceholderScenesBtn");
   const missingSceneInsightBox = $("missingSceneInsightBox");
 
   const timerDisplay = $("timerDisplay");
@@ -3273,6 +4693,17 @@ label{
   const currentSceneDetailBtn = $("currentSceneDetailBtn");
   const currentSceneDoneBtn = $("currentSceneDoneBtn");
   const currentSceneNextBtn = $("currentSceneNextBtn");
+  const liveFocusOverlay = $("liveFocusOverlay");
+  const liveFocusTitle = $("liveFocusTitle");
+  const liveFocusCloseBtn = $("liveFocusCloseBtn");
+  const liveFocusScene = $("liveFocusScene");
+  const liveFocusMeta = $("liveFocusMeta");
+  const liveFocusChecks = $("liveFocusChecks");
+  const liveFocusNext = $("liveFocusNext");
+  const liveFocusNextMeta = $("liveFocusNextMeta");
+  const liveFocusDoneBtn = $("liveFocusDoneBtn");
+  const liveFocusSceneBtn = $("liveFocusSceneBtn");
+  const liveFocusNextBtn = $("liveFocusNextBtn");
 
   function readJson(key, fallback){
     try{
@@ -3348,6 +4779,85 @@ function resetTimer(){
     return {
       ...project,
       plannedSceneCount: Math.max(0, Number(project?.plannedSceneCount) || 0)
+    };
+  }
+
+  function normalizeCallSheetSettings(settings){
+    return {
+      weather: String(settings?.weather || ""),
+      weatherLabel: String(settings?.weatherLabel || ""),
+      base: String(settings?.base || ""),
+      transport: String(settings?.transport || ""),
+      producerName: String(settings?.producerName || ""),
+      cdName: String(settings?.cdName || ""),
+      fdName: String(settings?.fdName || ""),
+      sxName: String(settings?.sxName || ""),
+      directionChiefName: String(settings?.directionChiefName || ""),
+      technicalChiefName: String(settings?.technicalChiefName || ""),
+      artChiefName: String(settings?.artChiefName || ""),
+      hairMakeChiefName: String(settings?.hairMakeChiefName || ""),
+      roleColumnsText: String(settings?.roleColumnsText || ""),
+      unitName: String(settings?.unitName || ""),
+      assistantDirector: String(settings?.assistantDirector || ""),
+      cameraTeam: String(settings?.cameraTeam || ""),
+      sunriseSunset: String(settings?.sunriseSunset || ""),
+      sunriseTime: String(settings?.sunriseTime || ""),
+      sunsetTime: String(settings?.sunsetTime || ""),
+      highTemp: String(settings?.highTemp || ""),
+      lowTemp: String(settings?.lowTemp || ""),
+      crewCall: String(settings?.crewCall || ""),
+      castCall: String(settings?.castCall || ""),
+      directionCall: String(settings?.directionCall || ""),
+      directionPlace: String(settings?.directionPlace || settings?.base || ""),
+      technicalCall: String(settings?.technicalCall || settings?.cameraCall || settings?.lightCall || settings?.soundCall || ""),
+      technicalPlace: String(settings?.technicalPlace || settings?.base || ""),
+      cameraCall: String(settings?.cameraCall || ""),
+      lightCall: String(settings?.lightCall || ""),
+      soundCall: String(settings?.soundCall || ""),
+      artCall: String(settings?.artCall || ""),
+      costumeCall: String(settings?.costumeCall || ""),
+      costumePlace: String(settings?.costumePlace || settings?.base || ""),
+      makeupCall: String(settings?.makeupCall || ""),
+      productionCall: String(settings?.productionCall || ""),
+      shootStart: String(settings?.shootStart || "09:00"),
+      wrapTime: String(settings?.wrapTime || ""),
+      mealBreak: String(settings?.mealBreak || ""),
+      sceneMinutes: Math.max(5, Number(settings?.sceneMinutes) || 20),
+      sameLocationBufferMinutes: Math.max(0, Number(settings?.sameLocationBufferMinutes) || 0),
+      locationMoveMinutes: Math.max(0, Number(settings?.locationMoveMinutes) || 15),
+      attention: String(settings?.attention || ""),
+      sharedNote: String(settings?.sharedNote || ""),
+      emergencyContact: String(settings?.emergencyContact || ""),
+      footerMemo: String(settings?.footerMemo || "")
+    };
+  }
+
+  function normalizeCallSheetRowTimes(rowTimes){
+    if(!rowTimes || typeof rowTimes !== "object") return {};
+    return Object.entries(rowTimes).reduce((accumulator, [sceneId, value]) => {
+      const start = String(value?.start || "").trim();
+      const end = String(value?.end || "").trim();
+      if(start || end){
+        accumulator[sceneId] = { start, end };
+      }
+      return accumulator;
+    }, {});
+  }
+
+  function normalizeCallSheet(sheet){
+    const normalizedProjectIds = Array.isArray(sheet?.projectIds)
+      ? sheet.projectIds.map(value => String(value || "").trim()).filter(Boolean)
+      : (sheet?.projectId ? [String(sheet.projectId).trim()] : []);
+
+    return {
+      ...sheet,
+      format: sheet?.format === "short_drama" ? "short_drama" : "film",
+      projectId: normalizedProjectIds[0] || String(sheet?.projectId || ""),
+      projectIds: normalizedProjectIds,
+      undoneOnly: !!sheet?.undoneOnly,
+      scheduledDate: String(sheet?.scheduledDate || ""),
+      settings: normalizeCallSheetSettings(sheet?.settings),
+      rowTimes: normalizeCallSheetRowTimes(sheet?.rowTimes)
     };
   }
 
@@ -3567,7 +5077,7 @@ function switchTab(tabName){
         locations = Array.isArray(data.locations) ? data.locations : [];
         actors = Array.isArray(data.actors) ? data.actors : [];
         props = Array.isArray(data.props) ? data.props : [];
-        callSheets = Array.isArray(data.callSheets) ? data.callSheets : [];
+        callSheets = Array.isArray(data.callSheets) ? data.callSheets.map(sheet => normalizeCallSheet(sheet)) : [];
         quickCheck = data.quickCheck && typeof data.quickCheck === "object" ? data.quickCheck : {};
         fieldGroupOpenState = data.fieldGroupOpenState && typeof data.fieldGroupOpenState === "object" ? data.fieldGroupOpenState : {};
        sectionCollapseState =
@@ -3669,6 +5179,28 @@ function switchTab(tabName){
   return projects.find(project => project.id === projectId)?.title || "";
 }
 
+function getCallSheetProjectIds(sheet){
+  if(Array.isArray(sheet?.projectIds) && sheet.projectIds.length){
+    return sheet.projectIds
+      .map(value => String(value || "").trim())
+      .filter(Boolean);
+  }
+  return sheet?.projectId ? [String(sheet.projectId).trim()] : [];
+}
+
+function getCallSheetProjectTitles(sheet){
+  return getCallSheetProjectIds(sheet)
+    .map(projectId => getProjectTitle(projectId))
+    .filter(Boolean);
+}
+
+function getCallSheetProjectLabel(sheet){
+  const titles = getCallSheetProjectTitles(sheet);
+  if(titles.length === 0) return "未選択";
+  if(titles.length <= 3) return titles.join(" / ");
+  return `${titles.slice(0, 3).join(" / ")} ほか${titles.length - 3}本`;
+}
+
   function getProjectPlannedSceneCount(projectId){
     return Math.max(0, Number(projects.find(project => project.id === projectId)?.plannedSceneCount) || 0);
   }
@@ -3736,10 +5268,14 @@ function switchTab(tabName){
     if(!options.skipFieldProjectFilter && fieldProjectFilter){
       fieldProjectFilter.value = projectId;
     }
+    if(callSheetSelectedProjectIds.length === 0){
+      callSheetSelectedProjectIds = [projectId];
+    }
 
     renderProjects();
     renderProjectSelect();
     renderFieldProjectFilter();
+    renderCallSheetProjectPicker();
     renderHeaderStatus();
     renderHomeDashboard();
     renderMissingSceneInsights();
@@ -3901,6 +5437,35 @@ function switchTab(tabName){
     renderHomeDashboard();
     updateSceneCountSummary();
     showToast(`${targetNos.length}件の仮シーンを作成しました`);
+  }
+
+  function deletePlaceholderScenes(projectId = activeProjectId){
+    if(!projectId){
+      showToast("先に脚本を選択してください");
+      return;
+    }
+
+    const placeholderScenes = scenes.filter(scene => scene.projectId === projectId && scene.isPlaceholder);
+    if(placeholderScenes.length === 0){
+      showToast("削除できる仮シーンはありません");
+      return;
+    }
+
+    if(!confirm(`${placeholderScenes.length}件の仮シーンを削除しますか？`)) return;
+
+    const idsToDelete = new Set(placeholderScenes.map(scene => scene.id));
+    scenes = scenes.filter(scene => !idsToDelete.has(scene.id));
+    normalizeProjectSceneOrders(projectId);
+    saveScenes();
+    renderProjects();
+    renderScenes();
+    renderDebug();
+    renderHomeDashboard();
+    renderMissingSceneInsights();
+    renderMissingSceneChecklist();
+    renderProjectLinkBoxes();
+    updateSceneCountSummary();
+    showToast(`${placeholderScenes.length}件の仮シーンを削除しました`);
   }
 
   function renderMissingSceneInsights(){
@@ -4260,6 +5825,17 @@ function renderHeaderStatus(){
     }
   }
 
+  function setFieldLockActiveProjectMode(enabled){
+    fieldLockActiveProjectMode = !!enabled;
+    localStorage.setItem(FIELD_LOCK_ACTIVE_PROJECT_KEY, String(fieldLockActiveProjectMode));
+    if(fieldLockActiveProject){
+      fieldLockActiveProject.checked = fieldLockActiveProjectMode;
+    }
+    if(fieldLockActiveProjectMode && fieldProjectFilter && activeProjectId){
+      fieldProjectFilter.value = activeProjectId;
+    }
+  }
+
   function getNextSuggestedSceneNo(projectId){
     const missingNos = getProjectMissingSceneNos(projectId);
     if(missingNos.length > 0){
@@ -4353,6 +5929,8 @@ function renderHeaderStatus(){
       artNote: sceneArtNote?.value || "",
       productionNote: sceneProductionNote?.value || "",
       actorNote: sceneActorNote?.value || "",
+      actorIds: [...currentSceneActorIds],
+      propIds: [...currentScenePropIds],
       cuts: getSceneCutValues(),
       checks: getSceneCheckValues()
     };
@@ -4427,6 +6005,8 @@ function renderHeaderStatus(){
     if(sceneArtNote) sceneArtNote.value = draft.artNote || "";
     if(sceneProductionNote) sceneProductionNote.value = draft.productionNote || "";
     if(sceneActorNote) sceneActorNote.value = draft.actorNote || "";
+    currentSceneActorIds = Array.isArray(draft.actorIds) ? [...draft.actorIds] : [];
+    currentScenePropIds = Array.isArray(draft.propIds) ? [...draft.propIds] : [];
     setSceneCutValues(draft.cuts);
     setSceneCheckValues(draft.checks);
     updateSceneCountSummary();
@@ -5196,6 +6776,7 @@ projectList.style.minHeight = "120px";
 }
 
   function addActor(){
+  const previousActor = editingActorId ? actors.find(actor => actor.id === editingActorId) : null;
   const actorObject = {
     id: editingActorId || uid("actor"),
     name: actorName.value.trim(),
@@ -5218,6 +6799,16 @@ projectList.style.minHeight = "120px";
   }
 
   saveActors();
+  if(previousActor){
+    scenes.forEach(scene => {
+      if(Array.isArray(scene.actorIds) && scene.actorIds.includes(actorObject.id)){
+        syncSceneCastWithActorIds(scene, [previousActor.name]);
+      }
+    });
+    saveScenes();
+    renderScenes();
+    renderHomeDashboard();
+  }
   clearActorForm();
   renderActors();
   renderActorSelect();
@@ -5241,8 +6832,17 @@ projectList.style.minHeight = "120px";
 
   function deleteActor(actorId){
     if(!confirm("この俳優を削除する？")) return;
+    const previousActor = actors.find(actor => actor.id === actorId);
     actors = actors.filter(actor => actor.id !== actorId);
+    scenes.forEach(scene => {
+      if(Array.isArray(scene.actorIds) && scene.actorIds.includes(actorId)){
+        scene.actorIds = scene.actorIds.filter(id => id !== actorId);
+        syncSceneCastWithActorIds(scene, previousActor ? [previousActor.name] : []);
+      }
+    });
     saveActors();
+    saveScenes();
+    renderScenes();
     renderActors();
     renderActorSelect();
     renderDebug();
@@ -5397,6 +6997,7 @@ projectList.style.minHeight = "120px";
 }
 
   function addProp(){
+  const previousProp = editingPropId ? props.find(prop => prop.id === editingPropId) : null;
   const propObject = {
     id: editingPropId || uid("prop"),
     name: propName.value.trim(),
@@ -5419,6 +7020,16 @@ projectList.style.minHeight = "120px";
   }
 
   saveProps();
+  if(previousProp){
+    scenes.forEach(scene => {
+      if(Array.isArray(scene.propIds) && scene.propIds.includes(propObject.id)){
+        syncScenePropWithPropIds(scene, [previousProp.name]);
+      }
+    });
+    saveScenes();
+    renderScenes();
+    renderHomeDashboard();
+  }
   clearPropForm();
   renderProps();
   renderPropSelect();
@@ -5442,8 +7053,17 @@ projectList.style.minHeight = "120px";
 
   function deleteProp(propId){
     if(!confirm("この小道具を削除する？")) return;
+    const previousProp = props.find(prop => prop.id === propId);
     props = props.filter(prop => prop.id !== propId);
+    scenes.forEach(scene => {
+      if(Array.isArray(scene.propIds) && scene.propIds.includes(propId)){
+        scene.propIds = scene.propIds.filter(id => id !== propId);
+        syncScenePropWithPropIds(scene, previousProp ? [previousProp.name] : []);
+      }
+    });
     saveProps();
+    saveScenes();
+    renderScenes();
     renderProps();
     renderPropSelect();
     renderDebug();
@@ -5683,6 +7303,8 @@ projectList.style.minHeight = "120px";
       productionNote,
       actorNote,
       isPlaceholder: false,
+      actorIds: [...currentSceneActorIds],
+      propIds: [...currentScenePropIds],
       cuts: getSceneCutValues(),
       checks: sceneChecks,
       shotDone: existingShotDone
@@ -5703,12 +7325,27 @@ saveScenes();
 
 const savedId = sceneObject.id;
 const wasEditing = !!editingSceneId;
+const shouldContinueInput = continuousSceneMode && !wasEditing;
 
-clearSceneForm(!wasEditing);
-clearSceneDraft();
+if(shouldContinueInput){
+  clearSceneForm(true);
+  if(sceneProjectSelect) sceneProjectSelect.value = projectId;
+  if(sceneNo) sceneNo.value = getNextSuggestedSceneNo(projectId);
+  if(sceneOrder) sceneOrder.value = getNextSceneOrderCandidate();
+  updateSceneCountSummary();
+  saveSceneDraft();
+  sceneFormSection.classList.remove("hidden");
+  setSectionCollapsed("sceneFormSection", false);
+  setTimeout(() => {
+    if(sceneTitle) sceneTitle.focus();
+  }, 50);
+}else{
+  clearSceneForm(!wasEditing);
+  clearSceneDraft();
 
-if(mode === "field"){
-  sceneFormSection.classList.add("hidden");
+  if(mode === "field"){
+    sceneFormSection.classList.add("hidden");
+  }
 }
 
     renderProjects();
@@ -5716,9 +7353,11 @@ if(mode === "field"){
     renderDebug();
     renderHomeDashboard();
     renderMissingSceneInsights();
+    renderMissingSceneChecklist();
+    renderProjectLinkBoxes();
     updateOpenSceneButton();
     scrollToScene(savedId);
-    showToast(wasEditing ? "シーンを更新しました" : "シーンを保存しました");
+    showToast(wasEditing ? "シーンを更新しました" : shouldContinueInput ? "保存して次のシーン入力へ進みました" : "シーンを保存しました");
   }
 
   function getSceneCheckStatus(checks){
@@ -5887,6 +7526,8 @@ function getNotReadyScenes(projectId){
     sceneArtNote.value = scene.artNote || "";
     sceneProductionNote.value = scene.productionNote || "";
     sceneActorNote.value = scene.actorNote || "";
+    currentSceneActorIds = Array.isArray(scene.actorIds) ? [...scene.actorIds] : [];
+    currentScenePropIds = Array.isArray(scene.propIds) ? [...scene.propIds] : [];
     setSceneCutValues(scene.cuts);
 
     const checks = scene.checks || {};
@@ -6554,12 +8195,18 @@ function getNotReadyScenes(projectId){
     let filtered = [...scenes];
 
   const search = (fieldSearchInput?.value || "").trim().toLowerCase();
-  const projectId = fieldProjectFilter?.value || "all";
+  const projectId = fieldLockActiveProjectMode && activeProjectId
+    ? activeProjectId
+    : (fieldProjectFilter?.value || "all");
   const status = fieldStatusFilter?.value || "all";
   const sort = fieldSortFilter?.value || "default";
+  const placeholderOnly = !!fieldPlaceholderOnly?.checked;
 
   if(projectId !== "all"){
     filtered = filtered.filter(scene => scene.projectId === projectId);
+  }
+  if(placeholderOnly){
+    filtered = filtered.filter(scene => scene.isPlaceholder);
   }
 
   if(status === "undone"){
@@ -7139,6 +8786,844 @@ function importScenesFromCsvText(text){
   showToast(`${importedScenes.length}シーンをCSVから取り込みました`);
 }
 
+function parseTimeToMinutes(value){
+  if(!value || !/^\d{1,2}:\d{2}$/.test(value)) return null;
+  const [hour, minute] = value.split(":").map(Number);
+  if(Number.isNaN(hour) || Number.isNaN(minute)) return null;
+  return hour * 60 + minute;
+}
+
+function formatMinutesAsTime(totalMinutes){
+  if(totalMinutes == null || Number.isNaN(totalMinutes)) return "-";
+  const normalized = ((totalMinutes % 1440) + 1440) % 1440;
+  const hour = Math.floor(normalized / 60);
+  const minute = normalized % 60;
+  return `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`;
+}
+
+function formatJapaneseDateParts(value){
+  if(!value) return { day: "--", monthLabel: "", full: "" };
+  const date = new Date(`${value}T00:00:00`);
+  if(Number.isNaN(date.getTime())){
+    return { day: "--", monthLabel: "", full: value };
+  }
+  return {
+    day: String(date.getDate()),
+    monthLabel: `${date.getFullYear()}年${date.getMonth() + 1}月`,
+    full: `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`
+  };
+}
+
+function createDefaultCallSheetSettings(project){
+  const uniqueLocations = getSortedProjectScenes(project?.id)
+    .map(scene => scene.location)
+    .filter(Boolean)
+    .filter((value, index, array) => array.indexOf(value) === index);
+
+  return normalizeCallSheetSettings({
+    producerName: "氏名",
+    cdName: "藤咲恭平",
+    fdName: "安井真一",
+    sxName: "-",
+    directionChiefName: "菅原昌彬",
+    technicalChiefName: "大門響規",
+    artChiefName: "-",
+    hairMakeChiefName: "-",
+    roleColumnsText: "彼氏|石和和輝様\n彼女|シイナナルミ様\n女友達/女|姫子様\n後輩/男|柴谷風太様\nおっさん/店員|安井真一様\n占い師|ケイリー様\nゲスト|岡崎康綾様",
+    unitName: project?.title ? `${project.title} 制作部` : "",
+    assistantDirector: project?.director || "",
+    weatherLabel: "晴れ",
+    base: "渋谷区渋谷1-9-4 トーカン渋谷キャステール508",
+    directionCall: "06:30",
+    directionPlace: "渋谷区渋谷1-9-4 トーカン渋谷キャステール508",
+    technicalCall: "06:30",
+    technicalPlace: "渋谷区渋谷1-9-4 トーカン渋谷キャステール508",
+    artCall: "",
+    costumeCall: "00:00",
+    costumePlace: "",
+    makeupCall: "00:00",
+    productionCall: "06:30",
+    sunriseTime: "04:41",
+    sunsetTime: "18:54",
+    highTemp: "32℃",
+    lowTemp: "24℃",
+    locationMoveMinutes: 15,
+    sameLocationBufferMinutes: 0,
+    attention: "",
+    sharedNote: "【共有事項】",
+    emergencyContact: uniqueLocations
+      .map(locationName => {
+        const location = locations.find(item => item.name === locationName);
+        if(!location) return "";
+        return `${location.name} ${location.phone || ""}`.trim();
+      })
+      .filter(Boolean)
+      .join("\n")
+  });
+}
+
+function updateCallSheetSettings(callSheetId, nextSettings){
+  const target = callSheets.find(item => item.id === callSheetId);
+  if(!target) return;
+  target.settings = normalizeCallSheetSettings({
+    ...target.settings,
+    ...nextSettings
+  });
+  saveCallSheets();
+}
+
+function updateCallSheetRowTimes(callSheetId, rowTimes){
+  const target = callSheets.find(item => item.id === callSheetId);
+  if(!target) return;
+  target.rowTimes = normalizeCallSheetRowTimes(rowTimes);
+  saveCallSheets();
+}
+
+function setCallSheetViewMode(nextMode){
+  callSheetViewMode = nextMode === "table" ? "table" : "cards";
+  localStorage.setItem(CALLSHEET_VIEW_MODE_KEY, callSheetViewMode);
+}
+
+function setCallSheetHideDoneMode(enabled){
+  callSheetHideDoneMode = !!enabled;
+  localStorage.setItem(CALLSHEET_HIDE_DONE_KEY, String(callSheetHideDoneMode));
+}
+
+function setCallSheetFocusLiveMode(enabled){
+  callSheetFocusLiveMode = !!enabled;
+  localStorage.setItem(CALLSHEET_FOCUS_LIVE_KEY, String(callSheetFocusLiveMode));
+}
+
+function parseTimeRange(value){
+  const match = String(value || "").trim().match(/^(\d{1,2}:\d{2})\s*[-~]\s*(\d{1,2}:\d{2})$/);
+  if(!match) return null;
+  return { start: match[1], end: match[2] };
+}
+
+function moveCallSheetScene(callSheetId, sceneId, direction){
+  const target = callSheets.find(item => item.id === callSheetId);
+  if(!target || !Array.isArray(target.sceneIds)) return;
+
+  const index = target.sceneIds.findIndex(id => id === sceneId);
+  if(index < 0) return;
+
+  const nextIndex = direction === "up" ? index - 1 : index + 1;
+  if(nextIndex < 0 || nextIndex >= target.sceneIds.length) return;
+
+  const nextSceneIds = [...target.sceneIds];
+  [nextSceneIds[index], nextSceneIds[nextIndex]] = [nextSceneIds[nextIndex], nextSceneIds[index]];
+  target.sceneIds = nextSceneIds;
+  saveCallSheets();
+}
+
+function autoFillCallSheetRowTimes(callSheetId){
+  const target = callSheets.find(item => item.id === callSheetId);
+  if(!target) return;
+
+  const rows = getCallSheetRows(target);
+  const settings = normalizeCallSheetSettings(target.settings);
+  const mealRange = parseTimeRange(settings.mealBreak);
+  const sceneMinutes = Math.max(5, Number(settings.sceneMinutes) || 20);
+  const sameLocationBufferMinutes = Math.max(0, Number(settings.sameLocationBufferMinutes) || 0);
+  const locationMoveMinutes = Math.max(0, Number(settings.locationMoveMinutes) || 15);
+  let currentMinutes = parseTimeToMinutes(settings.shootStart) ?? 9 * 60;
+  const nextRowTimes = {};
+  let previousLocation = "";
+
+  rows.forEach(row => {
+    const mealStart = parseTimeToMinutes(mealRange?.start);
+    const mealEnd = parseTimeToMinutes(mealRange?.end);
+    const scene = scenes.find(item => item.id === row.id);
+    const cutCount = Array.isArray(scene?.cuts) ? scene.cuts.filter(Boolean).length : 0;
+    const duration = sceneMinutes + Math.max(0, cutCount - 1) * 5;
+
+    if(mealStart != null && mealEnd != null && currentMinutes >= mealStart && currentMinutes < mealEnd){
+      currentMinutes = mealEnd;
+    }
+
+    if(previousLocation){
+      currentMinutes += previousLocation === row.location ? sameLocationBufferMinutes : locationMoveMinutes;
+    }
+
+    nextRowTimes[row.id] = {
+      start: formatMinutesAsTime(currentMinutes),
+      end: formatMinutesAsTime(currentMinutes + duration)
+    };
+
+    currentMinutes += duration;
+    previousLocation = row.location;
+  });
+
+  target.rowTimes = normalizeCallSheetRowTimes(nextRowTimes);
+  saveCallSheets();
+}
+
+function sortCallSheetByLocation(callSheetId){
+  const target = callSheets.find(item => item.id === callSheetId);
+  if(!target) return;
+
+  target.sceneIds = [...(target.sceneIds || [])].sort((aId, bId) => {
+    const a = scenes.find(scene => scene.id === aId);
+    const b = scenes.find(scene => scene.id === bId);
+    const aLocation = String(a?.location || "").trim();
+    const bLocation = String(b?.location || "").trim();
+    const locationDiff = aLocation.localeCompare(bLocation, "ja");
+    if(locationDiff !== 0) return locationDiff;
+    return (Number(a?.order) || 0) - (Number(b?.order) || 0);
+  });
+
+  saveCallSheets();
+}
+
+function duplicateCallSheet(callSheetId){
+  const target = callSheets.find(item => item.id === callSheetId);
+  if(!target) return;
+
+  const copy = normalizeCallSheet({
+    ...target,
+    id: uid("callsheet"),
+    title: `${target.title || "香盤"} コピー`,
+    createdAt: new Date().toISOString()
+  });
+
+  callSheets.unshift(copy);
+  saveCallSheets();
+  renderCallSheetList();
+  openCallSheetDetail(copy.id);
+  showToast("香盤を複製しました");
+}
+
+function getCallSheetRouteSummary(sheet){
+  const rows = getCallSheetRows(sheet);
+  const grouped = [];
+  rows.forEach(row => {
+    const last = grouped[grouped.length - 1];
+    if(last && last.location === row.location){
+      last.count += 1;
+      last.scenes.push(row.no || row.title);
+      return;
+    }
+    grouped.push({
+      location: row.location || "場所未設定",
+      count: 1,
+      scenes: [row.no || row.title]
+    });
+  });
+  return grouped;
+}
+
+function getCallSheetLiveScenes(sheet){
+  const rows = getCallSheetRows(sheet).filter(row => !row.missing);
+  const firstUndone = rows.find(row => !row.shotDone) || null;
+  if(!firstUndone){
+    return { current: rows[rows.length - 1] || null, next: null };
+  }
+  const currentIndex = rows.findIndex(row => row.id === firstUndone.id);
+  return {
+    current: firstUndone,
+    next: rows.slice(currentIndex + 1).find(row => !row.shotDone) || null
+  };
+}
+
+function buildCallSheetShareText(sheet){
+  const rows = getCallSheetPrintRows(sheet);
+  const projectTitle = getCallSheetProjectLabel(sheet);
+  const route = getCallSheetRouteSummary(sheet)
+    .map((item, index) => `${index + 1}. ${item.location} (${item.count}シーン)`)
+    .join("\n");
+
+  return [
+    `${sheet.title || "香盤表"}`,
+    `脚本: ${projectTitle}`,
+    sheet.scheduledDate ? `撮影日: ${sheet.scheduledDate}` : "",
+    `対象シーン: ${rows.length}`,
+    "",
+    "ルート",
+    route,
+    "",
+    "時刻一覧",
+    ...rows.map(row => `${row.timeStart}-${row.timeEnd} / ${row.no} ${row.title} / ${row.location}`)
+  ].filter(Boolean).join("\n");
+}
+
+let liveFocusCallSheetId = "";
+let liveFocusSceneId = "";
+
+function closeLiveFocus(){
+  if(liveFocusOverlay){
+    liveFocusOverlay.classList.add("hidden");
+  }
+}
+
+function renderLiveFocus(callSheetId, sceneId = ""){
+  const sheet = callSheets.find(item => item.id === callSheetId);
+  if(!sheet || !liveFocusOverlay) return;
+
+  const liveScenes = getCallSheetLiveScenes(sheet);
+  const current = sceneId
+    ? getCallSheetRows(sheet).find(row => row.id === sceneId) || liveScenes.current
+    : liveScenes.current;
+  const next = current?.id === liveScenes.current?.id ? liveScenes.next : getCallSheetRows(sheet).find(row => row.id !== current?.id && !row.shotDone) || liveScenes.next;
+  const printMap = new Map(getCallSheetPrintRows(sheet).map(row => [row.id, row]));
+  const currentScene = scenes.find(item => item.id === current?.id);
+  const checks = normalizeSceneChecks(currentScene?.checks);
+  const checkLabels = [
+    ["schedule","香盤"],
+    ["prop","小道具"],
+    ["cast","出演"],
+    ["costume","衣装"],
+    ["camera","撮影"],
+    ["light","照明"]
+  ];
+
+  liveFocusCallSheetId = callSheetId;
+  liveFocusSceneId = current?.id || "";
+
+  if(liveFocusTitle){
+    liveFocusTitle.textContent = `${sheet.title || "香盤"} 現場フォーカス`;
+  }
+  if(liveFocusScene){
+    liveFocusScene.textContent = current ? `${current.no || "-"} ${current.title || ""}` : "シーンなし";
+  }
+  if(liveFocusMeta){
+    liveFocusMeta.textContent = current ? [
+      `${printMap.get(current.id)?.timeStart || "-"} - ${printMap.get(current.id)?.timeEnd || "-"}`,
+      `場所: ${current.location || "-"}`,
+      `出演: ${current.cast || "-"}`,
+      `小道具: ${current.prop || "-"}`,
+      `メモ: ${current.memo || "-"}`
+    ].join("\n") : "-";
+  }
+  if(liveFocusChecks){
+    liveFocusChecks.innerHTML = checkLabels.map(([key, label]) => {
+      return `<div class="live-focus-chip">${checks[key] ? "○" : "・"} ${escapeHtml(label)}</div>`;
+    }).join("");
+  }
+  if(liveFocusNext){
+    liveFocusNext.textContent = next ? `${next.no || "-"} ${next.title || ""}` : "次のシーンなし";
+  }
+  if(liveFocusNextMeta){
+    liveFocusNextMeta.textContent = next ? [
+      `${printMap.get(next.id)?.timeStart || "-"} - ${printMap.get(next.id)?.timeEnd || "-"}`,
+      `場所: ${next.location || "-"}`,
+      `出演: ${next.cast || "-"}`
+    ].join("\n") : "-";
+  }
+  if(liveFocusDoneBtn){
+    liveFocusDoneBtn.disabled = !current?.id;
+  }
+  if(liveFocusSceneBtn){
+    liveFocusSceneBtn.disabled = !current?.id;
+  }
+  if(liveFocusNextBtn){
+    liveFocusNextBtn.disabled = !next?.id;
+  }
+
+  liveFocusOverlay.classList.remove("hidden");
+}
+
+function buildCallSheetCheckMark(value){
+  return value ? "○" : "";
+}
+
+function buildCallSheetContactRows(sheet){
+  return getCallSheetRows(sheet)
+    .map(row => scenes.find(scene => scene.id === row.id))
+    .filter(Boolean)
+    .flatMap(scene => {
+      const location = scene.locationId
+        ? locations.find(item => item.id === scene.locationId) || null
+        : locations.find(item => String(item.name || "").trim() === String(scene.location || "").trim()) || null;
+      const castNames = String(scene.cast || "")
+        .split(/\n|、|,|\/|・/)
+        .map(item => item.trim())
+        .filter(Boolean);
+      const callTime = normalizeCallSheetRowTimes(sheet?.rowTimes)?.[scene.id]?.start || "";
+      const callPlace = scene.location || location?.name || "";
+      const callAddress = scene.address || location?.address || "";
+      return castNames.map(name => ({
+        label: scene.title || scene.no || "配役未設定",
+        person: name,
+        callTime: callTime || "-",
+        callPlace: callPlace || "-",
+        contact: callAddress || "-",
+        note: scene.memo || "-"
+      }));
+    })
+    .filter((row, index, array) => {
+      return array.findIndex(item => item.label === row.label && item.person === row.person && item.callPlace === row.callPlace) === index;
+    })
+    .slice(0, 8);
+}
+
+function buildCallSheetLocationRows(sheet){
+  return getCallSheetRows(sheet)
+    .map(row => scenes.find(scene => scene.id === row.id))
+    .filter(Boolean)
+    .map(scene => {
+      const location = scene.locationId
+        ? locations.find(item => item.id === scene.locationId) || null
+        : locations.find(item => String(item.name || "").trim() === String(scene.location || "").trim()) || null;
+
+      return {
+        location: scene.location || location?.name || "-",
+        address: scene.address || location?.address || "-",
+        phone: scene.phone || location?.phone || "-",
+        memo: [
+          scene.permitMemo || location?.permitMemo || "",
+          scene.parkingMemo || location?.parkingMemo || "",
+          scene.rainMemo || location?.rainMemo || ""
+        ].filter(Boolean).join(" / ") || "-",
+        permitStatus: location?.permitMemo || scene.permitMemo ? "申請/予約済み" : "未"
+      };
+    })
+    .filter((row, index, array) => {
+      return array.findIndex(item => item.location === row.location && item.address === row.address && item.phone === row.phone) === index;
+    })
+    .slice(0, 6);
+}
+
+function getCallSheetPrintRows(sheet){
+  const rows = getCallSheetRows(sheet);
+  const sceneMinutes = Math.max(5, Number(sheet?.settings?.sceneMinutes) || 20);
+  const startMinutes = parseTimeToMinutes(sheet?.settings?.shootStart) ?? 9 * 60;
+  const rowTimes = normalizeCallSheetRowTimes(sheet?.rowTimes);
+  const palette = ["color-a", "color-b", "color-c", "color-d"];
+  const locationColorMap = new Map();
+  let currentStart = startMinutes;
+  let previousLocation = "";
+
+  return rows.map((row, index) => {
+    const scene = scenes.find(item => item.id === row.id);
+    const override = rowTimes[row.id] || {};
+    const start = parseTimeToMinutes(override.start) ?? currentStart;
+    const end = parseTimeToMinutes(override.end) ?? (start + sceneMinutes);
+    currentStart = end;
+    const normalizedLocation = String(row.location || "").trim();
+
+    if(!locationColorMap.has(normalizedLocation)){
+      locationColorMap.set(normalizedLocation, palette[locationColorMap.size % palette.length]);
+    }
+
+    const isLocationChange = Boolean(index > 0 && normalizedLocation && normalizedLocation !== previousLocation);
+    previousLocation = normalizedLocation;
+
+    return {
+      ...row,
+      sceneLabel: scene?.label || "",
+      castList: String(scene?.cast || "")
+        .split(/\n|、|,|\/|・/)
+        .map(item => item.trim())
+        .filter(Boolean),
+      cuts: Array.isArray(scene?.cuts) ? scene.cuts.join(" / ") : "-",
+      checks: normalizeSceneChecks(scene?.checks),
+      timeStart: override.start || formatMinutesAsTime(start),
+      timeEnd: override.end || formatMinutesAsTime(end),
+      duration: sceneMinutes,
+      colorClass: locationColorMap.get(normalizedLocation) || "",
+      isLocationChange
+    };
+  });
+}
+
+function getCallSheetPrintLayout(sheet, rows, contactRows, locationRows){
+  const printRows = Array.isArray(rows) ? rows : [];
+  const contacts = Array.isArray(contactRows) ? contactRows : [];
+  const locations = Array.isArray(locationRows) ? locationRows : [];
+  const cutCount = printRows.reduce((sum, row) => {
+    if(!row?.cuts || row.cuts === "-") return sum;
+    return sum + row.cuts.split("/").map(item => item.trim()).filter(Boolean).length;
+  }, 0);
+  let scale = 1;
+
+  if(printRows.length > 8) scale -= Math.min(0.20, (printRows.length - 8) * 0.022);
+  if(printRows.length > 12) scale -= Math.min(0.08, (printRows.length - 12) * 0.012);
+  if(printRows.length > 16) scale -= Math.min(0.05, (printRows.length - 16) * 0.01);
+  if(contacts.length > 3) scale -= Math.min(0.06, (contacts.length - 3) * 0.018);
+  if(locations.length > 3) scale -= Math.min(0.08, (locations.length - 3) * 0.018);
+  if(cutCount > Math.max(12, printRows.length * 2)) scale -= 0.03;
+
+  const compact = printRows.length >= 11 || contacts.length + locations.length >= 8 || cutCount >= 18 || scale < 0.96;
+  const dense = printRows.length >= 15 || contacts.length + locations.length >= 10 || scale < 0.86;
+
+  scale = Math.max(dense ? 0.68 : 0.76, Math.min(1, scale));
+
+  return {
+    scale: Number(scale.toFixed(2)),
+    compact,
+    dense
+  };
+}
+
+function getCallSheetCastColumns(rows, settings){
+  const manualRoles = String(settings?.roleColumnsText || "")
+    .split(/\n/)
+    .map(item => item.trim())
+    .filter(Boolean)
+    .slice(0, 6);
+  if(manualRoles.length){
+    return manualRoles.map(value => {
+      const [roleNameRaw, actorNameRaw] = String(value).split("|");
+      const roleName = String(roleNameRaw || "").trim() || String(value || "").trim();
+      const actorName = String(actorNameRaw || "").trim();
+      return {
+        name: roleName,
+        actor: actorName,
+        short: roleName.replace(/\s+/g, "").slice(0, 1) || "-"
+      };
+    });
+  }
+
+  const counts = new Map();
+  (Array.isArray(rows) ? rows : []).forEach(row => {
+    const castList = Array.isArray(row?.castList) ? row.castList : [];
+    castList.forEach(name => {
+      counts.set(name, (counts.get(name) || 0) + 1);
+    });
+  });
+
+  return Array.from(counts.entries())
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "ja"))
+    .slice(0, 6)
+    .map(([name]) => {
+      const compactName = String(name || "").replace(/\s+/g, "").replace(/様|さん|くん|ちゃん/g, "");
+      return {
+        name,
+        actor: name,
+        short: compactName.slice(0, 1) || "-"
+      };
+    });
+}
+
+function formatCallSheetActorHonorific(value){
+  const text = String(value || "").trim();
+  if(!text) return "";
+  if(/ ?様$/.test(text)) return text.replace(/ ?様$/, " 様");
+  return `${text} 様`;
+}
+
+function buildCallSheetPrintMarkup(sheet){
+  const project = projects.find(item => item.id === sheet.projectId);
+  const settings = normalizeCallSheetSettings(sheet.settings);
+  const rows = getCallSheetPrintRows(sheet);
+  const contactRows = buildCallSheetContactRows(sheet);
+  const locationRows = buildCallSheetLocationRows(sheet);
+  const doneCount = rows.filter(row => row.shotDone).length;
+  const uniqueLocations = rows.map(row => row.location).filter(Boolean).filter((value, index, array) => array.indexOf(value) === index);
+  const totalDuration = rows.reduce((sum, row) => sum + row.duration, 0);
+  const dateInfo = formatJapaneseDateParts(sheet.scheduledDate);
+  const shootStartMinutes = parseTimeToMinutes(settings.shootStart) ?? 9 * 60;
+  const wrapEstimated = settings.wrapTime || formatMinutesAsTime((parseTimeToMinutes(settings.shootStart) ?? 9 * 60) + totalDuration);
+  const totalCuts = rows.reduce((sum, row) => {
+    if(!row.cuts || row.cuts === "-") return sum;
+    return sum + row.cuts.split("/").map(item => item.trim()).filter(Boolean).length;
+  }, 0);
+  const deptCalls = [
+    {
+      label: "演出部 / 制作部",
+      time: settings.directionCall || settings.productionCall || "-",
+      place: settings.directionPlace || settings.base || "-"
+    },
+    {
+      label: "衣裳部 / メイク部",
+      time: settings.costumeCall || settings.makeupCall || "-",
+      place: settings.costumePlace || settings.base || "-"
+    },
+    {
+      label: "技術部",
+      time: settings.technicalCall || "-",
+      place: settings.technicalPlace || settings.base || "-"
+    }
+  ];
+  const layout = getCallSheetPrintLayout(sheet, rows, contactRows, locationRows);
+  const castColumns = getCallSheetCastColumns(rows, settings);
+  const pageClasses = [
+    "sheet-print-page",
+    layout.compact ? "is-compact" : "",
+    layout.dense ? "is-dense" : ""
+  ].filter(Boolean).join(" ");
+
+  return `
+    <div class="sheet-print-stage">
+    <div class="${pageClasses}" style="--sheet-print-scale:${layout.scale};">
+      <div class="sheet-print-film"></div>
+      <div class="sheet-print-page-no">1 / 1</div>
+      <div class="sheet-print-rule"></div>
+
+      <div class="sheet-print-head">
+        <div class="sheet-print-day">
+          <div><span class="num">${escapeHtml(dateInfo.day)}</span> <span style="font-size:20px;">日</span></div>
+          <div class="sub">${escapeHtml(dateInfo.monthLabel)}</div>
+        </div>
+
+        <div class="sheet-print-title">
+          <h3>${escapeHtml(sheet.title || "香盤表")}</h3>
+        </div>
+
+        <div class="sheet-print-alert">${escapeHtml(settings.sharedNote || settings.attention || "【共有事項】")}</div>
+      </div>
+
+      <div class="sheet-print-chip-row">
+        <div class="sheet-print-chip"><b>${escapeHtml(settings.weatherLabel || "仮")}</b></div>
+        <div class="sheet-print-chip">☀ <span>日の出</span> <b>${escapeHtml(settings.sunriseTime || "-")}</b></div>
+        <div class="sheet-print-chip">☽ <span>日没</span> <b>${escapeHtml(settings.sunsetTime || "-")}</b></div>
+        <div class="sheet-print-chip">▲ <b>${escapeHtml(settings.highTemp || "-")}</b></div>
+        <div class="sheet-print-chip">▼ <b>${escapeHtml(settings.lowTemp || "-")}</b></div>
+      </div>
+
+      <div class="sheet-print-top-panel">
+        <div class="sheet-print-call-grid">
+          <div class="sheet-print-call-cell head">スタッフ入り時間</div>
+          <div class="sheet-print-call-cell head"></div>
+          <div class="sheet-print-call-cell head">スタッフ入り場所</div>
+          <div class="sheet-print-call-cell head"></div>
+          ${deptCalls.map(item => `
+            <div class="sheet-print-call-cell"><strong>${escapeHtml(item.label)}</strong></div>
+            <div class="sheet-print-call-cell">${escapeHtml(item.time)}</div>
+            <div class="sheet-print-call-cell"><strong>${escapeHtml(item.label)}</strong></div>
+            <div class="sheet-print-call-cell">${escapeHtml(item.place)}</div>
+          `).join("")}
+        </div>
+
+        <div class="sheet-print-submeta">
+          <div class="sheet-print-box tall">
+            <div class="sheet-print-label">BD・プロデューサー</div>
+            <div class="sheet-print-value">${escapeHtml(settings.producerName || "-")}</div>
+          </div>
+          <div class="sheet-print-box tall">
+            <div class="sheet-print-label">CD</div>
+            <div class="sheet-print-value">${escapeHtml(settings.cdName || "-")}</div>
+          </div>
+          <div class="sheet-print-box tall">
+            <div class="sheet-print-label">FD・助監督</div>
+            <div class="sheet-print-value">${escapeHtml(settings.fdName || settings.assistantDirector || "-")}</div>
+          </div>
+          <div class="sheet-print-box tall">
+            <div class="sheet-print-label">SIX・制作</div>
+            <div class="sheet-print-value">${escapeHtml(settings.sxName || "-")}</div>
+          </div>
+        </div>
+
+        <div class="sheet-print-submeta staff">
+          <div class="sheet-print-box">
+            <div class="sheet-print-label">撮影</div>
+            <div class="sheet-print-value center">${escapeHtml(settings.directionChiefName || "-")}</div>
+          </div>
+          <div class="sheet-print-box">
+            <div class="sheet-print-label">音響</div>
+            <div class="sheet-print-value center">${escapeHtml(settings.technicalChiefName || "-")}</div>
+          </div>
+          <div class="sheet-print-box">
+            <div class="sheet-print-label">撮影部チーフ</div>
+            <div class="sheet-print-value center">${escapeHtml(settings.artChiefName || "-")}</div>
+          </div>
+          <div class="sheet-print-box micro">
+            <div class="sheet-print-label">衣裳</div>
+            <div class="sheet-print-value center">${escapeHtml(settings.hairMakeChiefName || "-")}</div>
+          </div>
+          <div class="sheet-print-box micro">
+            <div class="sheet-print-label">ヘアメイク</div>
+            <div class="sheet-print-value center">${escapeHtml(settings.hairMakeChiefName || "-")}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sheet-print-section-title">シーン内訳</div>
+      <div class="sheet-print-table-wrap">
+      <table class="sheet-print-table">
+        <colgroup>
+          <col style="width:48px;">
+          <col style="width:48px;">
+          <col style="width:50px;">
+          <col style="width:110px;">
+          <col style="width:22px;">
+          <col style="width:26px;">
+          ${castColumns.map(() => `<col style="width:26px;">`).join("")}
+          <col style="width:164px;">
+          <col>
+        </colgroup>
+        <thead>
+          <tr>
+            <th colspan="2">時間</th>
+            <th rowspan="2">S#</th>
+            <th rowspan="2">柱</th>
+            <th rowspan="2">D/N</th>
+            <th rowspan="2">分</th>
+            <th colspan="${Math.max(castColumns.length, 1)}">配役 | キャスト（敬称略）</th>
+            <th rowspan="2">現場</th>
+            <th rowspan="2">備考<br>(衣裳・小道具・美術・ヘアメイク等)</th>
+          </tr>
+          <tr>
+            <th>開始</th>
+            <th>終了</th>
+            ${castColumns.length ? castColumns.map(column => `
+              <th class="subhead">${escapeHtml(column.short)}</th>
+            `).join("") : `<th class="subhead">配</th>`}
+          </tr>
+          <tr>
+            <th class="subhead"></th>
+            <th class="subhead"></th>
+            <th class="subhead"></th>
+            <th class="subhead"></th>
+            <th class="subhead"></th>
+            <th class="subhead"></th>
+            ${castColumns.length ? castColumns.map(column => `
+              <th class="vertical-head subhead">
+                <div class="vertical-split">
+                  <div class="vertical-role">${escapeHtml(column.name)}</div>
+                  <div class="vertical-actor">${escapeHtml(formatCallSheetActorHonorific(column.actor))}</div>
+                </div>
+              </th>
+            `).join("") : `<th class="vertical-head subhead">出演者</th>`}
+            <th class="subhead"></th>
+            <th class="subhead"></th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.map(row => `
+            <tr class="${row.shotDone ? "is-done" : ""} ${row.colorClass} ${row.isLocationChange ? "location-change" : ""}">
+              <td class="time-split-col">${escapeHtml(row.timeStart)}</td>
+              <td class="time-split-col">${escapeHtml(row.timeEnd)}</td>
+              <td class="scene-col">${escapeHtml(row.no)}</td>
+              <td>${escapeHtml(row.title)}</td>
+              <td class="mini-col">${escapeHtml(row.sceneLabel || "-")}</td>
+              <td class="duration-col">${escapeHtml(String(row.duration || "-"))}</td>
+              ${castColumns.length ? castColumns.map(column => `
+                <td class="cast-mark-col">${Array.isArray(row.castList) && row.castList.includes(column.name) ? "●" : ""}</td>
+              `).join("") : `<td class="cast-mark-col">${escapeHtml(row.cast || "-")}</td>`}
+              <td class="location-col">${row.isLocationChange ? `<span class="location-shift-badge">移動後</span>` : ``}${escapeHtml(row.location)}</td>
+              <td class="memo-col">${escapeHtml([row.prop, row.cuts, row.memo].filter(Boolean).join(" / "))}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+      </div>
+
+      <div class="sheet-print-note">撮影終了！お疲れ様でした！</div>
+
+      <div class="sheet-print-section-title">連絡先・ロケ情報</div>
+      <div class="sheet-print-lower-grid">
+        <table class="sheet-print-address-table">
+          <colgroup>
+            <col style="width:36%;">
+            <col style="width:29%;">
+            <col style="width:29%;">
+            <col style="width:6%;">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>現場</th>
+              <th>住所</th>
+              <th>備考</th>
+              <th>申請予約チェック</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${(locationRows.length ? locationRows : [{
+              location: "-",
+              address: "-",
+              memo: "-",
+              permitStatus: "-"
+            }]).map(row => `
+              <tr>
+                <td>${escapeHtml(row.location)}</td>
+                <td>${escapeHtml(row.address)}</td>
+                <td>${escapeHtml(row.memo)}</td>
+                <td>${escapeHtml(row.permitStatus || "-")}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+
+        <table class="sheet-print-contact-table">
+          <colgroup>
+            <col style="width:24%;">
+            <col style="width:24%;">
+            <col style="width:7%;">
+            <col style="width:19%;">
+            <col style="width:8%;">
+            <col style="width:18%;">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>配役</th>
+              <th>キャスト</th>
+              <th>入り時間</th>
+              <th>入り場所</th>
+              <th>入り場所(住所)</th>
+              <th>備考</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${(contactRows.length ? contactRows : [{
+              label: "-",
+              person: "-",
+              callTime: "-",
+              callPlace: "-",
+              contact: "-",
+              note: "-"
+            }]).map(row => `
+              <tr>
+                <td>${escapeHtml(row.label)}</td>
+                <td>${escapeHtml(row.person)}</td>
+                <td>${escapeHtml(row.callTime || "-")}</td>
+                <td>${escapeHtml(row.callPlace || "-")}</td>
+                <td>${escapeHtml(row.contact)}</td>
+                <td>${escapeHtml(row.note)}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sheet-print-subnote">※予定は現場状況により変更になる場合があります。</div>
+
+      <div class="sheet-print-page-no" style="margin-top:6px; text-align:left;">
+        当日連絡先 ${escapeHtml(settings.fdName || settings.assistantDirector || "-")} ${escapeHtml(settings.emergencyContact || "")}
+      </div>
+
+      <div style="margin-top:8px;">
+        <div class="sheet-print-film"></div>
+      </div>
+    </div>
+    </div>
+  `;
+}
+
+function buildCallSheetPrintDocument(sheet){
+  const styleSource = Array.from(document.querySelectorAll("style"))
+    .map(style => style.textContent || "")
+    .join("\n");
+
+  return `<!doctype html>
+  <html lang="ja">
+    <head>
+      <meta charset="utf-8">
+      <title>${escapeHtml(sheet.title || "香盤表")}</title>
+      <style>${styleSource}</style>
+    </head>
+    <body>
+      ${buildCallSheetPrintMarkup(sheet)}
+    </body>
+  </html>`;
+}
+
+function printCallSheet(callSheetId){
+  const sheet = callSheets.find(item => item.id === callSheetId);
+  if(!sheet) return;
+
+  const popup = window.open("", "_blank");
+  if(!popup){
+    alert("ポップアップを許可するとPDF出力できます");
+    return;
+  }
+
+  popup.document.open();
+  popup.document.write(buildCallSheetPrintDocument(sheet));
+  popup.document.close();
+  popup.focus();
+}
+
 function getCallSheetRows(sheet){
   const ids = Array.isArray(sheet.sceneIds) ? sheet.sceneIds : [];
 
@@ -7177,7 +9662,10 @@ function getCallSheetRows(sheet){
   });
 }
 
-function buildCallSheetTable(rows){
+function buildCallSheetTable(rows, sheet){
+  const printRows = getCallSheetPrintRows(sheet);
+  const timeMap = new Map(printRows.map(row => [row.id, row]));
+
   return `
     <div class="call-sheet-table">
       <div class="call-sheet-row call-sheet-header">
@@ -7192,7 +9680,10 @@ function buildCallSheetTable(rows){
 
       ${rows.map(row => `
         <div class="call-sheet-row ${row.shotDone ? "is-done" : ""}">
-          <div class="call-sheet-cell time-cell">${row.shotDone ? "✓ 完了" : "未完"}</div>
+          <div class="call-sheet-cell time-cell">
+            ${row.shotDone ? "✓ 完了" : "未完"}<br>
+            ${escapeHtml(timeMap.get(row.id)?.timeStart || "-")} - ${escapeHtml(timeMap.get(row.id)?.timeEnd || "-")}
+          </div>
           <div class="call-sheet-cell">${escapeHtml(row.order)}</div>
           <div class="call-sheet-cell">
             ${escapeHtml(row.no)}<br>
@@ -7204,7 +9695,9 @@ function buildCallSheetTable(rows){
           <div class="call-sheet-cell note-cell">
             ${escapeHtml(row.memo)}
             ${!row.missing ? `
-              <div style="margin-top:8px;">
+              <div class="call-sheet-move-row">
+                <button type="button" class="call-sheet-mini-action" data-callsheet-move="up" data-callsheet-move-id="${row.id}" data-callsheet-move-sheet="${sheet.id}">↑</button>
+                <button type="button" class="call-sheet-mini-action" data-callsheet-move="down" data-callsheet-move-id="${row.id}" data-callsheet-move-sheet="${sheet.id}">↓</button>
                 <button type="button" class="detail-btn" data-callsheet-scene="${row.id}">シーンへ</button>
               </div>
             ` : ``}
@@ -7215,8 +9708,257 @@ function buildCallSheetTable(rows){
   `;
 }
 
+function buildCallSheetMobileCards(rows, sheet){
+  const checkItems = [
+    { key:"schedule", label:"香盤" },
+    { key:"prop", label:"小道具" },
+    { key:"cast", label:"出演" },
+    { key:"costume", label:"衣装" },
+    { key:"camera", label:"撮影" },
+    { key:"light", label:"照明" }
+  ];
+  const rowTimes = normalizeCallSheetRowTimes(sheet?.rowTimes);
+  const printRowMap = new Map(getCallSheetPrintRows(sheet).map(row => [row.id, row]));
+
+  return `
+    <div class="call-sheet-mobile-list">
+      ${rows.map(row => {
+        const scene = scenes.find(item => item.id === row.id);
+        const checks = normalizeSceneChecks(scene?.checks);
+        const cuts = Array.isArray(scene?.cuts) && scene.cuts.length ? scene.cuts.join(" / ") : "-";
+        const timeOverride = rowTimes[row.id] || {};
+        const printRow = printRowMap.get(row.id);
+
+        return `
+          <div class="call-sheet-mobile-card ${row.shotDone ? "is-done" : ""}">
+            <div class="call-sheet-mobile-top">
+              <div class="call-sheet-mobile-scene">${escapeHtml(row.no)} ${escapeHtml(row.title)}</div>
+              <div class="call-sheet-mobile-order">${row.shotDone ? "完了" : `順 ${escapeHtml(row.order)}`}</div>
+            </div>
+
+            <div class="call-sheet-mobile-meta">時刻：${escapeHtml(printRow?.timeStart || "-")} - ${escapeHtml(printRow?.timeEnd || "-")}</div>
+            <div class="call-sheet-mobile-meta">場所：${escapeHtml(row.location)}</div>
+            <div class="call-sheet-mobile-meta">出演：${escapeHtml(row.cast)}</div>
+            <div class="call-sheet-mobile-meta">小道具：${escapeHtml(row.prop)}</div>
+            <div class="call-sheet-mobile-meta">カット：${escapeHtml(cuts)}</div>
+            <div class="call-sheet-mobile-meta">メモ：${escapeHtml(row.memo)}</div>
+
+            <div class="call-sheet-mobile-time">
+              <div class="field">
+                <label>開始</label>
+                <input type="time" data-callsheet-row-start="${row.id}" value="${escapeHtml(timeOverride.start || "")}">
+              </div>
+              <div class="field">
+                <label>終了</label>
+                <input type="time" data-callsheet-row-end="${row.id}" value="${escapeHtml(timeOverride.end || "")}">
+              </div>
+            </div>
+
+            <div class="call-sheet-mobile-checks">
+              ${checkItems.map(item => `
+                <div class="call-sheet-mobile-check ${checks[item.key] ? "on" : ""}">
+                  ${escapeHtml(item.label)}
+                </div>
+              `).join("")}
+            </div>
+
+            ${!row.missing ? `
+              <div class="button-row" style="margin-top:10px;">
+                <button type="button" class="call-sheet-mini-action" data-callsheet-move="up" data-callsheet-move-id="${row.id}" data-callsheet-move-sheet="${sheet.id}">↑</button>
+                <button type="button" class="call-sheet-mini-action" data-callsheet-move="down" data-callsheet-move-id="${row.id}" data-callsheet-move-sheet="${sheet.id}">↓</button>
+                <button type="button" class="detail-btn" data-callsheet-scene="${row.id}">シーンへ</button>
+              </div>
+            ` : ``}
+          </div>
+        `;
+      }).join("")}
+    </div>
+  `;
+}
+
 function bindCallSheetDetailEvents(){
   if(!callSheetDetail) return;
+
+  callSheetDetail.querySelectorAll("[data-callsheet-view]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const nextMode = btn.getAttribute("data-callsheet-view") === "table" ? "table" : "cards";
+      setCallSheetViewMode(nextMode);
+      const shell = callSheetDetail.querySelector(".call-sheet-detail-shell");
+      if(shell){
+        shell.classList.remove("view-table", "view-cards");
+        shell.classList.add(nextMode === "table" ? "view-table" : "view-cards");
+      }
+      callSheetDetail.querySelectorAll("[data-callsheet-view]").forEach(button => {
+        button.classList.toggle("is-active", button.getAttribute("data-callsheet-view") === nextMode);
+      });
+    });
+  });
+
+  callSheetDetail.querySelectorAll("[data-callsheet-hide-done]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      setCallSheetHideDoneMode(!callSheetHideDoneMode);
+      const callSheetId = btn.getAttribute("data-callsheet-hide-done");
+      if(callSheetId) openCallSheetDetail(callSheetId);
+    });
+  });
+
+  callSheetDetail.querySelectorAll("[data-callsheet-focus-live]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      setCallSheetFocusLiveMode(!callSheetFocusLiveMode);
+      const callSheetId = btn.getAttribute("data-callsheet-focus-live");
+      if(callSheetId) openCallSheetDetail(callSheetId);
+    });
+  });
+
+  callSheetDetail.querySelectorAll("[data-callsheet-move]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const callSheetId = btn.getAttribute("data-callsheet-move-sheet");
+      const sceneId = btn.getAttribute("data-callsheet-move-id");
+      const direction = btn.getAttribute("data-callsheet-move");
+      if(!callSheetId || !sceneId || !direction) return;
+      moveCallSheetScene(callSheetId, sceneId, direction);
+      openCallSheetDetail(callSheetId);
+      showToast(direction === "up" ? "シーンを上へ移動しました" : "シーンを下へ移動しました");
+    });
+  });
+
+  callSheetDetail.querySelectorAll("[data-callsheet-auto]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const callSheetId = btn.getAttribute("data-callsheet-auto-id");
+      const action = btn.getAttribute("data-callsheet-auto");
+      if(!callSheetId || !action) return;
+
+      if(action === "sort-location"){
+        sortCallSheetByLocation(callSheetId);
+        openCallSheetDetail(callSheetId);
+        showToast("ロケ順に並べ替えました");
+        return;
+      }
+
+      if(action === "fill-times"){
+        const nextSettings = {
+          shootStart: callSheetDetail.querySelector('[data-callsheet-meta="shootStart"]')?.value || "",
+          mealBreak: callSheetDetail.querySelector('[data-callsheet-meta="mealBreak"]')?.value || "",
+          sceneMinutes: callSheetDetail.querySelector('[data-callsheet-meta="sceneMinutes"]')?.value || "",
+          sameLocationBufferMinutes: callSheetDetail.querySelector('[data-callsheet-meta="sameLocationBufferMinutes"]')?.value || "",
+          locationMoveMinutes: callSheetDetail.querySelector('[data-callsheet-meta="locationMoveMinutes"]')?.value || ""
+        };
+        updateCallSheetSettings(callSheetId, nextSettings);
+        autoFillCallSheetRowTimes(callSheetId);
+        openCallSheetDetail(callSheetId);
+        showToast("時刻を自動入力しました");
+      }
+    });
+  });
+
+  callSheetDetail.querySelectorAll("[data-callsheet-duplicate]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const callSheetId = btn.getAttribute("data-callsheet-duplicate");
+      if(callSheetId) duplicateCallSheet(callSheetId);
+    });
+  });
+
+  callSheetDetail.querySelectorAll("[data-callsheet-copy]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const callSheetId = btn.getAttribute("data-callsheet-copy");
+      const sheet = callSheets.find(item => item.id === callSheetId);
+      if(sheet) copyText(buildCallSheetShareText(sheet), "香盤テキストをコピーしました");
+    });
+  });
+
+  callSheetDetail.querySelectorAll("[data-callsheet-focus-open]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const callSheetId = btn.getAttribute("data-callsheet-focus-open");
+      if(callSheetId) renderLiveFocus(callSheetId);
+    });
+  });
+
+  callSheetDetail.querySelectorAll("[data-callsheet-live-shot]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const sceneId = btn.getAttribute("data-callsheet-live-shot");
+      if(!sceneId) return;
+      toggleShotDone(sceneId);
+      const callSheetId = btn.getAttribute("data-callsheet-live-sheet");
+      if(callSheetId) openCallSheetDetail(callSheetId);
+    });
+  });
+
+  const saveMetaBtn = callSheetDetail.querySelector("[data-callsheet-save-meta]");
+  if(saveMetaBtn){
+    saveMetaBtn.addEventListener("click", () => {
+      const callSheetId = saveMetaBtn.getAttribute("data-callsheet-save-meta");
+      if(!callSheetId) return;
+
+      updateCallSheetSettings(callSheetId, {
+        weather: callSheetDetail.querySelector('[data-callsheet-meta="weather"]')?.value || "",
+        weatherLabel: callSheetDetail.querySelector('[data-callsheet-meta="weatherLabel"]')?.value || "",
+        base: callSheetDetail.querySelector('[data-callsheet-meta="base"]')?.value || "",
+        transport: callSheetDetail.querySelector('[data-callsheet-meta="transport"]')?.value || "",
+        producerName: callSheetDetail.querySelector('[data-callsheet-meta="producerName"]')?.value || "",
+        cdName: callSheetDetail.querySelector('[data-callsheet-meta="cdName"]')?.value || "",
+        fdName: callSheetDetail.querySelector('[data-callsheet-meta="fdName"]')?.value || "",
+        sxName: callSheetDetail.querySelector('[data-callsheet-meta="sxName"]')?.value || "",
+        directionChiefName: callSheetDetail.querySelector('[data-callsheet-meta="directionChiefName"]')?.value || "",
+        technicalChiefName: callSheetDetail.querySelector('[data-callsheet-meta="technicalChiefName"]')?.value || "",
+        artChiefName: callSheetDetail.querySelector('[data-callsheet-meta="artChiefName"]')?.value || "",
+        hairMakeChiefName: callSheetDetail.querySelector('[data-callsheet-meta="hairMakeChiefName"]')?.value || "",
+        roleColumnsText: callSheetDetail.querySelector('[data-callsheet-meta="roleColumnsText"]')?.value || "",
+        unitName: callSheetDetail.querySelector('[data-callsheet-meta="unitName"]')?.value || "",
+        assistantDirector: callSheetDetail.querySelector('[data-callsheet-meta="assistantDirector"]')?.value || "",
+        cameraTeam: callSheetDetail.querySelector('[data-callsheet-meta="cameraTeam"]')?.value || "",
+        sunriseSunset: callSheetDetail.querySelector('[data-callsheet-meta="sunriseSunset"]')?.value || "",
+        sunriseTime: callSheetDetail.querySelector('[data-callsheet-meta="sunriseTime"]')?.value || "",
+        sunsetTime: callSheetDetail.querySelector('[data-callsheet-meta="sunsetTime"]')?.value || "",
+        highTemp: callSheetDetail.querySelector('[data-callsheet-meta="highTemp"]')?.value || "",
+        lowTemp: callSheetDetail.querySelector('[data-callsheet-meta="lowTemp"]')?.value || "",
+        crewCall: callSheetDetail.querySelector('[data-callsheet-meta="crewCall"]')?.value || "",
+        castCall: callSheetDetail.querySelector('[data-callsheet-meta="castCall"]')?.value || "",
+        directionCall: callSheetDetail.querySelector('[data-callsheet-meta="directionCall"]')?.value || "",
+        directionPlace: callSheetDetail.querySelector('[data-callsheet-meta="directionPlace"]')?.value || "",
+        technicalCall: callSheetDetail.querySelector('[data-callsheet-meta="technicalCall"]')?.value || "",
+        technicalPlace: callSheetDetail.querySelector('[data-callsheet-meta="technicalPlace"]')?.value || "",
+        artCall: callSheetDetail.querySelector('[data-callsheet-meta="artCall"]')?.value || "",
+        costumeCall: callSheetDetail.querySelector('[data-callsheet-meta="costumeCall"]')?.value || "",
+        costumePlace: callSheetDetail.querySelector('[data-callsheet-meta="costumePlace"]')?.value || "",
+        makeupCall: callSheetDetail.querySelector('[data-callsheet-meta="makeupCall"]')?.value || "",
+        productionCall: callSheetDetail.querySelector('[data-callsheet-meta="productionCall"]')?.value || "",
+        shootStart: callSheetDetail.querySelector('[data-callsheet-meta="shootStart"]')?.value || "",
+        wrapTime: callSheetDetail.querySelector('[data-callsheet-meta="wrapTime"]')?.value || "",
+        mealBreak: callSheetDetail.querySelector('[data-callsheet-meta="mealBreak"]')?.value || "",
+        sceneMinutes: callSheetDetail.querySelector('[data-callsheet-meta="sceneMinutes"]')?.value || "",
+        sameLocationBufferMinutes: callSheetDetail.querySelector('[data-callsheet-meta="sameLocationBufferMinutes"]')?.value || "",
+        locationMoveMinutes: callSheetDetail.querySelector('[data-callsheet-meta="locationMoveMinutes"]')?.value || "",
+        attention: callSheetDetail.querySelector('[data-callsheet-meta="attention"]')?.value || "",
+        sharedNote: callSheetDetail.querySelector('[data-callsheet-meta="sharedNote"]')?.value || "",
+        emergencyContact: callSheetDetail.querySelector('[data-callsheet-meta="emergencyContact"]')?.value || "",
+        footerMemo: callSheetDetail.querySelector('[data-callsheet-meta="footerMemo"]')?.value || ""
+      });
+
+      const rowTimes = {};
+      callSheetDetail.querySelectorAll("[data-callsheet-row-start]").forEach(input => {
+        const sceneId = input.getAttribute("data-callsheet-row-start");
+        if(!sceneId) return;
+        const endInput = callSheetDetail.querySelector(`[data-callsheet-row-end="${sceneId}"]`);
+        rowTimes[sceneId] = {
+          start: input.value || "",
+          end: endInput?.value || ""
+        };
+      });
+      updateCallSheetRowTimes(callSheetId, rowTimes);
+
+      openCallSheetDetail(callSheetId);
+      showToast("香盤情報を保存しました");
+    });
+  }
+
+  const printBtn = callSheetDetail.querySelector("[data-callsheet-print]");
+  if(printBtn){
+    printBtn.addEventListener("click", () => {
+      const callSheetId = printBtn.getAttribute("data-callsheet-print");
+      if(!callSheetId) return;
+      printCallSheet(callSheetId);
+    });
+  }
 
   callSheetDetail.querySelectorAll("[data-callsheet-scene]").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -7249,10 +9991,32 @@ function openCallSheetDetail(callSheetId){
     syncActiveProject(sheet.projectId);
   }
 
-  const rows = getCallSheetRows(sheet);
-  const doneCount = rows.filter(row => row.shotDone).length;
-  const totalCount = rows.length;
-  const projectTitle = getProjectTitle(sheet.projectId) || "未選択";
+  const settings = normalizeCallSheetSettings(sheet.settings);
+  const allRows = getCallSheetRows(sheet);
+  const allPrintRows = getCallSheetPrintRows(sheet);
+  let rows = callSheetHideDoneMode ? allRows.filter(row => !row.shotDone) : allRows;
+  let printRows = callSheetHideDoneMode ? allPrintRows.filter(row => !row.shotDone) : allPrintRows;
+  const doneCount = allRows.filter(row => row.shotDone).length;
+  const totalCount = allRows.length;
+  const projectTitle = getCallSheetProjectLabel(sheet);
+  const liveScenes = getCallSheetLiveScenes(sheet);
+  const routeSummary = getCallSheetRouteSummary(sheet);
+  if(callSheetFocusLiveMode && liveScenes.current){
+    const focusIds = [liveScenes.current?.id, liveScenes.next?.id].filter(Boolean);
+    rows = rows.filter(row => focusIds.includes(row.id));
+    printRows = printRows.filter(row => focusIds.includes(row.id));
+  }
+  const uniqueLocations = rows
+    .map(row => row.location)
+    .filter(Boolean)
+    .filter((value, index, array) => array.indexOf(value) === index);
+  const totalCastEntries = rows.reduce((sum, row) => {
+    return sum + String(row.cast || "")
+      .split(/\n|、|,|\/|・/)
+      .map(item => item.trim())
+      .filter(Boolean)
+      .length;
+  }, 0);
 
   if(callSheetDetailTitle){
     callSheetDetailTitle.textContent = sheet.title || "香盤詳細";
@@ -7260,14 +10024,155 @@ function openCallSheetDetail(callSheetId){
 
   if(callSheetDetail){
     callSheetDetail.innerHTML = `
+      <div class="call-sheet-detail-shell ${callSheetViewMode === "table" ? "view-table" : "view-cards"}">
+      <div class="item-meta">種類：${sheet.format === "short_drama" ? "ショートドラマ" : "映画"}</div>
       <div class="item-meta">脚本：${escapeHtml(projectTitle)}</div>
+      ${sheet.scheduledDate ? `<div class="item-meta">撮影日：${escapeHtml(sheet.scheduledDate)}</div>` : ``}
       <div class="item-meta">作成日：${escapeHtml(formatDateTimeJP(sheet.createdAt))}</div>
-      <div class="item-meta">進行：${doneCount}/${totalCount} 完了</div>
 
-      ${buildCallSheetTable(rows)}
+      <div class="call-sheet-meta-form">
+        <div class="field">
+          <label>BD・プロデューサー</label>
+          <input data-callsheet-meta="producerName" value="${escapeHtml(settings.producerName)}" placeholder="例：氏名">
+        </div>
+        <div class="field">
+          <label>CD</label>
+          <input data-callsheet-meta="cdName" value="${escapeHtml(settings.cdName)}" placeholder="例：氏名">
+        </div>
+        <div class="field">
+          <label>FD・助監督</label>
+          <input data-callsheet-meta="fdName" value="${escapeHtml(settings.fdName)}" placeholder="例：氏名">
+        </div>
+        <div class="field">
+          <label>SIX・制作</label>
+          <input data-callsheet-meta="sxName" value="${escapeHtml(settings.sxName)}" placeholder="例：氏名">
+        </div>
+        <div class="field">
+          <label>演出部 チーフ名</label>
+          <input data-callsheet-meta="directionChiefName" value="${escapeHtml(settings.directionChiefName)}" placeholder="例：氏名">
+        </div>
+        <div class="field">
+          <label>技術部 チーフ名</label>
+          <input data-callsheet-meta="technicalChiefName" value="${escapeHtml(settings.technicalChiefName)}" placeholder="例：氏名">
+        </div>
+        <div class="field">
+          <label>美術部 チーフ名</label>
+          <input data-callsheet-meta="artChiefName" value="${escapeHtml(settings.artChiefName)}" placeholder="例：氏名">
+        </div>
+        <div class="field">
+          <label>衣裳部 / ヘアメイク</label>
+          <input data-callsheet-meta="hairMakeChiefName" value="${escapeHtml(settings.hairMakeChiefName)}" placeholder="例：氏名">
+        </div>
+        <div class="field">
+          <label>役名列（役名|出演者 を改行区切り）</label>
+          <textarea data-callsheet-meta="roleColumnsText" placeholder="例：彼氏|石和和輝様&#10;彼女|シイナナルミ様&#10;友友達/女|姫子様">${escapeHtml(settings.roleColumnsText)}</textarea>
+        </div>
+        <div class="field">
+          <label>天候表示</label>
+          <input data-callsheet-meta="weatherLabel" value="${escapeHtml(settings.weatherLabel)}" placeholder="例：晴れ / 曇り">
+        </div>
+        <div class="field">
+          <label>天候</label>
+          <input data-callsheet-meta="weather" value="${escapeHtml(settings.weather)}" placeholder="例：晴れ">
+        </div>
+        <div class="field">
+          <label>日の出</label>
+          <input data-callsheet-meta="sunriseTime" value="${escapeHtml(settings.sunriseTime)}" type="time">
+        </div>
+        <div class="field">
+          <label>日没</label>
+          <input data-callsheet-meta="sunsetTime" value="${escapeHtml(settings.sunsetTime)}" type="time">
+        </div>
+        <div class="field">
+          <label>最高気温</label>
+          <input data-callsheet-meta="highTemp" value="${escapeHtml(settings.highTemp)}" placeholder="例：32℃">
+        </div>
+        <div class="field">
+          <label>最低気温</label>
+          <input data-callsheet-meta="lowTemp" value="${escapeHtml(settings.lowTemp)}" placeholder="例：24℃">
+        </div>
+        <div class="field">
+          <label>ベース / ロケ地</label>
+          <input data-callsheet-meta="base" value="${escapeHtml(settings.base)}" placeholder="例：本部 / カフェ前">
+        </div>
+        <div class="field">
+          <label>注意書き</label>
+          <input data-callsheet-meta="attention" value="${escapeHtml(settings.attention)}" placeholder="例：近隣配慮 / 住宅街">
+        </div>
+        <div class="field">
+          <label>制作部 / 班</label>
+          <input data-callsheet-meta="unitName" value="${escapeHtml(settings.unitName)}" placeholder="例：制作部A班">
+        </div>
+        <div class="field">
+          <label>助監督</label>
+          <input data-callsheet-meta="assistantDirector" value="${escapeHtml(settings.assistantDirector)}" placeholder="例：山田">
+        </div>
+        <div class="field">
+          <label>技術部備考</label>
+          <input data-callsheet-meta="cameraTeam" value="${escapeHtml(settings.cameraTeam)}" placeholder="例：Acam / Bcam">
+        </div>
+        <div class="field">
+          <label>日の出 / 日没</label>
+          <input data-callsheet-meta="sunriseSunset" value="${escapeHtml(settings.sunriseSunset)}" placeholder="例：05:41 / 17:58">
+        </div>
+        <div class="field">
+          <label>演出部 入り時間</label>
+          <input data-callsheet-meta="directionCall" value="${escapeHtml(settings.directionCall)}" type="time">
+        </div>
+        <div class="field">
+          <label>演出部 / 制作部 入り場所</label>
+          <input data-callsheet-meta="directionPlace" value="${escapeHtml(settings.directionPlace)}" placeholder="例：渋谷区渋谷1-9-4">
+        </div>
+        <div class="field">
+          <label>制作部 入り時間</label>
+          <input data-callsheet-meta="productionCall" value="${escapeHtml(settings.productionCall)}" type="time">
+        </div>
+        <div class="field">
+          <label>衣裳部 / メイク部 入り場所</label>
+          <input data-callsheet-meta="costumePlace" value="${escapeHtml(settings.costumePlace)}" placeholder="例：本部">
+        </div>
+        <div class="field">
+          <label>技術部 入り時間</label>
+          <input data-callsheet-meta="technicalCall" value="${escapeHtml(settings.technicalCall)}" type="time">
+        </div>
+        <div class="field">
+          <label>技術部 入り場所</label>
+          <input data-callsheet-meta="technicalPlace" value="${escapeHtml(settings.technicalPlace)}" placeholder="例：ロケ地">
+        </div>
+        <div class="field">
+          <label>美術部 入り時間</label>
+          <input data-callsheet-meta="artCall" value="${escapeHtml(settings.artCall)}" type="time">
+        </div>
+        <div class="field">
+          <label>衣裳部 入り時間</label>
+          <input data-callsheet-meta="costumeCall" value="${escapeHtml(settings.costumeCall)}" type="time">
+        </div>
+        <div class="field">
+          <label>メイク 入り時間</label>
+          <input data-callsheet-meta="makeupCall" value="${escapeHtml(settings.makeupCall)}" type="time">
+        </div>
+        <div class="field">
+          <label>共有事項</label>
+          <input data-callsheet-meta="sharedNote" value="${escapeHtml(settings.sharedNote)}" placeholder="例：【共有事項】">
+        </div>
+        <div class="field">
+          <label>撮影開始</label>
+          <input data-callsheet-meta="shootStart" value="${escapeHtml(settings.shootStart)}" type="time">
+        </div>
+        <div class="field">
+          <label>終了予定</label>
+          <input data-callsheet-meta="wrapTime" value="${escapeHtml(settings.wrapTime)}" type="time">
+        </div>
+      </div>
 
-      <div class="button-row" style="margin-top:12px;">
+      ${buildCallSheetTable(rows, sheet)}
+      ${buildCallSheetMobileCards(rows, sheet)}
+
+      <div class="button-row sticky-mobile-actions" style="margin-top:12px;">
+        <button type="button" class="primary-btn" data-callsheet-save-meta="${sheet.id}">香盤情報を保存</button>
+        <button type="button" class="select-btn" data-callsheet-print="${sheet.id}">PDF閲覧</button>
         <button type="button" class="danger-btn" data-callsheet-delete="${sheet.id}">この香盤を削除</button>
+      </div>
       </div>
     `;
 
@@ -7305,32 +10210,122 @@ function deleteCallSheet(callSheetId){
   showToast("香盤を削除しました");
 }
 
+function getSortedCallSheets(){
+  return [...callSheets].sort((a, b) => {
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+  });
+}
+
+function renderCallSheetPicker(){
+  renderCallSheetProjectPicker();
+  if(!existingCallSheetSelect) return;
+
+  const sortedSheets = getSortedCallSheets();
+  if(sortedSheets.length === 0){
+    existingCallSheetSelect.innerHTML = `<option value="">既存香盤はありません</option>`;
+    if(openSelectedCallSheetBtn) openSelectedCallSheetBtn.disabled = true;
+    if(openLatestCallSheetBtn) openLatestCallSheetBtn.disabled = true;
+    return;
+  }
+
+  existingCallSheetSelect.innerHTML = sortedSheets.map((sheet, index) => {
+    const projectTitle = getCallSheetProjectLabel(sheet);
+    const dateLabel = sheet.scheduledDate ? ` / ${sheet.scheduledDate}` : "";
+    const latestLabel = index === 0 ? " [最新]" : "";
+    return `<option value="${sheet.id}">${escapeHtml(sheet.title || "香盤")}${dateLabel} / ${escapeHtml(projectTitle)}${latestLabel}</option>`;
+  }).join("");
+
+  if(!existingCallSheetSelect.value){
+    existingCallSheetSelect.value = sortedSheets[0].id;
+  }
+
+  if(openSelectedCallSheetBtn) openSelectedCallSheetBtn.disabled = false;
+  if(openLatestCallSheetBtn) openLatestCallSheetBtn.disabled = false;
+}
+
+function renderCallSheetProjectPicker(){
+  if(!callSheetProjectPicker) return;
+  const format = callSheetFormatSelect?.value === "short_drama" ? "short_drama" : "film";
+
+  if(projects.length === 0){
+    callSheetSelectedProjectIds = [];
+    if(callSheetProjectSelected) callSheetProjectSelected.innerHTML = "";
+    callSheetProjectPicker.innerHTML = `<div class="call-sheet-project-empty">脚本を作成するとここに表示されます</div>`;
+    return;
+  }
+
+  callSheetSelectedProjectIds = callSheetSelectedProjectIds
+    .filter(projectId => projects.some(project => project.id === projectId));
+
+  if(callSheetSelectedProjectIds.length === 0 && activeProjectId){
+    callSheetSelectedProjectIds = [activeProjectId];
+  }
+  if(callSheetSelectedProjectIds.length === 0 && projects[0]?.id){
+    callSheetSelectedProjectIds = [projects[0].id];
+  }
+  if(format === "film" && callSheetSelectedProjectIds.length > 1){
+    callSheetSelectedProjectIds = [callSheetSelectedProjectIds[0]];
+  }
+
+  const checkedIds = new Set(callSheetSelectedProjectIds);
+  const searchText = String(callSheetProjectSearchText || "").trim().toLowerCase();
+  const filteredProjects = projects.filter(project => {
+    if(!searchText) return true;
+    return String(project.title || "").toLowerCase().includes(searchText);
+  });
+
+  if(callSheetProjectSelected){
+    const selectedProjects = projects.filter(project => checkedIds.has(project.id));
+    callSheetProjectSelected.innerHTML = selectedProjects.length
+      ? selectedProjects.map(project => `<span class="call-sheet-project-chip">${escapeHtml(project.title)}</span>`).join("")
+      : `<span class="call-sheet-project-empty">未選択</span>`;
+  }
+
+  callSheetProjectPicker.innerHTML = filteredProjects.length ? filteredProjects.map(project => `
+    <label class="call-sheet-project-option">
+      <input
+        type="${format === "film" ? "radio" : "checkbox"}"
+        name="callSheetProjectPick"
+        value="${escapeHtml(project.id)}"
+        ${checkedIds.has(project.id) ? "checked" : ""}
+      >
+      <span>
+        ${escapeHtml(project.title)}
+        <small>${getProjectScenes(project.id).length}シーン</small>
+      </span>
+    </label>
+  `).join("") : `<div class="call-sheet-project-empty">該当する脚本がありません</div>`;
+}
+
 function renderCallSheetList(){
   if(!callSheetList) return;
+  renderCallSheetPicker();
 
   if(callSheets.length === 0){
     callSheetList.innerHTML = `<div class="empty-text">香盤はまだありません</div>`;
     return;
   }
 
-  const sortedSheets = [...callSheets].sort((a, b) => {
-    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-  });
+  const sortedSheets = getSortedCallSheets();
 
   callSheetList.innerHTML = sortedSheets.map(sheet => {
     const rows = getCallSheetRows(sheet);
     const doneCount = rows.filter(row => row.shotDone).length;
     const totalCount = rows.length;
-    const projectTitle = getProjectTitle(sheet.projectId) || "未選択";
+    const projectTitle = getCallSheetProjectLabel(sheet);
+    const routeCount = getCallSheetRouteSummary(sheet).length;
+    const timedCount = Object.keys(normalizeCallSheetRowTimes(sheet.rowTimes)).length;
 
     return `
       <div class="call-sheet-card">
         <div class="call-sheet-title">${escapeHtml(sheet.title || "香盤")}</div>
+        <div class="call-sheet-meta">種類：${sheet.format === "short_drama" ? "ショートドラマ" : "映画"}</div>
         <div class="call-sheet-meta">脚本：${escapeHtml(projectTitle)}</div>
         ${sheet.scheduledDate ? `<div class="call-sheet-meta">撮影日：${escapeHtml(sheet.scheduledDate)}</div>` : ``}
         <div class="call-sheet-meta">作成日：${escapeHtml(formatDateTimeJP(sheet.createdAt))}</div>
         <div class="call-sheet-meta">対象：${sheet.undoneOnly ? "未撮影のみ" : "全シーン"}</div>
         <div class="call-sheet-meta">進行：${doneCount}/${totalCount} 完了</div>
+        <div class="call-sheet-meta">ロケまとまり：${routeCount} / 時刻入力：${timedCount}件</div>
 
         <div class="button-row" style="margin-top:10px;">
           <button type="button" class="detail-btn" data-callsheet-open="${sheet.id}">詳細</button>
@@ -7354,42 +10349,68 @@ function renderCallSheetList(){
 }
 
 function createCallSheet(){
-  if(!activeProjectId){
-    alert("先に脚本を選択してください");
+  const format = callSheetFormatSelect?.value === "short_drama" ? "short_drama" : "film";
+  const selectedProjectIds = Array.isArray(callSheetSelectedProjectIds)
+    ? callSheetSelectedProjectIds.filter(Boolean)
+    : [];
+
+  let projectIds = selectedProjectIds.length
+    ? selectedProjectIds
+    : (activeProjectId ? [activeProjectId] : []);
+
+  if(format === "film" && projectIds.length > 1){
+    projectIds = [projectIds[0]];
+  }
+
+  if(projectIds.length === 0){
+    alert("先に脚本を1つ以上選択してください");
     return;
   }
 
-  const project = projects.find(item => item.id === activeProjectId);
-  if(!project){
-    alert("選択中脚本が見つかりません");
+  const selectedProjects = projectIds
+    .map(projectId => projects.find(item => item.id === projectId))
+    .filter(Boolean);
+
+  if(selectedProjects.length === 0){
+    alert("選択した脚本が見つかりません");
     return;
   }
 
-  const includeUndoneOnly = !!callSheetUndoneOnly?.checked;
-  const targetScenes = getSortedProjectScenes(activeProjectId)
-    .filter(scene => includeUndoneOnly ? !scene.shotDone : true);
+  const includeUndoneOnly = false;
+  const targetScenes = projectIds.flatMap(projectId =>
+    getSortedProjectScenes(projectId).filter(scene => includeUndoneOnly ? !scene.shotDone : true)
+  );
   if(targetScenes.length === 0){
-    alert(includeUndoneOnly ? "この脚本に未撮影シーンがありません" : "この脚本にはシーンがありません");
+    alert(includeUndoneOnly ? "選択した脚本に未撮影シーンがありません" : "選択した脚本にはシーンがありません");
     return;
   }
 
   const now = new Date();
   const selectedDate = callSheetDateInput?.value || "";
   const dateLabel = selectedDate || `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
-  const defaultTitle = `${project.title} 香盤 ${dateLabel}`;
-  const title = callSheetTitleInput?.value?.trim() || defaultTitle;
+  const dateForTitle = selectedDate ? selectedDate.split("-") : [];
+  const titleDate = dateForTitle.length === 3
+    ? `${Number(dateForTitle[1])}/${Number(dateForTitle[2])}`
+    : dateLabel;
+  const leadProjectTitle = selectedProjects[0]?.title || "作品";
+  const title = format === "short_drama"
+    ? `${titleDate} ショートドラマ香盤`
+    : `${leadProjectTitle} ${titleDate} 香盤表`;
 
   const sheet = {
     id: uid("callsheet"),
-    projectId: activeProjectId,
+    format,
+    projectId: projectIds[0] || "",
+    projectIds,
     title,
     createdAt: new Date().toISOString(),
     scheduledDate: selectedDate,
     undoneOnly: includeUndoneOnly,
-    sceneIds: targetScenes.map(scene => scene.id)
+    sceneIds: targetScenes.map(scene => scene.id),
+    settings: createDefaultCallSheetSettings(selectedProjects[0] || null)
   };
 
-  callSheets.unshift(sheet);
+  callSheets.unshift(normalizeCallSheet(sheet));
   saveCallSheets();
   renderCallSheetList();
   openCallSheetDetail(sheet.id);
@@ -7541,6 +10562,9 @@ function createCallSheet(){
   bindEvent(duplicatePrevSceneBtn, "click", fillSceneFromPreviousScene);
   bindEvent(copySceneSummaryBtn, "click", copySceneFormSummary);
   bindEvent(fillNextMissingSceneBtn, "click", fillNextMissingSceneNo);
+  bindEvent(sceneContinuousMode, "change", () => {
+    setContinuousSceneMode(!!sceneContinuousMode?.checked);
+  });
   bindEvent(sceneProjectSelect, "change", () => {
     if(sceneProjectSelect?.value){
       activeProjectId = sceneProjectSelect.value;
@@ -7603,6 +10627,11 @@ function createCallSheet(){
     renderScenes();
     renderProjectLinkBoxes();
   });
+  bindEvent(fieldLockActiveProject, "change", () => {
+    setFieldLockActiveProjectMode(!!fieldLockActiveProject?.checked);
+    renderScenes();
+    renderProjectLinkBoxes();
+  });
   bindEvent(fieldStatusFilter, "change", renderScenes);
   bindEvent(fieldSortFilter, "change", renderScenes);
   bindEvent(clearFieldFilterBtn, "click", clearFieldFilters);
@@ -7644,6 +10673,33 @@ function createCallSheet(){
     setTimeout(() => {
       updateCurrentSceneStrip();
     }, 120);
+  });
+
+  bindEvent(liveFocusCloseBtn, "click", closeLiveFocus);
+  bindEvent(liveFocusDoneBtn, "click", () => {
+    if(!liveFocusSceneId) return;
+    toggleShotDone(liveFocusSceneId);
+    if(liveFocusCallSheetId){
+      renderLiveFocus(liveFocusCallSheetId);
+    }
+  });
+  bindEvent(liveFocusSceneBtn, "click", () => {
+    if(!liveFocusSceneId) return;
+    closeLiveFocus();
+    switchTab("scene");
+    setTimeout(() => {
+      scrollToScene(liveFocusSceneId);
+      toggleDetail(liveFocusSceneId);
+    }, 120);
+  });
+  bindEvent(liveFocusNextBtn, "click", () => {
+    if(!liveFocusCallSheetId) return;
+    const targetSheet = callSheets.find(item => item.id === liveFocusCallSheetId);
+    if(!targetSheet) return;
+    const liveScenes = getCallSheetLiveScenes(targetSheet);
+    if(liveScenes.next?.id){
+      renderLiveFocus(liveFocusCallSheetId, liveScenes.next.id);
+    }
   });
 
   bindEvent(quickOpenSceneBtn, "click", () => openSceneForm());
@@ -7717,6 +10773,39 @@ function createCallSheet(){
   });
 
   bindEvent(createCallSheetBtn, "click", createCallSheet);
+  bindEvent(callSheetFormatSelect, "change", () => {
+    if(callSheetFormatSelect?.value === "film" && callSheetSelectedProjectIds.length > 1){
+      callSheetSelectedProjectIds = [callSheetSelectedProjectIds[0]];
+    }
+    renderCallSheetProjectPicker();
+  });
+  bindEvent(callSheetProjectSearch, "input", () => {
+    callSheetProjectSearchText = callSheetProjectSearch?.value || "";
+    renderCallSheetProjectPicker();
+  });
+  bindEvent(callSheetProjectPicker, "change", () => {
+    const format = callSheetFormatSelect?.value === "short_drama" ? "short_drama" : "film";
+    const selectedIds = Array.from(callSheetProjectPicker.querySelectorAll("input:checked"))
+      .map(input => input.value)
+      .filter(Boolean);
+    callSheetSelectedProjectIds = format === "film"
+      ? (selectedIds[0] ? [selectedIds[0]] : [])
+      : selectedIds;
+  });
+  bindEvent(openSelectedCallSheetBtn, "click", () => {
+    const callSheetId = existingCallSheetSelect?.value || "";
+    if(callSheetId){
+      openCallSheetDetail(callSheetId);
+    }
+  });
+  bindEvent(openLatestCallSheetBtn, "click", () => {
+    const latest = getSortedCallSheets()[0];
+    if(!latest) return;
+    if(existingCallSheetSelect){
+      existingCallSheetSelect.value = latest.id;
+    }
+    openCallSheetDetail(latest.id);
+  });
   bindQueryAll(".quick-check-item input", "change", (input) => {
     quickCheck[input.id] = input.checked;
     saveQuickCheck();
@@ -7741,6 +10830,9 @@ function createCallSheet(){
   });
   bindEvent(generateMissingScenesBtn, "click", () => {
     generatePlaceholderScenesForMissing(activeProjectId);
+  });
+  bindEvent(deletePlaceholderScenesBtn, "click", () => {
+    deletePlaceholderScenes(activeProjectId);
   });
   bindEvent(importScenesCsvInput, "change", (event) => {
     const file = event.target.files && event.target.files[0];
@@ -7790,6 +10882,8 @@ renderDebug();
 renderHomeDashboard();
 applyQuickCheck();
 applySectionCollapseState();
+setContinuousSceneMode(continuousSceneMode);
+setFieldLockActiveProjectMode(fieldLockActiveProjectMode);
 updateOpenSceneButton();
 renderMissingSceneInsights();
 renderProjectLinkBoxes();
