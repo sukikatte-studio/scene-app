@@ -552,6 +552,102 @@ label{
   margin-top:3px;
 }
 
+.prep-dashboard-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+  margin-top:12px;
+}
+
+.dashboard-metric-grid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:8px;
+}
+
+.dashboard-metric-card{
+  min-height:78px;
+  padding:12px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.04);
+}
+
+.dashboard-metric-kicker{
+  color:var(--sub);
+  font-size:11px;
+  margin-bottom:6px;
+}
+
+.dashboard-metric-value{
+  color:#fff;
+  font-size:22px;
+  font-weight:900;
+  line-height:1.08;
+}
+
+.dashboard-metric-sub{
+  color:var(--sub);
+  font-size:11px;
+  margin-top:5px;
+  line-height:1.5;
+}
+
+.dashboard-inline-list{
+  display:grid;
+  gap:8px;
+}
+
+.dashboard-inline-item{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  padding:10px 0;
+  border-top:1px solid rgba(255,255,255,.06);
+}
+
+.dashboard-inline-item:first-child{
+  padding-top:0;
+  border-top:none;
+}
+
+.dashboard-inline-main{
+  min-width:0;
+}
+
+.dashboard-inline-title{
+  color:#fff;
+  font-size:13px;
+  font-weight:800;
+  line-height:1.45;
+}
+
+.dashboard-inline-sub{
+  color:var(--sub);
+  font-size:12px;
+  margin-top:3px;
+  line-height:1.55;
+}
+
+.dashboard-inline-badge{
+  flex:0 0 auto;
+  min-width:64px;
+  padding:7px 10px;
+  border-radius:999px;
+  background:rgba(59,130,246,.12);
+  border:1px solid rgba(96,165,250,.22);
+  color:#dbeafe;
+  font-size:11px;
+  font-weight:800;
+  text-align:center;
+}
+
+.project-table-head,
+.scene-list-head{
+  display:none;
+}
+
 .project-card,
 .scene-card,
 .location-card,
@@ -730,7 +826,18 @@ label{
 .scene-check-item input,
 .quick-check-item input{
   width:auto;
-  margin-top:2px;
+  min-width:14px;
+  height:14px;
+  margin-top:1px;
+  padding:0;
+  border:none;
+  border-radius:0;
+  background:transparent;
+  appearance:auto;
+  -webkit-appearance:auto;
+  accent-color:var(--blue);
+  box-shadow:none;
+  flex:0 0 auto;
 }
 
 .scene-check-badges{
@@ -1198,31 +1305,42 @@ label{
   background:rgba(255,255,255,.05);
   border:1px solid rgba(255,255,255,.08);
   border-radius:16px;
-  padding:12px;
+  padding:10px;
 }
 
 .quick-check-title{
   font-size:14px;
   font-weight:900;
-  margin-bottom:8px;
+  margin-bottom:6px;
   color:#dbeafe;
 }
 
 .quick-check-list{
   display:grid;
+  grid-template-columns:1fr;
   gap:8px;
 }
 
 .quick-check-item{
   display:flex;
   gap:8px;
-  align-items:flex-start;
+  align-items:center;
   color:var(--text);
   font-size:13px;
   background:rgba(255,255,255,.03);
   border:1px solid rgba(255,255,255,.05);
   border-radius:12px;
-  padding:9px 10px;
+  padding:7px 9px;
+  min-height:0;
+  line-height:1.35;
+  width:100%;
+}
+
+@media (min-width:1024px){
+  .quick-check-wrap{
+    grid-template-columns:1fr 1fr;
+    align-items:start;
+  }
 }
 
 .compact-check-list{
@@ -1428,6 +1546,9 @@ label{
   background:linear-gradient(180deg, rgba(59,130,246,.34), rgba(59,130,246,.16));
   border-color:rgba(96,165,250,.42);
   box-shadow:0 0 0 1px rgba(96,165,250,.18) inset, 0 6px 16px rgba(37,99,235,.14);
+}
+.sidebar-mode-switch{
+  display:none;
 }
 .tab-icon{font-size:18px;line-height:1;}
 .tab-label{
@@ -3507,6 +3628,623 @@ label{
   }
 }
 
+@media (min-width:1024px){
+  body.mode-prep{
+    padding:24px;
+    background:
+      radial-gradient(circle at 12% 0%, rgba(59,130,246,.12), transparent 26%),
+      radial-gradient(circle at 100% 10%, rgba(20,184,166,.10), transparent 20%),
+      linear-gradient(180deg, #050913 0%, #0a1020 100%);
+  }
+
+  body.mode-prep .app-shell{
+    max-width:none;
+    width:calc(100vw - 192px);
+    margin:0 0 0 144px;
+    min-height:calc(100vh - 48px);
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:32px;
+    overflow:hidden;
+    box-shadow:0 30px 80px rgba(0,0,0,.38);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)),
+      linear-gradient(180deg, #0a1120 0%, #0c1426 100%);
+  }
+
+  body.mode-prep .topbar-inner{
+    padding:22px 28px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+  }
+
+  body.mode-prep .brand{
+    flex:1;
+  }
+
+  body.mode-prep .logo-wrap{
+    width:60px;
+    height:60px;
+    border-radius:18px;
+  }
+
+  body.mode-prep .logo-wrap img{
+    width:48px;
+    height:48px;
+  }
+
+  body.mode-prep .brand-title{
+    font-size:28px;
+    font-weight:900;
+    letter-spacing:.01em;
+  }
+
+  body.mode-prep .brand-sub{
+    font-size:12px;
+  }
+
+  body.mode-prep .topbar-mini-row{
+    margin-top:0;
+    flex-wrap:nowrap;
+    justify-content:flex-end;
+    align-items:center;
+    gap:10px;
+  }
+
+  body.mode-prep .header-mode-switch{
+    display:none;
+  }
+
+  body.mode-prep .header-chip,
+  body.mode-prep .header-mode-btn{
+    min-height:36px;
+    font-size:13px;
+  }
+
+  body.mode-prep .header-chip{
+    background:rgba(255,255,255,.05);
+    border-color:rgba(148,163,184,.18);
+    color:#e7eefc;
+    padding:0 14px;
+  }
+
+  body.mode-prep .current-scene-strip{
+    display:none;
+  }
+
+  body.mode-prep .tabbar{
+    position:fixed;
+    left:24px;
+    top:24px;
+    height:calc(100vh - 48px);
+    width:96px;
+    max-width:none;
+    right:auto;
+    bottom:auto;
+    margin:0;
+    padding:16px 10px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015)),
+      linear-gradient(180deg, rgba(10,17,32,.98), rgba(12,20,38,.98));
+    border-top:none;
+    border-radius:24px;
+    border-left:1px solid rgba(148,163,184,.10);
+    border-right:1px solid rgba(148,163,184,.10);
+    border-bottom:1px solid rgba(148,163,184,.10);
+    box-shadow:none;
+    backdrop-filter:none;
+    z-index:30;
+  }
+
+  body.mode-prep .tabbar-inner{
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    gap:10px;
+    padding:0;
+    overflow:visible;
+  }
+
+  body.mode-prep .tab-btn{
+    flex:0 0 auto;
+    width:100%;
+    min-height:72px;
+    border-radius:20px;
+    padding:12px 8px;
+    background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
+    border-color:rgba(148,163,184,.14);
+    box-shadow:0 12px 30px rgba(0,0,0,.16);
+  }
+
+  body.mode-prep .tab-icon{
+    font-size:22px;
+  }
+
+  body.mode-prep .tab-label{
+    font-size:12px;
+    letter-spacing:.02em;
+  }
+
+  body.mode-prep .tab-btn.active{
+    background:
+      linear-gradient(180deg, rgba(59,130,246,.28), rgba(20,184,166,.18)),
+      linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    border-color:rgba(96,165,250,.34);
+    box-shadow:0 0 0 1px rgba(96,165,250,.14) inset, 0 20px 35px rgba(15,23,42,.34);
+  }
+
+  body.mode-prep .sidebar-mode-switch{
+    display:grid;
+    gap:8px;
+    margin-bottom:14px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(148,163,184,.12);
+  }
+
+  body.mode-prep .sidebar-mode-btn{
+    min-height:42px;
+    border-radius:14px;
+    padding:10px 8px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(148,163,184,.14);
+    color:#cdd9ee;
+    font-size:12px;
+    font-weight:800;
+  }
+
+  body.mode-prep .sidebar-mode-btn.active-prep{
+    background:linear-gradient(180deg, rgba(34,197,94,.24), rgba(34,197,94,.12));
+    border-color:rgba(34,197,94,.34);
+    color:#fff;
+  }
+
+  body.mode-prep .sidebar-mode-btn.active-field{
+    background:linear-gradient(180deg, rgba(59,130,246,.24), rgba(59,130,246,.12));
+    border-color:rgba(59,130,246,.34);
+    color:#fff;
+  }
+
+  body.mode-prep .app{
+    padding:22px 24px 36px;
+  }
+
+  body.mode-prep .card{
+    border-radius:24px;
+    padding:20px;
+    margin-bottom:0;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.02)),
+      linear-gradient(180deg, rgba(16,25,43,.96), rgba(13,21,36,.96));
+    border-color:rgba(148,163,184,.12);
+    box-shadow:0 18px 40px rgba(0,0,0,.22);
+  }
+
+  body.mode-prep .card-title{
+    font-size:22px;
+  }
+
+  body.mode-prep .card-title-row{
+    margin-bottom:16px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(148,163,184,.12);
+  }
+
+  body.mode-prep .field{
+    margin-bottom:14px;
+  }
+
+  body.mode-prep label{
+    margin-bottom:6px;
+    font-size:12px;
+    letter-spacing:.02em;
+    color:#94a3b8;
+  }
+
+  body.mode-prep input,
+  body.mode-prep select,
+  body.mode-prep textarea{
+    min-height:46px;
+    padding:12px 14px;
+    border-radius:14px;
+    background:rgba(255,255,255,.03);
+    border-color:rgba(148,163,184,.16);
+  }
+
+  body.mode-prep textarea{
+    min-height:110px;
+  }
+
+  body.mode-prep input:focus,
+  body.mode-prep select:focus,
+  body.mode-prep textarea:focus{
+    border-color:rgba(96,165,250,.46);
+    box-shadow:0 0 0 4px rgba(59,130,246,.12);
+  }
+
+  body.mode-prep .button-row button{
+    min-height:44px;
+    border-radius:14px;
+    font-weight:800;
+  }
+
+  body.mode-prep #tabHome.tab-panel.active{
+    display:grid;
+    grid-template-columns:minmax(360px, 430px) minmax(0, 1fr);
+    gap:20px;
+    align-items:start;
+  }
+
+  body.mode-prep #tabHome .hero-card{
+    position:sticky;
+    top:164px;
+    background:
+      radial-gradient(circle at top left, rgba(96,165,250,.16), transparent 42%),
+      linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.02)),
+      linear-gradient(180deg, rgba(14,24,43,.98), rgba(12,19,35,.98));
+  }
+
+  body.mode-prep #tabProject.tab-panel.active{
+    display:grid;
+    grid-template-columns:minmax(360px, 440px) minmax(0, 1fr);
+    gap:20px;
+    align-items:start;
+  }
+
+  body.mode-prep #projectListSection{
+    min-width:0;
+  }
+
+  body.mode-prep #projectListSection .card-body{
+    min-width:0;
+    overflow:hidden;
+  }
+
+  body.mode-prep #projectCreateSection{
+    position:sticky;
+    top:164px;
+  }
+
+  body.mode-prep #tabMaster.tab-panel.active{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:20px;
+    align-items:start;
+  }
+
+  body.mode-prep #tabScene.tab-panel.active{
+    display:grid;
+    grid-template-columns:minmax(380px, 470px) minmax(0, 1fr);
+    gap:20px;
+    align-items:start;
+  }
+
+  body.mode-prep #sceneFormSection{
+    position:sticky;
+    top:164px;
+  }
+
+  body.mode-prep #sceneListSection{
+    min-height:calc(100vh - 260px);
+  }
+
+  body.mode-prep #dashboardSection .card-body{
+    display:grid;
+    grid-template-columns:minmax(0, 1.15fr) minmax(320px, .85fr);
+    gap:18px;
+    align-items:start;
+  }
+
+  body.mode-prep .prep-dashboard-side{
+    display:grid;
+    gap:14px;
+  }
+
+  body.mode-prep .prep-dashboard-grid{
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:14px;
+  }
+
+  body.mode-prep .dashboard-metric-grid{
+    grid-template-columns:repeat(4, minmax(0, 1fr));
+  }
+
+  body.mode-prep .dashboard-metric-card{
+    min-height:110px;
+    padding:16px;
+    border-radius:18px;
+  }
+
+  body.mode-prep .dashboard-metric-value{
+    font-size:30px;
+  }
+
+  body.mode-prep .status-grid,
+  body.mode-prep .dashboard-hero-grid,
+  body.mode-prep .summary-grid{
+    gap:14px;
+  }
+
+  body.mode-prep .status-tile,
+  body.mode-prep .dashboard-hero-card,
+  body.mode-prep .dashboard-panel,
+  body.mode-prep .current-project-box,
+  body.mode-prep .summary-box,
+  body.mode-prep .box{
+    border-radius:18px;
+    border:1px solid rgba(148,163,184,.12);
+    background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
+    box-shadow:none;
+  }
+
+  body.mode-prep .status-label,
+  body.mode-prep .dashboard-hero-label,
+  body.mode-prep .dashboard-panel-title{
+    color:#9fb0c9;
+    letter-spacing:.02em;
+  }
+
+  body.mode-prep .status-value,
+  body.mode-prep .dashboard-hero-value{
+    font-size:28px;
+  }
+
+  body.mode-prep .project-card,
+  body.mode-prep .actor-mini-card,
+  body.mode-prep .call-sheet-card{
+    border-radius:20px;
+    border:1px solid rgba(148,163,184,.12);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)),
+      linear-gradient(180deg, rgba(12,19,35,.98), rgba(11,18,31,.98));
+    box-shadow:0 16px 30px rgba(0,0,0,.18);
+  }
+
+  body.mode-prep .project-card:hover,
+  body.mode-prep .actor-mini-card:hover,
+  body.mode-prep .call-sheet-card:hover{
+    transform:translateY(-2px);
+    border-color:rgba(96,165,250,.22);
+    box-shadow:0 20px 34px rgba(0,0,0,.22);
+  }
+
+  body.mode-prep .project-card.active{
+    border-color:rgba(96,165,250,.30);
+    box-shadow:0 0 0 1px rgba(96,165,250,.12) inset, 0 20px 34px rgba(0,0,0,.24);
+  }
+
+  body.mode-prep .project-extra-actions{
+    margin-top:10px;
+  }
+
+  body.mode-prep .project-table-head{
+    display:grid;
+    grid-template-columns:minmax(0, 1.8fr) minmax(96px, .8fr) minmax(150px, 1fr) minmax(170px, 1fr);
+    gap:12px;
+    padding:0 12px 10px;
+    border-bottom:1px solid rgba(148,163,184,.12);
+    margin-bottom:10px;
+    color:#93a4bf;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+  }
+
+  body.mode-prep #projectList{
+    display:grid !important;
+    gap:12px;
+  }
+
+  body.mode-prep #projectListSection .project-card{
+    margin-top:0;
+    padding:16px;
+    border-radius:18px;
+  }
+
+  body.mode-prep .project-card-grid{
+    display:grid;
+    grid-template-columns:minmax(0, 1.8fr) minmax(96px, .8fr) minmax(150px, 1fr) minmax(170px, 1fr);
+    gap:12px;
+    align-items:center;
+    min-width:0;
+  }
+
+  body.mode-prep .project-card-main{
+    min-width:0;
+  }
+
+  body.mode-prep .project-card-main .item-title{
+    margin-bottom:4px;
+    font-size:16px;
+  }
+
+  body.mode-prep .project-card-note{
+    color:var(--sub);
+    font-size:12px;
+    line-height:1.55;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+  }
+
+  body.mode-prep .project-stat-stack{
+    display:grid;
+    gap:6px;
+  }
+
+  body.mode-prep .project-stat-line{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    color:var(--sub);
+    font-size:12px;
+  }
+
+  body.mode-prep .project-stat-line strong{
+    color:#fff;
+    font-size:13px;
+  }
+
+  body.mode-prep .project-card-actions{
+    display:grid;
+    gap:8px;
+  }
+
+  body.mode-prep .project-card-actions .item-actions,
+  body.mode-prep .project-card-actions .project-extra-actions{
+    margin-top:0;
+  }
+
+  body.mode-prep .project-card-actions .item-actions button,
+  body.mode-prep .project-card-actions .project-extra-actions button{
+    min-height:38px;
+    flex:1 1 0;
+  }
+
+  body.mode-prep .project-card-actions .item-actions{
+    gap:6px;
+  }
+
+  body.mode-prep .project-card-actions .item-actions button{
+    min-width:0;
+    padding:8px 6px;
+    font-size:11px;
+  }
+
+  body.mode-prep .scene-form-group{
+    border-radius:18px;
+    padding:14px 16px;
+    border:1px solid rgba(148,163,184,.12);
+    background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.018));
+  }
+
+  body.mode-prep .scene-form-group summary{
+    font-size:14px;
+    color:#e8f0ff;
+  }
+
+  body.mode-prep .scene-form-tools{
+    gap:10px;
+  }
+
+  body.mode-prep .mini-btn{
+    min-height:38px;
+    border-radius:12px;
+    padding:9px 12px;
+  }
+
+  body.mode-prep .actor-grid{
+    gap:14px;
+  }
+
+  body.mode-prep .actor-mini-thumb,
+  body.mode-prep .actor-mini-thumb-placeholder{
+    width:108px;
+    height:108px;
+    border-radius:22px;
+  }
+
+  body.mode-prep .two-col{
+    gap:12px;
+  }
+
+  body.mode-prep .scene-list-toolbar{
+    display:grid;
+    grid-template-columns:minmax(0, 1.3fr) minmax(180px, .7fr);
+    gap:14px;
+    align-items:end;
+    margin-bottom:14px;
+  }
+
+  body.mode-prep .scene-list-head{
+    display:grid;
+    grid-template-columns:minmax(220px, 2.1fr) minmax(110px, .8fr) minmax(160px, 1.2fr) minmax(160px, 1.2fr) minmax(110px, .8fr) minmax(230px, 1.4fr);
+    gap:12px;
+    padding:0 14px 10px;
+    border-bottom:1px solid rgba(148,163,184,.12);
+    margin-bottom:10px;
+    color:#93a4bf;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+  }
+
+  body.mode-prep .group-title{
+    margin:18px 0 10px;
+    padding:10px 14px;
+    border-radius:14px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(148,163,184,.1);
+    color:#e8f0ff;
+    font-size:13px;
+    font-weight:900;
+    letter-spacing:.08em;
+  }
+
+  body.mode-prep .prep-scene-card{
+    margin-top:10px;
+    padding:14px;
+    border-radius:18px;
+  }
+
+  body.mode-prep .prep-scene-row{
+    display:grid;
+    grid-template-columns:minmax(220px, 2.1fr) minmax(110px, .8fr) minmax(160px, 1.2fr) minmax(160px, 1.2fr) minmax(110px, .8fr) minmax(230px, 1.4fr);
+    gap:12px;
+    align-items:start;
+  }
+
+  body.mode-prep .prep-scene-cell{
+    min-width:0;
+  }
+
+  body.mode-prep .prep-scene-label{
+    color:#93a4bf;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:.08em;
+    margin-bottom:5px;
+  }
+
+  body.mode-prep .prep-scene-value{
+    color:#fff;
+    font-size:13px;
+    line-height:1.55;
+    word-break:break-word;
+  }
+
+  body.mode-prep .prep-scene-card .item-title{
+    font-size:16px;
+    margin-bottom:6px;
+  }
+
+  body.mode-prep .prep-scene-card .badges{
+    margin-bottom:0;
+  }
+
+  body.mode-prep .prep-scene-progress{
+    display:grid;
+    gap:6px;
+  }
+
+  body.mode-prep .prep-scene-actions{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:8px;
+  }
+
+  body.mode-prep .prep-scene-actions button{
+    min-height:36px;
+    border-radius:12px;
+    font-size:12px;
+    font-weight:800;
+  }
+}
+
 @media (max-width:390px){
   .topbar-inner{
     padding-left:12px;
@@ -3711,6 +4449,458 @@ label{
   font-size:12px;
   padding:8px 10px;
 }
+
+/* Theme Refresh */
+:root{
+  --bg:#eef2f6;
+  --bg-2:#e3e9f0;
+  --panel:#f8fbfd;
+  --panel-2:#f1f5f9;
+  --panel-3:#e9eef4;
+  --card:#fcfdff;
+  --line:#c8d2dd;
+  --line-soft:rgba(23,31,42,.12);
+  --text:#18202a;
+  --sub:#5c6776;
+  --muted:#8b94a3;
+  --green:#5d7c67;
+  --blue:#475f84;
+  --blue-2:#6580a7;
+  --red:#b84d3c;
+  --orange:#b07c44;
+  --purple:#6b7287;
+  --pink:#b87078;
+  --teal:#5e7682;
+  --yellow:#c09b4d;
+  --shadow:0 16px 34px rgba(34,47,67,.10);
+}
+
+body{
+  background:
+    radial-gradient(circle at 0% 0%, rgba(184,77,60,.06), transparent 22%),
+    radial-gradient(circle at 100% 0%, rgba(71,95,132,.10), transparent 24%),
+    linear-gradient(180deg, #f3f6fa 0%, #e8edf3 100%);
+  color:var(--text);
+}
+
+input,textarea,select{
+  background:rgba(255,253,248,.92);
+  color:var(--text);
+  border-color:rgba(118,106,84,.18);
+}
+
+input:focus,textarea:focus,select:focus{
+  border-color:rgba(75,98,127,.40);
+  box-shadow:0 0 0 3px rgba(110,134,166,.14);
+}
+
+.app-shell{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.58), rgba(255,255,255,.18)),
+    linear-gradient(180deg, #f8f3eb 0%, #f0e8dc 100%);
+}
+
+.topbar{
+  background:rgba(248,251,253,.90);
+  border-bottom:1px solid rgba(92,103,118,.10);
+}
+
+.logo-wrap{
+  background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(238,243,248,.92));
+  border:1px solid rgba(92,103,118,.14);
+}
+
+.logo-wrap img{
+  filter:drop-shadow(0 4px 10px rgba(71,95,132,.16));
+}
+
+.brand-label{
+  color:#7c8697;
+}
+
+.brand-title{
+  color:#16202a;
+}
+
+.brand-sub,
+.header-chip,
+.card-sub,
+.summary-label,
+.dashboard-hero-label,
+.dashboard-panel-body,
+.item-meta,
+label{
+  color:var(--sub);
+}
+
+.header-chip,
+.header-mode-switch,
+.section-toggle,
+.hero-badge,
+.badge{
+  background:rgba(250,252,255,.84);
+  border-color:rgba(92,103,118,.12);
+  color:#556170;
+}
+
+.app{
+  background:transparent;
+}
+
+.card,
+.status-tile,
+.dashboard-hero-card,
+.dashboard-panel,
+.current-project-box,
+.box,
+.summary-box,
+.current-scene-bar,
+.quick-check-box,
+.next-scene-box,
+.dashboard-mini,
+.form-block,
+.project-card,
+.scene-card,
+.location-card,
+.actor-card,
+.prop-card,
+.location-mini-card,
+.actor-mini-card,
+.call-sheet-card{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.96), rgba(241,245,250,.94));
+  border-color:rgba(92,103,118,.12);
+  box-shadow:var(--shadow);
+}
+
+.card-title,
+.dashboard-panel-title,
+.item-title,
+.status-value,
+.dashboard-hero-value,
+.summary-value,
+.current-project-value,
+.mode-status-value,
+.current-scene-main,
+.next-scene-main,
+.location-mini-title{
+  color:#17202a;
+}
+
+.card-title,
+.dashboard-panel-title,
+.item-title,
+.call-sheet-title,
+.group-title{
+  letter-spacing:.04em;
+}
+
+.card-title-row{
+  border-bottom-color:rgba(94,77,54,.14);
+}
+
+.scene-form-group,
+.project-more-fields,
+.call-sheet-preview-block,
+.actor-detail-box,
+.location-detail-box{
+  background:linear-gradient(180deg, rgba(255,252,246,.92), rgba(240,231,219,.78));
+  border-color:rgba(94,77,54,.12);
+}
+
+.current-scene-strip{
+  background:rgba(243,235,224,.96);
+  border-top:1px solid rgba(94,77,54,.12);
+  border-bottom:1px solid rgba(94,77,54,.12);
+}
+
+.current-scene-strip-title{
+  color:#211c18;
+}
+
+.mini-btn{
+  background:rgba(255,249,241,.88);
+  border-color:rgba(94,77,54,.12);
+  color:#5a534d;
+}
+
+.hero-card{
+  background:
+    radial-gradient(circle at top left, rgba(184,77,60,.08), transparent 42%),
+    linear-gradient(135deg, rgba(71,95,132,.10), rgba(101,128,167,.06)),
+    linear-gradient(180deg, rgba(255,255,255,.98), rgba(241,245,250,.95));
+}
+
+.quick-btn{
+  background:linear-gradient(180deg, rgba(255,255,255,.94), rgba(239,244,249,.90));
+  border-color:rgba(92,103,118,.12);
+  color:#17202a;
+}
+
+.quick-btn-sub{
+  color:#697586;
+}
+
+.segment-btn{
+  background:linear-gradient(180deg, rgba(255,255,255,.94), rgba(238,243,248,.88));
+  border-color:rgba(92,103,118,.12);
+  color:#324150;
+}
+
+.segment-btn.active-prep{
+  background:linear-gradient(180deg, rgba(88,122,85,.20), rgba(88,122,85,.08));
+  border-color:rgba(88,122,85,.24);
+  color:#31452f;
+}
+
+.segment-btn.active-field{
+  background:linear-gradient(180deg, rgba(75,98,127,.20), rgba(75,98,127,.08));
+  border-color:rgba(75,98,127,.24);
+  color:#2d3b4c;
+}
+
+.segment-btn.active-dept{
+  background:linear-gradient(180deg, rgba(184,77,60,.18), rgba(184,77,60,.06));
+  border-color:rgba(184,77,60,.22);
+  color:#6a3228;
+}
+
+.primary-btn{ background:linear-gradient(180deg, #b84d3c, #9f4033); }
+.secondary-btn{ background:linear-gradient(180deg, #81766c, #6c6259); }
+.select-btn{ background:linear-gradient(180deg, #4b627f, #3f536c); }
+.danger-btn{ background:linear-gradient(180deg, #a43b31, #8b3027); }
+.edit-btn{ background:linear-gradient(180deg, #b67b38, #9a672f); }
+.detail-btn{ background:linear-gradient(180deg, #76655c, #64554d); }
+.copy-btn{ background:linear-gradient(180deg, #6b7377, #596165); }
+.shot-btn{ background:linear-gradient(180deg, #587a55, #496647); }
+.unshot-btn{ background:linear-gradient(180deg, #81766c, #6c6259); }
+
+.tabbar{
+  background:rgba(246,249,252,.92);
+  border-top:1px solid rgba(92,103,118,.10);
+  box-shadow:0 -10px 30px rgba(34,47,67,.08);
+}
+
+.tab-btn{
+  background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(237,242,247,.92));
+  border-color:rgba(92,103,118,.12);
+  color:#667385;
+}
+
+.tab-btn.active{
+  color:#fff;
+  background:linear-gradient(180deg, rgba(184,77,60,.92), rgba(126,101,92,.84));
+  border-color:rgba(184,77,60,.26);
+  box-shadow:0 10px 20px rgba(126,101,92,.18);
+}
+
+.call-sheet-card{
+  border-left:4px solid rgba(184,77,60,.52);
+}
+
+.call-sheet-title{
+  color:#211c18;
+}
+
+.call-sheet-table{
+  background:rgba(252,253,255,.92);
+  border-color:rgba(92,103,118,.12);
+}
+
+.call-sheet-row{
+  border-bottom-color:rgba(92,103,118,.10);
+}
+
+.call-sheet-cell{
+  border-right-color:rgba(92,103,118,.08);
+}
+
+.call-sheet-header{
+  background:linear-gradient(180deg, rgba(75,98,127,.18), rgba(75,98,127,.08));
+  color:#2b3440;
+}
+
+.time-cell,
+.call-sheet-mobile-order{
+  color:#6b3e34;
+}
+
+.location-cell{
+  color:#475d4a;
+}
+
+.prop-cell{
+  color:#8b692f;
+}
+
+.note-cell{
+  color:#7f564d;
+}
+
+.call-sheet-mobile-card,
+.call-sheet-route-box,
+.call-sheet-live-card,
+.call-sheet-project-option,
+.call-sheet-summary-chip{
+  background:linear-gradient(180deg, rgba(255,255,255,.94), rgba(238,243,248,.88));
+  border-color:rgba(92,103,118,.10);
+}
+
+.badge.done{
+  background:rgba(88,122,85,.14);
+  color:#3f5d3c;
+  border-color:rgba(88,122,85,.22);
+}
+
+.badge.shot{
+  background:rgba(75,98,127,.14);
+  color:#425774;
+  border-color:rgba(75,98,127,.22);
+}
+
+.toast{
+  background:rgba(255,251,244,.96);
+  border-color:rgba(118,106,84,.14);
+  color:#1c2530;
+  box-shadow:0 18px 40px rgba(70,52,26,.12);
+}
+
+.sheet-print-page{
+  color:#22201d;
+  font-family:"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;
+}
+
+.sheet-print-film{
+  background:
+    radial-gradient(circle at center, rgba(241,235,226,.96) 0 1.7px, transparent 2px) center/22px 14px repeat-x,
+    linear-gradient(180deg, #3d3a37 0%, #221f1c 42%, #151210 100%);
+}
+
+.sheet-print-rule{
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.12), rgba(255,255,255,0) 24%, rgba(193,160,118,.16) 50%, rgba(255,255,255,0) 76%, rgba(255,255,255,.10)),
+    linear-gradient(90deg, #4a433d 0%, #2d2823 22%, #5f564e 48%, #7a6c5e 54%, #5f564e 70%, #2b2621 100%);
+}
+
+.sheet-print-title h3{
+  color:#1f1b18;
+  letter-spacing:.03em;
+}
+
+.sheet-print-title-sub,
+.sheet-print-label,
+.sheet-print-note,
+.sheet-print-subnote{
+  color:#5e5145;
+}
+
+.sheet-print-chip{
+  background:#f3f6fa;
+  border-color:#ccd5df;
+  color:#566273;
+}
+
+.sheet-print-alert{
+  border-color:#e4b1a9;
+  color:#b84d3c;
+  background:#fff5f2;
+}
+
+.sheet-print-grid,
+.sheet-print-submeta,
+.sheet-print-dept-grid{
+  border-top-color:#6a7686;
+  border-left-color:#6a7686;
+}
+
+.sheet-print-box,
+.sheet-print-table th,
+.sheet-print-table td,
+.sheet-print-contact-table th,
+.sheet-print-contact-table td,
+.sheet-print-address-table th,
+.sheet-print-address-table td{
+  border-color:#a8b4c1;
+}
+
+.sheet-print-table thead th,
+.sheet-print-contact-table thead th,
+.sheet-print-address-table thead th{
+  background:#e8eef5;
+  color:#2f3945;
+}
+
+.sheet-print-table thead tr:nth-child(2) th{
+  background:#f4f7fb;
+}
+
+.sheet-print-table thead tr:nth-child(3) th{
+  background:#fbfcfe;
+}
+
+@media (min-width:700px){
+  body{
+    background:
+      radial-gradient(circle at 0% 0%, rgba(184,77,60,.06), transparent 24%),
+      radial-gradient(circle at 100% 0%, rgba(71,95,132,.10), transparent 22%),
+      linear-gradient(180deg, #f4f7fa 0%, #e8edf3 100%);
+  }
+
+  .app-shell{
+    border-color:rgba(118,106,84,.10);
+    box-shadow:0 30px 70px rgba(70,52,26,.12);
+  }
+}
+
+@media (min-width:1024px){
+  body.mode-prep{
+    background:
+      radial-gradient(circle at 10% 0%, rgba(184,77,60,.08), transparent 24%),
+      radial-gradient(circle at 100% 0%, rgba(71,95,132,.10), transparent 22%),
+      linear-gradient(180deg, #f1f5f9 0%, #e4ebf2 100%);
+  }
+
+  body.mode-prep .app-shell{
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.58), rgba(255,255,255,.16)),
+      linear-gradient(180deg, #f7fafc 0%, #e8eef5 100%);
+    box-shadow:0 34px 80px rgba(34,47,67,.12);
+  }
+
+  body.mode-prep .tabbar{
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.86), rgba(235,241,247,.94)),
+      linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.04));
+    border-right:1px solid rgba(92,103,118,.10);
+    border-left:1px solid rgba(92,103,118,.10);
+    border-bottom:1px solid rgba(92,103,118,.10);
+  }
+
+  body.mode-prep .card{
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.94), rgba(239,244,249,.92));
+    border-color:rgba(92,103,118,.10);
+    box-shadow:0 18px 44px rgba(34,47,67,.10);
+  }
+
+  body.mode-prep .status-tile,
+  body.mode-prep .dashboard-hero-card,
+  body.mode-prep .dashboard-panel,
+  body.mode-prep .current-project-box,
+  body.mode-prep .summary-box,
+  body.mode-prep .box{
+    background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(237,242,247,.88));
+    border-color:rgba(92,103,118,.10);
+  }
+
+  body.mode-prep .project-card,
+  body.mode-prep .actor-mini-card,
+  body.mode-prep .call-sheet-card{
+    background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(237,242,247,.92));
+    border-color:rgba(92,103,118,.10);
+    box-shadow:0 14px 28px rgba(34,47,67,.10);
+  }
+}
 </style>
 </head>
 <body>
@@ -3797,65 +4987,112 @@ label{
     <button type="button" class="section-toggle" data-toggle-card="dashboardSection">閉じる</button>
   </div>
   <div class="card-body">
-    <div class="field">
-      <label for="locationSearchInput">ロケ地検索</label>
-      <input id="locationSearchInput" placeholder="ロケ地名 住所 メモで検索">
-    </div>
+    <div class="prep-dashboard-main">
+      <div class="field">
+        <label for="locationSearchInput">ロケ地検索</label>
+        <input id="locationSearchInput" placeholder="ロケ地名 住所 メモで検索">
+      </div>
 
-    <div class="quick-actions">
-      <button type="button" class="quick-btn" id="quickOpenSceneBtn">
-        <div class="quick-btn-title">新規シーン</div>
-        <div class="quick-btn-sub">すぐ入力を開く</div>
-      </button>
-      <button type="button" class="quick-btn" id="quickGoFieldBtn">
-        <div class="quick-btn-title">現場表示へ</div>
-        <div class="quick-btn-sub">未撮影を確認</div>
-      </button>
-      <button type="button" class="quick-btn" id="quickGoProjectBtn">
-        <div class="quick-btn-title">脚本</div>
-        <div class="quick-btn-sub">選択中を切り替え</div>
-      </button>
-      <button type="button" class="quick-btn" id="quickGoBackupBtn">
-        <div class="quick-btn-title">バックアップ</div>
-        <div class="quick-btn-sub">書き出しと復元</div>
-      </button>
-    </div>
+      <div class="quick-actions">
+        <button type="button" class="quick-btn" id="quickOpenSceneBtn">
+          <div class="quick-btn-title">新規シーン</div>
+          <div class="quick-btn-sub">すぐ入力を開く</div>
+        </button>
+        <button type="button" class="quick-btn" id="quickGoFieldBtn">
+          <div class="quick-btn-title">現場表示へ</div>
+          <div class="quick-btn-sub">未撮影を確認</div>
+        </button>
+        <button type="button" class="quick-btn" id="quickGoProjectBtn">
+          <div class="quick-btn-title">脚本</div>
+          <div class="quick-btn-sub">選択中を切り替え</div>
+        </button>
+        <button type="button" class="quick-btn" id="quickGoBackupBtn">
+          <div class="quick-btn-title">バックアップ</div>
+          <div class="quick-btn-sub">書き出しと復元</div>
+        </button>
+      </div>
 
-    <div class="dashboard-hero-grid" style="margin-top:12px;">
-      <div class="dashboard-hero-card">
-        <div class="dashboard-hero-label">進行率</div>
-        <div id="homeProgressValue" class="dashboard-hero-value">0%</div>
-        <div id="homeProgressSub" class="dashboard-hero-sub">未開始</div>
-        <div class="progress-bar" style="margin-top:8px;">
-          <div id="homeProgressBar" class="progress-bar-fill"></div>
+      <div class="dashboard-hero-grid" style="margin-top:12px;">
+        <div class="dashboard-hero-card">
+          <div class="dashboard-hero-label">進行率</div>
+          <div id="homeProgressValue" class="dashboard-hero-value">0%</div>
+          <div id="homeProgressSub" class="dashboard-hero-sub">未開始</div>
+          <div class="progress-bar" style="margin-top:8px;">
+            <div id="homeProgressBar" class="progress-bar-fill"></div>
+          </div>
+        </div>
+
+        <div class="dashboard-hero-card">
+          <div class="dashboard-hero-label">準備不足</div>
+          <div id="homeNotReadyCount" class="dashboard-hero-value">0</div>
+          <div class="dashboard-hero-sub">チェック未完了シーン</div>
         </div>
       </div>
 
-      <div class="dashboard-hero-card">
-        <div class="dashboard-hero-label">準備不足</div>
-        <div id="homeNotReadyCount" class="dashboard-hero-value">0</div>
-        <div class="dashboard-hero-sub">チェック未完了シーン</div>
+      <div class="prep-dashboard-grid">
+        <div class="dashboard-panel">
+          <div class="dashboard-panel-title">制作サマリ</div>
+          <div id="homePrepSummary" class="dashboard-inline-list">まだデータがありません</div>
+        </div>
+        <div class="dashboard-panel">
+          <div class="dashboard-panel-title">脚本ファクト</div>
+          <div id="homePrepProjectFacts" class="dashboard-inline-list">まだデータがありません</div>
+        </div>
+        <div class="dashboard-panel">
+          <div class="dashboard-panel-title">最新の香盤表</div>
+          <div id="homeLatestCallSheet" class="dashboard-inline-list">まだデータがありません</div>
+        </div>
       </div>
     </div>
 
-    <div class="dashboard-panel" style="margin-top:12px;">
-      <div class="dashboard-panel-title">今日やること</div>
-      <div id="homeTodayAction" class="dashboard-panel-body" style="cursor:pointer;">まだデータがありません</div>
-    </div>
-    <div class="dashboard-panel" style="margin-top:12px;">
-  <div class="dashboard-panel-title">選択中脚本の進行</div>
-  <div id="homeProjectProgressSummary" class="dashboard-panel-body">まだデータがありません</div>
-  <div class="progress-bar" style="margin-top:8px;">
-    <div id="homeProjectProgressBarLarge" class="progress-bar-fill"></div>
-  </div>
-</div>
-    <div class="button-row" style="margin-top:10px;">
-  <button type="button" id="homeJumpUndoneBtn" class="primary-btn">未撮影へ</button>
-</div>
+    <div class="prep-dashboard-side">
+      <div class="dashboard-panel">
+        <div class="dashboard-panel-title">選択中脚本の進行</div>
+        <div id="homeProjectProgressSummary" class="dashboard-panel-body">まだデータがありません</div>
+        <div class="progress-bar" style="margin-top:8px;">
+          <div id="homeProjectProgressBarLarge" class="progress-bar-fill"></div>
+        </div>
+      </div>
+
+      <div class="dashboard-panel">
+        <div class="dashboard-panel-title">進行メーター</div>
+        <div class="dashboard-metric-grid">
+          <div class="dashboard-metric-card">
+            <div class="dashboard-metric-kicker">登録シーン</div>
+            <div id="homeMetricRegistered" class="dashboard-metric-value">0</div>
+            <div class="dashboard-metric-sub">選択中脚本の登録数</div>
+          </div>
+          <div class="dashboard-metric-card">
+            <div class="dashboard-metric-kicker">完了シーン</div>
+            <div id="homeMetricCompleted" class="dashboard-metric-value">0</div>
+            <div class="dashboard-metric-sub">撮影完了ベース</div>
+          </div>
+          <div class="dashboard-metric-card">
+            <div class="dashboard-metric-kicker">未撮影</div>
+            <div id="homeMetricRemaining" class="dashboard-metric-value">0</div>
+            <div class="dashboard-metric-sub">次の作業候補</div>
+          </div>
+          <div class="dashboard-metric-card">
+            <div class="dashboard-metric-kicker">脚本総数</div>
+            <div id="homeMetricPlanned" class="dashboard-metric-value">0</div>
+            <div class="dashboard-metric-sub">全体基準</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-panel">
+        <div class="dashboard-panel-title">今日やること</div>
+        <div id="homeTodayAction" class="dashboard-panel-body" style="cursor:pointer;">まだデータがありません</div>
+      </div>
+
+      <div class="button-row" style="margin-top:2px;">
+        <button type="button" id="homeJumpUndoneBtn" class="primary-btn">未撮影へ</button>
+      </div>
 
         <div class="dashboard-panel" style="margin-top:12px;">
-      <div class="dashboard-panel-title">要確認シーン</div>
-      <div id="homeAlertSceneList" class="dashboard-panel-body">まだデータがありません</div>
+        <div class="dashboard-panel-title">要確認シーン</div>
+        <div id="homeAlertSceneList" class="dashboard-panel-body">まだデータがありません</div>
+      </div>
     </div>
   </div>
 </section>
@@ -3913,6 +5150,12 @@ label{
           <div class="current-project-box">
             <div class="current-project-label">選択中脚本</div>
             <div id="currentProjectLabel" class="current-project-value">未選択</div>
+          </div>
+          <div class="project-table-head">
+            <div>脚本</div>
+            <div>責任者</div>
+            <div>進行</div>
+            <div>操作</div>
           </div>
           <div id="projectList"></div>
         </div>
@@ -4345,7 +5588,7 @@ label{
             <button type="button" id="copyScenesCsvTemplateBtn" class="secondary-btn">CSV見本コピー</button>
           </div>
           <input type="file" id="importScenesCsvInput" accept=".csv,text/csv" class="hidden">
-          <div class="scene-manage-grid">
+          <div class="scene-list-toolbar">
             <div class="field">
               <label for="sceneListTypeFilter">シーン表示</label>
               <select id="sceneListTypeFilter">
@@ -4354,6 +5597,14 @@ label{
                 <option value="placeholder">仮シーンのみ</option>
               </select>
             </div>
+          </div>
+          <div class="scene-list-head">
+            <div>シーン</div>
+            <div>番号 / 順</div>
+            <div>出演</div>
+            <div>場所</div>
+            <div>進行</div>
+            <div>操作</div>
           </div>
           <div id="sceneList"></div>
         </div>
@@ -4592,6 +5843,10 @@ label{
 
 <nav class="tabbar">
   <div class="tabbar-inner">
+    <div class="sidebar-mode-switch" aria-label="モード切替">
+      <button type="button" id="sidePrepBtn" class="sidebar-mode-btn">準備</button>
+      <button type="button" id="sideFieldBtn" class="sidebar-mode-btn">現場</button>
+    </div>
     <button type="button" class="tab-btn active" data-tab="home">
       <div class="tab-icon">🏠</div>
       <div class="tab-label">ホーム</div>
@@ -4710,6 +5965,8 @@ label{
   const headerModeChip = $("headerModeChip");
   const headerPrepBtn = $("headerPrepBtn");
   const headerFieldBtn = $("headerFieldBtn");
+  const sidePrepBtn = $("sidePrepBtn");
+  const sideFieldBtn = $("sideFieldBtn");
   const callSheetProjectPicker = $("callSheetProjectPicker");
   const callSheetFormatSelect = $("callSheetFormatSelect");
   const callSheetProjectSearch = $("callSheetProjectSearch");
@@ -4817,6 +6074,13 @@ label{
   const sceneList = $("sceneList");
   const sceneListTypeFilter = $("sceneListTypeFilter");
   const sceneProjectLinkBox = $("sceneProjectLinkBox");
+  const homePrepSummary = $("homePrepSummary");
+  const homePrepProjectFacts = $("homePrepProjectFacts");
+  const homeLatestCallSheet = $("homeLatestCallSheet");
+  const homeMetricRegistered = $("homeMetricRegistered");
+  const homeMetricCompleted = $("homeMetricCompleted");
+  const homeMetricRemaining = $("homeMetricRemaining");
+  const homeMetricPlanned = $("homeMetricPlanned");
 
   const projectCreateSection = $("projectCreateSection");
   const projectListSection = $("projectListSection");
@@ -4825,6 +6089,7 @@ label{
   const propMasterSection = $("propMasterSection");
   const sceneFormSection = $("sceneFormSection");
   const sceneListSection = $("sceneListSection");
+  const callSheetSection = $("callSheetSection");
   const fieldControlSection = $("fieldControlSection");
   const backupSection = $("backupSection");
   const dashboardSection = $("dashboardSection");
@@ -5176,6 +6441,10 @@ function updateToolSubTab(tabName){
   if(debugSection){
     debugSection.classList.toggle("hidden", isCallsheet);
   }
+
+  if(callSheetSection){
+    callSheetSection.classList.toggle("hidden", !isCallsheet);
+  }
 }
 
 function switchTab(tabName){
@@ -5199,6 +6468,25 @@ function switchTab(tabName){
       btn.classList.toggle("active", btn.getAttribute("data-tab") === tabName);
     });
     updateToolSubTab(tabName);
+    return;
+  }
+
+  if(currentPanel === nextPanel){
+    if(nextPanel){
+      nextPanel.classList.remove("exit-left", "exit-right");
+      nextPanel.classList.add("active");
+    }
+
+    document.querySelectorAll(".tab-btn").forEach(btn => {
+      btn.classList.toggle("active", btn.getAttribute("data-tab") === tabName);
+    });
+
+    currentTabName = tabName;
+    updateToolSubTab(tabName);
+
+    if(tabName === "tool" || tabName === "callsheet"){
+      renderCallSheetList();
+    }
     return;
   }
 
@@ -5231,6 +6519,9 @@ function switchTab(tabName){
 
   if(tabName === "project"){
     renderProjects();
+  }
+  if(tabName === "tool" || tabName === "callsheet"){
+    renderCallSheetList();
   }
   if(tabName === "master"){
     renderActors();
@@ -5630,7 +6921,7 @@ function getCallSheetProjectLabel(sheet){
     return;
   }
 
-  if(fieldControlSection) fieldControlSection.classList.add("hidden");
+  updateToolSubTab(currentTabName);
 
   const showAll = currentDept === "all";
 
@@ -5701,7 +6992,9 @@ function renderHeaderStatus(){
       : "準備モード";
   }
 }
- function renderMode(){
+function renderMode(){
+  document.body.classList.toggle("mode-prep", mode === "prep");
+  document.body.classList.toggle("mode-field", mode === "field");
   if(prepBtn){
     prepBtn.className = mode === "prep" ? "segment-btn active-prep" : "segment-btn";
   }
@@ -5714,7 +7007,14 @@ function renderHeaderStatus(){
   if(headerFieldBtn){
     headerFieldBtn.className = mode === "field" ? "header-mode-btn active-field" : "header-mode-btn";
   }
+  if(sidePrepBtn){
+    sidePrepBtn.className = mode === "prep" ? "sidebar-mode-btn active-prep" : "sidebar-mode-btn";
+  }
+  if(sideFieldBtn){
+    sideFieldBtn.className = mode === "field" ? "sidebar-mode-btn active-field" : "sidebar-mode-btn";
+  }
   renderDepartmentSections();
+  updateToolSubTab(currentTabName);
   renderHeaderStatus();
 }
 
@@ -6438,31 +7738,46 @@ if(progress >= 70) progressClass = "high";
 else if(progress >= 30) progressClass = "mid";
       return `
         <div class="project-card ${project.id === activeProjectId ? "active" : ""}">
-          <div class="item-title">${escapeHtml(project.title)}</div>
-          <div class="item-meta">監督：${escapeHtml(project.director || "-")}</div>
-          <div class="item-meta">シーン数：登録 ${projectScenes.length}${plannedCount > 0 ? ` / 脚本全体 ${plannedCount}` : ""}</div>
-          <div class="project-status">
-  <span class="status-remaining">未撮影 ${remaining}</span>
-  <span class="status-done">完了 ${doneCount}</span>
-</div>
-          <div class="project-progress">  
-            <div class="project-progress-row">
-    <span>進行率</span>
-    <span>${progress}%</span>
-  </div>
-  <div class="project-progress-bar">
-    <div class="project-progress-fill ${progressClass}" style="width:${progress}%"></div>
-  </div>
-</div>
-          <div class="item-meta">${escapeHtml(project.memo || "-")}</div>
-          <div class="item-actions">
-            <button type="button" class="select-btn" data-project-select="${project.id}">使う</button>
-            <button type="button" class="primary-btn" data-project-open-scene="${project.id}">シーン入力</button>
-            <button type="button" class="edit-btn" data-project-edit="${project.id}">編集</button>
-            <button type="button" class="danger-btn" data-project-delete="${project.id}">削除</button>
-            <div class="project-extra-actions">
-            <button type="button" class="primary-btn" data-project-jump-undone="${project.id}">未撮影へ</button>
-</div>
+          <div class="project-card-grid">
+            <div class="project-card-main">
+              <div class="item-title">${escapeHtml(project.title)}</div>
+              <div class="item-meta">監督：${escapeHtml(project.director || "-")}</div>
+              <div class="project-card-note">${escapeHtml(project.memo || "メモはまだありません")}</div>
+            </div>
+
+            <div class="project-stat-stack">
+              <div class="project-stat-line"><span>登録</span><strong>${projectScenes.length}</strong></div>
+              <div class="project-stat-line"><span>脚本全体</span><strong>${plannedCount || "-"}</strong></div>
+              <div class="project-stat-line"><span>未撮影</span><strong>${remaining}</strong></div>
+            </div>
+
+            <div class="project-stat-stack">
+              <div class="project-status">
+                <span class="status-remaining">未撮影 ${remaining}</span>
+                <span class="status-done">完了 ${doneCount}</span>
+              </div>
+              <div class="project-progress">  
+                <div class="project-progress-row">
+                  <span>進行率</span>
+                  <span>${progress}%</span>
+                </div>
+                <div class="project-progress-bar">
+                  <div class="project-progress-fill ${progressClass}" style="width:${progress}%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-card-actions">
+              <div class="item-actions">
+                <button type="button" class="select-btn" data-project-select="${project.id}">使う</button>
+                <button type="button" class="primary-btn" data-project-open-scene="${project.id}">シーン入力</button>
+                <button type="button" class="edit-btn" data-project-edit="${project.id}">編集</button>
+                <button type="button" class="danger-btn" data-project-delete="${project.id}">削除</button>
+              </div>
+              <div class="project-extra-actions">
+                <button type="button" class="primary-btn" data-project-jump-undone="${project.id}">未撮影へ</button>
+              </div>
+            </div>
           </div>
         </div>
       `;
@@ -8124,46 +9439,62 @@ function getNotReadyScenes(projectId){
     }
 
     return `
-      <div class="scene-card ${labelClass(scene.label)} ${readyCardClass} ${shotDoneCardClass} ${undoneCardClass} ${nextTargetClass} ${placeholderCardClass}" data-scene-id="${scene.id}">
-        <div class="item-title">${escapeHtml(scene.title)}</div>
-
-        <div class="badges">
-          ${scene.no ? `<span class="badge">シーン ${escapeHtml(scene.no)}</span>` : ``}
-          ${scene.order ? `<span class="badge">撮影順 ${scene.order}</span>` : ``}
-          ${scene.isPlaceholder ? `<span class="badge placeholder">仮シーン</span>` : ``}
-          ${scene.label ? `<span class="badge ${badgeClass(scene.label)}">${escapeHtml(scene.label)}</span>` : ``}
-          ${scene.shotDone ? `<span class="badge shot">撮影完了</span>` : `<span class="badge">未撮影</span>`}
-          ${scene.done ? `<span class="badge done">準備完了</span>` : `<span class="badge warn">あと${checkStatus.remainingCount}項目</span>`}
-          ${scene.location ? `<span class="badge">${escapeHtml(scene.location)}</span>` : ``}
-        </div>
-
-        <div class="item-meta">出演者：${escapeHtml(scene.cast || "-")}</div>
-        <div class="item-meta">小道具：${escapeHtml(scene.prop || "-")}</div>
-        <div class="item-meta">場所：${escapeHtml(scene.location || "-")}</div>
-
-        ${!scene.shotDone ? `
-          <div class="progress-wrap">
-            <div class="progress-label-row">
-              <span>準備進行</span>
-              <span>${progressPercent}%</span>
+      <div class="scene-card prep-scene-card ${labelClass(scene.label)} ${readyCardClass} ${shotDoneCardClass} ${undoneCardClass} ${nextTargetClass} ${placeholderCardClass}" data-scene-id="${scene.id}">
+        <div class="prep-scene-row">
+          <div class="prep-scene-cell">
+            <div class="item-title">${escapeHtml(scene.title)}</div>
+            <div class="badges">
+              ${scene.isPlaceholder ? `<span class="badge placeholder">仮シーン</span>` : ``}
+              ${scene.label ? `<span class="badge ${badgeClass(scene.label)}">${escapeHtml(scene.label)}</span>` : ``}
+              ${scene.shotDone ? `<span class="badge shot">撮影完了</span>` : `<span class="badge">未撮影</span>`}
+              ${scene.done ? `<span class="badge done">準備完了</span>` : `<span class="badge warn">あと${checkStatus.remainingCount}項目</span>`}
             </div>
+          </div>
+
+          <div class="prep-scene-cell">
+            <div class="prep-scene-label">番号 / 順</div>
+            <div class="prep-scene-value">
+              シーン ${escapeHtml(scene.no || "-")}<br>
+              撮影順 ${escapeHtml(scene.order || "-")}
+            </div>
+          </div>
+
+          <div class="prep-scene-cell">
+            <div class="prep-scene-label">出演 / 小道具</div>
+            <div class="prep-scene-value">
+              出演 ${escapeHtml(scene.cast || "-")}<br>
+              小道具 ${escapeHtml(scene.prop || "-")}
+            </div>
+          </div>
+
+          <div class="prep-scene-cell">
+            <div class="prep-scene-label">場所</div>
+            <div class="prep-scene-value">${escapeHtml(scene.location || "-")}</div>
+          </div>
+
+          <div class="prep-scene-cell prep-scene-progress">
+            <div class="prep-scene-label">準備進行</div>
+            <div class="prep-scene-value">${progressPercent}%</div>
             <div class="progress-bar">
               <div class="progress-bar-fill" style="width:${progressPercent}%"></div>
             </div>
           </div>
-        ` : ``}
+
+          <div class="prep-scene-cell">
+            <div class="prep-scene-label">操作</div>
+            <div class="prep-scene-actions">
+              <button type="button" class="detail-btn" data-scene-detail="${scene.id}">詳細</button>
+              <button type="button" class="${scene.shotDone ? "unshot-btn" : "shot-btn"}" data-scene-shot="${scene.id}">${scene.shotDone ? "戻す" : "完了"}</button>
+              <button type="button" class="edit-btn" data-scene-edit="${scene.id}">編集</button>
+              ${!isFirst ? `<button type="button" class="secondary-btn" data-scene-up="${scene.id}">↑上へ</button>` : ``}
+              ${!isLast ? `<button type="button" class="secondary-btn" data-scene-down="${scene.id}">↓下へ</button>` : ``}
+              <button type="button" class="secondary-btn" data-scene-duplicate="${scene.id}">複製</button>
+              <button type="button" class="danger-btn" data-scene-delete="${scene.id}">削除</button>
+            </div>
+          </div>
+        </div>
 
         ${sharedDetail}
-
-        <div class="item-actions">
-          <button type="button" class="detail-btn" data-scene-detail="${scene.id}">詳細</button>
-          <button type="button" class="${scene.shotDone ? "unshot-btn" : "shot-btn"}" data-scene-shot="${scene.id}">${scene.shotDone ? "未撮影に戻す" : "撮影完了"}</button>
-          ${!isFirst ? `<button type="button" class="secondary-btn" data-scene-up="${scene.id}">↑上へ</button>` : ``}
-          ${!isLast ? `<button type="button" class="secondary-btn" data-scene-down="${scene.id}">↓下へ</button>` : ``}
-          <button type="button" class="secondary-btn" data-scene-duplicate="${scene.id}">複製</button>
-          <button type="button" class="edit-btn" data-scene-edit="${scene.id}">編集</button>
-          <button type="button" class="danger-btn" data-scene-delete="${scene.id}">削除</button>
-        </div>
       </div>
     `;
   }
@@ -8535,6 +9866,18 @@ renderCallSheetList();
   const activeProjectScenes = activeProjectId ? getProjectScenes(activeProjectId) : [];
   const shotDoneCount = activeProjectScenes.filter(scene => scene.shotDone).length;
   const remainingCount = activeProjectScenes.filter(scene => !scene.shotDone).length;
+  const plannedCount = activeProjectId ? getProjectPlannedSceneCount(activeProjectId) : 0;
+  const readyCount = activeProjectScenes.filter(scene => scene.done).length;
+  const locationCount = new Set(
+    activeProjectScenes.map(scene => String(scene.location || "").trim()).filter(Boolean)
+  ).size;
+  const latestCallSheet = [...callSheets]
+    .sort((a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime())[0] || null;
+
+  if(homeMetricRegistered) homeMetricRegistered.textContent = String(activeProjectScenes.length);
+  if(homeMetricCompleted) homeMetricCompleted.textContent = String(shotDoneCount);
+  if(homeMetricRemaining) homeMetricRemaining.textContent = String(remainingCount);
+  if(homeMetricPlanned) homeMetricPlanned.textContent = String(plannedCount || activeProjectScenes.length || 0);
 
   if(homeProgressValue){
     homeProgressValue.textContent = `${projectProgress}%`;
@@ -8557,7 +9900,6 @@ renderCallSheetList();
     }else if(activeProjectScenes.length === 0){
       homeProgressSub.textContent = "シーン未登録";
     }else{
-      const plannedCount = getProjectPlannedSceneCount(activeProjectId);
       homeProgressSub.textContent = plannedCount > 0
         ? `${shotDoneCount}/${plannedCount} シーン完了（脚本全体ベース）`
         : `${shotDoneCount}/${activeProjectScenes.length} シーン完了`;
@@ -8569,7 +9911,6 @@ renderCallSheetList();
   }else if(activeProjectScenes.length === 0){
     homeProjectProgressSummary.textContent = "この脚本にはシーンがまだありません";
   }else{
-    const plannedCount = getProjectPlannedSceneCount(activeProjectId);
     homeProjectProgressSummary.textContent =
       plannedCount > 0
         ? `完了 ${shotDoneCount} / 未撮影 ${remainingCount} / 登録 ${activeProjectScenes.length} / 脚本全体 ${plannedCount}`
@@ -8594,6 +9935,91 @@ if(homeProjectProgressBarLarge){
 
   if(homeNotReadyCount){
     homeNotReadyCount.textContent = String(notReadyScenes.length);
+  }
+
+  if(homePrepSummary){
+    if(!activeProjectId){
+      homePrepSummary.innerHTML = `<div class="dashboard-inline-item"><div class="dashboard-inline-main"><div class="dashboard-inline-title">脚本が未選択です</div><div class="dashboard-inline-sub">まずは脚本を選ぶと、準備サマリがここに出ます。</div></div><div class="dashboard-inline-badge">待機</div></div>`;
+    }else{
+      homePrepSummary.innerHTML = `
+        <div class="dashboard-inline-item">
+          <div class="dashboard-inline-main">
+            <div class="dashboard-inline-title">準備完了シーン</div>
+            <div class="dashboard-inline-sub">準備OK ${readyCount} / 要確認 ${notReadyScenes.length}</div>
+          </div>
+          <div class="dashboard-inline-badge">${readyCount}</div>
+        </div>
+        <div class="dashboard-inline-item">
+          <div class="dashboard-inline-main">
+            <div class="dashboard-inline-title">ロケーション数</div>
+            <div class="dashboard-inline-sub">選択中脚本で使う場所の種類</div>
+          </div>
+          <div class="dashboard-inline-badge">${locationCount}</div>
+        </div>
+        <div class="dashboard-inline-item">
+          <div class="dashboard-inline-main">
+            <div class="dashboard-inline-title">次の作業候補</div>
+            <div class="dashboard-inline-sub">${nextScene ? escapeHtml(nextScene.title || "名称未設定") : "未撮影シーンはありません"}</div>
+          </div>
+          <div class="dashboard-inline-badge">${nextScene ? "進行" : "完了"}</div>
+        </div>
+      `;
+    }
+  }
+
+  if(homePrepProjectFacts){
+    if(!currentProject){
+      homePrepProjectFacts.innerHTML = `<div class="dashboard-inline-item"><div class="dashboard-inline-main"><div class="dashboard-inline-title">脚本ファクトはまだありません</div><div class="dashboard-inline-sub">脚本を選ぶと監督名や全シーン数を確認できます。</div></div><div class="dashboard-inline-badge">未選択</div></div>`;
+    }else{
+      homePrepProjectFacts.innerHTML = `
+        <div class="dashboard-inline-item">
+          <div class="dashboard-inline-main">
+            <div class="dashboard-inline-title">${escapeHtml(currentProject.title || "名称未設定")}</div>
+            <div class="dashboard-inline-sub">監督 ${escapeHtml(currentProject.director || "-")}</div>
+          </div>
+          <div class="dashboard-inline-badge">脚本</div>
+        </div>
+        <div class="dashboard-inline-item">
+          <div class="dashboard-inline-main">
+            <div class="dashboard-inline-title">脚本全体数</div>
+            <div class="dashboard-inline-sub">登録 ${activeProjectScenes.length} / 全体 ${plannedCount || "-"}</div>
+          </div>
+          <div class="dashboard-inline-badge">${plannedCount || activeProjectScenes.length || 0}</div>
+        </div>
+        <div class="dashboard-inline-item">
+          <div class="dashboard-inline-main">
+            <div class="dashboard-inline-title">脚本メモ</div>
+            <div class="dashboard-inline-sub">${escapeHtml(currentProject.memo || "まだメモはありません")}</div>
+          </div>
+          <div class="dashboard-inline-badge">${currentProject.actorIds?.length || 0}名</div>
+        </div>
+      `;
+    }
+  }
+
+  if(homeLatestCallSheet){
+    if(!latestCallSheet){
+      homeLatestCallSheet.innerHTML = `<div class="dashboard-inline-item"><div class="dashboard-inline-main"><div class="dashboard-inline-title">香盤表はまだありません</div><div class="dashboard-inline-sub">作成するとここに最新の香盤表が出ます。</div></div><div class="dashboard-inline-badge">0</div></div>`;
+    }else{
+      const latestSettings = normalizeCallSheetSettings(latestCallSheet.settings);
+      const timedCount = Object.keys(normalizeCallSheetRowTimes(latestCallSheet.rowTimes)).length;
+      homeLatestCallSheet.innerHTML = `
+        <div class="dashboard-inline-item">
+          <div class="dashboard-inline-main">
+            <div class="dashboard-inline-title">${escapeHtml(latestCallSheet.title || "名称未設定")}</div>
+            <div class="dashboard-inline-sub">${escapeHtml(latestSettings.projectDisplayName || "作品名未設定")}</div>
+          </div>
+          <div class="dashboard-inline-badge">${latestCallSheet.format === "short_drama" ? "短編" : "映画"}</div>
+        </div>
+        <div class="dashboard-inline-item">
+          <div class="dashboard-inline-main">
+            <div class="dashboard-inline-title">撮影日 / 作成日</div>
+            <div class="dashboard-inline-sub">${escapeHtml(latestCallSheet.scheduledDate || "-")} / ${escapeHtml(formatDateTimeJP(latestCallSheet.createdAt))}</div>
+          </div>
+          <div class="dashboard-inline-badge">${timedCount}件</div>
+        </div>
+      `;
+    }
   }
 
   if(homeTodayAction){
@@ -10614,6 +12040,15 @@ function openSceneForm(){
     setMode("prep");
   });
   bindEvent(headerFieldBtn, "click", () => {
+    setMode("field");
+    if(currentTabName === "home"){
+      switchTab("tool");
+    }
+  });
+  bindEvent(sidePrepBtn, "click", () => {
+    setMode("prep");
+  });
+  bindEvent(sideFieldBtn, "click", () => {
     setMode("field");
     if(currentTabName === "home"){
       switchTab("tool");
