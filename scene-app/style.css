@@ -1,0 +1,97 @@
+:root{
+  --bg:#0b0f19;
+  --panel:#151c2c;
+  --panel-2:#1d2638;
+  --text:#f3f4f6;
+  --sub:#9ca3af;
+  --line:#334155;
+  --green:#22c55e;
+  --blue:#2563eb;
+  --gray:#475569;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+}
+
+.app{
+  max-width:900px;
+  margin:auto;
+  padding:16px;
+}
+
+h1{
+  margin:0 0 8px;
+}
+
+.subtitle{
+  margin:0 0 16px;
+  color:var(--sub);
+}
+
+.card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:16px;
+}
+
+h2{
+  margin:0 0 12px;
+}
+
+input{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:var(--panel-2);
+  color:var(--text);
+  font-size:16px;
+}
+
+.button-row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
+
+.button-row button{
+  flex:1 1 180px;
+}
+
+button{
+  padding:12px 14px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  color:white;
+  font-size:15px;
+}
+
+.primary-btn{
+  background:var(--green);
+}
+
+.secondary-btn{
+  background:var(--gray);
+}
+
+.status-box,
+.list-box{
+  margin-top:12px;
+  padding:12px;
+  border-radius:12px;
+  background:var(--panel-2);
+  border:1px solid var(--line);
+  white-space:pre-wrap;
+}
