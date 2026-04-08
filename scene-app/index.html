@@ -17795,6 +17795,18 @@ function switchTab(tabName){
     return `${projectTitle} / ${deviceName}`;
   }
 
+  function getCloudSyncLastSyncedAt(){
+    return String(localStorage.getItem(CLOUD_SYNC_LAST_SYNC_AT_KEY) || "");
+  }
+
+  function isCloudSyncRemoteNewer(remoteUpdatedAt, localUpdatedAt){
+    const remoteTime = new Date(remoteUpdatedAt || "").getTime();
+    const localTime = new Date(localUpdatedAt || "").getTime();
+    if(!Number.isFinite(remoteTime)) return false;
+    if(!Number.isFinite(localTime)) return true;
+    return remoteTime > localTime;
+  }
+
   async function callSupabaseRpc(functionName, payload){
     const { projectUrl, publishableKey, isReady } = getCloudSyncConfig();
     if(!isReady){
@@ -17936,6 +17948,44 @@ function switchTab(tabName){
     }
   }
 
+  async function refreshCloudSyncIfNeeded(options = {}){
+    persistCloudSyncSettings();
+    const config = getCloudSyncConfig();
+    if(!config.isReady) return null;
+
+    try{
+      const result = await callSupabaseRpc("get_app_sync_state", {
+        p_sync_id: config.syncId,
+        p_sync_secret: config.syncSecret
+      });
+      if(!result?.found || !result.payload || !result.updated_at){
+        return result || null;
+      }
+
+      const localSyncedAt = getCloudSyncLastSyncedAt();
+      if(!options.force && !isCloudSyncRemoteNewer(result.updated_at, localSyncedAt)){
+        if(options.updateStatus){
+          setCloudSyncStatus(`最新です (${formatDateTimeJP(localSyncedAt || result.updated_at)})`);
+        }
+        return result;
+      }
+
+      await withCloudSyncSuspended(() => applyBackupData(result.payload, {
+        statusMessage: "クラウドの最新を反映しました",
+        toastMessage: options.silent ? "" : "クラウドの最新を反映しました",
+        skipEmergencySnapshot: true
+      }));
+      localStorage.setItem(CLOUD_SYNC_LAST_SYNC_AT_KEY, String(result.updated_at));
+      setCloudSyncStatus(`クラウドの最新を反映しました (${formatDateTimeJP(result.updated_at)})`);
+      return result;
+    }catch(error){
+      if(options.updateStatus){
+        setCloudSyncStatus(`自動取得失敗: ${error.message}`);
+      }
+      return null;
+    }
+  }
+
   function queueCloudSync(reason = "auto"){
     if(cloudSyncSuspended || !cloudSyncAutoEnabledState) return;
     cloudSyncPendingReason = reason;
@@ -17960,7 +18010,7 @@ function switchTab(tabName){
     }
 
     if(cloudSyncAutoEnabledState){
-      await pullCloudSyncFromSupabase({ skipConfirm: true, silent: true });
+      await refreshCloudSyncIfNeeded({ force: true, silent: true, updateStatus: true });
     }else{
       await testCloudSyncConnection({ silent: true });
     }
@@ -38188,6 +38238,16 @@ requestAnimationFrame(() => {
 });
 window.addEventListener("load", () => {
   renderHomeDashboard();
+});
+window.addEventListener("focus", () => {
+  if(cloudSyncAutoEnabledState){
+    refreshCloudSyncIfNeeded({ silent: true, updateStatus: true });
+  }
+});
+document.addEventListener("visibilitychange", () => {
+  if(document.visibilityState === "visible" && cloudSyncAutoEnabledState){
+    refreshCloudSyncIfNeeded({ silent: true, updateStatus: true });
+  }
 });
 })();
 </script>
